@@ -1,0 +1,5 @@
+.eslintrc.js
+.prettierrc.js
+babel.config.js
+metro.config.js
+index.js
