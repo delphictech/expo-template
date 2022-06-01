@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@react-native-masked-view/masked-view": "0.2.5",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.6",
@@ -45,7 +46,7 @@
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/react-native": "^8.0.0",
     "@types/jest": "^27.0.2",
-    "@types/react": "^18.0.10",
+    "@types/react": "~17.0.21",
     "@types/react-native": "^0.66.1",
     "eslint": "^8.16.0",
     "eslint-config-handlebarlabs": "^0.0.6",

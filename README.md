@@ -1,7 +1,7 @@
 # React Native School TypeScript Expo Template
 
 **todo: write documentation for absolute imports, compiling and linting
-**
+**Development: light mode and dark mode, form validation, firebase integration
 ## Running locally
 Run the following commands to run the app locally
 ```

@@ -10,6 +10,7 @@
       "src": ["./src/*", "./src"],
       "navigation":["./src/navigation/*", "./src/navigation"],
       "screens":["./src/screens/*", "./src/screens"],
+      "components": ["./src/components/*", "./src/components"],
     },
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,

@@ -10,6 +10,7 @@ module.exports = function babel(api) {
             src: './src',
             navigation: './src/navigation',
             screens: './src/screens',
+            components: './src/components'
           },
           extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },

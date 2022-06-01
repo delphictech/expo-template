@@ -1,7 +1,12 @@
 import React from 'react';
-import { Center, Box, Heading, VStack, FormControl, Input, Button } from 'native-base';
+import { useState } from 'react';
+import { Center, Box, Heading, VStack, FormControl, Input, Button, Icon } from 'native-base';
+import { MaterialIcons } from "@expo/vector-icons";
+import { FormInput } from 'components';
 
 export default function SignupScreen() {
+    const [showPassword, setShowPassword] = useState(false);
+
     return (
         <Center w="100%">
             <Box safeArea p="2" w="90%" maxW="290" py="8">
@@ -29,10 +34,7 @@ export default function SignupScreen() {
                         <FormControl.Label>Email</FormControl.Label>
                         <Input />
                     </FormControl>
-                    <FormControl>
-                        <FormControl.Label>Password</FormControl.Label>
-                        <Input type="password" />
-                    </FormControl>
+                    <FormInput label="Password" />
                     <FormControl>
                         <FormControl.Label>Confirm Password</FormControl.Label>
                         <Input type="password" />
