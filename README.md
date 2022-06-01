@@ -1,6 +1,7 @@
 # React Native School TypeScript Expo Template
 
-**todo: linting rules to include the absolute imports
+**todo: write documentation for absolute imports, compiling and linting
+**
 ## Running locally
 Run the following commands to run the app locally
 ```
