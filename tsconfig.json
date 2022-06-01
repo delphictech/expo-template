@@ -1,6 +1,25 @@
 {
   "compilerOptions": {
-    "strict": true
+    "jsx": "react",
+    "strict": true,
+    "target": "esnext",
+    "lib": [
+      "esnext"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "src": ["./src/*", "./src"],
+      "navigation":["./src/navigation/*", "./src/navigation"],
+      "screens":["./src/screens/*", "./src/screens"],
+    },
+    "allowJs": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "noImplicitAny": true
   },
   "extends": "expo/tsconfig.base"
 }

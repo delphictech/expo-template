@@ -1,5 +1,26 @@
 # React Native School TypeScript Expo Template
 
+**todo: linting rules to include the absolute imports
+## Running locally
+Run the following commands to run the app locally
+```
+git clone
+expo prebuild -–npm
+expo run:ios -–device
+```
+Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
+
+To compile typescript run
+```
+yarn tsc
+```
+
+## Stack and dependencies
+
+React Native, TypeScript, Expo, 
+
+Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
+
 A simple Expo template with the following features:
 
 - All TypeScript
