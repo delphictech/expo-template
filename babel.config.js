@@ -7,9 +7,9 @@ module.exports = function(api) {
         require.resolve('babel-plugin-module-resolver'),
         {
           alias: {
-            "src": "./src",
-            "navigation": "./src/navigation",
-            "screens": "./src/screens",
+            'src': './src',
+            'navigation': './src/navigation',
+            'screens': './src/screens',
           },
           extensions: ['.ts', '.tsx', '.js', '.jsx']
         },

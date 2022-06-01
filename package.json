@@ -14,7 +14,12 @@
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
+    "@typescript-eslint/eslint-plugin": "^5.27.0",
+    "@typescript-eslint/parser": "^5.27.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-react": "^7.30.0",
     "expo": "^43.0.0",
     "expo-splash-screen": "~0.13.5",
     "expo-status-bar": "~1.1.0",
@@ -36,7 +41,7 @@
     "@types/jest": "^27.0.2",
     "@types/react": "^18.0.10",
     "@types/react-native": "^0.66.1",
-    "eslint": "^7.24.0",
+    "eslint": "^7.32.0",
     "eslint-config-handlebarlabs": "^0.0.6",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-prettier": "^3.4.0",
@@ -66,13 +71,8 @@
     "eslint",
     "prettier"
   ],
-  "homepage": "https://github.com/ReactNativeSchool/expo-typescript-template",
-  "bugs": {
-    "url": "https://github.com/ReactNativeSchool/expo-typescript-template/issues"
-  },
-  "author": "Spencer Carli",
-  "license": "MIT",
+  "author": "Maet Development",
   "private": true,
-  "name": "maetPlayground",
+  "name": "maet-template",
   "version": "1.0.0"
 }
