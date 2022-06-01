@@ -9,10 +9,7 @@ type ErrorType = {
 export const useLogin = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [errors, setErrors]: [
-    ErrorType,
-    Dispatch<SetStateAction<{}>>,
-  ] = React.useState({});
+  const [errors, setErrors]: [ErrorType, Dispatch<SetStateAction<{}>>] = React.useState({});
 
   const submit = () => {
     const nextErrors: ErrorType = {};

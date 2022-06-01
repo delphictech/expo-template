@@ -12,11 +12,7 @@ const MainTab = createBottomTabNavigator<MainTabParams>();
 export default function RootNavigator() {
   return (
     <MainTab.Navigator>
-      <MainTab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ headerTitle: 'Home' }}
-      />
+      <MainTab.Screen name="Home" component={HomeScreen} options={{ headerTitle: 'Home' }} />
       <MainTab.Screen
         name="Explore"
         component={ExploreScreen}

@@ -5,7 +5,8 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "lint": "eslint .",
+    "compile": "tsc",
+    "lint": "eslint",
     "format": "prettier --write '**/*.js'",
     "test": "jest"
   },
