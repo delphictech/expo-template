@@ -43,11 +43,7 @@ interface TextInputProps extends RNTextInputProps {
   errorText?: string;
 }
 
-export const TextInput = ({
-  label,
-  errorText = '',
-  ...rest
-}: TextInputProps) => {
+export function TextInput({ label, errorText = '', ...rest }: TextInputProps) {
   const borderStyles: StyleProp<ViewStyle> = [styles.border];
 
   if (errorText && errorText.length > 0) {
@@ -62,4 +58,4 @@ export const TextInput = ({
       <Text style={[styles.errorText]}>{errorText}</Text>
     </View>
   );
-};
+}

@@ -25,11 +25,7 @@ type ListItemProps = {
   onPress: () => void;
 };
 
-export const ListItem = ({
-  title,
-  subtitle,
-  onPress = () => null,
-}: ListItemProps) => {
+export function ListItem({ title, subtitle, onPress = () => null }: ListItemProps) {
   const rowStyles = [styles.row];
 
   return (
@@ -40,6 +36,8 @@ export const ListItem = ({
       </View>
     </TouchableOpacity>
   );
-};
+}
 
-export const ListSeparator = () => <View style={styles.separator} />;
+export function ListSeparator() {
+  return <View style={styles.separator} />;
+}

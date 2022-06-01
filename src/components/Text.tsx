@@ -27,7 +27,7 @@ type TextProps = {
   style?: StyleProp<TextStyle>[];
 };
 
-export const Text = ({ type, children, style = [] }: TextProps) => {
+export function Text({ type, children, style = [] }: TextProps) {
   let textStyles: StyleProp<TextStyle>[] = [styles.text];
 
   if (type === 'header') {
@@ -39,4 +39,4 @@ export const Text = ({ type, children, style = [] }: TextProps) => {
   textStyles = [...textStyles, ...style];
 
   return <RNText style={textStyles}>{children}</RNText>;
-};
+}

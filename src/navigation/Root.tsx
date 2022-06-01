@@ -3,14 +3,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, ExploreScreen } from 'screens';
 
 export type MainTabParams = {
-  Home: undefined,
-  Explore: undefined
+  Home: undefined;
+  Explore: undefined;
 };
 
 const MainTab = createBottomTabNavigator<MainTabParams>();
 
 export default function RootNavigator() {
-
   return (
     <MainTab.Navigator>
       <MainTab.Screen

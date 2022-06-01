@@ -1,5 +1,3 @@
 import RootNavigator from './Root';
 
-export {
-    RootNavigator
-}
+export default RootNavigator;

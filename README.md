@@ -15,6 +15,12 @@ To compile typescript run
 yarn tsc
 ```
 
+Linting from home directory
+```
+yarn run eslint [file or directory]
+yarn run eslint [file or directory] --fix
+```
+
 ## Stack and dependencies
 
 React Native, TypeScript, Expo, 
