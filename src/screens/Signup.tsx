@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Center, Box, Heading, VStack, FormControl, Input, Button, Icon } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
-import { FormInput } from 'components';
+import { FormInput } from 'components/user-input';
 
 export default function SignupScreen() {
     const [showPassword, setShowPassword] = useState(false);
