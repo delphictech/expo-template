@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from 'react';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Center, Box, Heading, VStack, Button } from 'native-base';
 import { FormInput } from 'components/user-input';
