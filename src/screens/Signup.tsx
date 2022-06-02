@@ -2,12 +2,12 @@ import React from 'react';
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Center, Box, Heading, VStack, Button } from 'native-base';
 import { FormInput } from 'components/user-input';
-
+import { KeyboardBehaviorWrapper } from 'components/wrappers';
 
 export default function SignupScreen() {
 
     return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <KeyboardBehaviorWrapper>
             <Center w="100%">
                 <Box safeArea p="2" w="90%" maxW="290" py="8">
                     <Heading
@@ -31,10 +31,6 @@ export default function SignupScreen() {
                     </Heading>
                     <VStack space={3} mt="5">
                         <FormInput label="Email" />
-                        <FormInput label="Email" />
-                        <FormInput label="Email" />
-                        <FormInput label="Email" />
-                        <FormInput label="Email" />
                         <FormInput label="Password" password={true} />
                         <FormInput label="Confirm Password" password={true} />
                         <Button mt="2" colorScheme="indigo">
@@ -43,7 +39,7 @@ export default function SignupScreen() {
                     </VStack>
                 </Box>
             </Center>
-        </TouchableWithoutFeedback>
+        </KeyboardBehaviorWrapper>
         
     );
 }
