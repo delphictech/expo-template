@@ -16,21 +16,23 @@ export interface FormInputProps {
     label: string;
     password?: boolean; // need default prop inputs
     icon?: typeof Icon;
-    onChangeText?: () => void; // need to find out how to access the text input
+    onChangeText?: (text: string) => void; // need to find out how to access the text input
     validation?: 'None'
 };
 
-export function FormInput(props: FormInputProps) {
+export const FormInput: React.FC<FormInputProps> = (props) => {
+    const [value, setValue] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
     return (
         <FormControl>
-        <FormControl.Label>{props.label}</FormControl.Label>
-        <Input type={showPassword ? "text" : "password"}
-            InputRightElement={<Icon as={<MaterialIcons name={
-                                showPassword ? "visibility" : "visibility-off"} />} 
-                        size={5} mr="2" color="muted.400" onPress={() => setShowPassword(!showPassword)} />}
-        />
+            <FormControl.Label>{props.label}</FormControl.Label>
+            { props.password 
+                ? <Input value={value} w="100%" maxW="300px" onChangeText={setValue} placeholder={props.label} type={showPassword ? "text" : "password"} 
+                InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
+                onPress={() => setShowPassword(!showPassword)} />} />
+                : <Input value={value} w="100%" maxW="300px" onChangeText={setValue} placeholder={props.label}/>
+            }
         </FormControl>
     );
 }
