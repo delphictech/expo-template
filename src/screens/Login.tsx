@@ -22,7 +22,7 @@ export default function LoginScreen() {
                     <Heading
                         size="lg"
                         fontWeight="600"
-                        color="coolGray.800"
+                        color="primary.800"
                         _dark={{
                             color: 'warmGray.50',
                         }}>
