@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, ExploreScreen, LoginScreen, SignupScreen } from 'screens';
+import { HomeScreen, ExploreScreen } from 'screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 export type MainTabParams = {
@@ -13,7 +13,7 @@ const Tabs = createBottomTabNavigator<MainTabParams>();
 export default function MainTabNavigator() {
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="Home" component={SignupScreen} 
+      <Tabs.Screen name="Home" component={HomeScreen} 
         options={{ headerTitle: 'Home', 
           tabBarIcon: ({ focused, color }) => (
             <MaterialCommunityIcons
@@ -24,7 +24,7 @@ export default function MainTabNavigator() {
         }} />
       <Tabs.Screen
         name="Explore"
-        component={LoginScreen}
+        component={ExploreScreen}
         options={{ headerTitle: 'Explore', 
           tabBarIcon: ({ focused, color }) => (
             <MaterialIcons

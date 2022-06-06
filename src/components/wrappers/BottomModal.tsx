@@ -16,11 +16,8 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
             onClose={props.onClose}
             avoidKeyboard
             size="full"
-            _backdrop={{
-            bg: "grey.500",
-            }}
             animationPreset="slide">
-            <Modal.Content variant="fullScreen">
+            <Modal.Content variant="fullScreen" marginBottom={0} marginTop={"auto"}>
                 <Modal.CloseButton />
                 <Modal.Header alignItems={"center"}>
                     <Text fontSize={"lg"} fontWeight={"semibold"}>

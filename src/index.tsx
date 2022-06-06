@@ -2,6 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, extendTheme } from "native-base";
 import { nativeBaseTheme } from 'constants/theme';
+import { SSRProvider } from "@react-aria/ssr";
 import RootNavigator from 'navigation';
 
 export default function App() {
@@ -10,9 +11,11 @@ export default function App() {
   return (
     <>
       <StatusBar />
-      <NativeBaseProvider theme={theme}>
-        <RootNavigator />
-      </NativeBaseProvider>
+      <SSRProvider>
+        <NativeBaseProvider theme={theme}>
+          <RootNavigator />
+        </NativeBaseProvider>
+      </SSRProvider>
     </>
   );
 }
