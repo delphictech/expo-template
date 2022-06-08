@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { NativeSyntheticEvent, TextInputEndEditingEventData } from 'react-native';
 import { FormControl, Input, Icon } from 'native-base';
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -17,6 +17,8 @@ export interface FormInputProps {
     password?: boolean; // need default prop inputs
     icon?: typeof Icon;
     onChangeText?: (text: string) => void; // need to find out how to access the text input
+    onEndEditing?: (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
+    isModalOpen?: boolean | null; // used when forms are in modal to clear input on close
     validation?: 'None'
 };
 
@@ -24,14 +26,19 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
     const [value, setValue] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
+    // set empty inputs everytime modal open or closed
+    useEffect(() => {
+        setValue('');
+    }, [props.isModalOpen])
+
     return (
         <FormControl>
             <FormControl.Label>{props.label}</FormControl.Label>
             { props.password 
                 ? <Input value={value} w="100%" maxW="300px" onChangeText={setValue} placeholder={props.label} type={showPassword ? "text" : "password"} 
                 InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
-                onPress={() => setShowPassword(!showPassword)} />} />
-                : <Input value={value} w="100%" maxW="300px" onChangeText={setValue} placeholder={props.label}/>
+                onPress={() => setShowPassword(!showPassword)} />} onEndEditing={props.onEndEditing} clearButtonMode="while-editing"/>
+                : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={setValue} placeholder={props.label} clearButtonMode="while-editing"/>
             }
         </FormControl>
     );

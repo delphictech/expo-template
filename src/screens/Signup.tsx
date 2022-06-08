@@ -4,7 +4,18 @@ import { Center, Box, Heading, VStack, Button } from 'native-base';
 import { FormInput } from 'components/user-input';
 import { KeyboardBehaviorWrapper } from 'components/wrappers';
 
-export default function SignupScreen() {
+export interface SignupScreenProps {
+    /* 
+        Boolean for when screen nested in modal, used to clear user inputs
+    */
+    isModalOpen?: boolean | null;
+    /*
+        Callback for when an input has been actively edited
+    */
+   onEndEditing?: () => void;
+};
+
+export const SignupScreen: React.FC<SignupScreenProps> = (props) => {
 
     return (
         <KeyboardBehaviorWrapper>
@@ -30,9 +41,9 @@ export default function SignupScreen() {
                         Sign up to continue!
                     </Heading>
                     <VStack space={3} mt="5">
-                        <FormInput label="Email" />
-                        <FormInput label="Password" password={true} />
-                        <FormInput label="Confirm Password" password={true} />
+                        <FormInput label="Email" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} />
+                        <FormInput label="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} />
+                        <FormInput label="Confirm Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} />
                         <Button mt="2" colorScheme="indigo">
                             Sign up
                         </Button>

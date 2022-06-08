@@ -34,12 +34,11 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
         <Modal 
             closeOnOverlayClick={false}
             isOpen={props.isOpen}
-            // isOpen={props.isOpen && internalIsOpen}
             onClose={props.onClose}
             avoidKeyboard
             size="full"
             animationPreset="slide">
-            <Modal.Content variant="fullScreen" marginBottom={0} marginTop={"auto"}>
+            <Modal.Content variant="fullScreen" height="2xl" marginBottom={0} marginTop="auto">
                 <Modal.CloseButton onPress={() => checkClose()}/>
                 {/* <Modal.CloseButton /> */}
                 <Modal.Header alignItems={"center"}>
