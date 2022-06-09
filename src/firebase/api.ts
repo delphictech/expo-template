@@ -9,7 +9,8 @@ export async function anonymousSignIn() {
 
 // Sign In With Email
 export async function signInWithEmail(email: string, password: string) {
-  return await to(signInWithEmailAndPassword(auth, email, password));
+  // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
+  return await signInWithEmailAndPassword(auth, email, password);
 }
 
 // Sign Up With Email

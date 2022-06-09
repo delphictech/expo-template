@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Center, Box, Heading, VStack, Button } from 'native-base';
 import { FormInput } from 'components/user-input';
 import { KeyboardBehaviorWrapper } from 'components/wrappers';
-import { signUpWithEmail } from 'firebase-api';
+import { signInWithEmail, signUpWithEmail } from 'firebase-api';
 import * as Animatable from 'react-native-animatable';
 
 export interface SignupScreenProps {
@@ -32,11 +32,31 @@ export const SignupScreen: React.FC<SignupScreenProps> = (props) => {
         setConfirmVis(false);
     }, [props.isModalOpen]);
 
-    const handleLogin = () => {
-        setConfirmVis(true);
+    const handleLogin = async () => {
+        setIsLoading(true);
+        try {
+            const response = await signInWithEmail(email, password);
+            console.log('reresponse');
+            console.log(response);
+        } catch(e: any) {
+            console.log('ERRRORRO');
+            switch (e.code) {
+                case 'auth/invalid-email':
+                    break;
+                case 'auth/user-disabled':
+                    break;
+                case 'auth/user-not-found':
+                    setConfirmVis(true);
+                case 'auth/wrong-password':
+                    break;
+            }
+            console.log(e);
+        }
+        setIsLoading(false);
+        
     }
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
         // signUpWithEmail(email, password);
         props.onSubmit && props.onSubmit();
     }
