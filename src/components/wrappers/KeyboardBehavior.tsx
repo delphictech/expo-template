@@ -3,7 +3,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 export interface KeyboardBehaviorProps {
-    children: undefined;
+    children: React.ReactNode;
 };
 
 export const KeyboardBehaviorWrapper: React.FC<KeyboardBehaviorProps> = (props) => {

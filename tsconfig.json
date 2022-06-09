@@ -5,13 +5,13 @@
     "noImplicitAny": true,
     "target": "es2016",
     "module": "commonjs",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
       "src": ["./src/*", "./src"],
       "navigation":["./src/navigation/*", "./src/navigation"],
       "screens":["./src/screens/*", "./src/screens"],
-      "components": ["./src/components/*", "./src/components"],
-      "constants": ["./src/constants/*", "./src/constants"],
+      "components/*": ["./src/components/*", "./src/components"],
+      "constants/*": ["./src/constants/*", "./src/constants"],
       "features": ["./src/features/*", "./src/features"],
       "utils": ["./src/utils/*", "./src/utils"],
     },
@@ -25,6 +25,6 @@
     "skipLibCheck": true
   },
   "extends": "expo/tsconfig.base",
-  "include": ["./*.ts", "./src/**/*.tsx", "./src/**/*.ts"],
+  "include": ["./*.ts", "./src/**/*.tsx", "./src/**/*.ts", "./src/*"],
   "exclude": ["node_modules", "dist", "./*.js"]
 }

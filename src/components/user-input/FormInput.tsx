@@ -26,6 +26,11 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
     const [value, setValue] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
+    const changeText = (text: string) => {
+        setValue(text);
+        props.onChangeText && props.onChangeText(text);
+    }
+
     // set empty inputs everytime modal open or closed
     useEffect(() => {
         setValue('');
@@ -35,10 +40,10 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
         <FormControl>
             <FormControl.Label>{props.label}</FormControl.Label>
             { props.password 
-                ? <Input value={value} w="100%" maxW="300px" onChangeText={setValue} placeholder={props.label} type={showPassword ? "text" : "password"} 
+                ? <Input value={value} w="100%" maxW="300px" onChangeText={changeText} placeholder={props.label} type={showPassword ? "text" : "password"} 
                 InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
                 onPress={() => setShowPassword(!showPassword)} />} onEndEditing={props.onEndEditing} clearButtonMode="while-editing"/>
-                : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={setValue} placeholder={props.label} clearButtonMode="while-editing"/>
+                : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={changeText} placeholder={props.label} clearButtonMode="while-editing"/>
             }
         </FormControl>
     );

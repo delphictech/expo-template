@@ -20,7 +20,7 @@ export default function HomeScreen() {
         <>
         <View style={styles.container}>
             <Text>Home Screen</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => setShowModal(true)}>
+            <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
                 Schedule Pickup
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => setPickupSession(true)}>

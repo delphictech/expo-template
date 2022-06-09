@@ -37,7 +37,7 @@ Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
 * [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
 
 ## Organization and Conventions
-* naming files with -
+* naming files/directories with -, functional components and interfaces with Caps "FuncComp", functions with camelCase getUser,
 * writing as modular as possible
 
 A simple Expo template with the following features:

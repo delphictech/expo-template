@@ -38,7 +38,7 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
             avoidKeyboard
             size="full"
             animationPreset="slide">
-            <Modal.Content variant="fullScreen" height="2xl" marginBottom={0} marginTop="auto">
+            <Modal.Content height="2xl" marginBottom={0} marginTop="auto">
                 <Modal.CloseButton onPress={() => checkClose()}/>
                 {/* <Modal.CloseButton /> */}
                 <Modal.Header alignItems={"center"}>
