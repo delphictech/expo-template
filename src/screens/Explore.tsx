@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function ExploreScreen() {
+export function ExploreScreen() {
     return (
         <View style={styles.container}>
             <Text>Explore Screen</Text>

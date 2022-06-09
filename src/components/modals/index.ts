@@ -1,4 +1,4 @@
-import { SignupModal, SignUpModalProps } from './SignupModal';
-import { PickupSessionModal, PickupSessionModalProps } from './PickupModal';
+import { LoginModal, LoginModalProps } from './login-modal';
+import { PickupSessionModal, PickupSessionModalProps } from './pickup-modal';
 
-export { SignupModal, SignUpModalProps, PickupSessionModal, PickupSessionModalProps };
+export { LoginModal, LoginModalProps, PickupSessionModal, PickupSessionModalProps };

@@ -34,6 +34,7 @@ Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
 * [Expo](https://expo.dev/): We are using expo to get started as it help us handle some of the underlying native features with its packages and cli.
 * [React Navigation](https://reactnavigation.org/docs/getting-started/): For navigating between screens, we are using react navigation.
 * [NativeBase](https://nativebase.io/): Well built and responsive component library for ios, android, and web.
+* [Redux Toolkit](): We use redux toolkit to manage universal state. This [tutorial](https://www.youtube.com/watch?v=9zySeP5vH9c) is helpful for understanding. We divide our redux by concept, all in the features directory under src. We are under the slice pattern. Only use redux when necessary, handling internal state with react's useState when possible. We are using redux toolkit because it simplifies redux, allowing us to ["mutate" the state](https://redux.js.org/tutorials/quick-start#create-a-redux-state-slice) in the reducers without having to explicitly make a copy. 
 * [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
 
 ## Philosophy

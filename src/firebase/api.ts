@@ -1,21 +1,24 @@
 import { to } from "utils";
 import { app, auth, analytics, db } from "./firebase-config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from 'firebase/auth';
+import { fbHandler, FirebaseError } from './handler';
+
+export { FirebaseError };
 
 // Sign In Anonymously
 export async function anonymousSignIn() {
-  return await to(signInAnonymously(auth));
+  return await fbHandler(signInAnonymously(auth));
 }
 
 // Sign In With Email
 export async function signInWithEmail(email: string, password: string) {
   // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
-  return await signInWithEmailAndPassword(auth, email, password);
+  return await fbHandler(signInWithEmailAndPassword(auth, email, password));
 }
 
 // Sign Up With Email
 export async function signUpWithEmail(email: string, password: string) {
-  return await to(createUserWithEmailAndPassword(auth, email, password));
+  return await fbHandler(createUserWithEmailAndPassword(auth, email, password));
 }
 
 /*

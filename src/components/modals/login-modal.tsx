@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { BottomModal } from "components/wrappers";
-import { SignupScreen } from "screens";
+import { LoginScreen } from "screens";
 
-export interface SignUpModalProps {
+export interface LoginModalProps {
     isOpen: boolean; // will trigger whether to have modal open or closed
     onClose: () => void;
     // navigation for where to close?
 };
 
-export const SignupModal: React.FC<SignUpModalProps> = (props) => {
+export const LoginModal: React.FC<LoginModalProps> = (props) => {
     // state for handling active input
     const [inputActive, setInputActive] = useState(false);
 
@@ -21,7 +21,7 @@ export const SignupModal: React.FC<SignUpModalProps> = (props) => {
             isOpen={props.isOpen} 
             inputActive={inputActive}
             onClose={props.onClose}>
-            <SignupScreen isModalOpen={props.isOpen} 
+            <LoginScreen isModalOpen={props.isOpen} 
                 onEndEditing={() => setInputActive(true)}
                 onSubmit={props.onClose}/>
         </BottomModal>

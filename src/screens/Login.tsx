@@ -1,19 +1,9 @@
-import React from 'react';
-import {
-    Center,
-    Box,
-    Heading,
-    VStack,
-    FormControl,
-    Input,
-    Link,
-    Button,
-    HStack,
-    Text,
-} from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { Center, Box, Heading, VStack, Button } from 'native-base';
 import { FormInput } from 'components/user-input';
 import { KeyboardBehaviorWrapper } from 'components/wrappers';
-import { signInWithEmail } from 'firebase-api';
+import { signInWithEmail, signUpWithEmail, FirebaseError } from 'firebase-api';
+import * as Animatable from 'react-native-animatable';
 
 export interface LoginScreenProps {
     /*
@@ -30,65 +20,81 @@ export interface LoginScreenProps {
    onEndEditing?: () => void;
 };
 
-/*
-Using error codes, signIn with the email: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#createuserwithemailandpassword
-*/
+export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirm, setConfirm] = useState('');
+    const [isPasswordVis, setPasswordVis] = useState(false);
+    const [isConfirmVis, setConfirmVis] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-export const LoginScreen:React.FC<LoginScreenProps> = (props) => {
+    useEffect(() => {
+        setPasswordVis(false);
+        setConfirmVis(false);
+    }, [props.isModalOpen]);
 
+    const handleLogin = async () => {
+        setIsLoading(true);
+        try {
+            const response = await signInWithEmail(email, password);
+            console.log('reresponse');
+            console.log(response);
+        } catch(e: any) {
+            console.log('ERRRORRO');
+            if (e.code === 'auth/user-not-found') {
+                setConfirmVis(true);
+            } else {
+                console.log(e);
+            }
+        }
+        setIsLoading(false);
+    }
+
+    const handleSignUp = async () => {
+        // signUpWithEmail(email, password);
+        props.onSubmit && props.onSubmit();
+    }
 
     return (
         <KeyboardBehaviorWrapper>
             <Center w="100%">
-                <Box safeArea p="2" py="8" w="90%" maxW="290">
-                    <Heading
-                        size="lg"
-                        fontWeight="600"
-                        color="primary.800"
-                        _dark={{
-                            color: 'warmGray.50',
-                        }}>
-                        Welcome
-                    </Heading>
-                    <Heading
-                        mt="1"
-                        _dark={{
-                            color: 'warmGray.200',
-                        }}
-                        color="coolGray.600"
-                        fontWeight="medium"
-                        size="xs">
-                        Sign in to continue!
-                    </Heading>
-
-                    <VStack space={3} mt="5">
-                        <FormInput label="Email" />
-                        <FormInput label="Password" password={true} />
-                        <Button mt="2" colorScheme="indigo">
-                            Sign in
+                <Box p="2" w="90%" maxW="300" >
+                    <VStack space={3} mt="3">
+                        <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
+                        <Button mt="3" colorScheme="primary" >
+                            Send me a sign-in link
                         </Button>
-                        <HStack mt="6" justifyContent="center">
-                            <Text
-                                fontSize="sm"
-                                color="coolGray.600"
-                                _dark={{
-                                    color: 'warmGray.200',
-                                }}>
-                                I'm a new user.
-                            </Text>
-                            <Link
-                                _text={{
-                                    color: 'indigo.500',
-                                    fontWeight: 'medium',
-                                    fontSize: 'sm',
-                                }}
-                                href="#">
-                                Sign Up
-                            </Link>
-                        </HStack>
+                        <Button colorScheme="primary" variant="outline" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
+                            Enter a password instead
+                        </Button>
+                        {/* <FormInput placeholder="Enter a password instead" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} /> */}
+                        {   
+                            isPasswordVis &&
+                            <Animatable.View animation="fadeIn">
+                                <FormInput label="Enter your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
+                            </Animatable.View>
+                        }
+                        {
+                            isPasswordVis && !isConfirmVis &&
+                            <Animatable.View animation="fadeIn">
+                                <Button mt="3" colorScheme="primary" onPress={handleLogin} isLoading={isLoading} isLoadingText="Submitting" >
+                                    Submit
+                                </Button>
+                            </Animatable.View>
+                        }
+                        {
+                            isConfirmVis &&
+                            <Animatable.View animation="fadeIn">
+                                <FormInput label="Confirm your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
+                                <Button mt="5" colorScheme="primary" onPress={handleSignUp} isLoading={isLoading} isLoadingText="Signing Up" >
+                                    Sign Up
+                                </Button>
+                            </Animatable.View>
+                        }
                     </VStack>
                 </Box>
             </Center>
         </KeyboardBehaviorWrapper>
+        
     );
 }

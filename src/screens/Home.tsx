@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { SignupModal, PickupSessionModal } from 'components/modals';
+import { LoginModal, PickupSessionModal } from 'components/modals';
 import { Button } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default function HomeScreen() {
+export function HomeScreen() {
     const [showPickupSession, setPickupSession] = useState(false);
     const [showSignup, setSignup] = useState(false);
 
@@ -31,7 +31,7 @@ export default function HomeScreen() {
             </Button>
         </View>
         <PickupSessionModal isOpen={showPickupSession} onClose={() => setPickupSession(false)} />
-        <SignupModal isOpen={showSignup} onClose={() => setSignup(false)} />
+        <LoginModal isOpen={showSignup} onClose={() => setSignup(false)} />
         </>
 
     );

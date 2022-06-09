@@ -11,7 +11,7 @@ export function to<T, U = Error>(
         if (errorExt) {
           Object.assign(err, errorExt);
         }
-  
+        
         return [err, undefined];
       });
   }

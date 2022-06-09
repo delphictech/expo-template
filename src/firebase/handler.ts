@@ -1,41 +1,45 @@
 export interface FirebaseError {
     message: string | null;
-    type: string | null;
+    code: string | null;
     cause: 'email' | 'password' | 'account' | string;
 }
 
-export function fbHandler<T, U = Error>(
+export const fbHandler = async (fbQuery: Promise<any>) => {
     /*
-        Function will handles catching errors with firebase 
+        Function will handles catching errors with firebase, returning errors in the Firebase Error format
+        This will help with catching and display error messages to the user on the frontend.
     */
-    promise: Promise<T>,
-    errorExt?: any,
-  ): Promise<[U, undefined] | [null, T]> {
-    return promise
-      .then<[null, T]>((data: T) => [null, data])
-      .catch<[U, undefined]>((err: U) => {
-        if (errorExt) {
-            let message = null, cause = 'email';
-            switch (errorExt) {
-                case 'auth/invalid-email':
-                    message = "Email is invalid.";
-                    cause = 'email';
-                case 'auth/user-disabled':
-                    message = "User's account is disabled.";
-                    cause = 'account';
-                case 'auth/user-not-found':
-                    message = "User does not exist.";
-                    cause = 'account';
-                case 'auth/wrong-password':
-                    message = "Email or password is incorrect.";
-                    cause = 'password';
-            }
-            const fbError: FirebaseError = {
-                message: message,
-                type: errorExt,
-                cause: cause,
-            }
-            throw fbError;
-        }
-      });
-  }
+    try {
+        return await fbQuery;
+    } catch (error: any) {
+
+         // Define different firebase user errors
+         let message = null, cause = 'email';
+         switch (error.code) {
+             case 'auth/invalid-email':
+                 message = "Email is invalid.";
+                 cause = 'email';
+                 break;
+             case 'auth/user-disabled':
+                 message = "User's account is disabled.";
+                 cause = 'account';
+                 break;
+             case 'auth/user-not-found':
+                 message = "User does not exist.";
+                 cause = 'account';
+                 break;
+             case 'auth/wrong-password':
+                 message = "Email or password is incorrect.";
+                 cause = 'password';
+                 break;
+         }
+
+         // assign values to interface
+         const fbError: FirebaseError = {
+             message: message,
+             code: error.code,
+             cause: cause,
+         }
+         throw fbError; 
+    }
+}
