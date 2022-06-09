@@ -13,6 +13,7 @@ module.exports = function babel(api) {
             constants: './src/constants',
             components: './src/components',
             features: './src/features',
+            'firebase-api': './src/firebase/api',
             utils: './src/utils'
           },
           extensions: ['.ts', '.tsx', '.js', '.jsx'],

@@ -13,13 +13,14 @@ For props:
     validation: with yup afterwards (None, supported types)
 */
 export interface FormInputProps {
-    label: string;
+    label?: string | null;
+    placeholder?: string;
     password?: boolean; // need default prop inputs
     icon?: typeof Icon;
     onChangeText?: (text: string) => void; // need to find out how to access the text input
     onEndEditing?: (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
     isModalOpen?: boolean | null; // used when forms are in modal to clear input on close
-    validation?: 'None'
+    validation?: 'None';
 };
 
 export const FormInput: React.FC<FormInputProps> = (props) => {
@@ -38,12 +39,12 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
 
     return (
         <FormControl>
-            <FormControl.Label>{props.label}</FormControl.Label>
+            <FormControl.Label >{props.label}</FormControl.Label>
             { props.password 
-                ? <Input value={value} w="100%" maxW="300px" onChangeText={changeText} placeholder={props.label} type={showPassword ? "text" : "password"} 
+                ? <Input value={value} w="100%" maxW="300px" onChangeText={changeText} placeholder={props.placeholder} type={showPassword ? "text" : "password"} size="lg"
                 InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
                 onPress={() => setShowPassword(!showPassword)} />} onEndEditing={props.onEndEditing} clearButtonMode="while-editing"/>
-                : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={changeText} placeholder={props.label} clearButtonMode="while-editing"/>
+                : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={changeText} placeholder={props.placeholder} size="lg" clearButtonMode="while-editing"/>
             }
         </FormControl>
     );

@@ -17,7 +17,7 @@ export const SignupModal: React.FC<SignUpModalProps> = (props) => {
     }, [props.isOpen])
 
     return (
-        <BottomModal title="Sign Up" 
+        <BottomModal title="Login or Sign Up" 
             isOpen={props.isOpen} 
             inputActive={inputActive}
             onClose={props.onClose}>

@@ -27,7 +27,7 @@ export default function HomeScreen() {
                 Start Pickup Session
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
-                Sign up
+                Login
             </Button>
         </View>
         <PickupSessionModal isOpen={showPickupSession} onClose={() => setPickupSession(false)} />

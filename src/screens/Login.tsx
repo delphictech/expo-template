@@ -13,8 +13,30 @@ import {
 } from 'native-base';
 import { FormInput } from 'components/user-input';
 import { KeyboardBehaviorWrapper } from 'components/wrappers';
+import { signInWithEmail } from 'firebase-api';
 
-export default function LoginScreen() {
+export interface LoginScreenProps {
+    /*
+        Function to call on the submit of the button
+    */
+    onSubmit?: () => void;
+    /* 
+        Boolean for when screen nested in modal, used to clear user inputs
+    */
+    isModalOpen?: boolean | null;
+    /*
+        Callback for when an input has been actively edited
+    */
+   onEndEditing?: () => void;
+};
+
+/*
+Using error codes, signIn with the email: https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#createuserwithemailandpassword
+*/
+
+export const LoginScreen:React.FC<LoginScreenProps> = (props) => {
+
+
     return (
         <KeyboardBehaviorWrapper>
             <Center w="100%">
