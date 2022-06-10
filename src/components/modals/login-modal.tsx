@@ -9,6 +9,9 @@ export interface LoginModalProps {
 };
 
 export const LoginModal: React.FC<LoginModalProps> = (props) => {
+    /*
+        Modal that wraps the login page
+    */
     // state for handling active input
     const [inputActive, setInputActive] = useState(false);
 

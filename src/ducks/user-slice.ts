@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export const userSlice = createSlice({
+    /*
+        Redux state management of the user component
+    */
     name: 'user',
     initialState: {
         id: '',

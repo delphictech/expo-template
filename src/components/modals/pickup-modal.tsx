@@ -9,6 +9,9 @@ export interface PickupSessionModalProps {
 };
 
 export const PickupSessionModal: React.FC<PickupSessionModalProps> = (props) => {
+    /*
+        Modal that wraps the pickup page
+    */
     // state for handling active input
     const [inputActive, setInputActive] = useState(false);
 

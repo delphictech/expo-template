@@ -24,6 +24,9 @@ export interface FormInputProps {
 };
 
 export const FormInput: React.FC<FormInputProps> = (props) => {
+    /*
+        Component that will validate the user input and renders a form input
+    */
     const [value, setValue] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
