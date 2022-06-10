@@ -41,6 +41,9 @@ Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
 * Modular code, build pieces rather than screens
 * User empathy
 
+## Learning Resources
+* Combining redux toolkit and firebase 9 for authentication [here](https://blog.gmagnenat.co/user-authentication-and-persistence-firebase-9-react-redux-toolkit)
+
 ## Organization and Conventions
 * naming files/directories with -, functional components and interfaces with Caps "FuncComp", functions with camelCase getUser,
 * writing as modular as possible

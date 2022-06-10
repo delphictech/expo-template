@@ -4,6 +4,9 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
 
+import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
+import { updateEmail } from 'src/ducks/user-slice';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,12 +34,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-onAuthStateChanged(auth, user => {
-    // Check for user status
-    console.log('User status Changed!');
-    console.log(user);
-});
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
+
 
 export { app, auth, analytics, db };

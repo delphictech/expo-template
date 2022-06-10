@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BottomModal } from "src/components/wrappers";
-import { LoginScreen } from "src/screens";
+import { LoginScreen } from "src/screens/login";
 
 export interface LoginModalProps {
     isOpen: boolean; // will trigger whether to have modal open or closed

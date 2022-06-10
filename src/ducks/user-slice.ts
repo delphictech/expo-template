@@ -5,10 +5,12 @@ export const userSlice = createSlice({
     initialState: {
         id: '',
         email: '',
+        loggedIn: false,
     },
     reducers: {
         updateEmail: (state, action: PayloadAction<string>) => {
             state.email = action.payload;
+            state.loggedIn = true;
         }
     }
 });

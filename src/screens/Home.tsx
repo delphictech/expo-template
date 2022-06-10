@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { LoginModal, PickupSessionModal } from 'src/components/modals';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { Button } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -16,10 +17,15 @@ export function HomeScreen() {
     const [showPickupSession, setPickupSession] = useState(false);
     const [showSignup, setSignup] = useState(false);
 
+    // redux states
+    const loggedIn = useAppSelector((state) => state.user.loggedIn);
+    const user = useAppSelector((state) => state.user);
+    console.log(`Logged In: ${loggedIn}`);
+
     return (
         <>
         <View style={styles.container}>
-            <Text>Home Screen</Text>
+            <Text>Home Screen: {user.email}</Text>
             <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
                 Schedule Pickup
             </Button>
@@ -27,7 +33,7 @@ export function HomeScreen() {
                 Start Pickup Session
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
-                Login
+                {loggedIn ? 'Logout' : 'Login'}
             </Button>
         </View>
         <PickupSessionModal isOpen={showPickupSession} onClose={() => setPickupSession(false)} />

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Center, Box, Heading, VStack, Button } from 'native-base';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
+import { updateEmail } from 'src/ducks/user-slice';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { signInWithEmail, signUpWithEmail, FirebaseError } from 'src/firebase/api';
@@ -21,6 +23,7 @@ export interface LoginScreenProps {
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
+    // react states
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirm, setConfirm] = useState('');
@@ -28,15 +31,23 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     const [isConfirmVis, setConfirmVis] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
+    // redux states and dispatch hook
+    const userID = useAppSelector((state) => state.user.id);
+    const userEmail = useAppSelector((state) => state.user.email);
+    const dispatch = useAppDispatch();
+
+    // initialize states
     useEffect(() => {
         setPasswordVis(false);
         setConfirmVis(false);
     }, [props.isModalOpen]);
 
+    // async function for handling login
     const handleLogin = async () => {
         setIsLoading(true);
         try {
             const response = await signInWithEmail(email, password);
+            dispatch(updateEmail(response.email));
             console.log('reresponse');
             console.log(response);
         } catch(e: any) {
@@ -50,6 +61,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
         setIsLoading(false);
     }
 
+    // async function for handling sign up
     const handleSignUp = async () => {
         // signUpWithEmail(email, password);
         props.onSubmit && props.onSubmit();

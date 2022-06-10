@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BottomModal } from "src/components/wrappers";
-import { PickupSession } from "src/screens";
+import { PickupSession } from "src/screens/pickup";
 
 export interface PickupSessionModalProps {
     isOpen: boolean; // will trigger whether to have modal open or closed
