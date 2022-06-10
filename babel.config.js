@@ -7,13 +7,11 @@ module.exports = function babel(api) {
         require.resolve('babel-plugin-module-resolver'),
         {
           alias: {
-            src: './src',
-            navigation: './src/navigation',
-            screens: './src/screens',
+            src: './src'
           },
           extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
-      ],
+      ], 'module:react-native-dotenv',
     ],
   };
 };
