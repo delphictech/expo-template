@@ -7,14 +7,7 @@ module.exports = function babel(api) {
         require.resolve('babel-plugin-module-resolver'),
         {
           alias: {
-            src: './src',
-            navigation: './src/navigation',
-            screens: './src/screens',
-            constants: './src/constants',
-            components: './src/components',
-            features: './src/features',
-            'firebase-api': './src/firebase/api',
-            utils: './src/utils'
+            src: './src'
           },
           extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },

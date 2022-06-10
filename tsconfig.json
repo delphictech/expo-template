@@ -7,14 +7,7 @@
     "module": "commonjs",
     "baseUrl": ".",
     "paths": {
-      "src": ["./src/*", "./src"],
-      "navigation":["./src/navigation/*", "./src/navigation"],
-      "screens":["./src/screens/*", "./src/screens"],
-      "components/*": ["./src/components/*", "./src/components"],
-      "constants/*": ["./src/constants/*", "./src/constants"],
-      "features": ["./src/features/*", "./src/features"],
-      "utils": ["./src/utils/*", "./src/utils"],
-      "firebase-api": ["./src/firebase/api"],
+      "src/*": ["./src/*", "./src"]
     },
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
