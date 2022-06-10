@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LoginModal, PickupSessionModal } from 'components/modals';
+import { LoginModal, PickupSessionModal } from 'src/components/modals';
 import { Button } from 'native-base';
 
 const styles = StyleSheet.create({

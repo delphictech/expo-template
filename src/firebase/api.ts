@@ -1,4 +1,3 @@
-import { to } from "utils";
 import { app, auth, analytics, db } from "./firebase-config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from 'firebase/auth';
 import { fbHandler, FirebaseError } from './handler';

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Center, Box, Heading, VStack, Button } from 'native-base';
-import { FormInput } from 'components/user-input';
-import { KeyboardBehaviorWrapper } from 'components/wrappers';
-import { signInWithEmail, signUpWithEmail, FirebaseError } from 'firebase-api';
+import { FormInput } from 'src/components/user-input';
+import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
+import { signInWithEmail, signUpWithEmail, FirebaseError } from 'src/firebase/api';
 import * as Animatable from 'react-native-animatable';
 
 export interface LoginScreenProps {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, ExploreScreen } from 'screens';
+import { HomeScreen, ExploreScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 export type HomeStackParams = {

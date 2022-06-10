@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, ExploreScreen } from 'screens';
+import { HomeScreen, ExploreScreen } from 'src/screens';
 import { HomeStackNavigator } from './HomeStack';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
