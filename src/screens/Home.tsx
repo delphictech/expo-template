@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { LoginModal, PickupSessionModal } from 'src/components/modals';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
+import { signOut } from 'src/ducks/user-slice';
+import { signOutUser } from 'src/firebase/api';
 import { Button } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -17,10 +19,24 @@ export function HomeScreen() {
     const [showPickupSession, setPickupSession] = useState(false);
     const [showSignup, setSignup] = useState(false);
 
-    // redux states
+    // redux handlers
+    const dispatch = useAppDispatch();
     const loggedIn = useAppSelector((state) => state.user.loggedIn);
     const user = useAppSelector((state) => state.user);
     console.log(`Logged In: ${loggedIn}`);
+
+    // handling button functions
+    const handleLoginButton = async () => {
+        if (loggedIn) {
+            let res = await signOutUser();
+            console.log('SIgned out');
+            dispatch(signOut());
+            console.log(res);
+            console.log(loggedIn);
+        } else {
+            setSignup(true);
+        }
+    }
 
     return (
         <>
@@ -32,7 +48,7 @@ export function HomeScreen() {
             <Button mt="2" colorScheme="indigo" onPress={() => setPickupSession(true)}>
                 Start Pickup Session
             </Button>
-            <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
+            <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
                 {loggedIn ? 'Logout' : 'Login'}
             </Button>
         </View>

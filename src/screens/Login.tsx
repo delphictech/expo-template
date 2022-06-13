@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Center, Box, Heading, VStack, Button } from 'native-base';
+import { Center, Box, VStack, Button } from 'native-base';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
-import { updateEmail } from 'src/ducks/user-slice';
+import { signIn } from 'src/ducks/user-slice';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
-import { signInWithEmail, signUpWithEmail, FirebaseError } from 'src/firebase/api';
+import { signInWithEmail, signUpWithEmail } from 'src/firebase/api';
 import * as Animatable from 'react-native-animatable';
 
 export interface LoginScreenProps {
@@ -32,7 +32,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     const [isLoading, setIsLoading] = useState(false);
 
     // redux states and dispatch hook
-    const userID = useAppSelector((state) => state.user.id);
+    const userID = useAppSelector((state) => state.user.uid);
     const userEmail = useAppSelector((state) => state.user.email);
     const dispatch = useAppDispatch();
 
@@ -47,23 +47,37 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
         setIsLoading(true);
         try {
             const response = await signInWithEmail(email, password);
-            dispatch(updateEmail(response.email));
-            console.log('reresponse');
-            console.log(response);
+            console.log(`User 0: ${response[0]}`);
+            console.log(`User 1: ${response[1]}`);
+            // dispatch(signIn(response.user));
+            console.log(`User type: ${typeof response}`);
         } catch(e: any) {
-            console.log('ERRRORRO');
             if (e.code === 'auth/user-not-found') {
                 setConfirmVis(true);
             } else {
+                console.log('Error with login');
                 console.log(e);
             }
         }
         setIsLoading(false);
+        props.onSubmit && props.onSubmit();
     }
 
     // async function for handling sign up
     const handleSignUp = async () => {
-        // signUpWithEmail(email, password);
+        try {
+            const response = await signUpWithEmail(email, password);
+            console.log(response.user);
+            // dispatch(signIn(response.user));
+            console.log(`User 0: ${response[0]}`);
+            console.log(`User 1: ${response[1]}`);
+            console.log(`User type: ${typeof response}`);
+        } catch(e: any) {
+            console.log('Error with sign up');
+            console.log(e);
+        }
+        
+        // must handle the errors
         props.onSubmit && props.onSubmit();
     }
 

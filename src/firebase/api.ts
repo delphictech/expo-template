@@ -1,9 +1,12 @@
 import { app, auth, analytics, db } from "./firebase-config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut } from 'firebase/auth';
 import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
 
+/*
+  AUTH FUNCTIONS
+*/
 // Sign In Anonymously
 export async function anonymousSignIn() {
   return await fbHandler(signInAnonymously(auth));
@@ -18,6 +21,11 @@ export async function signInWithEmail(email: string, password: string) {
 // Sign Up With Email
 export async function signUpWithEmail(email: string, password: string) {
   return await fbHandler(createUserWithEmailAndPassword(auth, email, password));
+}
+
+// Sign Out
+export function signOutUser() {
+  fbHandler(signOut(auth));
 }
 
 /*
@@ -36,10 +44,7 @@ export async function getCurrentUser() {
   return await to(firebase.auth().currentUser);
 }
 
-// Sign Out
-export function signOut() {
-  firebase.auth().signOut();
-}
+
 
 // Update User Image Property
 export async function updateUserImageProperty(imgUrl: string) {
