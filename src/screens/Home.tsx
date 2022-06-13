@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { LoginModal, PickupSessionModal } from 'src/components/modals';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOut } from 'src/ducks/user-slice';
@@ -18,6 +19,9 @@ const styles = StyleSheet.create({
 export function HomeScreen() {
     const [showPickupSession, setPickupSession] = useState(false);
     const [showSignup, setSignup] = useState(false);
+
+    // navigation
+    const navigation = useNavigation();
 
     // redux handlers
     const dispatch = useAppDispatch();
@@ -45,7 +49,7 @@ export function HomeScreen() {
             <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
                 Schedule Pickup
             </Button>
-            <Button mt="2" colorScheme="indigo" onPress={() => setPickupSession(true)}>
+            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('PickupSession')}>
                 Start Pickup Session
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>

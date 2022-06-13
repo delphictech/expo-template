@@ -13,10 +13,10 @@ For props:
     validation: with yup afterwards (None, supported types)
 */
 export interface FormInputProps {
-    label?: string | null;
-    placeholder?: string;
+    label?: string | null; // used as the title label above the input
+    placeholder?: string; // used as the grey placeholder text within the container
     password?: boolean; // need default prop inputs
-    icon?: typeof Icon;
+    icon?: typeof Icon; // icon that is on the left side of the form input
     onChangeText?: (text: string) => void; // need to find out how to access the text input
     onEndEditing?: (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
     isModalOpen?: boolean | null; // used when forms are in modal to clear input on close

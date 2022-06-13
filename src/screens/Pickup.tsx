@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Box, Heading, VStack, Button } from 'native-base';
+import { Center, Box, Heading, VStack, Button, Text } from 'native-base';
 
 export interface PickupSessionProps {
     /* 
@@ -19,6 +19,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
             <Box safeArea p="2" w="90%" maxW="290" py="8">
                 
                 <VStack space={3} mt="5">
+                    <Text>HI pickup players</Text>
                 </VStack>
             </Box>
         </Center>
