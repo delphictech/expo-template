@@ -147,17 +147,16 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
     );
 };
 
-export const draxtesting: React.FC<PickupSessionProps> = (props) => {
+export const Draxtesting: React.FC<PickupSessionProps> = (props) => {
 
     return (
         <DraxProvider>
         <View style={styles.container}>
             <DraxList
             data={data}
+            horizontal
             renderItemContent={({ item }) => (
-                <View style={styles.draggable}>
-                <Text>HI</Text>
-                </View>
+                <Player name={item.text} image={item.image} />
             )}
             keyExtractor={(item: any) => item.id}
             onItemReorder={() => console.log('Reordered')}
