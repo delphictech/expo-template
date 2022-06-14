@@ -7583,7 +7583,7 @@ lodash.truncate@^4.4.2:
   resolved "https://registry.yarnpkg.com/lodash.truncate/-/lodash.truncate-4.4.2.tgz#5a350da0b1113b837ecfffd5812cbe58d6eae193"
   integrity sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==
 
-lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.7.0:
+lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.21, lodash@^4.7.0:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -8962,20 +8962,24 @@ react-native-dotenv@^3.3.1:
   dependencies:
     dotenv "^10.0.0"
 
-react-native-draggable-flatlist@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-draggable-flatlist/-/react-native-draggable-flatlist-3.1.1.tgz#b27009035153ed8d897217392447fb3c98316aea"
-  integrity sha512-hvzfMgG+HPIYCpoYy+R+FaoylRc4HbcP+gvghG0ISGwsU8HETcM8WmUEAaDTr7EeKmnG1BbV43MMExMjIQXRmA==
+react-native-drax@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/react-native-drax/-/react-native-drax-0.10.2.tgz#25d23c92070d8cc8b9ea0c5978924bacca80c68e"
+  integrity sha512-1i4ZBCeSyDqytAmTeRFDwsa3IFf9VOmy+GhpVDydjJeCT3VzG1eClBYaTNIyOF8qDkSKIa4pjj6Y6yhU+wmSTw==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    lodash.throttle "^4.1.1"
+    typesafe-actions "^5.1.0"
 
-react-native-gesture-handler@~1.10.2:
-  version "1.10.3"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
-  integrity sha512-cBGMi1IEsIVMgoox4RvMx7V2r6bNKw0uR1Mu1o7NbuHS6BRSVLq0dP34l2ecnPlC+jpWd3le6Yg1nrdCjby2Mw==
+react-native-gesture-handler@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.4.2.tgz#de93760b0bc251d94e8ae692f9850ec3ed2e4f27"
+  integrity sha512-K3oMiQV7NOVB5RvNlxkyJxU1Gn6m1cYu53MoFA542FVDSTR491d1eQkWDdqy4lW52rfF7IK7eE1LCi+kTJx7jw==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
-    fbjs "^3.0.0"
     hoist-non-react-statics "^3.3.0"
     invariant "^2.2.4"
+    lodash "^4.17.21"
     prop-types "^15.7.2"
 
 react-native-iphone-x-helper@^1.0.3:
@@ -10273,6 +10277,11 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
+
+typesafe-actions@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/typesafe-actions/-/typesafe-actions-5.1.0.tgz#9afe8b1e6a323af1fd59e6a57b11b7dd6623d2f1"
+  integrity sha512-bna6Yi1pRznoo6Bz1cE6btB/Yy8Xywytyfrzu/wc+NFW3ZF0I+2iCGImhBsoYYCOWuICtRO4yHcnDlzgo1AdNg==
 
 typescript@^4.7.2:
   version "4.7.2"

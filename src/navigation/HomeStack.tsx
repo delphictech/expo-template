@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { HomeScreen, PickupSession } from 'src/screens';
+import { draxtesting } from 'src/screens/pickup';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export type HomeStackParams = {
@@ -28,7 +29,7 @@ export const HomeStackNavigator: React.FC<HomeStackParams> = (props) => {
         options={{ headerTitle: 'Home'}} />
       <StackNav.Screen
         name="PickupSession"
-        component={PickupSession}
+        component={draxtesting}
         options={{ headerTitle: 'Play Pickup!', headerRight: () => <MaterialCommunityIcons name="close" size={22} onPress={checkClose}/>}}
       />
     </StackNav.Navigator>

@@ -1,6 +1,28 @@
 import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList, View, ScrollView, Flex, SectionList } from 'native-base';
-import { NestableScrollContainer, NestableDraggableFlatList } from "react-native-draggable-flatlist" 
+import { DraxProvider, DraxView, DraxList } from 'react-native-drax';
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    draggable: {
+        width: 100,
+        height: 100,
+        backgroundColor: 'blue',
+        padding: 3,
+        margin: 5
+    },
+    receiver: {
+        width: 100,
+        height: 100,
+        backgroundColor: 'green',
+    },
+});
 
 export interface PlayerProps {
     image?: string | undefined;
@@ -49,15 +71,25 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
 
     const renderItem = (iterable: any) => {
         return (
-            <Player name={iterable.item.text} image={iterable.item.image} />
+                // <DraxView
+                //     style={styles.draggable}
+                //     onDragStart={() => {
+                //         console.log('start drag');
+                //     }}
+                //     payload="world"
+                //     longPressDelay={100}
+                // />
+             <Player name={iterable.item.text} image={iterable.item.image} />
         );
     };
     const renderItem1 = (iterable: any) => {
         return (
+            <DraxView longPressDelay={0}>
             <Player name={iterable.item.text} image={iterable.item.image} 
             onLongPress={iterable.drag}
             disabled={iterable.isActive}
             />
+            </DraxView>
         );
     };
 
@@ -66,33 +98,29 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
     const [data3, setData3] = useState(data);
 
     return (
+        <DraxProvider>
         <Center w="100%" h="100%" flex="1" >
             <VStack space={3} mt="2" flex="1" width="100%">
-                <VStack w="100%" h="auto" mx={2} >
-                    <Heading>Queue</Heading>
-                    <NestableScrollContainer  horizontal>
-                        <NestableDraggableFlatList
-                            dragItemOverflow
-                            autoscrollSpeed={200}
-                            autoscrollThreshold={40}
-                            horizontal
-                            data={data1}
-                            renderItem={renderItem1}
-                            keyExtractor={(item) => String(item.id)}
-                            onDragEnd={({ data }) => setData1(data)}
-                        />
-                        </NestableScrollContainer>
-                    {/* <FlatList data={Object.values(data)}
-                        horizontal={true}
-                        renderItem={renderItem}
-                        keyExtractor={item => String(item.id)}
-                    /> */}
+                <VStack w="100%" h="auto" pl={2} >
+                    <HStack w="100%" justifyContent="space-between" alignItems="center" alignSelf="flex-start">
+                        <Heading>Queue</Heading>
+                        <Text>2 new --*</Text>
+                    </HStack>
+                    <View>
+                    </View>
+
                 </VStack>
                 <HStack justifyContent="space-between" flexDirection="row" width="100%" px={2}>
                     <Heading w={140} textAlign="center">Team 1</Heading>
                     <Heading w={140} textAlign="center">Team 2</Heading>
                 </HStack>
                 <ScrollView >
+                    <VStack w="100%" >
+                        <HStack w="100%" justifyContent="space-between" px={2} >
+                            <Square size={140} bg="white"></Square>
+                            <Square size={140} bg="white"></Square>
+                        </HStack>
+                    </VStack>
                     <HStack w="100%" flex="1" justifyContent="space-between" >
                         <VStack mx={2}>
                         {
@@ -115,9 +143,29 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                 </ScrollView>
             </VStack>
         </Center>
-        
+        </DraxProvider>
     );
 };
+
+export const draxtesting: React.FC<PickupSessionProps> = (props) => {
+
+    return (
+        <DraxProvider>
+        <View style={styles.container}>
+            <DraxList
+            data={data}
+            renderItemContent={({ item }) => (
+                <View style={styles.draggable}>
+                <Text>HI</Text>
+                </View>
+            )}
+            keyExtractor={(item: any) => item.id}
+            onItemReorder={() => console.log('Reordered')}
+            />
+        </View>
+        </DraxProvider>
+    );
+}
 
 const data = [
     {
