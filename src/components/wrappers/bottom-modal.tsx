@@ -25,8 +25,7 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
         ? Alert.alert('Are you sure you want to exit?', 'Your progress will not be saved.', 
                     [{ text: "Exit", onPress: () => props.onClose(), style: "destructive"},
                     { text: "Return", onPress: () => console.log("Ask me later pressed"), style: "cancel" }],
-                    { cancelable: false }
-                    )
+                    { cancelable: false })
         : props.onClose();
     }
 

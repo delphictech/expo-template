@@ -23,7 +23,7 @@ export const HomeStackNavigator: React.FC<HomeStackParams> = (props) => {
   }
 
   return (
-    <StackNav.Navigator screenOptions={{presentation: 'modal'}} >
+    <StackNav.Navigator screenOptions={{presentation: 'fullScreenModal', gestureEnabled: false}} >
       <StackNav.Screen name="Main" component={HomeScreen} 
         options={{ headerTitle: 'Home'}} />
       <StackNav.Screen
