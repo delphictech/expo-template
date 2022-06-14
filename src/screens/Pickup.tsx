@@ -1,6 +1,5 @@
 import React from 'react';
-import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList } from 'native-base';
-import { ItemClick } from 'native-base/lib/typescript/components/composites/Typeahead/useTypeahead/types';
+import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList, View, ScrollView, Flex, SectionList } from 'native-base';
 
 export interface PlayerProps {
     image?: string | undefined;
@@ -18,7 +17,7 @@ export const Player: React.FC<PlayerProps> = (props) => {
                     </Text>
                     <Avatar size="48px" source={{uri: props.image}} />
                     <VStack>
-                        <Text color="coolGray.800" bold>{props.name}
+                        <Text color="coolGray.800" bold isTruncated>{props.name}
                         </Text>
                         <Text color="coolGray.600" >
                             Rating
@@ -52,13 +51,42 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
     };
 
     return (
-        <Center w="100%" h="full">
-            <FlatList data={Object.values(data)} 
-                renderItem={renderItem}
-                keyExtractor={item => String(item.id)}
-            />
-            <VStack space={3} mt="5">
-                <Text>HI pickup players</Text>
+        <Center w="100%" h="100%" flex="1" >
+            <VStack space={3} mt="2" flex="1" width="100%">
+                <VStack w="100%" h="auto" mx={2} >
+                    <Heading>Queue</Heading>
+                    <FlatList data={Object.values(data)}
+                        horizontal={true}
+                        renderItem={renderItem}
+                        keyExtractor={item => String(item.id)}
+                    />
+
+                </VStack>
+                <HStack justifyContent="space-between" flexDirection="row" width="100%" px={2}>
+                    <Heading w={140} textAlign="center">Team 1</Heading>
+                    <Heading w={140} textAlign="center">Team 2</Heading>
+                </HStack>
+                <ScrollView >
+                    <HStack w="100%" flex="1" justifyContent="space-between" >
+                        <VStack mx={2}>
+                        {
+                            data.map((item) => <Player name={item.text} image={item.image} />)
+                        }
+                        </VStack>
+                        <VStack flex="1" my={2}>
+                            <Center h='140' w="100%" alignItems="center" ><Text>Captain</Text></Center>
+                            <Center h='140' w="auto"><Text></Text></Center>
+                            <Center h='140' w="auto"><Text>3v3</Text></Center>
+                            <Center h='140' w="auto"><Text>4v4</Text></Center>
+                            <Center h='140' w="auto"><Text>5v5</Text></Center>
+                        </VStack>
+                        <VStack mx={2}>
+                        {
+                            data.map((item) => <Player name={item.text} image={item.image} />)
+                        }
+                        </VStack>
+                    </HStack>
+                </ScrollView>
             </VStack>
         </Center>
         
