@@ -11,7 +11,7 @@ module.exports = function babel(api) {
           },
           extensions: ['.ts', '.tsx', '.js', '.jsx'],
         },
-      ], 'module:react-native-dotenv',
+      ], 'module:react-native-dotenv', 'react-native-reanimated/plugin',
     ],
   };
 };

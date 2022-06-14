@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList, View, ScrollView, Flex, SectionList } from 'native-base';
+import { NestableScrollContainer, NestableDraggableFlatList } from "react-native-draggable-flatlist" 
 
 export interface PlayerProps {
     image?: string | undefined;
     name?: string | undefined;
+    onLongPress?: any;
+    disabled?: boolean | undefined;
 };
 
 export const Player: React.FC<PlayerProps> = (props) => {
     return (
-        <Pressable onPress={() => console.log("You touched me")} >
+        <Pressable onPress={() => console.log("You touched me")} onLongPress={props.onLongPress} disabled={props.disabled}>
             <Square size='140' margin={1} p="3" bg="white" >
                 <VStack alignItems="center" space={2} width="100%" height='100%'>
                     <Text fontSize="xs" color="coolGray.800" 
@@ -49,18 +52,41 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
             <Player name={iterable.item.text} image={iterable.item.image} />
         );
     };
+    const renderItem1 = (iterable: any) => {
+        return (
+            <Player name={iterable.item.text} image={iterable.item.image} 
+            onLongPress={iterable.drag}
+            disabled={iterable.isActive}
+            />
+        );
+    };
+
+    const [data1, setData1] = useState(data);
+    const [data2, setData2] = useState(data);
+    const [data3, setData3] = useState(data);
 
     return (
         <Center w="100%" h="100%" flex="1" >
             <VStack space={3} mt="2" flex="1" width="100%">
                 <VStack w="100%" h="auto" mx={2} >
                     <Heading>Queue</Heading>
-                    <FlatList data={Object.values(data)}
+                    <NestableScrollContainer  horizontal>
+                        <NestableDraggableFlatList
+                            dragItemOverflow
+                            autoscrollSpeed={200}
+                            autoscrollThreshold={40}
+                            horizontal
+                            data={data1}
+                            renderItem={renderItem1}
+                            keyExtractor={(item) => String(item.id)}
+                            onDragEnd={({ data }) => setData1(data)}
+                        />
+                        </NestableScrollContainer>
+                    {/* <FlatList data={Object.values(data)}
                         horizontal={true}
                         renderItem={renderItem}
                         keyExtractor={item => String(item.id)}
-                    />
-
+                    /> */}
                 </VStack>
                 <HStack justifyContent="space-between" flexDirection="row" width="100%" px={2}>
                     <Heading w={140} textAlign="center">Team 1</Heading>
