@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList, View, ScrollView, Flex, SectionList } from 'native-base';
+import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList, View, ScrollView, Flex, SectionList, Divider } from 'native-base';
 import { DraxProvider, DraxView, DraxList } from 'react-native-drax';
 
 
@@ -33,8 +33,8 @@ export interface PlayerProps {
 
 export const Player: React.FC<PlayerProps> = (props) => {
     return (
-        <Pressable onPress={() => console.log("You touched me")} onLongPress={props.onLongPress} disabled={props.disabled}>
-            <Square size='140' margin={1} p="3" bg="white" >
+        <Pressable onPress={() => console.log("You touched me")} onLongPress={props.onLongPress} disabled={props.disabled} >
+            <Square size='140' margin={1} p="3" bg="muted.100" shadow="1" >
                 <VStack alignItems="center" space={2} width="100%" height='100%'>
                     <Text fontSize="xs" color="coolGray.800" 
                         alignSelf="flex-start">
@@ -93,21 +93,27 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
         );
     };
 
+    const removeIndexFromArray = (arr: Array<number>, index: number) => {
+        arr.filter((item: any) => {
+            console.log(`Item is: ${item[0]} and second ${item[1]}`);
+        });
+    }
+
     const [queueData, setQueueData] = useState(data);
-    const [data1, setData1] = useState(new Array(5));
+    const [data1, setData1] = useState([]);
     const [data2, setData2] = useState(data);
 
     return (
         <DraxProvider>
-        <Center w="100%" h="100%" flex="1" >
+        <Center w="100%" h="100%" flex="1" bg="muted.50" >
             <VStack space={3} mt="2" flex="1" width="100%">
-                <VStack w="100%" h="auto" pl={2} >
-                    <HStack w="100%" justifyContent="space-between" alignItems="center" alignSelf="flex-start">
+                <VStack w="100%" h="auto" pl={2}  >
+                    <HStack w="100%" justifyContent="space-between" alignItems="center" alignSelf="flex-start" my={3}>
                         <Heading>Queue</Heading>
                         <Text>2 new --*</Text>
                     </HStack>
                     <DraxList
-                        data={data}
+                        data={queueData}
                         horizontal
                         renderItemContent={({ item }) => (
                             item ? <Player name={item.text} image={item.image} /> :
@@ -125,14 +131,37 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                 </HStack>
                 <ScrollView >
                     <HStack w="100%" flex="1" justifyContent="space-between" >
-                        <VStack mx={2}>
-                        </VStack>
+                        <DraxView onReceiveDragDrop={(state) => {
+                            console.log(state);
+                            const payload = state.dragged.payload;
+                            const item:any = queueData[payload.originalIndex];
+                            setData1(data1.concat(Array(item)));
+                            // queueData.splice(payload.originalIndex, 1);
+                            setQueueData((queueData) => queueData.filter((value, index) => {
+                                return index !== payload.originalIndex;
+                            }));
+                        }}
+                            renderContent={({ viewState }) => (
+                                <VStack mx={2} h="100%" bg="primary.100" w={140}>
+                                <Text>Drop Here</Text>
+                                <DraxList
+                                    data={data1}
+                                    renderItemContent={({ item }) => (
+                                        item ? <Player name={item.text} image={item.image} /> :
+                                        <Square size={142} />
+                                    )}
+                                    keyExtractor={(item: any) => item.id}
+                                    reorderable
+                                    onItemReorder={() => console.log('Reordered')}
+                                />
+                                </VStack>
+                            )}>
+                            
+                        </DraxView>
+
                         <VStack flex="1" my={2}>
                             <Center h='140' w="100%" alignItems="center" ><Text>Captain</Text></Center>
-                            <Center h='140' w="auto"><Text></Text></Center>
-                            <Center h='140' w="auto"><Text>3v3</Text></Center>
-                            <Center h='140' w="auto"><Text>4v4</Text></Center>
-                            <Center h='140' w="auto"><Text>5v5</Text></Center>
+                            
                         </VStack>
                         <VStack mx={2}>
                         {
