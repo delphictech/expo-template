@@ -93,9 +93,9 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
         );
     };
 
-    const [data1, setData1] = useState(data);
+    const [queueData, setQueueData] = useState(data);
+    const [data1, setData1] = useState(new Array(5));
     const [data2, setData2] = useState(data);
-    const [data3, setData3] = useState(data);
 
     return (
         <DraxProvider>
@@ -106,8 +106,17 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                         <Heading>Queue</Heading>
                         <Text>2 new --*</Text>
                     </HStack>
-                    <View>
-                    </View>
+                    <DraxList
+                        data={data}
+                        horizontal
+                        renderItemContent={({ item }) => (
+                            item ? <Player name={item.text} image={item.image} /> :
+                            <Square size={142} />
+                        )}
+                        keyExtractor={(item: any) => item.id}
+                        renderItemHoverContent={undefined}
+                        onItemReorder={() => console.log('Reordered')}
+                    />
 
                 </VStack>
                 <HStack justifyContent="space-between" flexDirection="row" width="100%" px={2}>
@@ -115,17 +124,8 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                     <Heading w={140} textAlign="center">Team 2</Heading>
                 </HStack>
                 <ScrollView >
-                    <VStack w="100%" >
-                        <HStack w="100%" justifyContent="space-between" px={2} >
-                            <Square size={140} bg="white"></Square>
-                            <Square size={140} bg="white"></Square>
-                        </HStack>
-                    </VStack>
                     <HStack w="100%" flex="1" justifyContent="space-between" >
                         <VStack mx={2}>
-                        {
-                            data.map((item) => <Player name={item.text} image={item.image} />)
-                        }
                         </VStack>
                         <VStack flex="1" my={2}>
                             <Center h='140' w="100%" alignItems="center" ><Text>Captain</Text></Center>
@@ -159,7 +159,6 @@ export const Draxtesting: React.FC<PickupSessionProps> = (props) => {
                 <Player name={item.text} image={item.image} />
             )}
             keyExtractor={(item: any) => item.id}
-            onItemReorder={() => console.log('Reordered')}
             />
         </View>
         </DraxProvider>

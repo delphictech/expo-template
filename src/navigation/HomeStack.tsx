@@ -29,7 +29,7 @@ export const HomeStackNavigator: React.FC<HomeStackParams> = (props) => {
         options={{ headerTitle: 'Home'}} />
       <StackNav.Screen
         name="PickupSession"
-        component={Draxtesting}
+        component={PickupSession}
         options={{ headerTitle: 'Play Pickup!', headerRight: () => <MaterialCommunityIcons name="close" size={22} onPress={checkClose}/>}}
       />
     </StackNav.Navigator>
