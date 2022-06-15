@@ -3,7 +3,6 @@ import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { HomeScreen, PickupSession } from 'src/screens';
-import { Draxtesting } from 'src/screens/pickup';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export type HomeStackParams = {

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Center, Box, VStack, Button } from 'native-base';
+import { Center, Box, VStack, Button, Image, Heading } from 'native-base';
+import * as Animatable from 'react-native-animatable';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
-import { signIn } from 'src/ducks/user-slice';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { signInWithEmail, signUpWithEmail } from 'src/firebase/api';
-import * as Animatable from 'react-native-animatable';
+
 
 export interface LoginScreenProps {
     /*
@@ -15,11 +15,24 @@ export interface LoginScreenProps {
     /* 
         Boolean for when screen nested in modal, used to clear user inputs
     */
-    isModalOpen?: boolean | null;
+    isModalOpen?: boolean | undefined;
+    /*
+        Will specify if safe area needed
+    */
+    safeArea?: boolean | undefined;
+    /*
+        Will specify if content should be centered vertically
+    */
+    centered?: boolean | undefined;
+    /*
+        Will specify if want logo and title header
+    */
+    title?: boolean | undefined;
     /*
         Callback for when an input has been actively edited
     */
    onEndEditing?: () => void;
+
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
@@ -82,44 +95,44 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     }
 
     return (
-        <KeyboardBehaviorWrapper>
-            <Center w="100%">
-                <Box p="2" w="90%" maxW="300" >
-                    <VStack space={3} mt="3">
-                        <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
-                        <Button mt="3" colorScheme="primary" >
-                            Send me a sign-in link
-                        </Button>
-                        <Button colorScheme="primary" variant="outline" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
-                            Enter a password instead
-                        </Button>
-                        {/* <FormInput placeholder="Enter a password instead" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} /> */}
-                        {   
-                            isPasswordVis &&
-                            <Animatable.View animation="fadeIn">
-                                <FormInput label="Enter your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
-                            </Animatable.View>
-                        }
-                        {
-                            isPasswordVis && !isConfirmVis &&
-                            <Animatable.View animation="fadeIn">
-                                <Button mt="3" colorScheme="primary" onPress={handleLogin} isLoading={isLoading} isLoadingText="Submitting" >
-                                    Submit
-                                </Button>
-                            </Animatable.View>
-                        }
-                        {
-                            isConfirmVis &&
-                            <Animatable.View animation="fadeIn">
-                                <FormInput label="Confirm your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
-                                <Button mt="5" colorScheme="primary" onPress={handleSignUp} isLoading={isLoading} isLoadingText="Signing Up" >
-                                    Sign Up
-                                </Button>
-                            </Animatable.View>
-                        }
-                    </VStack>
-                </Box>
-            </Center>
+        <KeyboardBehaviorWrapper bounces={false} centerVertically={props.centered} >
+            <Box px="10" w="100%" h="100%" justifyContent={props.centered ? "center" : "flex-start"} alignItems="center" safeArea={props.safeArea ? true : undefined}>
+                <VStack space={3} alignItems="center" w="100%">
+                    <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
+                    <Heading>Welcome to Maet!</Heading>
+                    <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
+                    <Button mt="3" colorScheme="primary" w="100%" >
+                        Send me a sign-in link
+                    </Button>
+                    <Button w="100%" colorScheme="primary" variant="outline" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
+                        Continue with password
+                    </Button>
+                    {/* <FormInput placeholder="Enter a password instead" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} /> */}
+                    {   
+                        isPasswordVis &&
+                        <Animatable.View animation="fadeIn">
+                            <FormInput label="Enter your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
+                        </Animatable.View>
+                    }
+                    {
+                        isPasswordVis && !isConfirmVis &&
+                        <Animatable.View animation="fadeIn">
+                            <Button mt="3" colorScheme="primary" onPress={handleLogin} isLoading={isLoading} isLoadingText="Submitting" >
+                                Submit
+                            </Button>
+                        </Animatable.View>
+                    }
+                    {
+                        isConfirmVis &&
+                        <Animatable.View animation="fadeIn">
+                            <FormInput label="Confirm your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setConfirm(text)} />
+                            <Button mt="5" colorScheme="primary" onPress={handleSignUp} isLoading={isLoading} isLoadingText="Signing Up" >
+                                Sign Up
+                            </Button>
+                        </Animatable.View>
+                    }
+                </VStack>
+            </Box>
         </KeyboardBehaviorWrapper>
         
     );

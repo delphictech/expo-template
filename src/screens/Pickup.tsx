@@ -135,7 +135,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                             console.log(state);
                             const payload = state.dragged.payload;
                             const item:any = queueData[payload.originalIndex];
-                            setData1(data1.concat(Array(item)));
+                            setData1(data1.concat(Array<never>(item)));
                             // queueData.splice(payload.originalIndex, 1);
                             setQueueData((queueData) => queueData.filter((value, index) => {
                                 return index !== payload.originalIndex;
@@ -175,24 +175,6 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
         </DraxProvider>
     );
 };
-
-export const Draxtesting: React.FC<PickupSessionProps> = (props) => {
-
-    return (
-        <DraxProvider>
-        <View style={styles.container}>
-            <DraxList
-            data={data}
-            horizontal
-            renderItemContent={({ item }) => (
-                <Player name={item.text} image={item.image} />
-            )}
-            keyExtractor={(item: any) => item.id}
-            />
-        </View>
-        </DraxProvider>
-    );
-}
 
 const data = [
     {

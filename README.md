@@ -35,6 +35,7 @@ Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
 * [React Navigation](https://reactnavigation.org/docs/getting-started/): For navigating between screens, we are using react navigation.
 * [NativeBase](https://nativebase.io/): Well built and responsive component library for ios, android, and web.
 * [Redux Toolkit](): We use redux toolkit to manage universal state. This [tutorial](https://www.youtube.com/watch?v=9zySeP5vH9c) is helpful for understanding. We divide our redux by concept, all in the "ducks" directory under src. We are under the slice pattern. Only use redux when necessary, handling internal state with react's useState when possible. We are using redux toolkit because it simplifies redux, allowing us to ["mutate" the state](https://redux.js.org/tutorials/quick-start#create-a-redux-state-slice) in the reducers without having to explicitly make a copy. This will shorten the amount of code we will have to write.
+* [React Native SVGs](): Will render local SVGs for logos with [react-native-svg-transformer](https://github.com/react-native-svg/react-native-svg#use-with-svg-files).
 * [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
 
 ## Philosophy
