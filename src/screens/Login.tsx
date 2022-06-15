@@ -98,31 +98,39 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
         <KeyboardBehaviorWrapper bounces={false} centerVertically={props.centered} >
             <Box px="10" w="100%" h="100%" justifyContent={props.centered ? "center" : "flex-start"} alignItems="center" safeArea={props.safeArea ? true : undefined}>
                 <VStack space={3} alignItems="center" w="100%">
-                    <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
-                    <Heading>Welcome to Maet!</Heading>
+                    {
+                        props.title && 
+                        <>
+                            <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
+                            <Heading mb={3}>Welcome to Maet!</Heading>
+                        </>
+                    }
                     <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
-                    <Button mt="3" colorScheme="primary" w="100%" >
+                    {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
+                    </Button> */}
+                    <Button w="100%" colorScheme="secondary" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
+                        Enter a password instead
                     </Button>
-                    <Button w="100%" colorScheme="primary" variant="outline" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
-                        Continue with password
+                    <Button w="100%" colorScheme="primary" variant="link" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
+                        Continue as guest
                     </Button>
                     {/* <FormInput placeholder="Enter a password instead" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} /> */}
-                    {   
+                    {/* {   
                         isPasswordVis &&
                         <Animatable.View animation="fadeIn">
                             <FormInput label="Enter your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
                         </Animatable.View>
-                    }
-                    {
+                    } */}
+                    {/* {
                         isPasswordVis && !isConfirmVis &&
                         <Animatable.View animation="fadeIn">
                             <Button mt="3" colorScheme="primary" onPress={handleLogin} isLoading={isLoading} isLoadingText="Submitting" >
                                 Submit
                             </Button>
                         </Animatable.View>
-                    }
-                    {
+                    } */}
+                    {/* {
                         isConfirmVis &&
                         <Animatable.View animation="fadeIn">
                             <FormInput label="Confirm your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setConfirm(text)} />
@@ -130,7 +138,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
                                 Sign Up
                             </Button>
                         </Animatable.View>
-                    }
+                    } */}
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>
