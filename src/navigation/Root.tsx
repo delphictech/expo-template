@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import MainTabNavigator from './MainTab';
-import { LoginScreen } from 'src/screens';
+import { MainTabNavigator } from './main-tab';
+import { AuthStackNavigator } from './auth-stack';
 import { useAppSelector } from 'src/hooks/useful-ducks';
 
 export default function RootNavigator() {
@@ -13,8 +13,9 @@ export default function RootNavigator() {
     <NavigationContainer>
       {
         loggedIn ? 
-          <MainTabNavigator/>
-          : <LoginScreen safeArea centered title />
+          <MainTabNavigator />
+          : <AuthStackNavigator />
+          // : <LoginScreen safeArea centered title />
       }
       
     </NavigationContainer>

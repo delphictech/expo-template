@@ -1,5 +1,5 @@
-import { app, auth, analytics, db } from "./firebase-config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut } from 'firebase/auth';
+import { app, auth, db } from "./firebase-config";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, fetchSignInMethodsForEmail } from 'firebase/auth';
 import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
@@ -10,6 +10,11 @@ export { FirebaseError };
 // Sign In Anonymously
 export async function anonymousSignIn() {
   return await fbHandler(signInAnonymously(auth));
+}
+
+// Check Sign In Methods
+export async function fetchSignInMethods(email: string) {
+  return await fbHandler(fetchSignInMethodsForEmail(auth, email));
 }
 
 // Sign In With Email

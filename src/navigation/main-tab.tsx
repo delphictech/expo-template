@@ -1,17 +1,17 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, ExploreScreen } from 'src/screens';
-import { HomeStackNavigator } from './HomeStack';
+import { HomeStackNavigator } from './home-stack';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 export type MainTabParams = {
-  Home: undefined;
-  Explore: undefined;
+  Home?: undefined;
+  Explore?: undefined;
 };
 
 const Tabs = createBottomTabNavigator<MainTabParams>();
 
-export default function MainTabNavigator() {
+export const MainTabNavigator: React.FC<MainTabParams> = (props) => {
   return (
     <Tabs.Navigator>
       <Tabs.Screen name="Home" component={HomeStackNavigator} 
