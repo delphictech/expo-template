@@ -30,7 +30,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     const isMain = (props.main) ? !props.isModalOpen : true;
 
     // navigation 
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
 
     // react states
     const [email, setEmail] = useState<string>('');
@@ -45,6 +45,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
             console.log(`Error with email ${e}`);
         }
         setEmailLoading(false);
+        navigation.navigate('Auth');
     }
 
     const handleAnonymous = async () => {

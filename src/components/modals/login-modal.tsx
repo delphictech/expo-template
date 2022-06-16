@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BottomModal } from "src/components/wrappers";
 import { LoginScreen } from "src/screens/login";
+import { AuthStackNavigator } from "src/navigation/auth-stack";
 
 export interface LoginModalProps {
     isOpen: boolean; // will trigger whether to have modal open or closed
@@ -24,9 +25,10 @@ export const LoginModal: React.FC<LoginModalProps> = (props) => {
             isOpen={props.isOpen} 
             inputActive={inputActive}
             onClose={props.onClose}>
-            <LoginScreen isModalOpen={props.isOpen} 
+            <AuthStackNavigator />
+            {/* <LoginScreen isModalOpen={props.isOpen} 
                 onEndEditing={() => setInputActive(true)}
-                onSubmit={props.onClose}/>
+                onSubmit={props.onClose}/> */}
         </BottomModal>
     );
 }

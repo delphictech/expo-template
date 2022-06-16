@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LoginModal, PickupSessionModal } from 'src/components/modals';
+import { LoginModal } from 'src/components/modals';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOut } from 'src/ducks/user-slice';
 import { signOutUser } from 'src/firebase/api';
@@ -45,7 +45,7 @@ export function HomeScreen() {
         <>
         <View style={styles.container}>
             <Text>Home Screen: {user.email}</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => console.log('I am pressed')}>
+            <Button mt="2" colorScheme="indigo" onPress={() => setPickupSession(true)}>
                 Schedule Pickup
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('PickupSession')}>
@@ -55,8 +55,7 @@ export function HomeScreen() {
                 {loggedIn ? 'Logout' : 'Login'}
             </Button>
         </View>
-        <PickupSessionModal isOpen={showPickupSession} onClose={() => setPickupSession(false)} />
-        <LoginModal isOpen={showSignup} onClose={() => setSignup(false)} />
+        {/* <LoginModal isOpen={showSignup} onClose={() => setSignup(false)} /> */}
         </>
 
     );
