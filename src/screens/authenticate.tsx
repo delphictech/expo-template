@@ -1,45 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Center, Box, VStack, Button, Image, Heading } from 'native-base';
-import * as Animatable from 'react-native-animatable';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { signInWithEmail, signUpWithEmail } from 'src/firebase/api';
+import { ScreenParams } from 'src/types/screen';
 
 
-export interface AuthScreenParams {
-    /*
-        Function to call on the submit of the button
-    */
-    onSubmit?: () => void;
-    /* 
-        Boolean for when screen nested in modal, used to clear user inputs
-    */
-    isModalOpen?: boolean | undefined;
-    /*
-        Will specify if safe area needed
-    */
-    safeArea?: boolean | undefined;
-    /*
-        Will specify if content should be centered vertically
-    */
-    centered?: boolean | undefined;
-    /*
-        Will specify if want logo and title header
-    */
-    title?: boolean | undefined;
-    /*
-        Callback for when an input has been actively edited
-    */
-   onEndEditing?: () => void;
-
-};
-
-export const AuthScreen: React.FC<AuthScreenParams> = (props) => {
+export const AuthScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     /*
         Component will authenticate the user, 
         either signing them in or offering them the authentication methods that are available to their account
     */
+   const placeholder = true;
     // react states
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,12 +25,6 @@ export const AuthScreen: React.FC<AuthScreenParams> = (props) => {
     const userID = useAppSelector((state) => state.user.uid);
     const userEmail = useAppSelector((state) => state.user.email);
     const dispatch = useAppDispatch();
-
-    // initialize states
-    useEffect(() => {
-        setPasswordVis(false);
-        setConfirmVis(false);
-    }, [props.isModalOpen]);
 
     // async function for handling login
     const handleLogin = async () => {
@@ -77,7 +44,6 @@ export const AuthScreen: React.FC<AuthScreenParams> = (props) => {
             }
         }
         setIsLoading(false);
-        props.onSubmit && props.onSubmit();
     }
 
     // async function for handling sign up
@@ -93,23 +59,19 @@ export const AuthScreen: React.FC<AuthScreenParams> = (props) => {
             console.log('Error with sign up');
             console.log(e);
         }
-        
-        // must handle the errors
-        props.onSubmit && props.onSubmit();
     }
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically={props.centered} >
-            <Box px="10" w="100%" h="100%" justifyContent={props.centered ? "center" : "flex-start"} alignItems="center" safeArea={props.safeArea ? true : undefined}>
+        <KeyboardBehaviorWrapper bounces={false} centerVertically={placeholder} >
+            <Box px="10" w="100%" h="100%" justifyContent={placeholder ? "center" : "flex-start"} alignItems="center" safeArea={placeholder ? true : undefined}>
                 <VStack space={3} alignItems="center" w="100%">
                     {
-                        props.title && 
                         <>
                             <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
                             <Heading mb={3}>Welcome to Maet!</Heading>
                         </>
                     }
-                    <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
+                    <FormInput label="Enter your email" placeholder="name@example.com" onChangeText={(text: string) => setEmail(text)} />
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}

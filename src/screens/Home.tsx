@@ -7,11 +7,7 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOut } from 'src/ducks/user-slice';
 import { signOutUser } from 'src/firebase/api';
 import { HomeStackParams } from 'src/navigation/home-stack';
-
-
-export interface HomeScreenParams {
-    test?: undefined
-};
+import { ScreenParams } from 'src/types/screen';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,7 +23,7 @@ const styles = StyleSheet.create({
 */
 type HomeScreenProps = StackNavigationProp<HomeStackParams, "Main">;
 
-export const HomeScreen: React.FC<HomeScreenParams> = () => {
+export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     const [showPickupSession, setPickupSession] = useState(false);
     const [showSignup, setSignup] = useState(false);
 

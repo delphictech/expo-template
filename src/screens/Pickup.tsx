@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Center, Box, Square, Heading, VStack, Button, Pressable, HStack, Spacer, Text, Avatar, FlatList, View, ScrollView, Flex, SectionList, Divider } from 'native-base';
 import { DraxProvider, DraxView, DraxList } from 'react-native-drax';
+import { ScreenParams } from 'src/types/screen';
 
 
 const styles = StyleSheet.create({
@@ -55,23 +56,12 @@ export const Player: React.FC<PlayerProps> = (props) => {
     );
 }
 
-export interface PickupSessionProps {
-    /* 
-        Boolean for when screen nested in modal, used to clear user inputs
-    */
-    isModalOpen?: boolean | null;
-    /*
-        Callback for when an input has been actively edited
-    */
-   onEndEditing?: () => void;
-};
-
 /*
 Errors:
     Picking up player and dropping it back in the same container will create a replication
 */
 
-export const PickupSession: React.FC<PickupSessionProps> = (props) => {
+export const PickupScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
     const renderItem = (iterable: any) => {
         return (
