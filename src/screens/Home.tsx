@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { LoginModal } from 'src/components/modals';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOut } from 'src/ducks/user-slice';
 import { signOutUser } from 'src/firebase/api';
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 /*
-    Define Screen Types
+    Define Screen Typee
 */
 type HomeScreenProps = StackNavigationProp<HomeStackParams, "Main">;
 

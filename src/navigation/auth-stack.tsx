@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { LoginScreen, AuthScreen } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { LoginModalProps } from 'src/components/modals';
 import { useEvent } from 'react-native-reanimated';
 
 export type AuthStackParams = {
