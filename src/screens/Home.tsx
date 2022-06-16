@@ -37,7 +37,7 @@ export function HomeScreen() {
             console.log('SIgned out');
             console.log(res);
         } else {
-            setSignup(true);
+            navigation.navigate('Login');
         }
     }
 
@@ -45,7 +45,7 @@ export function HomeScreen() {
         <>
         <View style={styles.container}>
             <Text>Home Screen: {user.email}</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => setPickupSession(true)}>
+            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('Login')}>
                 Schedule Pickup
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('PickupSession')}>
