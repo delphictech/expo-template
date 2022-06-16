@@ -12,6 +12,7 @@ interface FirebaseReduxToolkitProviderProps {
 export const FirebaseReduxToolkitProvider: React.FC<FirebaseReduxToolkitProviderProps> = (props) => {
     /*
         Component will wrap the main app component, updating the redux state when firebase states change
+        *You should not have to dispatch any actions related to the user auth, except in this file.
     */
     const dispatch = useAppDispatch();
 

@@ -35,7 +35,6 @@ export function HomeScreen() {
         if (loggedIn) {
             let res = await signOutUser();
             console.log('SIgned out');
-            dispatch(signOut());
             console.log(res);
         } else {
             setSignup(true);

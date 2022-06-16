@@ -34,16 +34,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     const [isConfirmVis, setConfirmVis] = useState<boolean>(false);
     const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
 
+
     const handleAnonymous = async () => {
         setIsGuestLoading(true);
         
         try {
             const response = await anonymousSignIn();
-            console.log(`response for anonym: ${response}`);
         } catch (e: any) {
             console.log(`Error ${e}`);
         }
-        setIsGuestLoading(false);
     }
 
     return (

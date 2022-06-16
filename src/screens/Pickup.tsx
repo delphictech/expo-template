@@ -66,6 +66,10 @@ export interface PickupSessionProps {
    onEndEditing?: () => void;
 };
 
+/*
+Errors:
+    Picking up player and dropping it back in the same container will create a replication
+*/
 
 export const PickupSession: React.FC<PickupSessionProps> = (props) => {
 
@@ -101,7 +105,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
 
     const [queueData, setQueueData] = useState(data);
     const [data1, setData1] = useState([]);
-    const [data2, setData2] = useState(data);
+    const [data2, setData2] = useState([]);
 
     return (
         <DraxProvider>
@@ -112,7 +116,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                         <Heading>Queue</Heading>
                         <Text>2 new --*</Text>
                     </HStack>
-                    {/* <DraxList
+                    <DraxList
                         data={queueData}
                         horizontal
                         renderItemContent={({ item }) => (
@@ -122,16 +126,16 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                         keyExtractor={(item: any) => item.id}
                         renderItemHoverContent={undefined}
                         onItemReorder={() => console.log('Reordered')}
-                    /> */}
+                    />
 
                 </VStack>
                 <HStack justifyContent="space-between" flexDirection="row" width="100%" px={2}>
                     <Heading w={140} textAlign="center">Team 1</Heading>
                     <Heading w={140} textAlign="center">Team 2</Heading>
                 </HStack>
-                <ScrollView >
+                {/* <ScrollView > */}
                     <HStack w="100%" flex="1" justifyContent="space-between" >
-                        {/* <DraxView onReceiveDragDrop={(state) => {
+                        <DraxView onReceiveDragDrop={(state) => {
                             console.log(state);
                             const payload = state.dragged.payload;
                             const item:any = queueData[payload.originalIndex];
@@ -157,19 +161,43 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                                 </VStack>
                             )}>
                             
-                        </DraxView> */}
+                        </DraxView>
 
                         <VStack flex="1" my={2}>
                             <Center h='140' w="100%" alignItems="center" ><Text>Captain</Text></Center>
                             
                         </VStack>
                         <VStack mx={2}>
-                        {/* {
-                            data.map((item) => <Player name={item.text} image={item.image} />)
-                        } */}
+                        <DraxView onReceiveDragDrop={(state) => {
+                            console.log(state);
+                            const payload = state.dragged.payload;
+                            const item:any = queueData[payload.originalIndex];
+                            setData2(data2.concat(Array<never>(item)));
+                            // queueData.splice(payload.originalIndex, 1);
+                            setQueueData((queueData) => queueData.filter((value, index) => {
+                                return index !== payload.originalIndex;
+                            }));
+                        }}
+                            renderContent={({ viewState }) => (
+                                <VStack mx={2} h="100%" bg="primary.100" w={140}>
+                                <Text>Drop Here</Text>
+                                <DraxList
+                                    data={data2}
+                                    renderItemContent={({ item }) => (
+                                        item ? <Player name={item.text} image={item.image} /> :
+                                        <Square size={142} />
+                                    )}
+                                    keyExtractor={(item: any) => item.id}
+                                    reorderable
+                                    onItemReorder={() => console.log('Reordered')}
+                                />
+                                </VStack>
+                            )}>
+                            
+                        </DraxView>
                         </VStack>
                     </HStack>
-                </ScrollView>
+                {/* </ScrollView> */}
             </VStack>
         </Center>
         </DraxProvider>
