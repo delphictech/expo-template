@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Center, Box, VStack, Button, Image, Heading } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
-import { anonymousSignIn } from 'src/firebase/api';
+import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
 
 export interface LoginScreenProps {
     /*
@@ -28,20 +29,30 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
     // set initial value for full screen to true, if modal not open and main undefined
     const isMain = (props.main) ? !props.isModalOpen : true;
 
+    // navigation 
+    // const navigation = useNavigation();
+
     // react states
     const [email, setEmail] = useState<string>('');
-    const [isPasswordVis, setPasswordVis] = useState<boolean>(false);
-    const [isConfirmVis, setConfirmVis] = useState<boolean>(false);
+    const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
     const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
 
+    const handleEmail = async () => {
+        setEmailLoading(true);
+        try {
+            const methods = await fetchSignInMethods(email);
+        } catch (e: any) {
+            console.log(`Error with email ${e}`);
+        }
+        setEmailLoading(false);
+    }
 
     const handleAnonymous = async () => {
         setIsGuestLoading(true);
-        
         try {
             const response = await anonymousSignIn();
         } catch (e: any) {
-            console.log(`Error ${e}`);
+            console.log(`Error with Guest sign in ${e}`);
         }
     }
 
@@ -60,8 +71,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
-                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
-                        Enter a password
+                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleEmail} isLoading={isEmailLoading} isLoadingText='Submitting'>
+                        Submit
                     </Button>
                     { 
                         isMain &&

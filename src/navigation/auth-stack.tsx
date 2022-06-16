@@ -2,7 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { LoginScreen, PasswordScreen } from 'src/screens';
+import { LoginScreen, AuthScreen } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LoginModalProps } from 'src/components/modals';
 
@@ -27,7 +27,7 @@ export const AuthStackNavigator: React.FC<AuthStackParams> = (props) => {
         options={{ headerTitle: 'Home'}} />
       <StackNav.Screen
         name="Password"
-        component={PasswordScreen}
+        component={AuthScreen}
         options={{ headerTitle: 'Enter Password'}}
       />
     </StackNav.Navigator>

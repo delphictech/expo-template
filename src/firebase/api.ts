@@ -14,6 +14,7 @@ export async function anonymousSignIn() {
 
 // Check Sign In Methods
 export async function fetchSignInMethods(email: string) {
+  // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#fetchsigninmethodsforemail
   return await fbHandler(fetchSignInMethodsForEmail(auth, email));
 }
 

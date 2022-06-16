@@ -7,7 +7,7 @@ import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { signInWithEmail, signUpWithEmail } from 'src/firebase/api';
 
 
-export interface PasswordScreenProps {
+export interface AuthScreenProps {
     /*
         Function to call on the submit of the button
     */
@@ -35,7 +35,11 @@ export interface PasswordScreenProps {
 
 };
 
-export const PasswordScreen: React.FC<PasswordScreenProps> = (props) => {
+export const AuthScreen: React.FC<AuthScreenProps> = (props) => {
+    /*
+        Component will authenticate the user, 
+        either signing them in or offering them the authentication methods that are available to their account
+    */
     // react states
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

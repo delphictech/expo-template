@@ -15,7 +15,6 @@ export default function RootNavigator() {
         loggedIn ? 
           <MainTabNavigator />
           : <AuthStackNavigator />
-          // : <LoginScreen safeArea centered title />
       }
       
     </NavigationContainer>

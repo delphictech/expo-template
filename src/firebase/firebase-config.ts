@@ -1,8 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { initializeAuth, onAuthStateChanged } from "firebase/auth";
+import { getReactNativePersistence } from 'firebase/auth/react-native';
 // import { getAnalytics } from "firebase/analytics";
 import { getFirestore } from "firebase/firestore";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,7 +32,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+/* 
+  to get rid of async storage incompatibility with expo, initialize auth with the following method
+  https://github.com/firebase/firebase-js-sdk/issues/1847#issuecomment-915634151
+*/
+const auth = initializeAuth(app, { persistence: getReactNativePersistence(AsyncStorage) });
 // const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
