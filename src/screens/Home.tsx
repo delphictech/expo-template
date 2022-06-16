@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 /*
     Define Screen Typee
 */
-type HomeScreenProps = StackNavigationProp<HomeStackParams, "Main">;
+type HomeScreenProps = StackNavigationProp<HomeStackParams, "Home">;
 
 export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     const [showPickupSession, setPickupSession] = useState(false);
@@ -44,7 +44,7 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             console.log('SIgned out');
             console.log(res);
         } else {
-            navigation.navigate('Login');
+            navigation.getParent('MainStackNavigator')?.navigate('Auth');
         }
     }
 
@@ -52,7 +52,7 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         <>
         <View style={styles.container}>
             <Text>Home Screen: {user.email}</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('Login')}>
+            <Button mt="2" colorScheme="indigo" onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
                 Schedule Pickup
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('PickupSession')}>

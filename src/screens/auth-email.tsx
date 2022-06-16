@@ -9,12 +9,12 @@ import { useAppSelector } from 'src/hooks/useful-ducks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
 
-type LoginScreenProps = StackNavigationProp<AuthStackParams, "Email">;
+type AuthEmailProps = StackNavigationProp<AuthStackParams, "AuthEmail">;
 
-export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
+export const AuthEmail: React.FC<ScreenParams> = (props: ScreenParams) => {
 
     // navigation 
-    const navigation = useNavigation<LoginScreenProps>();
+    const navigation = useNavigation<AuthEmailProps>();
 
     // Redux state
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);

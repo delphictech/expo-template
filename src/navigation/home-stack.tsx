@@ -2,18 +2,18 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { HomeScreen, PickupSession, LoginScreen } from 'src/screens';
+import { HomeScreen, PickupScreen, LoginScreen } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { ScreenParams } from 'src/types/screen';
 
 export type HomeStackParams = {
-  Main: undefined;
+  Home: undefined;
   PickupSession: undefined;
-  Login: undefined;
 };
 
 const StackNav = createNativeStackNavigator<HomeStackParams>();
 
-export const HomeStackNavigator: React.FC<HomeStackParams> = (props) => {
+export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
   const navigation = useNavigation();
 
   const checkPickup = () => {
@@ -32,24 +32,15 @@ export const HomeStackNavigator: React.FC<HomeStackParams> = (props) => {
 
   return (
     <StackNav.Navigator >
-      <StackNav.Screen name="Main" component={HomeScreen} 
+      <StackNav.Screen name="Home" component={HomeScreen} 
         options={{ headerTitle: 'Home'}} />
       <StackNav.Screen
         name="PickupSession"
-        component={PickupSession}
+        component={PickupScreen}
         options={{ 
           headerTitle: 'Play Pickup!', 
           headerRight: () => <MaterialCommunityIcons name="close" size={22} onPress={checkPickup}/>,
           presentation: 'fullScreenModal', gestureEnabled: false
-        }}
-      />
-      <StackNav.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ 
-          headerTitle: 'Login or Sign Up', 
-          headerRight: () => <MaterialCommunityIcons name="close" size={22} onPress={checkLogin}/>,
-          presentation: 'modal'
         }}
       />
     </StackNav.Navigator>

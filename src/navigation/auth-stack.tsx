@@ -2,18 +2,19 @@ import React, { useEffect } from 'react';
 import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { LoginScreen, AuthScreen } from 'src/screens';
+import { LoginScreen, AuthEmail } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEvent } from 'react-native-reanimated';
+import { ScreenParams } from 'src/types/screen';
 
 export type AuthStackParams = {
   Email?: undefined;
-  Auth?: undefined;
+  AuthEmail?: undefined;
 };
 
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
-export const AuthStackNavigator: React.FC<AuthStackParams> = (props) => {
+export const AuthStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
 
   const navigation = useNavigation();
   useEffect(() => {
@@ -25,8 +26,8 @@ export const AuthStackNavigator: React.FC<AuthStackParams> = (props) => {
       <StackNav.Screen name="Email" component={LoginScreen} 
         options={{ headerShown: false, animationTypeForReplace: 'pop'}} />
       <StackNav.Screen
-        name="Auth"
-        component={AuthScreen}
+        name="AuthEmail"
+        component={AuthEmail}
         options={{ headerTitle: 'Enter Password'}}
       />
     </StackNav.Navigator>

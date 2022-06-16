@@ -3,18 +3,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { HomeScreen, ExploreScreen } from 'src/screens';
 import { HomeStackNavigator } from './home-stack';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { ScreenParams } from 'src/types/screen';
 
-export type MainTabParams = {
-  Home?: undefined;
-  Explore?: undefined;
+export type BottomTabParams = {
+  HomeTab: undefined;
+  Explore: undefined;
 };
 
-const Tabs = createBottomTabNavigator<MainTabParams>();
+const Tabs = createBottomTabNavigator<BottomTabParams>();
 
-export const MainTabNavigator: React.FC<MainTabParams> = (props) => {
+export const BottomTabNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
   return (
     <Tabs.Navigator>
-      <Tabs.Screen name="Home" component={HomeStackNavigator} 
+      <Tabs.Screen name="HomeTab" component={HomeStackNavigator} 
         options={{ headerTitle: 'Home', headerShown: false,
           tabBarIcon: ({ focused, color }) => (
             <MaterialCommunityIcons

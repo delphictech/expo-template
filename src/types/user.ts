@@ -1,8 +1,8 @@
 export interface User {
-    uid: string | null | undefined,
-    email: string | null | undefined,
-    phoneNumber: string | null | undefined,
-    isAnonymous: boolean | null | undefined,
-    emailVerified: boolean | null | undefined,
-    loggedIn: boolean | null | undefined
+    uid: string | undefined,
+    email: string | undefined,
+    phoneNumber: string | undefined,
+    isAnonymous: boolean | undefined,
+    emailVerified: boolean | undefined,
+    loggedIn: boolean | undefined
 }
