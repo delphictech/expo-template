@@ -1,6 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+export interface ExploreScreenParams {
+    test?: undefined
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -10,7 +14,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export function ExploreScreen() {
+export const ExploreScreen: React.FC<ExploreScreenParams> = () => {
     return (
         <View style={styles.container}>
             <Text>Explore Screen</Text>

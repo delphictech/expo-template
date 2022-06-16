@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { Button } from 'native-base';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { LoginModal } from 'src/components/modals';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOut } from 'src/ducks/user-slice';
 import { signOutUser } from 'src/firebase/api';
-import { Button } from 'native-base';
+import { HomeStackParams } from 'src/navigation/home-stack';
+
+
+export interface HomeScreenParams {
+    test?: undefined
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -16,12 +23,17 @@ const styles = StyleSheet.create({
     },
 });
 
-export function HomeScreen() {
+/*
+    Define Screen Types
+*/
+type HomeScreenProps = StackNavigationProp<HomeStackParams, "Main">;
+
+export const HomeScreen: React.FC<HomeScreenParams> = () => {
     const [showPickupSession, setPickupSession] = useState(false);
     const [showSignup, setSignup] = useState(false);
 
     // navigation
-    const navigation = useNavigation();
+    const navigation = useNavigation<HomeScreenProps>();
 
     // redux handlers
     const dispatch = useAppDispatch();

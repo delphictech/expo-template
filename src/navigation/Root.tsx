@@ -11,13 +11,9 @@ export default function RootNavigator() {
 
   return (
     <NavigationContainer>
-      { loggedIn ? (
-          
-            <MainTabNavigator />
-          
-        ) : (
-            <AuthStackNavigator />
-        ) 
+      { loggedIn ?
+          <MainTabNavigator />
+        : <AuthStackNavigator />
       }
     </NavigationContainer>
     

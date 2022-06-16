@@ -4,8 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { AuthStackParams } from 'src/navigation/auth-stack';
 
-export interface LoginScreenProps {
+export interface LoginScreenParams {
     /*
         Function to call on the submit of the button
     */
@@ -25,12 +27,14 @@ export interface LoginScreenProps {
 
 };
 
-export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
+type LoginScreenProps = StackNavigationProp<AuthStackParams, "Auth">;
+
+export const LoginScreen: React.FC<LoginScreenParams> = (props) => {
     // set initial value for full screen to true, if modal not open and main undefined
     const isMain = (props.main) ? !props.isModalOpen : true;
 
     // navigation 
-    const navigation = useNavigation();
+    const navigation = useNavigation<LoginScreenProps>();
 
     // react states
     const [email, setEmail] = useState<string>('');
