@@ -46,7 +46,7 @@ export function HomeScreen() {
         <>
         <View style={styles.container}>
             <Text>Home Screen: {user.email}</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
+            <Button mt="2" colorScheme="indigo" onPress={() => console.log('I am pressed')}>
                 Schedule Pickup
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('PickupSession')}>

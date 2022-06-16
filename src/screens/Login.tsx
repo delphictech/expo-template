@@ -57,7 +57,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
                             <Heading mb={3}>Welcome to Maet!</Heading>
                         </>
                     }
-                    <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
+                    <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}

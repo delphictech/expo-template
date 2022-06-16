@@ -16,7 +16,7 @@ const StackNav = createNativeStackNavigator<AuthStackParams>();
 export const AuthStackNavigator: React.FC<AuthStackParams> = (props) => {
 
   const LoginScreenComp = () => (
-    <LoginScreen main />
+    <LoginScreen key='InitialLogin' main />
   );
 
   const navigation = useNavigation();
