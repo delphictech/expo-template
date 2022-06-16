@@ -26,8 +26,9 @@ export function HomeScreen() {
     // redux handlers
     const dispatch = useAppDispatch();
     const loggedIn = useAppSelector((state) => state.user.loggedIn);
+    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const user = useAppSelector((state) => state.user);
-    console.log(`Logged In: ${loggedIn}`);
+    console.log(`Anonymous In: ${isAnonymous}`);
 
     // handling button functions
     const handleLoginButton = async () => {
@@ -36,7 +37,6 @@ export function HomeScreen() {
             console.log('SIgned out');
             dispatch(signOut());
             console.log(res);
-            console.log(loggedIn);
         } else {
             setSignup(true);
         }

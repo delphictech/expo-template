@@ -1,5 +1,5 @@
 import { app, auth, db } from "./firebase-config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, fetchSignInMethodsForEmail } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, fetchSignInMethodsForEmail, deleteUser } from 'firebase/auth';
 import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
@@ -28,9 +28,28 @@ export async function signUpWithEmail(email: string, password: string) {
   return await fbHandler(createUserWithEmailAndPassword(auth, email, password));
 }
 
+// Delete user
+// https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
+export async function deleteCurrentUser() {
+  if (auth.currentUser) {
+    console.log('deleting user');
+    return await fbHandler(deleteUser(auth.currentUser));
+  } 
+  const error:FirebaseError = {
+    message: 'User does not exist',
+    code: 'auth/user-not-found',
+    cause: 'account'
+  }
+  return error;
+}
+
 // Sign Out
-export function signOutUser() {
-  fbHandler(signOut(auth));
+export async function signOutUser() {
+  // Delete user if anonymous
+  if (auth.currentUser?.isAnonymous) {
+    return await deleteCurrentUser();
+  }
+  return await fbHandler(signOut(auth));
 }
 
 /*

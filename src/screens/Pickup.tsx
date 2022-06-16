@@ -112,7 +112,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                         <Heading>Queue</Heading>
                         <Text>2 new --*</Text>
                     </HStack>
-                    <DraxList
+                    {/* <DraxList
                         data={queueData}
                         horizontal
                         renderItemContent={({ item }) => (
@@ -122,7 +122,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                         keyExtractor={(item: any) => item.id}
                         renderItemHoverContent={undefined}
                         onItemReorder={() => console.log('Reordered')}
-                    />
+                    /> */}
 
                 </VStack>
                 <HStack justifyContent="space-between" flexDirection="row" width="100%" px={2}>
@@ -131,7 +131,7 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                 </HStack>
                 <ScrollView >
                     <HStack w="100%" flex="1" justifyContent="space-between" >
-                        <DraxView onReceiveDragDrop={(state) => {
+                        {/* <DraxView onReceiveDragDrop={(state) => {
                             console.log(state);
                             const payload = state.dragged.payload;
                             const item:any = queueData[payload.originalIndex];
@@ -157,16 +157,16 @@ export const PickupSession: React.FC<PickupSessionProps> = (props) => {
                                 </VStack>
                             )}>
                             
-                        </DraxView>
+                        </DraxView> */}
 
                         <VStack flex="1" my={2}>
                             <Center h='140' w="100%" alignItems="center" ><Text>Captain</Text></Center>
                             
                         </VStack>
                         <VStack mx={2}>
-                        {
+                        {/* {
                             data.map((item) => <Player name={item.text} image={item.image} />)
-                        }
+                        } */}
                         </VStack>
                     </HStack>
                 </ScrollView>

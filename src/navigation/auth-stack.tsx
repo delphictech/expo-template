@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { LoginScreen, PasswordScreen } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { LoginModalProps } from 'src/components/modals';
 
 export type AuthStackParams = {
   Email?: undefined;
@@ -14,11 +15,15 @@ const StackNav = createNativeStackNavigator<AuthStackParams>();
 
 export const AuthStackNavigator: React.FC<AuthStackParams> = (props) => {
 
+  const LoginScreenComp = () => (
+    <LoginScreen main />
+  );
+
   const navigation = useNavigation();
 
   return (
-    <StackNav.Navigator screenOptions={{gestureEnabled: false}} >
-      <StackNav.Screen name="Email" component={LoginScreen} 
+    <StackNav.Navigator screenOptions={{gestureEnabled: false, headerShown: false}} >
+      <StackNav.Screen name="Email" component={LoginScreenComp} 
         options={{ headerTitle: 'Home'}} />
       <StackNav.Screen
         name="Password"

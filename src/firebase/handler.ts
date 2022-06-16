@@ -32,6 +32,9 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
                  message = "Email or password is incorrect.";
                  cause = 'password';
                  break;
+            default:
+                message = "Backend Error";
+                cause = "account";
          }
 
          // assign values to interface

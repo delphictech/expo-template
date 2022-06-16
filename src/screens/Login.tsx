@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Center, Box, VStack, Button, Image, Heading } from 'native-base';
-import * as Animatable from 'react-native-animatable';
-import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
-import { signInWithEmail, signUpWithEmail } from 'src/firebase/api';
-
+import { anonymousSignIn } from 'src/firebase/api';
 
 export interface LoginScreenProps {
     /*
@@ -17,17 +14,9 @@ export interface LoginScreenProps {
     */
     isModalOpen?: boolean | undefined;
     /*
-        Will specify if safe area needed
+        Will specify if the signup screen is full screen, will render safe area, center it, and create a title.
     */
-    safeArea?: boolean | undefined;
-    /*
-        Will specify if content should be centered vertically
-    */
-    centered?: boolean | undefined;
-    /*
-        Will specify if want logo and title header
-    */
-    title?: boolean | undefined;
+    main?: boolean | undefined;
     /*
         Callback for when an input has been actively edited
     */
@@ -36,70 +25,33 @@ export interface LoginScreenProps {
 };
 
 export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
+    // set initial value for full screen to true, if modal not open and main undefined
+    const isMain = (props.main) ? !props.isModalOpen : true;
+
     // react states
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState('');
-    const [isPasswordVis, setPasswordVis] = useState(false);
-    const [isConfirmVis, setConfirmVis] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [email, setEmail] = useState<string>('');
+    const [isPasswordVis, setPasswordVis] = useState<boolean>(false);
+    const [isConfirmVis, setConfirmVis] = useState<boolean>(false);
+    const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
 
-    // redux states and dispatch hook
-    const userID = useAppSelector((state) => state.user.uid);
-    const userEmail = useAppSelector((state) => state.user.email);
-    const dispatch = useAppDispatch();
-
-    // initialize states
-    useEffect(() => {
-        setPasswordVis(false);
-        setConfirmVis(false);
-    }, [props.isModalOpen]);
-
-    // async function for handling login
-    const handleLogin = async () => {
-        setIsLoading(true);
-        try {
-            const response = await signInWithEmail(email, password);
-            console.log(`User 0: ${response[0]}`);
-            console.log(`User 1: ${response[1]}`);
-            // dispatch(signIn(response.user));
-            console.log(`User type: ${typeof response}`);
-        } catch(e: any) {
-            if (e.code === 'auth/user-not-found') {
-                setConfirmVis(true);
-            } else {
-                console.log('Error with login');
-                console.log(e);
-            }
-        }
-        setIsLoading(false);
-        props.onSubmit && props.onSubmit();
-    }
-
-    // async function for handling sign up
-    const handleSignUp = async () => {
-        try {
-            const response = await signUpWithEmail(email, password);
-            console.log(response.user);
-            // dispatch(signIn(response.user));
-            console.log(`User 0: ${response[0]}`);
-            console.log(`User 1: ${response[1]}`);
-            console.log(`User type: ${typeof response}`);
-        } catch(e: any) {
-            console.log('Error with sign up');
-            console.log(e);
-        }
+    const handleAnonymous = async () => {
+        setIsGuestLoading(true);
         
-        // must handle the errors
-        props.onSubmit && props.onSubmit();
+        try {
+            const response = await anonymousSignIn();
+            console.log(`response for anonym: ${response}`);
+        } catch (e: any) {
+            console.log(`Error ${e}`);
+        }
+        setIsGuestLoading(false);
     }
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically={props.centered} >
-            <Box px="10" w="100%" h="100%" justifyContent={props.centered ? "center" : "flex-start"} alignItems="center" safeArea={props.safeArea ? true : undefined}>
+        <KeyboardBehaviorWrapper bounces={false} centerVertically={isMain} key='asdfasdfas' >
+            <Box px="10" w="100%" h="100%" justifyContent={isMain ? "center" : "flex-start"} alignItems="center" safeArea={isMain ? true : undefined}>
                 <VStack space={3} alignItems="center" w="100%">
                     {
-                        props.title && 
+                        isMain && 
                         <>
                             <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
                             <Heading mb={3}>Welcome to Maet!</Heading>
@@ -109,36 +61,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
-                    <Button w="100%" colorScheme="secondary" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
-                        Enter a password instead
+                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
+                        Enter a password
                     </Button>
-                    <Button w="100%" colorScheme="primary" variant="link" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
-                        Continue as guest
-                    </Button>
-                    {/* <FormInput placeholder="Enter a password instead" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} /> */}
-                    {/* {   
-                        isPasswordVis &&
-                        <Animatable.View animation="fadeIn">
-                            <FormInput label="Enter your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
-                        </Animatable.View>
-                    } */}
-                    {/* {
-                        isPasswordVis && !isConfirmVis &&
-                        <Animatable.View animation="fadeIn">
-                            <Button mt="3" colorScheme="primary" onPress={handleLogin} isLoading={isLoading} isLoadingText="Submitting" >
-                                Submit
-                            </Button>
-                        </Animatable.View>
-                    } */}
-                    {/* {
-                        isConfirmVis &&
-                        <Animatable.View animation="fadeIn">
-                            <FormInput label="Confirm your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setConfirm(text)} />
-                            <Button mt="5" colorScheme="primary" onPress={handleSignUp} isLoading={isLoading} isLoadingText="Signing Up" >
-                                Sign Up
-                            </Button>
-                        </Animatable.View>
-                    } */}
+                    { 
+                        isMain &&
+                        <Button w="100%" colorScheme="primary" variant="link" onPress={handleAnonymous} isLoading={isGuestLoading} isLoadingText='Continuing' >
+                            Continue as guest
+                        </Button>
+                    }
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>
