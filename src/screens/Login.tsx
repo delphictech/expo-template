@@ -28,11 +28,13 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         setEmailLoading(true);
         try {
             const methods = await fetchSignInMethods(email);
+            setEmailLoading(false);
+            console.log(`Type of resposnse ${typeof methods}`);
+            navigation.navigate('AuthEmail', methods);
         } catch (e: any) {
             console.log(`Error with email ${e}`);
+            setEmailLoading(false);
         }
-        setEmailLoading(false);
-        navigation.navigate('AuthEmail');
     }
 
     const handleAnonymous = async () => {

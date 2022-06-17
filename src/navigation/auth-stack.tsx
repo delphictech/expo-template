@@ -9,7 +9,10 @@ import { ScreenParams } from 'src/types/screen';
 
 export type AuthStackParams = {
   Email?: undefined;
-  AuthEmail?: undefined;
+  AuthEmail: {
+    signInMethods: Array<string>;
+    extra?: any;
+  };
 };
 
 const StackNav = createNativeStackNavigator<AuthStackParams>();

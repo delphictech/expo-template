@@ -11,63 +11,35 @@ import { ScreenParams } from 'src/types/screen';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, "AuthEmail">;
 
-export const AuthEmail: React.FC<ScreenParams> = (props: ScreenParams) => {
+export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
 
     // navigation 
     const navigation = useNavigation<AuthEmailProps>();
+    
+    // route params
+    const signInMethods: Array<string> = route.params.signInMethods;
+    console.log(`route: ${JSON.stringify(route.params)}`);
+    // console.log(signInMethods.length);
 
     // Redux state
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
 
     // react states
-    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
-    const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
 
-    const handleEmail = async () => {
-        setEmailLoading(true);
-        try {
-            const methods = await fetchSignInMethods(email);
-        } catch (e: any) {
-            console.log(`Error with email ${e}`);
-        }
-        setEmailLoading(false);
-        navigation.navigate('AuthEmail');
-    }
-
-    const handleAnonymous = async () => {
-        setIsGuestLoading(true);
-        try {
-            const response = await anonymousSignIn();
-        } catch (e: any) {
-            console.log(`Error with Guest sign in ${e}`);
-        }
-    }
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically={!isAnonymous} key='asdfasdfas' >
-            <Box px="10" w="100%" h="100%" justifyContent={!isAnonymous ? "center" : "flex-start"} alignItems="center" safeArea={!isAnonymous ? true : undefined}>
+        <KeyboardBehaviorWrapper bounces={false} >
+            <Box px="10" w="100%" h="100%" justifyContent="flex-start" alignItems="center" safeArea>
                 <VStack space={3} alignItems="center" w="100%">
-                    {
-                        !isAnonymous && 
-                        <>
-                            <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
-                            <Heading mb={3}>Welcome to Maet!</Heading>
-                        </>
-                    }
-                    <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" onChangeText={(text: string) => setEmail(text)} />
+                    <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" onChangeText={(text: string) => setPassword(text)} capitalize='none'/>
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
-                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleEmail} isLoading={isEmailLoading} isLoadingText='Submitting'>
+                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={null} isLoading={isEmailLoading} isLoadingText='Submitting'>
                         Submit
                     </Button>
-                    { 
-                        !isAnonymous &&
-                        <Button w="100%" colorScheme="primary" variant="link" onPress={handleAnonymous} isLoading={isGuestLoading} isLoadingText='Continuing' >
-                            Continue as guest
-                        </Button>
-                    }
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>

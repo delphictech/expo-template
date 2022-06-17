@@ -21,6 +21,7 @@ export interface FormInputProps {
     onEndEditing?: (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
     isModalOpen?: boolean | null; // used when forms are in modal to clear input on close
     validation?: 'None';
+    capitalize?: 'none' | 'characters' | 'sentences' | 'words' | undefined;
 };
 
 export const FormInput: React.FC<FormInputProps> = (props) => {
@@ -44,7 +45,7 @@ export const FormInput: React.FC<FormInputProps> = (props) => {
         <FormControl>
             <FormControl.Label >{props.label}</FormControl.Label>
             { props.password 
-                ? <Input value={value} w="100%" maxW="300px" onChangeText={changeText} placeholder={props.placeholder} type={showPassword ? "text" : "password"} size="lg"
+                ? <Input value={value} w="100%" maxW="300px" onChangeText={changeText} placeholder={props.placeholder} type={showPassword ? "text" : "password"} size="lg" autoCapitalize={props.capitalize}
                 InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
                 onPress={() => setShowPassword(!showPassword)} />} onEndEditing={props.onEndEditing} clearButtonMode="while-editing"/>
                 : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={changeText} placeholder={props.placeholder} size="lg" clearButtonMode="while-editing"/>

@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
-import { signOut } from 'src/ducks/user-slice';
 import { signOutUser } from 'src/firebase/api';
 import { HomeStackParams } from 'src/navigation/home-stack';
 import { ScreenParams } from 'src/types/screen';
