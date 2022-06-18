@@ -21,6 +21,8 @@ type LoginScreenProps = StackNavigationProp<AuthStackParams, "Email">;
 
 export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
+    const imageSource = require('assets/icon.png');
+
     // hooks 
     const navigation = useNavigation<LoginScreenProps>();
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -41,8 +43,6 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             const methods = await fetchSignInMethods(email);
             setEmailLoading(false);
             console.log(`Type of resposnse ${typeof methods}`);
-            // reset form and navigate to new screen
-            reset();
             navigation.navigate('AuthEmail', {
                 signInMethods: methods,
                 email: email
@@ -50,7 +50,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         } catch (e: any) {
             console.log(`Error with email: ${e}`);
             setEmailLoading(false);
-            setErrorMessage('Email is invalid');
+            setErrorMessage("Email is Invalid");
         }
     }
 
@@ -70,16 +70,16 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                     {
                         !isAnonymous ? 
                         <>
-                            <Image alignSelf="center" alt='Logo' source={require('assets/icon.png')} style={{ width: 150, height: 150 }}/>
+                            <Image alignSelf="center" alt='Logo' source={imageSource} style={{ width: 150, height: 150 }}/>
                             <Heading mb={3}>Welcome to Maet!</Heading>
                         </> : null
                     }
-                    <FormInput {...register('email')} key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" 
+                    <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" 
                         onChangeText={(text: string) => setEmail(text)} errorMessage={errors.email?.message} />
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
-                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleSubmit(handleEmail)} isLoading={isEmailLoading} isLoadingText='Submitting'>
+                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleEmail} isLoading={isEmailLoading} isLoadingText='Submitting'>
                         Submit
                     </Button>
                     { 

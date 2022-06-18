@@ -1,11 +1,11 @@
 import { app, auth, db } from "./firebase-config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, fetchSignInMethodsForEmail, deleteUser } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, fetchSignInMethodsForEmail, deleteUser, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth';
 import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
 
 /*
-  AUTH FUNCTIONS
+  AUTH FUNCTIONS: https://firebase.google.com/docs/reference/js/auth.md#auth_package
 */
 // Sign In Anonymously
 export async function anonymousSignIn() {
@@ -29,11 +29,25 @@ export async function signUpWithEmail(email: string, password: string) {
   return await fbHandler(createUserWithEmailAndPassword(auth, email, password));
 }
 
+// Email Verifcation: 
+export async function verifyEmail(email: string) {
+  // https://firebase.google.com/docs/reference/js/auth.md#sendemailverification
+  if (auth.currentUser) {
+    return await fbHandler(sendEmailVerification(auth.currentUser));
+  }
+  const error:FirebaseError = {
+    message: 'User does not exist',
+    code: 'auth/user-not-found',
+    cause: 'account'
+  }
+  return error;
+}
+
 // Delete user
-// https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
 export async function deleteCurrentUser() {
   if (auth.currentUser) {
     console.log('deleting user');
+    // https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
     return await fbHandler(deleteUser(auth.currentUser));
   } 
   const error:FirebaseError = {
@@ -51,6 +65,12 @@ export async function signOutUser() {
     return await deleteCurrentUser();
   }
   return await fbHandler(signOut(auth));
+}
+
+// Handle password reset
+export async function resetPassword(email: string) {
+  // https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
+  return await fbHandler(sendPasswordResetEmail(auth, email));
 }
 
 /*
