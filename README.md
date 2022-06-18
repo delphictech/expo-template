@@ -38,6 +38,8 @@ Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
 * [React Native SVGs](): Will render local SVGs for logos with [react-native-svg-transformer](https://github.com/react-native-svg/react-native-svg#use-with-svg-files).
 * [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
 
+* Form Validation: React-Hook-Form, hookform, and yup: https://dev.to/franciscomendes10866/react-form-validation-with-react-hook-form-and-yup-4a98
+
 ## Philosophy
 * Modular code, build pieces rather than screens
 * User empathy

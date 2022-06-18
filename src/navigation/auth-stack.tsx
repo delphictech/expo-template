@@ -11,6 +11,7 @@ export type AuthStackParams = {
   Email?: undefined;
   AuthEmail: {
     signInMethods: Array<string>;
+    email: string;
     extra?: any;
   };
 };
@@ -31,7 +32,7 @@ export const AuthStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
       <StackNav.Screen
         name="AuthEmail"
         component={AuthEmail}
-        options={{ headerTitle: 'Enter Password'}}
+        options={{ headerTitle: '', headerBackTitle: 'Enter Email', headerTransparent: false}}
       />
     </StackNav.Navigator>
   );
