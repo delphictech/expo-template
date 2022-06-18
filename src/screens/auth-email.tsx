@@ -43,6 +43,10 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
         try {
             const response = await signUpWithEmail(email, password);
             const verificationEmail = await verifyEmail(email);
+            toast.show({
+                placement: "top",
+                render: renderVerificationToast
+            });
         } catch(e: any) {
             console.log(`Error with sign up: ${e}`);
         }
@@ -53,7 +57,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
         try {
             toast.show({
                 placement: "top",
-                render: renderToast
+                render: renderPasswordToast
             });
             const response = await resetPassword(email);
         } catch(e: any) {
@@ -62,8 +66,12 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
     }
 
     // rendering functions
-    const renderToast = () => (
+    const renderPasswordToast = () => (
         <SuccessToast message={`Password reset instructions sent to ${email}.`} />
+    );
+    const renderVerificationToast = () => (
+        <SuccessToast message={`Verification email sent to ${email}.`} />
+
     );
 
     return (
