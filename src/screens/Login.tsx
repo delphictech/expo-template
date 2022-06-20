@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Center, Box, VStack, Button, Image, Heading } from 'native-base';
+import { Center, Box, VStack, Button, Image, Heading, FormControl, Input, WarningOutlineIcon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
@@ -13,7 +13,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
-  email: yup.string().email('Invalid Email').required('Email is invalid'),
+  email: yup.string().email('Invalid Email'),
 });
 
 
@@ -25,32 +25,32 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
     // hooks 
     const navigation = useNavigation<LoginScreenProps>();
-    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+    const { control, register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
 
     // react states
-    const [email, setEmail] = useState<string>('');
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
     const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<string>('');
 
 
-    const handleEmail = async () => {
+    const handleEmail = async (data: any) => {
+        console.log(data);
         setEmailLoading(true);
         try {
-            const methods = await fetchSignInMethods(email);
+            const methods = await fetchSignInMethods(data.email);
             setEmailLoading(false);
-            console.log(`Type of resposnse ${typeof methods}`);
+
+            // reset react form and navigate to new screen
+            reset();
             navigation.navigate('AuthEmail', {
                 signInMethods: methods,
-                email: email
+                email: data.email
             });
         } catch (e: any) {
             console.log(`Error with email: ${e}`);
             setEmailLoading(false);
-            setErrorMessage("Email is Invalid");
         }
     }
 
@@ -74,12 +74,44 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                             <Heading mb={3}>Welcome to Maet!</Heading>
                         </> : null
                     }
-                    <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" 
-                        onChangeText={(text: string) => setEmail(text)} errorMessage={errors.email?.message} />
+
+                <FormControl key='testing' isInvalid={'email' in errors} >
+                    <FormControl.Label >Input your email</FormControl.Label>
+                    <Controller 
+                        key="email"
+                        name='email'
+                        control={control}
+                        defaultValue=''
+                        render={({field: {onBlur, onChange, value}}) => (
+                                <Input value={value} onBlur={onBlur} onChangeText={onChange} 
+                                w="100%" maxW="300px" placeholder="name@example.com" size="lg" clearButtonMode="while-editing" autoCapitalize="none" />
+                        )}
+                    />
+                    {
+                        'email' in errors ?
+                        <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon />}>
+                            {errors.email.message}
+                        </FormControl.ErrorMessage> : null
+                    }
+                    </FormControl>
+                    {/* 
+                                                <FormControl isInvalid={Boolean(errorMessage.length)} >
+                                <FormControl.Label >Input your email</FormControl.Label>
+                                    <Input value={email} w="100%" maxW="300px" onChangeText={(text: string) => setEmail(text)} placeholder="name@example.com" size="lg" clearButtonMode="while-editing" autoCapitalize="none" />
+                                {
+                                    errorMessage.length ?
+                                    <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon />}>
+                                        {errorMessage}
+                                    </FormControl.ErrorMessage> : null
+                                }
+                            </FormControl>
+                    */}
+                    {/* <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" 
+                        onChangeText={(text: string) => setEmail(text)} errorMessage={errors.email?.message} /> */}
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
-                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleEmail} isLoading={isEmailLoading} isLoadingText='Submitting'>
+                    <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleSubmit(handleEmail)} isLoading={isEmailLoading} isLoadingText='Submitting'>
                         Submit
                     </Button>
                     { 
