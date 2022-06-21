@@ -32,9 +32,14 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
                 message = 'Email or password is incorrect.';
                 cause = 'password';
                 break;
+            case 'auth/too-many-requests':
+                message = 'Account has exceeded its request limit.'
+                cause = 'account';
             default:
                 message = 'Backend Error';
                 cause = 'account';
+                console.log(`New Backend error`);
+                console.log(error.code);
         }
 
         // assign values to interface

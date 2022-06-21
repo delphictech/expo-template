@@ -10,11 +10,11 @@ import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'src/firebase/api';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
-import { SuccessToast } from 'src/components/feedback/success-toast';
+import { AlertToast } from 'src/components/feedback/alert-toast';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
 
-// define schema for form input
+// define schemas for form input
 const signupSchema = yup.object().shape({
     password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
     confirmPassword: yup.string().test({
@@ -58,10 +58,10 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
 
     // rendering functions
     const renderPasswordToast = () => (
-        <SuccessToast message={`Password reset instructions sent to ${email}.`} />
+        <AlertToast title='Email Sent!' type='success' message={`Password reset instructions sent to ${email}.`} toExit={() => toast.close('resetToast')} />
     );
     const renderVerificationToast = () => (
-        <SuccessToast message={`Verification email sent to ${email}.`} />
+        <AlertToast title='Email Sent!' type='success' message={`Verification email sent to ${email}.`} toExit={() => toast.close('verificationToast')} />
     );
 
     // handle login
@@ -86,6 +86,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
             toast.show({
                 placement: 'top',
                 render: renderVerificationToast,
+                id: 'verificationToast'
             });
             reset();
         } catch (e: any) {
@@ -98,10 +99,11 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     // handle password reset
     const handlePasswordReset = async () => {
         try {
-            await resetPassword(email);
+            // await resetPassword(email);
             toast.show({
                 placement: 'top',
                 render: renderPasswordToast,
+                id: 'resetToast'
             });
             reset();
         } catch (e: any) {
@@ -143,6 +145,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                                 <Button
                                     key="Password-Button"
                                     w="100%"
+                                    mt={3}
                                     colorScheme="secondary"
                                     onPress={handleSubmit(handleSignup)}
                                     isLoading={isLoading}
