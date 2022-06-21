@@ -14,19 +14,16 @@ export interface SuccessToastParams {
 }
 
 export const SuccessToast: React.FC<SuccessToastParams> = (props) => {
-
     return (
         <Alert w="100%" variant="solid" colorScheme="success" status="success">
             <VStack space={2} flexShrink={1} w="100%">
                 <HStack flexShrink={1} space={2} alignItems="center" justifyContent="space-between">
-                <HStack space={2} flexShrink={1} alignItems="center">
-                    <Alert.Icon />
-                    <Text color="white">
-                        {props.message}
-                    </Text>
-                </HStack>
+                    <HStack space={2} flexShrink={1} alignItems="center">
+                        <Alert.Icon />
+                        <Text color="white">{props.message}</Text>
+                    </HStack>
                 </HStack>
             </VStack>
         </Alert>
     );
-}
+};

@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { ScreenParams } from 'src/types/screen';
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -18,4 +17,4 @@ export const ExploreScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             <Text>Explore Screen</Text>
         </View>
     );
-}
+};

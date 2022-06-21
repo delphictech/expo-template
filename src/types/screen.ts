@@ -4,4 +4,4 @@ export interface ScreenParams {
     */
     route?: any | undefined;
     navigation?: any | undefined;
-};
+}

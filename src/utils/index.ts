@@ -1,3 +1,3 @@
 import { to } from './to';
 
-export { to }
+export { to };

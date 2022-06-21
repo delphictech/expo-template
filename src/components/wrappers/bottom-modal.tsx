@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { Alert } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { Text, Modal } from "native-base";
+import { Text, Modal } from 'native-base';
 
 export interface BottomModalProps {
     title: string;
@@ -12,9 +12,9 @@ export interface BottomModalProps {
     Following prop used to determine if modal should confirm closing before exiting.
     Specifies whether there is active input in the form
     */
-    inputActive?: boolean | null; 
+    inputActive?: boolean | null;
     // navigation for where to close?
-};
+}
 
 export const BottomModal: React.FC<BottomModalProps> = (props) => {
     // states
@@ -23,15 +23,24 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
     // function to check if modal should close
     const checkClose = () => {
         props.inputActive
-        ? Alert.alert('Are you sure you want to exit?', 'Your progress will not be saved.', 
-                    [{ text: "Exit", onPress: () => props.onClose(), style: "destructive"},
-                    { text: "Return", onPress: () => console.log("Ask me later pressed"), style: "cancel" }],
-                    { cancelable: false })
-        : props.onClose();
-    }
+            ? Alert.alert(
+                  'Are you sure you want to exit?',
+                  'Your progress will not be saved.',
+                  [
+                      { text: 'Exit', onPress: () => props.onClose(), style: 'destructive' },
+                      {
+                          text: 'Return',
+                          onPress: () => console.log('Ask me later pressed'),
+                          style: 'cancel',
+                      },
+                  ],
+                  { cancelable: false },
+              )
+            : props.onClose();
+    };
 
     return (
-        <Modal 
+        <Modal
             closeOnOverlayClick={false}
             isOpen={props.isOpen}
             onClose={props.onClose}
@@ -39,17 +48,15 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
             size="full"
             animationPreset="slide">
             <Modal.Content height="2xl" marginBottom={0} marginTop="auto">
-                <Modal.CloseButton onPress={() => checkClose()}/>
+                <Modal.CloseButton onPress={() => checkClose()} />
                 {/* <Modal.CloseButton /> */}
-                <Modal.Header alignItems={"center"}>
-                    <Text fontSize={"lg"} fontWeight={"semibold"}>
+                <Modal.Header alignItems="center">
+                    <Text fontSize="lg" fontWeight="semibold">
                         {props.title}
                     </Text>
                 </Modal.Header>
-                <Modal.Content>
-                    {props.children}
-                </Modal.Content>
+                <Modal.Content>{props.children}</Modal.Content>
             </Modal.Content>
         </Modal>
     );
-}
+};

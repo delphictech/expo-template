@@ -1,5 +1,14 @@
-import { app, auth, db } from "./firebase-config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, signOut, fetchSignInMethodsForEmail, deleteUser, sendPasswordResetEmail, sendEmailVerification } from 'firebase/auth';
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInAnonymously,
+    signOut,
+    fetchSignInMethodsForEmail,
+    deleteUser,
+    sendPasswordResetEmail,
+    sendEmailVerification,
+} from 'firebase/auth';
+import { app, auth, db } from './firebase-config';
 import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
@@ -9,68 +18,68 @@ export { FirebaseError };
 */
 // Sign In Anonymously
 export async function anonymousSignIn() {
-  return await fbHandler(signInAnonymously(auth));
+    return fbHandler(signInAnonymously(auth));
 }
 
 // Check Sign In Methods
 export async function fetchSignInMethods(email: string) {
-  // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#fetchsigninmethodsforemail
-  return await fbHandler(fetchSignInMethodsForEmail(auth, email));
+    // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#fetchsigninmethodsforemail
+    return fbHandler(fetchSignInMethodsForEmail(auth, email));
 }
 
 // Sign In With Email
 export async function signInWithEmail(email: string, password: string) {
-  // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
-  return await fbHandler(signInWithEmailAndPassword(auth, email, password));
+    // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
+    return fbHandler(signInWithEmailAndPassword(auth, email, password));
 }
 
 // Sign Up With Email
 export async function signUpWithEmail(email: string, password: string) {
-  return await fbHandler(createUserWithEmailAndPassword(auth, email, password));
+    return fbHandler(createUserWithEmailAndPassword(auth, email, password));
 }
 
-// Email Verifcation: 
+// Email Verifcation:
 export async function verifyEmail(email: string) {
-  // https://firebase.google.com/docs/reference/js/auth.md#sendemailverification
-  if (auth.currentUser) {
-    return await fbHandler(sendEmailVerification(auth.currentUser));
-  }
-  const error:FirebaseError = {
-    message: 'User does not exist',
-    code: 'auth/user-not-found',
-    cause: 'account'
-  }
-  return error;
+    // https://firebase.google.com/docs/reference/js/auth.md#sendemailverification
+    if (auth.currentUser) {
+        return fbHandler(sendEmailVerification(auth.currentUser));
+    }
+    const error: FirebaseError = {
+        message: 'User does not exist',
+        code: 'auth/user-not-found',
+        cause: 'account',
+    };
+    return error;
 }
 
 // Delete user
 export async function deleteCurrentUser() {
-  if (auth.currentUser) {
-    console.log('deleting user');
-    // https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
-    return await fbHandler(deleteUser(auth.currentUser));
-  } 
-  const error:FirebaseError = {
-    message: 'User does not exist',
-    code: 'auth/user-not-found',
-    cause: 'account'
-  }
-  return error;
+    if (auth.currentUser) {
+        console.log('deleting user');
+        // https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
+        return fbHandler(deleteUser(auth.currentUser));
+    }
+    const error: FirebaseError = {
+        message: 'User does not exist',
+        code: 'auth/user-not-found',
+        cause: 'account',
+    };
+    return error;
 }
 
 // Sign Out
 export async function signOutUser() {
-  // Delete user if anonymous
-  if (auth.currentUser?.isAnonymous) {
-    return await deleteCurrentUser();
-  }
-  return await fbHandler(signOut(auth));
+    // Delete user if anonymous
+    if (auth.currentUser?.isAnonymous) {
+        return deleteCurrentUser();
+    }
+    return fbHandler(signOut(auth));
 }
 
 // Handle password reset
 export async function resetPassword(email: string) {
-  // https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
-  return await fbHandler(sendPasswordResetEmail(auth, email));
+    // https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
+    return fbHandler(sendPasswordResetEmail(auth, email));
 }
 
 /*

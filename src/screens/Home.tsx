@@ -20,17 +20,13 @@ const styles = StyleSheet.create({
 /*
     Define Screen Typee
 */
-type HomeScreenProps = StackNavigationProp<HomeStackParams, "Home">;
+type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 
 export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
-    const [showPickupSession, setPickupSession] = useState(false);
-    const [showSignup, setSignup] = useState(false);
-
     // navigation
     const navigation = useNavigation<HomeScreenProps>();
 
     // redux handlers
-    const dispatch = useAppDispatch();
     const loggedIn = useAppSelector((state) => state.user.loggedIn);
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const user = useAppSelector((state) => state.user);
@@ -39,30 +35,35 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     // handling button functions
     const handleLoginButton = async () => {
         if (loggedIn) {
-            let res = await signOutUser();
+            const res = await signOutUser();
             console.log('SIgned out');
             console.log(res);
         } else {
             navigation.getParent('MainStackNavigator')?.navigate('Auth');
         }
-    }
+    };
 
     return (
         <>
-        <View style={styles.container}>
-            <Text>Home Screen: {user.email}</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
-                Schedule Pickup
-            </Button>
-            <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('PickupSession')}>
-                Start Pickup Session
-            </Button>
-            <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
-                {loggedIn ? 'Logout' : 'Login'}
-            </Button>
-        </View>
-        {/* <LoginModal isOpen={showSignup} onClose={() => setSignup(false)} /> */}
+            <View style={styles.container}>
+                <Text>Home Screen: {user.email}</Text>
+                <Button
+                    mt="2"
+                    colorScheme="indigo"
+                    onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
+                    Schedule Pickup
+                </Button>
+                <Button
+                    mt="2"
+                    colorScheme="indigo"
+                    onPress={() => navigation.navigate('PickupSession')}>
+                    Start Pickup Session
+                </Button>
+                <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
+                    {loggedIn ? 'Logout' : 'Login'}
+                </Button>
+            </View>
+            {/* <LoginModal isOpen={showSignup} onClose={() => setSignup(false)} /> */}
         </>
-
     );
-}
+};

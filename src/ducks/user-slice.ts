@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from 'src/types/user';
 
-const initialUser:User = {
+const initialUser: User = {
     uid: '',
     email: '',
     phoneNumber: '',
@@ -32,7 +32,7 @@ export const userSlice = createSlice({
             state.email = action.payload;
             state.loggedIn = true;
         },
-    }
+    },
 });
 
 export const { signIn, signOut, updateEmail } = userSlice.actions;

@@ -8,32 +8,38 @@ import { useEvent } from 'react-native-reanimated';
 import { ScreenParams } from 'src/types/screen';
 
 export type AuthStackParams = {
-  Email?: undefined;
-  AuthEmail: {
-    signInMethods: Array<string>;
-    email: string;
-    extra?: any;
-  };
+    Email?: undefined;
+    AuthEmail: {
+        signInMethods: Array<string>;
+        email: string;
+        extra?: any;
+    };
 };
 
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
 export const AuthStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
+    const navigation = useNavigation();
+    useEffect(() => {
+        console.log('Rendering');
+    });
 
-  const navigation = useNavigation();
-  useEffect(() => {
-    console.log('Rendering');
-  });
-  
-  return (
-    <StackNav.Navigator screenOptions={{gestureEnabled: true}} >
-      <StackNav.Screen name="Email" component={LoginScreen} 
-        options={{ headerShown: false, animationTypeForReplace: 'pop'}} />
-      <StackNav.Screen
-        name="AuthEmail"
-        component={AuthEmail}
-        options={{ headerTitle: '', headerBackTitle: 'Enter Email', headerTransparent: false}}
-      />
-    </StackNav.Navigator>
-  );
-}
+    return (
+        <StackNav.Navigator screenOptions={{ gestureEnabled: true }}>
+            <StackNav.Screen
+                name="Email"
+                component={LoginScreen}
+                options={{ headerShown: false, animationTypeForReplace: 'pop' }}
+            />
+            <StackNav.Screen
+                name="AuthEmail"
+                component={AuthEmail}
+                options={{
+                    headerTitle: '',
+                    headerBackTitle: 'Enter Email',
+                    headerTransparent: false,
+                }}
+            />
+        </StackNav.Navigator>
+    );
+};
