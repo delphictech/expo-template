@@ -63,7 +63,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     }
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically={!isAnonymous} key='asdfasdfas' >
+        <KeyboardBehaviorWrapper bounces={false} centerVertically={!isAnonymous} >
             <Box px="10" w="100%" h="100%" justifyContent={!isAnonymous ? "center" : "flex-start"} alignItems="center" safeArea={!isAnonymous ? true : undefined}>
                 <VStack space={3} alignItems="center" w="100%">
                     {
@@ -73,8 +73,8 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                             <Heading mb={3}>Welcome to Maet!</Heading>
                         </> : null
                     }
-                <FormInput key='login-email' name='email' control={control} isInvalid={'email' in errors} 
-                    label='Input your email' defaultValue='' errorMessage={errors?.email?.message} />
+                    <FormInput key='login-email' name='email' control={control} isInvalid={'email' in errors} 
+                        label='Input your email' placeholder="name@example.com" defaultValue='' errorMessage={errors?.email?.message} />
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
