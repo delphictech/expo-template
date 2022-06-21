@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { Center, Box, VStack, Button, Image, Heading, FormControl, Input, WarningOutlineIcon } from 'native-base';
+import { Center, Box, VStack, Button, Image, Heading, FormControl, Input, WarningOutlineIcon, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
 import { useAppSelector } from 'src/hooks/useful-ducks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-
-const schema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Email is required'),
-});
 
 
+// define navigation props
 type LoginScreenProps = StackNavigationProp<AuthStackParams, "Email">;
+
+// define schema for form input
+const schema = yup.object().shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+});
 
 export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
@@ -33,7 +35,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     // react states
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
     const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
-
+    const [error, setError] = useState<string>('');
 
     const handleEmail = async (data: any) => {
         setEmailLoading(true);
@@ -49,6 +51,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             });
         } catch (e: any) {
             console.log(`Error with email: ${e}`);
+            setError(e.message);
             setEmailLoading(false);
         }
     }
@@ -59,6 +62,8 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             const response = await anonymousSignIn();
         } catch (e: any) {
             console.log(`Error with Guest sign in ${e}`);
+            setError(e.message);
+            setIsGuestLoading(false);
         }
     }
 
@@ -87,6 +92,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                             Continue as guest
                         </Button> : null
                     }
+                    <Text color="danger.600">{error}</Text>
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>

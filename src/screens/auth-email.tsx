@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, HStack, Center, Box, VStack, Button, Image, Heading, Text, useToast } from 'native-base';
+import { Alert, HStack, Center, Box, VStack, Button, Image, Heading, Text, useToast, FormControl, WarningOutlineIcon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'src/firebase/api';
@@ -12,56 +15,89 @@ import { SuccessToast } from 'src/components/feedback/success-toast';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, "AuthEmail" >;
 
+// define schema for form input
+const signupSchema = yup.object().shape({
+    password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
+    confirmPassword: yup.string()
+        .test({
+        name: 'confirmPassword',
+        message: 'Passwords must match',
+        test: function () {
+            const { password, confirmPassword } = this.parent;
+            if (password && confirmPassword !== password) {
+            return false;
+            }
+            return true;
+        }
+        }),
+});
+
+const loginSchema = yup.object().shape({
+    password: yup.string().required('Password is required'),
+});
+
 export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
 
-    // hooks 
-    const navigation = useNavigation<AuthEmailProps>();
-    const toast = useToast();
-    
     // route params
     const signInMethods: Array<string> = route.params.signInMethods;
     const email: string = route.params.email;
 
+    // hooks 
+    const navigation = useNavigation<AuthEmailProps>();
+    const toast = useToast();
+    const schema = signInMethods.length ? loginSchema : signupSchema;
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(schema),
+    });
+
     // react states
-    const [password, setPassword] = useState<string>('');
-    const [confirm, setConfirm] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
 
     // handle login
-    const handleLogin = async () => {
+    const handleLogin = async (data: any) => {
         setIsLoading(true);
         try {
-            const response = await signInWithEmail(email, password);
+            const response = await signInWithEmail(email, data.password);
+            reset();
         } catch(e: any) {
             console.log(`Error with login: ${e}`);
+            setError(e.message);
+            setIsLoading(false);
         }
     }
 
     // handle sign up
-    const handleSignup = async () => {
+    const handleSignup = async (data: any) => {
         setIsLoading(true);
         try {
-            const response = await signUpWithEmail(email, password);
+            const response = await signUpWithEmail(email, data.password);
             const verificationEmail = await verifyEmail(email);
             toast.show({
                 placement: "top",
                 render: renderVerificationToast
             });
+            reset();
         } catch(e: any) {
             console.log(`Error with sign up: ${e}`);
+            setError(e.message);
+            setIsLoading(false);
         }
     }
 
     // handle password reset
     const handlePasswordReset = async () => {
         try {
+            const response = await resetPassword(email);
             toast.show({
                 placement: "top",
                 render: renderPasswordToast
             });
-            const response = await resetPassword(email);
+            reset();
         } catch(e: any) {
             console.log(`Error with password reset: ${e}`);
+            setError(e.message);
+            setIsLoading(false);
         }
     }
 
@@ -78,12 +114,15 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
         <KeyboardBehaviorWrapper bounces={false} >
             <Box px="10" w="100%" h="100%" justifyContent="flex-start" alignItems="center" >
                 <VStack space={3} alignItems="center" w="100%" >
+                    <FormControl isInvalid={true}>
                     {
                         !signInMethods.length ?
                         <>
-                            {/* <FormInput key="Password" password label="Enter a password" placeholder="Password" onChangeText={(text: string) => setPassword(text)} capitalize='none' /> */}
-                            {/* <FormInput key="Confirm-Password" password label="Confirm your password" placeholder="Confirm Password" onChangeText={(text: string) => setConfirm(text)} capitalize='none' /> */}
-                            <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleSignup} isLoading={isLoading} isLoadingText='Signing Up' >
+                            <FormInput key='password' name='password' control={control} isInvalid={'password' in errors} password
+                                label='Enter your password' placeholder="Password" defaultValue='' errorMessage={errors?.password?.message} />
+                            <FormInput key='confirm-password' name='confirmPassword' control={control} isInvalid={'confirmPassword' in errors} password
+                                label='Confirm your password' placeholder="Confirm Password" defaultValue='' errorMessage={errors?.confirmPassword?.message} />
+                            <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleSubmit(handleSignup)} isLoading={isLoading} isLoadingText='Signing Up' >
                                 Sign Up
                             </Button>
                         </> : null
@@ -91,11 +130,12 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
                     {
                         signInMethods.includes('password') ?
                         <>
-                            {/* <FormInput key="Password" password label="Enter your password" placeholder="Password" onChangeText={(text: string) => setPassword(text)} capitalize='none' /> */}
+                            <FormInput key='password' name='password' control={control} isInvalid={'password' in errors} password
+                                label='Enter your password' placeholder="Password" defaultValue='' errorMessage={errors?.password?.message} />
                             <Button alignSelf="flex-end" variant="link" mb={6} onPress={handlePasswordReset}>
                                     Forget Password?
                             </Button>
-                            <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleLogin} isLoading={isLoading} isLoadingText='Logging In'>
+                            <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleSubmit(handleLogin)} isLoading={isLoading} isLoadingText='Logging In'>
                                 Login
                             </Button>
                         </> : null
@@ -103,6 +143,8 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
+                    </FormControl>
+                    <Text color="danger.600">{error}</Text>
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>

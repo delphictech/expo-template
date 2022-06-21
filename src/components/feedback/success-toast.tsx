@@ -1,6 +1,14 @@
 import React from 'react';
 import { Alert, HStack, VStack, Text } from 'native-base';
 
+/*
+    in future have different types including
+    success
+    warning
+    error
+    welcome
+*/
+
 export interface SuccessToastParams {
     message?: string | undefined;
 }

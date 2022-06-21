@@ -22,26 +22,30 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
         Component that will validate the user input and renders a form input
     */
    // destructure props so that inputParams can be inputted cleanly into nativebase input component
-   const { control, name, isInvalid, label, password, errorMessage, defaultValue, 
+    const { control, name, isInvalid, label, password, errorMessage, defaultValue, 
             ...inputParams} = props;
+
+    // states
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
         <FormControl key='testing' isInvalid={props.isInvalid} >
             <FormControl.Label >{props.label}</FormControl.Label>
                 <Controller 
                     key="email"
-                    name='email'
+                    name={props.name}
                     control={props.control}
                     defaultValue={props.defaultValue}
                     render={({field: {onBlur, onChange, value}}) => (
                         <>
-                            {/* { props.password 
-                                ? <Input {...props} value={value} w="100%" maxW="300px" placeholder={props.placeholder} onChangeText={changeText} type={showPassword ? "text" : "password"} size="lg" autoCapitalize={props.capitalize}
-                                InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
-                                onPress={() => setShowPassword(!showPassword)} />} onEndEditing={props.onEndEditing} clearButtonMode="while-editing"/>
-                                : <Input {...props} ref={ref} value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={changeText} placeholder={props.placeholder} size="lg" clearButtonMode="while-editing" autoCapitalize={props.capitalize}/>
-                            } */}
-                            <Input value={value} onBlur={onBlur} onChangeText={onChange} w="100%" maxW="300px" size="lg" clearButtonMode="while-editing" autoCapitalize="none" {...inputParams} />
+                            { props.password ?
+                                <Input value={value} onBlur={onBlur} onChangeText={onChange} w="100%" maxW="300px" placeholder={props.placeholder} type={showPassword ? "text" : "password"} size="lg" 
+                                    InputRightElement={
+                                        <Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
+                                        onPress={() => setShowPassword(!showPassword)} />
+                                    } clearButtonMode="while-editing" autoCapitalize='none' {...inputParams}/>
+                                : <Input value={value} onBlur={onBlur} onChangeText={onChange} w="100%" maxW="300px" size="lg" clearButtonMode="while-editing" autoCapitalize="none" {...inputParams} />
+                            }  
                         </>
                     )}
                 />
