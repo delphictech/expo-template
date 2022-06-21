@@ -81,8 +81,8 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
                     {
                         !signInMethods.length ?
                         <>
-                            <FormInput key="Password" password label="Enter a password" placeholder="Password" onChangeText={(text: string) => setPassword(text)} capitalize='none' />
-                            <FormInput key="Confirm-Password" password label="Confirm your password" placeholder="Confirm Password" onChangeText={(text: string) => setConfirm(text)} capitalize='none' />
+                            {/* <FormInput key="Password" password label="Enter a password" placeholder="Password" onChangeText={(text: string) => setPassword(text)} capitalize='none' /> */}
+                            {/* <FormInput key="Confirm-Password" password label="Confirm your password" placeholder="Confirm Password" onChangeText={(text: string) => setConfirm(text)} capitalize='none' /> */}
                             <Button key="Password-Button" w="100%" colorScheme="secondary" onPress={handleSignup} isLoading={isLoading} isLoadingText='Signing Up' >
                                 Sign Up
                             </Button>
@@ -91,7 +91,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({route}) => {
                     {
                         signInMethods.includes('password') ?
                         <>
-                            <FormInput key="Password" password label="Enter your password" placeholder="Password" onChangeText={(text: string) => setPassword(text)} capitalize='none' />
+                            {/* <FormInput key="Password" password label="Enter your password" placeholder="Password" onChangeText={(text: string) => setPassword(text)} capitalize='none' /> */}
                             <Button alignSelf="flex-end" variant="link" mb={6} onPress={handlePasswordReset}>
                                     Forget Password?
                             </Button>

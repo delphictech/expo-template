@@ -13,7 +13,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup.object().shape({
-  email: yup.string().email('Invalid Email'),
+  email: yup.string().email('Invalid email').required('Email is required'),
 });
 
 
@@ -25,7 +25,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
     // hooks 
     const navigation = useNavigation<LoginScreenProps>();
-    const { control, register, handleSubmit, formState: { errors }, reset } = useForm({
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: yupResolver(schema),
     });
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
@@ -36,7 +36,6 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
 
     const handleEmail = async (data: any) => {
-        console.log(data);
         setEmailLoading(true);
         try {
             const methods = await fetchSignInMethods(data.email);
@@ -74,40 +73,8 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                             <Heading mb={3}>Welcome to Maet!</Heading>
                         </> : null
                     }
-
-                <FormControl key='testing' isInvalid={'email' in errors} >
-                    <FormControl.Label >Input your email</FormControl.Label>
-                    <Controller 
-                        key="email"
-                        name='email'
-                        control={control}
-                        defaultValue=''
-                        render={({field: {onBlur, onChange, value}}) => (
-                                <Input value={value} onBlur={onBlur} onChangeText={onChange} 
-                                w="100%" maxW="300px" placeholder="name@example.com" size="lg" clearButtonMode="while-editing" autoCapitalize="none" />
-                        )}
-                    />
-                    {
-                        'email' in errors ?
-                        <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon />}>
-                            {errors.email.message}
-                        </FormControl.ErrorMessage> : null
-                    }
-                    </FormControl>
-                    {/* 
-                                                <FormControl isInvalid={Boolean(errorMessage.length)} >
-                                <FormControl.Label >Input your email</FormControl.Label>
-                                    <Input value={email} w="100%" maxW="300px" onChangeText={(text: string) => setEmail(text)} placeholder="name@example.com" size="lg" clearButtonMode="while-editing" autoCapitalize="none" />
-                                {
-                                    errorMessage.length ?
-                                    <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon />}>
-                                        {errorMessage}
-                                    </FormControl.ErrorMessage> : null
-                                }
-                            </FormControl>
-                    */}
-                    {/* <FormInput key="Main-Login-Email" label="Enter your email" placeholder="name@example.com" 
-                        onChangeText={(text: string) => setEmail(text)} errorMessage={errors.email?.message} /> */}
+                <FormInput key='login-email' name='email' control={control} isInvalid={'email' in errors} 
+                    label='Input your email' defaultValue='' errorMessage={errors?.email?.message} />
                     {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
