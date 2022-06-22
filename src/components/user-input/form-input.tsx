@@ -21,6 +21,10 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
     /*
         Component that will validate the user input and renders a form input
     */
+
+    // states
+    const [showPassword, setShowPassword] = useState(false);
+
     // destructure props so that inputParams can be inputted cleanly into nativebase input component
     const {
         control,
@@ -32,9 +36,23 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
         defaultValue,
         ...inputParams
     } = props;
-
-    // states
-    const [showPassword, setShowPassword] = useState(false);
+    // password props
+    const passwordProps = props.password ? {
+        type: showPassword ? 'text' : 'password',
+        InputRightElement: 
+            <Icon
+                as={
+                    <MaterialIcons
+                        name={
+                            showPassword ? 'visibility' : 'visibility-off'
+                        }/>
+                }
+                size={5}
+                mr="2"
+                color="muted.400"
+                onPress={() => setShowPassword(!showPassword)}
+            />
+    } : {};
 
     return (
         <FormControl  key="testing" isInvalid={props.isInvalid} {...inputParams}>
@@ -64,14 +82,13 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                                 autoCapitalize="none"
                                 placeholder={props.placeholder}
                                 type={showPassword ? 'text' : 'password'}
-                                InputRightElement={
+                                InputRightElement={ 
                                     <Icon
                                         as={
                                             <MaterialIcons
                                                 name={
                                                     showPassword ? 'visibility' : 'visibility-off'
-                                                }
-                                            />
+                                                }/>
                                         }
                                         size={5}
                                         mr="2"

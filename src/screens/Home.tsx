@@ -36,7 +36,7 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     return (
         <Box w="100%" h="100%" bgColor="background.100" flex={1} alignItems="center"
         justifyContent="center" >
-            <Text color="plainText.800">Home Screen: {user.email}</Text>
+            <Text color="plainText.800">Account Email: {user.email}</Text>
             <Button
                 mt="2"
                 colorScheme="indigo"

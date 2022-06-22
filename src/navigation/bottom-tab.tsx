@@ -19,6 +19,7 @@ export const BottomTabNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 name="HomeTab"
                 component={HomeStackNavigator}
                 options={{
+                    title: 'Home',
                     headerTitle: 'Home',
                     headerShown: false,
                     tabBarIcon: ({ focused, color }) => (

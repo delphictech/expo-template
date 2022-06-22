@@ -2,6 +2,7 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import { Icon } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScreenParams } from 'src/types/screen';
 import { AuthStackNavigator } from './auth-stack';
@@ -50,7 +51,7 @@ export const MainStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 options={{
                     headerTitle: 'Login or Sign Up',
                     headerRight: () => (
-                        <MaterialCommunityIcons name="close" size={22} onPress={checkLogin} />
+                        <Icon as={MaterialCommunityIcons} color="plainText.800" name="close" size={22} onPress={checkLogin} />
                     ),
                     presentation: 'modal',
                 }}

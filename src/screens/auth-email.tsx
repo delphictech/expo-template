@@ -30,7 +30,7 @@ const signupSchema = yup.object().shape({
         },
     }),
 });
-
+// login schema
 const loginSchema = yup.object().shape({
     password: yup.string().required('Password is required'),
 });
@@ -85,7 +85,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
             await signUpWithEmail(email, data.password);
             await verifyEmail(email);
             toast.show({
-                placement: 'top',
+                placement: 'bottom',
                 render: renderVerificationToast,
                 id: 'verificationToast'
             });
@@ -100,9 +100,9 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     // handle password reset
     const handlePasswordReset = async () => {
         try {
-            await resetPassword(email);
+            // await resetPassword(email);
             toast.show({
-                placement: 'top',
+                placement: 'bottom',
                 render: renderPasswordToast,
                 id: 'resetToast'
             });
@@ -123,14 +123,14 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                 safeArea>
                 <VStack space={3} w="100%" >
                     <FormControl>
+                        <HStack alignItems='center' justifyContent='center' w='100%' py={3} px={7}>
+                            <Box px={3} >
+                                <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
+                            </Box>
+                            <Heading textAlign='left' color="plainText.800" alignSelf='center'>{ !signInMethods.length ? 'Please create your account password.' : 'Enter your password to login.'}</Heading>
+                        </HStack>
                         {!signInMethods.length ? (
                             <>
-                                <HStack alignItems='center' justifyContent='center' w='100%' p={5}>
-                                    <Box pr={3} >
-                                        <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
-                                    </Box>
-                                    <Heading color="plainText.800" alignSelf='center'>Create a password for your Maet account.</Heading>
-                                </HStack>
                                 <FormInput
                                     key="password"
                                     name="password"
@@ -158,7 +158,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                                     key="Password-Button"
                                     w="100%"
                                     mt={3}
-                                    colorScheme="secondary"
+                                    colorScheme="primary"
                                     onPress={handleSubmit(handleSignup)}
                                     isLoading={isLoading}
                                     isLoadingText="Signing Up">
@@ -168,12 +168,6 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                         ) : null}
                         {signInMethods.includes('password') ? (
                             <>
-                                <HStack alignItems='center' justifyContent='center' w='100%' p={5}>
-                                    <Box pr={3} >
-                                        <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
-                                    </Box>
-                                    <Heading color="plainText.800" alignSelf='center'>Enter your password to login to Maet.</Heading>
-                                </HStack>
                                 <FormInput
                                     key="password"
                                     name="password"
@@ -195,7 +189,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                                 <Button
                                     key="Password-Button"
                                     w="100%"
-                                    colorScheme="secondary"
+                                    colorScheme="primary"
                                     onPress={handleSubmit(handleLogin)}
                                     isLoading={isLoading}
                                     isLoadingText="Logging In">

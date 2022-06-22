@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, VStack, Button, Image, Heading, Text } from 'native-base';
+import { Box, VStack, Button, Image, Heading, Text, useToast } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
@@ -13,6 +13,7 @@ import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
 import { useColorScheme } from 'react-native';
 import MaetIcon from 'assets/MaetIcon.svg';
+import { AlertToast } from 'src/components/feedback/alert-toast';
 
 // define navigation props
 type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
@@ -36,11 +37,17 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     });
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const scheme = useColorScheme();
+    const toast = useToast();
 
     // react states
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
     const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+
+    // toast component for guest
+    const renderGuestToast = () => (
+        <AlertToast title='Using Maet as a Guest.' type='primary' toExit={() => toast.close('guestToast')} />
+    );
 
     const handleEmail = async (data: any) => {
         setEmailLoading(true);
@@ -65,6 +72,11 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         setIsGuestLoading(true);
         try {
             await anonymousSignIn();
+            toast.show({
+                placement: 'top',
+                render: renderGuestToast,
+                id: 'guestToast'
+            });
         } catch (e: any) {
             console.log(`Error with Guest sign in ${e}`);
             setError(e.message);
@@ -111,7 +123,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                     <Button
                         key="Password-Button"
                         w="100%"
-                        colorScheme="secondary"
+                        colorScheme="primary"
                         onPress={handleSubmit(handleEmail)}
                         isLoading={isEmailLoading}
                         isLoadingText="Submitting">
