@@ -8,7 +8,6 @@ import { FirebaseReduxToolkitProvider } from 'src/components/wrappers';
 import RootNavigator from 'src/navigation';
 import { store } from 'src/ducks/store';
 import { nativeBaseLightTheme, nativeBaseDarkTheme } from 'src/constants/theme';
-import { useEvent } from 'react-native-reanimated';
 
 export default function App() {
 
@@ -27,7 +26,7 @@ export default function App() {
                 <FirebaseReduxToolkitProvider>
                     <SSRProvider>
                         <NativeBaseProvider theme={scheme === 'dark' ? nativeBaseDarkTheme : nativeBaseLightTheme}>
-                            <RootNavigator />
+                            <RootNavigator scheme={scheme} />
                         </NativeBaseProvider>
                     </SSRProvider>
                 </FirebaseReduxToolkitProvider>
