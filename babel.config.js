@@ -10,7 +10,7 @@ module.exports = function babel(api) {
             src: './src',
             assets: './assets'
           },
-          extensions: ['.ts', '.tsx', '.js', '.jsx'],
+          extensions: ['.ts', '.tsx', '.js', '.jsx', '.svg'],
         },
       ], 'module:react-native-dotenv', 'react-native-reanimated/plugin',
     ],
