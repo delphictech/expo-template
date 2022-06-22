@@ -1,23 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useColorScheme } from 'react-native'; 
 import { StatusBar } from 'expo-status-bar';
-import { NativeBaseProvider, extendTheme } from 'native-base';
+import { NativeBaseProvider, useColorMode } from 'native-base';
 import { Provider } from 'react-redux';
 import { SSRProvider } from '@react-aria/ssr';
 import { FirebaseReduxToolkitProvider } from 'src/components/wrappers';
 import RootNavigator from 'src/navigation';
 import { store } from 'src/ducks/store';
-import { nativeBaseTheme } from 'src/constants/theme';
+import { nativeBaseLightTheme, nativeBaseDarkTheme } from 'src/constants/theme';
+import { useEvent } from 'react-native-reanimated';
 
 export default function App() {
-    const theme = extendTheme(nativeBaseTheme);
 
+    // hook to find user preference for color scheme
+    const scheme = useColorScheme();
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    useEffect(() => {
+        toggleColorMode();
+    }, [scheme]);
+    
     return (
         <>
             <StatusBar />
             <Provider store={store}>
                 <FirebaseReduxToolkitProvider>
                     <SSRProvider>
-                        <NativeBaseProvider theme={theme}>
+                        <NativeBaseProvider theme={scheme === 'dark' ? nativeBaseDarkTheme : nativeBaseLightTheme}>
                             <RootNavigator />
                         </NativeBaseProvider>
                     </SSRProvider>

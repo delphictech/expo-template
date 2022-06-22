@@ -38,7 +38,7 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
 
     return (
         <FormControl key="testing" isInvalid={props.isInvalid}>
-            <FormControl.Label>{props.label}</FormControl.Label>
+            <FormControl.Label color="plainText.500">{props.label}</FormControl.Label>
             <Controller
                 key="email"
                 name={props.name}
@@ -48,7 +48,12 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                     <>
                         {props.password ? (
                             <Input
+                                variant='filled'
+                                
                                 value={value}
+                                bgColor="background.200"
+                                selectionColor="plainText.800"
+                                tintColor="white"
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 w="100%"
@@ -78,6 +83,8 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                         ) : (
                             <Input
                                 value={value}
+                                bgColor="background.200"
+                                selectionColor="plainText.800"
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 w="100%"

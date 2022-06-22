@@ -11,6 +11,8 @@ import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
 import { useAppSelector } from 'src/hooks/useful-ducks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
+import { useColorScheme } from 'react-native';
+import MaetIcon from 'assets/MaetIcon.svg';
 
 // define navigation props
 type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
@@ -21,7 +23,6 @@ const schema = yup.object().shape({
 });
 
 export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
-    const imageSource = require('assets/icon.png');
 
     // hooks
     const navigation = useNavigation<LoginScreenProps>();
@@ -34,6 +35,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         resolver: yupResolver(schema),
     });
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
+    const scheme = useColorScheme();
 
     // react states
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
@@ -76,19 +78,21 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                 px="10"
                 w="100%"
                 h="100%"
+                bg="background.100"
                 justifyContent={!isAnonymous ? 'center' : 'flex-start'}
                 alignItems="center"
                 safeArea={!isAnonymous ? true : undefined}>
                 <VStack space={3} alignItems="center" w="100%">
                     {!isAnonymous ? (
                         <>
-                            <Image
+                            {/* <Image
                                 alignSelf="center"
                                 alt="Logo"
-                                source={imageSource}
+                                source={{uri: './assets/icon-light.png'}}
                                 style={{ width: 150, height: 150 }}
-                            />
-                            <Heading mb={3}>Welcome to Maet!</Heading>
+                            /> */}
+                            <MaetIcon height={150} width={150} fill={scheme === 'dark' ?  "#f3f4f6" : "#262626"} />
+                            <Heading mb={3} color="plainText.900">Welcome to Maet!</Heading>
                         </>
                     ) : null}
                     <FormInput

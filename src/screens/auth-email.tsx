@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, VStack, Button, Text, useToast, FormControl } from 'native-base';
+import { Box, VStack, Button, Text, useToast, FormControl, Heading, HStack } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
@@ -11,6 +11,7 @@ import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'sr
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
 
@@ -99,7 +100,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     // handle password reset
     const handlePasswordReset = async () => {
         try {
-            // await resetPassword(email);
+            await resetPassword(email);
             toast.show({
                 placement: 'top',
                 render: renderPasswordToast,
@@ -114,10 +115,15 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     };
 
     return (
-        <KeyboardBehaviorWrapper bounces={false}>
-            <Box px="10" w="100%" h="100%" justifyContent="flex-start" alignItems="center">
-                <VStack space={3} alignItems="center" w="100%">
-                    <FormControl isInvalid>
+        <KeyboardBehaviorWrapper bounces={false} centerVertically>
+            <Box px="10"
+                w="100%"
+                h="100%"
+                justifyContent='center'
+                alignItems="center"
+                safeArea>
+                <VStack space={3} alignItems="center" w="100%" justifyContent='center'>
+                    <FormControl>
                         {!signInMethods.length ? (
                             <>
                                 <FormInput
@@ -156,6 +162,12 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                         ) : null}
                         {signInMethods.includes('password') ? (
                             <>
+                                <HStack alignItems='center' justifyContent='center' w='100%' p={5}>
+                                    <Box pr={3}>
+                                        <MaterialIcons name="lock-outline" size={50} color="black" />
+                                    </Box>
+                                    <Heading alignSelf='center'>Enter your password to login to Maet.</Heading>
+                                </HStack>
                                 <FormInput
                                     key="password"
                                     name="password"
@@ -190,6 +202,14 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                     </Button> */}
                     </FormControl>
                     <Text color="danger.600">{error}</Text>
+                    <Button
+                        w="100%"
+                        colorScheme="primary"
+                        variant="link"
+                        p={0}
+                        onPress={() => navigation.goBack()}>
+                        Return to previous screen
+                    </Button>
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>
