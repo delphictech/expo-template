@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, VStack, Button, Text, useToast, FormControl, Heading, HStack } from 'native-base';
+import { Box, VStack, Button, Text, useToast, FormControl, Heading, HStack, Icon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
@@ -11,7 +11,7 @@ import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'sr
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
 
@@ -119,13 +119,18 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
             <Box px="10"
                 w="100%"
                 h="100%"
-                justifyContent='center'
-                alignItems="center"
+                bgColor="background.100"
                 safeArea>
-                <VStack space={3} alignItems="center" w="100%" justifyContent='center'>
+                <VStack space={3} w="100%" >
                     <FormControl>
                         {!signInMethods.length ? (
                             <>
+                                <HStack alignItems='center' justifyContent='center' w='100%' p={5}>
+                                    <Box pr={3} >
+                                        <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
+                                    </Box>
+                                    <Heading color="plainText.800" alignSelf='center'>Create a password for your Maet account.</Heading>
+                                </HStack>
                                 <FormInput
                                     key="password"
                                     name="password"
@@ -147,6 +152,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                                     placeholder="Confirm Password"
                                     defaultValue=""
                                     errorMessage={errors?.confirmPassword?.message}
+                                    py={3}
                                 />
                                 <Button
                                     key="Password-Button"
@@ -163,10 +169,10 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                         {signInMethods.includes('password') ? (
                             <>
                                 <HStack alignItems='center' justifyContent='center' w='100%' p={5}>
-                                    <Box pr={3}>
-                                        <MaterialIcons name="lock-outline" size={50} color="black" />
+                                    <Box pr={3} >
+                                        <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
                                     </Box>
-                                    <Heading alignSelf='center'>Enter your password to login to Maet.</Heading>
+                                    <Heading color="plainText.800" alignSelf='center'>Enter your password to login to Maet.</Heading>
                                 </HStack>
                                 <FormInput
                                     key="password"

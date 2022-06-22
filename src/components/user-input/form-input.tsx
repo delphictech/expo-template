@@ -37,7 +37,7 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
     const [showPassword, setShowPassword] = useState(false);
 
     return (
-        <FormControl key="testing" isInvalid={props.isInvalid}>
+        <FormControl  key="testing" isInvalid={props.isInvalid} {...inputParams}>
             <FormControl.Label color="plainText.500">{props.label}</FormControl.Label>
             <Controller
                 key="email"
@@ -49,18 +49,21 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                         {props.password ? (
                             <Input
                                 variant='filled'
-                                
+                                color='plainText.800'
                                 value={value}
                                 bgColor="background.200"
-                                selectionColor="plainText.800"
-                                tintColor="white"
+                                selectionColor="plainText.500"
+                                borderColor="background.400"
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 w="100%"
-                                maxW="300px"
+                                h="auto"
+                                fontSize="lg"
+                                size='lg'
+                                clearButtonMode="while-editing"
+                                autoCapitalize="none"
                                 placeholder={props.placeholder}
                                 type={showPassword ? 'text' : 'password'}
-                                size="lg"
                                 InputRightElement={
                                     <Icon
                                         as={
@@ -76,23 +79,22 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                                         onPress={() => setShowPassword(!showPassword)}
                                     />
                                 }
-                                clearButtonMode="while-editing"
-                                autoCapitalize="none"
-                                {...inputParams}
                             />
                         ) : (
                             <Input
                                 value={value}
+                                color='plainText.800'
                                 bgColor="background.200"
-                                selectionColor="plainText.800"
+                                selectionColor="plainText.500"
+                                borderColor="background.400"
                                 onBlur={onBlur}
                                 onChangeText={onChange}
                                 w="100%"
-                                maxW="300px"
-                                size="lg"
+                                fontSize="lg"
+                                size='lg'
                                 clearButtonMode="while-editing"
                                 autoCapitalize="none"
-                                {...inputParams}
+                                placeholder={props.placeholder}
                             />
                         )}
                     </>

@@ -42,6 +42,7 @@ Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
 
 ## Philosophy
 * Modular code, build pieces rather than screens
+    Use example of form-input with controller and alert-toast
 * User empathy
 
 ## Learning Resources

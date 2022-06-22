@@ -1,20 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Box, Button, Text } from 'native-base';
 import { ScreenParams } from 'src/types/screen';
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 export const ExploreScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     return (
-        <View style={styles.container}>
-            <Text>Explore Screen</Text>
-        </View>
+        <Box w="100%" h="100%" bgColor="background.100" flex={1} alignItems="center" justifyContent="center" >
+            <Text color="plainText.800">Explore Screen</Text>
+        </Box>
     );
 };

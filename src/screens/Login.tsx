@@ -73,7 +73,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     };
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically={!isAnonymous}>
+        <KeyboardBehaviorWrapper bounces={false} centerVertically>
             <Box
                 px="10"
                 w="100%"
