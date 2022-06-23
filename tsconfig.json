@@ -7,7 +7,8 @@
     "module": "commonjs",
     "baseUrl": ".",
     "paths": {
-      "src/*": ["./src/*", "./src"]
+      "src/*": ["./src/*", "./src"],
+      "assets/*": ["./assets/*", "./assets"]
     },
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
@@ -19,6 +20,6 @@
     "skipLibCheck": true
   },
   "extends": "expo/tsconfig.base",
-  "include": ["./*.ts", "./src/**/*.tsx", "./src/**/*.ts", "./src/*"],
+  "include": ["./*.ts", "./src/**/*.tsx", "./src/**/*.ts", "./src/*", "./assets/*", "./src/types/declarations.d.ts"],
   "exclude": ["node_modules", "dist", "./*.js"]
 }

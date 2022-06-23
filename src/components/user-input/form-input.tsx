@@ -1,54 +1,126 @@
 import React, { useEffect, useState } from 'react';
 import { NativeSyntheticEvent, TextInputEndEditingEventData } from 'react-native';
-import { FormControl, Input, Icon } from 'native-base';
-import { MaterialIcons } from "@expo/vector-icons";
+import { FormControl, Input, Icon, WarningOutlineIcon, IInputProps } from 'native-base';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Control, Controller, FieldValues } from 'react-hook-form';
 
 /*
-For props:
-    label: string
-    type: text or password
-    iconLeft: icon to put on the left
-    onChangeText
-    iconRight: icon to put on the right (or should only have this for password)
-    validation: with yup afterwards (None, supported types)
+Props extend from nativebase IInputProps props
 */
-export interface FormInputProps {
-    label?: string | null;
-    placeholder?: string;
-    password?: boolean; // need default prop inputs
-    icon?: typeof Icon;
-    onChangeText?: (text: string) => void; // need to find out how to access the text input
-    onEndEditing?: (e: NativeSyntheticEvent<TextInputEndEditingEventData>) => void;
-    isModalOpen?: boolean | null; // used when forms are in modal to clear input on close
-    validation?: 'None';
-};
+export interface FormInputParams extends IInputProps {
+    control: Control<FieldValues, any>; // control passed into react-hook-form controller input: https://www.react-hook-form.com/get-started#IntegratingwithUIlibraries
+    name: string; // required for the react-hook-form controller
+    isInvalid?: boolean | undefined; // will set if form is invalid or not
+    label?: string | undefined; // used as the title label above the input
+    password?: boolean; // need default prop inputs, will automatically set props if password
+    errorMessage?: string | undefined; // will signal if there is an error on the form input
+    defaultValue?: string | undefined; // default value to put into form controller
+}
 
-export const FormInput: React.FC<FormInputProps> = (props) => {
+export const FormInput: React.FC<FormInputParams> = (props) => {
     /*
         Component that will validate the user input and renders a form input
     */
-    const [value, setValue] = useState('');
+
+    // states
     const [showPassword, setShowPassword] = useState(false);
 
-    const changeText = (text: string) => {
-        setValue(text);
-        props.onChangeText && props.onChangeText(text);
-    }
-
-    // set empty inputs everytime modal open or closed
-    useEffect(() => {
-        setValue('');
-    }, [props.isModalOpen])
+    // destructure props so that inputParams can be inputted cleanly into nativebase input component
+    const {
+        control,
+        name,
+        isInvalid,
+        label,
+        password,
+        errorMessage,
+        defaultValue,
+        ...inputParams
+    } = props;
+    // password props
+    const passwordProps = props.password
+        ? {
+              type: showPassword ? 'text' : 'password',
+              InputRightElement: (
+                  <Icon
+                      as={<MaterialIcons name={showPassword ? 'visibility' : 'visibility-off'} />}
+                      size={5}
+                      mr="2"
+                      color="muted.400"
+                      onPress={() => setShowPassword(!showPassword)}
+                  />
+              ),
+          }
+        : {};
 
     return (
-        <FormControl>
-            <FormControl.Label >{props.label}</FormControl.Label>
-            { props.password 
-                ? <Input value={value} w="100%" maxW="300px" onChangeText={changeText} placeholder={props.placeholder} type={showPassword ? "text" : "password"} size="lg"
-                InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility" : "visibility-off"} />} size={5} mr="2" color="muted.400" 
-                onPress={() => setShowPassword(!showPassword)} />} onEndEditing={props.onEndEditing} clearButtonMode="while-editing"/>
-                : <Input value={value} w="100%" maxW="300px" onEndEditing={props.onEndEditing} onChangeText={changeText} placeholder={props.placeholder} size="lg" clearButtonMode="while-editing"/>
-            }
+        <FormControl key="testing" isInvalid={props.isInvalid} {...inputParams}>
+            <FormControl.Label color="plainText.500">{props.label}</FormControl.Label>
+            <Controller
+                key="email"
+                name={props.name}
+                control={props.control}
+                defaultValue={props.defaultValue}
+                render={({ field: { onBlur, onChange, value } }) => (
+                    <>
+                        {props.password ? (
+                            <Input
+                                variant="filled"
+                                color="plainText.800"
+                                value={value}
+                                bgColor="background.200"
+                                selectionColor="plainText.500"
+                                borderColor="background.400"
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                w="100%"
+                                h="auto"
+                                fontSize="lg"
+                                size="lg"
+                                clearButtonMode="while-editing"
+                                autoCapitalize="none"
+                                placeholder={props.placeholder}
+                                type={showPassword ? 'text' : 'password'}
+                                InputRightElement={
+                                    <Icon
+                                        as={
+                                            <MaterialIcons
+                                                name={
+                                                    showPassword ? 'visibility' : 'visibility-off'
+                                                }
+                                            />
+                                        }
+                                        size={5}
+                                        mr="2"
+                                        color="muted.400"
+                                        onPress={() => setShowPassword(!showPassword)}
+                                    />
+                                }
+                            />
+                        ) : (
+                            <Input
+                                value={value}
+                                color="plainText.800"
+                                bgColor="background.200"
+                                selectionColor="plainText.500"
+                                borderColor="background.400"
+                                onBlur={onBlur}
+                                onChangeText={onChange}
+                                w="100%"
+                                fontSize="lg"
+                                size="lg"
+                                clearButtonMode="while-editing"
+                                autoCapitalize="none"
+                                placeholder={props.placeholder}
+                            />
+                        )}
+                    </>
+                )}
+            />
+            {props.isInvalid ? (
+                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon />}>
+                    {props.errorMessage}
+                </FormControl.ErrorMessage>
+            ) : null}
         </FormControl>
     );
-}
+};

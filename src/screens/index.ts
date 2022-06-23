@@ -1,6 +1,7 @@
 import { HomeScreen } from './home';
 import { ExploreScreen } from './explore';
 import { LoginScreen } from './login';
-import { PickupSession } from './pickup';
+import { AuthEmail } from './auth-email';
+import { PickupScreen } from './pickup';
 
-export { HomeScreen, ExploreScreen, LoginScreen, PickupSession };
+export { HomeScreen, ExploreScreen, LoginScreen, PickupScreen, AuthEmail };

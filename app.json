@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "maetPlayground",
-    "slug": "maetPlayground",
+    "name": "maet-template",
+    "slug": "maet-template",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,112 +1,149 @@
-import React, { useEffect, useState } from 'react';
-import { Center, Box, Heading, VStack, Button } from 'native-base';
-import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
-import { updateEmail } from 'src/ducks/user-slice';
+import React, { useState } from 'react';
+import { Box, VStack, Button, Image, Heading, Text, useToast, Icon } from 'native-base';
+import { useNavigation, useTheme } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
-import { signInWithEmail, signUpWithEmail, FirebaseError } from 'src/firebase/api';
-import * as Animatable from 'react-native-animatable';
+import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
+import { useAppSelector, useAppDispatch } from 'src/hooks/useful-ducks';
+import { guestSignIn } from 'src/ducks/user-slice';
+import { AuthStackParams } from 'src/navigation/auth-stack';
+import { ScreenParams } from 'src/types/screen';
+import MaetSvg from 'assets/MaetSvg.svg';
+import { AlertToast } from 'src/components/feedback/alert-toast';
 
-export interface LoginScreenProps {
-    /*
-        Function to call on the submit of the button
-    */
-    onSubmit?: () => void;
-    /* 
-        Boolean for when screen nested in modal, used to clear user inputs
-    */
-    isModalOpen?: boolean | null;
-    /*
-        Callback for when an input has been actively edited
-    */
-   onEndEditing?: () => void;
-};
+// define navigation props
+type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
 
-export const LoginScreen: React.FC<LoginScreenProps> = (props) => {
-    // react states
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState('');
-    const [isPasswordVis, setPasswordVis] = useState(false);
-    const [isConfirmVis, setConfirmVis] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+// define schema for form input
+const schema = yup.object().shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+});
 
-    // redux states and dispatch hook
-    const userID = useAppSelector((state) => state.user.id);
-    const userEmail = useAppSelector((state) => state.user.email);
+export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
+    // hooks
+    const navigation = useNavigation<LoginScreenProps>();
+    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const dispatch = useAppDispatch();
+    const iconColor = useTheme().colors.text;
+    const toast = useToast();
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+        reset,
+    } = useForm({
+        resolver: yupResolver(schema),
+    });
 
-    // initialize states
-    useEffect(() => {
-        setPasswordVis(false);
-        setConfirmVis(false);
-    }, [props.isModalOpen]);
+    // react states
+    const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
+    const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
 
-    // async function for handling login
-    const handleLogin = async () => {
-        setIsLoading(true);
+    // toast component for guest
+    const renderGuestToast = () => (
+        <AlertToast
+            title="Using Maet as a Guest."
+            type="primary"
+            toExit={() => toast.close('guestToast')}
+        />
+    );
+
+    const handleEmail = async (data: any) => {
+        setEmailLoading(true);
         try {
-            const response = await signInWithEmail(email, password);
-            dispatch(updateEmail(response.email));
-            console.log('reresponse');
-            console.log(response);
-        } catch(e: any) {
-            console.log('ERRRORRO');
-            if (e.code === 'auth/user-not-found') {
-                setConfirmVis(true);
-            } else {
-                console.log(e);
-            }
-        }
-        setIsLoading(false);
-    }
+            const methods = await fetchSignInMethods(data.email);
+            setEmailLoading(false);
 
-    // async function for handling sign up
-    const handleSignUp = async () => {
-        // signUpWithEmail(email, password);
-        props.onSubmit && props.onSubmit();
-    }
+            // reset react form and navigate to new screen
+            reset();
+            navigation.navigate('AuthEmail', {
+                signInMethods: methods,
+                email: data.email,
+            });
+        } catch (e: any) {
+            console.log(`Error with email: ${e}`);
+            setError(e.message);
+            setEmailLoading(false);
+        }
+    };
+
+    const handleAnonymous = async () => {
+        setIsGuestLoading(true);
+        try {
+            const response = await anonymousSignIn();
+            dispatch(guestSignIn(response.user.uid));
+            toast.show({
+                placement: 'top',
+                render: renderGuestToast,
+                id: 'guestToast',
+            });
+        } catch (e: any) {
+            console.log(`Error with Guest sign in ${e}`);
+            setError(e.message);
+            setIsGuestLoading(false);
+        }
+    };
 
     return (
-        <KeyboardBehaviorWrapper>
-            <Center w="100%">
-                <Box p="2" w="90%" maxW="300" >
-                    <VStack space={3} mt="3">
-                        <FormInput label="Enter your email" placeholder="name@example.com" isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setEmail(text)} />
-                        <Button mt="3" colorScheme="primary" >
-                            Send me a sign-in link
+        <KeyboardBehaviorWrapper bounces={false} centerVertically>
+            <Box
+                px="10"
+                w="100%"
+                h="100%"
+                bg="background.100"
+                justifyContent={!isAnonymous ? 'center' : 'flex-start'}
+                alignItems="center"
+                safeArea={!isAnonymous ? true : undefined}>
+                <VStack space={3} alignItems="center" w="100%">
+                    {!isAnonymous ? (
+                        <>
+                            <MaetSvg height={150} width={150} fill={iconColor} />
+                            <Heading mb={3} color="plainText.900">
+                                Welcome to Maet!
+                            </Heading>
+                        </>
+                    ) : null}
+                    <FormInput
+                        key="login-email"
+                        name="email"
+                        control={control}
+                        isInvalid={'email' in errors}
+                        label="Input your email"
+                        placeholder="name@example.com"
+                        defaultValue=""
+                        errorMessage={errors?.email?.message}
+                    />
+                    {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
+                        Send me a sign-in link
+                    </Button> */}
+                    <Button
+                        key="Password-Button"
+                        w="100%"
+                        colorScheme="primary"
+                        onPress={handleSubmit(handleEmail)}
+                        isLoading={isEmailLoading}
+                        isLoadingText="Submitting">
+                        Submit
+                    </Button>
+                    {!isAnonymous ? (
+                        <Button
+                            w="100%"
+                            colorScheme="primary"
+                            variant="link"
+                            onPress={handleAnonymous}
+                            isLoading={isGuestLoading}
+                            isLoadingText="Continuing">
+                            Continue as guest
                         </Button>
-                        <Button colorScheme="primary" variant="outline" onPress={() => setPasswordVis(true)} isDisabled={isPasswordVis} >
-                            Enter a password instead
-                        </Button>
-                        {/* <FormInput placeholder="Enter a password instead" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} /> */}
-                        {   
-                            isPasswordVis &&
-                            <Animatable.View animation="fadeIn">
-                                <FormInput label="Enter your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
-                            </Animatable.View>
-                        }
-                        {
-                            isPasswordVis && !isConfirmVis &&
-                            <Animatable.View animation="fadeIn">
-                                <Button mt="3" colorScheme="primary" onPress={handleLogin} isLoading={isLoading} isLoadingText="Submitting" >
-                                    Submit
-                                </Button>
-                            </Animatable.View>
-                        }
-                        {
-                            isConfirmVis &&
-                            <Animatable.View animation="fadeIn">
-                                <FormInput label="Confirm your password" placeholder="Password" password={true} isModalOpen={props.isModalOpen} onEndEditing={props.onEndEditing} onChangeText={(text: string) => setPassword(text)} />
-                                <Button mt="5" colorScheme="primary" onPress={handleSignUp} isLoading={isLoading} isLoadingText="Signing Up" >
-                                    Sign Up
-                                </Button>
-                            </Animatable.View>
-                        }
-                    </VStack>
-                </Box>
-            </Center>
+                    ) : null}
+                    <Text color="danger.600">{error}</Text>
+                </VStack>
+            </Box>
         </KeyboardBehaviorWrapper>
-        
     );
-}
+};

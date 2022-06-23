@@ -1,44 +1,81 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { LoginModal, PickupSessionModal } from 'src/components/modals';
+import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Box, Button, Text } from 'native-base';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
-import { Button } from 'native-base';
+import { signOutUser } from 'src/firebase/api';
+import { incrementCount, decrementCount, signOut } from 'src/ducks/user-slice';
+import { HomeStackParams } from 'src/navigation/home-stack';
+import { ScreenParams } from 'src/types/screen';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+/*
+    Define Screen Typee
+*/
+type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 
-export function HomeScreen() {
-    const [showPickupSession, setPickupSession] = useState(false);
-    const [showSignup, setSignup] = useState(false);
+export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
+    // navigation
+    const navigation = useNavigation<HomeScreenProps>();
 
-    // redux states
-    const loggedIn = useAppSelector((state) => state.user.loggedIn);
+    // redux handlers
     const user = useAppSelector((state) => state.user);
-    console.log(`Logged In: ${loggedIn}`);
+    const dispatch = useAppDispatch();
+
+    // handling button functions
+    const handleLoginButton = async () => {
+        if (user.loggedIn) {
+            const res = await signOutUser();
+            dispatch(signOut());
+        } else {
+            navigation.getParent('MainStackNavigator')?.navigate('Auth');
+        }
+    };
 
     return (
-        <>
-        <View style={styles.container}>
-            <Text>Home Screen: {user.email}</Text>
-            <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
-                Schedule Pickup
-            </Button>
-            <Button mt="2" colorScheme="indigo" onPress={() => setPickupSession(true)}>
+        <Box
+            w="100%"
+            h="100%"
+            bgColor="background.100"
+            flex={1}
+            alignItems="center"
+            justifyContent="center">
+            {user.isAnonymous ? (
+                <Text color="plainText.800">User is a guest</Text>
+            ) : (
+                <>
+                    <Text color="plainText.800">Account Email: {user.email}</Text>
+                    <Text color="plainText.800">Email Verified: {String(user.emailVerified)}</Text>
+                </>
+            )}
+            <Text color="plainText.800">User ID: {user.uid}</Text>
+            <Box py={3}>
+                <Text color="plainText.800" bold>
+                    Really fun user data counter: {user.count}
+                </Text>
+                <Button m={2} onPress={() => dispatch(incrementCount())}>
+                    Increment Count
+                </Button>
+                <Button m={2} onPress={() => dispatch(decrementCount())}>
+                    Decrement Count
+                </Button>
+            </Box>
+            {user.isAnonymous ? (
+                <Button
+                    mt="2"
+                    colorScheme="indigo"
+                    onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
+                    Login to real account
+                </Button>
+            ) : null}
+            <Button
+                mt="2"
+                colorScheme="indigo"
+                onPress={() => navigation.navigate('PickupSession')}>
                 Start Pickup Session
             </Button>
-            <Button mt="2" colorScheme="indigo" onPress={() => setSignup(true)}>
-                {loggedIn ? 'Logout' : 'Login'}
+            <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
+                {user.loggedIn ? 'Logout' : 'Login'}
             </Button>
-        </View>
-        <PickupSessionModal isOpen={showPickupSession} onClose={() => setPickupSession(false)} />
-        <LoginModal isOpen={showSignup} onClose={() => setSignup(false)} />
-        </>
-
+        </Box>
     );
-}
+};
