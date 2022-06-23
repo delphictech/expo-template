@@ -5,4 +5,5 @@ export interface User {
     isAnonymous: boolean | undefined;
     emailVerified: boolean | undefined;
     loggedIn: boolean | undefined;
+    count: number;
 }

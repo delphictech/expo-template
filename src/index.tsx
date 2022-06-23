@@ -4,7 +4,6 @@ import { StatusBar } from 'expo-status-bar';
 import { NativeBaseProvider, useColorMode } from 'native-base';
 import { Provider } from 'react-redux';
 import { SSRProvider } from '@react-aria/ssr';
-import { FirebaseReduxToolkitProvider } from 'src/components/wrappers';
 import RootNavigator from 'src/navigation';
 import { store } from 'src/ducks/store';
 import { nativeBaseLightTheme, nativeBaseDarkTheme } from 'src/constants/theme';
@@ -23,13 +22,11 @@ export default function App() {
         <>
             <StatusBar />
             <Provider store={store}>
-                <FirebaseReduxToolkitProvider>
                     <SSRProvider>
                         <NativeBaseProvider theme={scheme === 'dark' ? nativeBaseDarkTheme : nativeBaseLightTheme}>
                             <RootNavigator scheme={scheme} />
                         </NativeBaseProvider>
                     </SSRProvider>
-                </FirebaseReduxToolkitProvider>
             </Provider>
         </>
     );

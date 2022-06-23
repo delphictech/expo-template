@@ -11,7 +11,10 @@ import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'sr
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
+import { User } from 'src/types/user';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useAppDispatch } from 'src/hooks/useful-ducks';
+import { emailSignIn } from 'src/ducks/user-slice';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
 
@@ -42,6 +45,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
 
     // hooks
     const navigation = useNavigation<AuthEmailProps>();
+    const dispatch = useAppDispatch();
     const toast = useToast();
     const schema = signInMethods.length ? loginSchema : signupSchema;
     const {
@@ -69,7 +73,18 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     const handleLogin = async (data: any) => {
         setIsLoading(true);
         try {
-            await signInWithEmail(email, data.password);
+            const { user } = await signInWithEmail(email, data.password);
+            const newUser: User = { 
+                uid: user.uid,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                isAnonymous: false,
+                emailVerified: user.emailVerified,
+                loggedIn: true,
+                count: 0,
+            };
+            dispatch(emailSignIn(newUser));
+
             reset();
         } catch (e: any) {
             console.log(`Error with login: ${e}`);
@@ -82,7 +97,18 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     const handleSignup = async (data: any) => {
         setIsLoading(true);
         try {
-            await signUpWithEmail(email, data.password);
+            const { user } = await signUpWithEmail(email, data.password);
+            const newUser: User = { 
+                uid: user.uid,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                isAnonymous: false,
+                emailVerified: user.emailVerified,
+                loggedIn: true,
+                count: 0,
+            };
+
+            dispatch(emailSignIn(newUser));
             await verifyEmail(email);
             toast.show({
                 placement: 'bottom',
@@ -100,7 +126,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     // handle password reset
     const handlePasswordReset = async () => {
         try {
-            // await resetPassword(email);
+            await resetPassword(email);
             toast.show({
                 placement: 'bottom',
                 render: renderPasswordToast,

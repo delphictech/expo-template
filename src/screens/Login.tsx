@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useColorScheme } from 'react-native';
 import { Box, VStack, Button, Image, Heading, Text, useToast } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -8,10 +9,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
-import { useAppSelector } from 'src/hooks/useful-ducks';
+import { useAppSelector, useAppDispatch } from 'src/hooks/useful-ducks';
+import { guestSignIn } from 'src/ducks/user-slice';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
-import { useColorScheme } from 'react-native';
 import MaetIcon from 'assets/MaetIcon.svg';
 import { AlertToast } from 'src/components/feedback/alert-toast';
 
@@ -27,6 +28,10 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
     // hooks
     const navigation = useNavigation<LoginScreenProps>();
+    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
+    const dispatch = useAppDispatch();
+    const scheme = useColorScheme();
+    const toast = useToast();
     const {
         control,
         handleSubmit,
@@ -35,9 +40,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     } = useForm({
         resolver: yupResolver(schema),
     });
-    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
-    const scheme = useColorScheme();
-    const toast = useToast();
+
 
     // react states
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
@@ -71,7 +74,8 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     const handleAnonymous = async () => {
         setIsGuestLoading(true);
         try {
-            await anonymousSignIn();
+            const response = await anonymousSignIn();
+            dispatch(guestSignIn(response.user.uid));
             toast.show({
                 placement: 'top',
                 render: renderGuestToast,

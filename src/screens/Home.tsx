@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Box, Button, Text } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useAppSelector } from 'src/hooks/useful-ducks';
+import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOutUser } from 'src/firebase/api';
+import { incrementCount, decrementCount, signOut } from 'src/ducks/user-slice';
 import { HomeStackParams } from 'src/navigation/home-stack';
 import { ScreenParams } from 'src/types/screen';
 
@@ -17,17 +18,14 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     const navigation = useNavigation<HomeScreenProps>();
 
     // redux handlers
-    const loggedIn = useAppSelector((state) => state.user.loggedIn);
-    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const user = useAppSelector((state) => state.user);
-    console.log(`Anonymous In: ${isAnonymous}`);
+    const dispatch = useAppDispatch();
 
     // handling button functions
     const handleLoginButton = async () => {
-        if (loggedIn) {
+        if (user.loggedIn) {
             const res = await signOutUser();
-            console.log('SIgned out');
-            console.log(res);
+            dispatch(signOut());
         } else {
             navigation.getParent('MainStackNavigator')?.navigate('Auth');
         }
@@ -36,13 +34,29 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     return (
         <Box w="100%" h="100%" bgColor="background.100" flex={1} alignItems="center"
         justifyContent="center" >
-            <Text color="plainText.800">Account Email: {user.email}</Text>
-            <Button
-                mt="2"
-                colorScheme="indigo"
-                onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
-                Login to real account
-            </Button>
+            {
+                user.isAnonymous ? 
+                <Text color="plainText.800">User is a guest</Text>
+                : <>
+                    <Text color="plainText.800">Account Email: {user.email}</Text>
+                    <Text color="plainText.800">Email Verified: {String(user.emailVerified)}</Text>
+                </>
+            }
+            <Text color="plainText.800">User ID: {user.uid}</Text>
+            <Box py={3}>
+                <Text color="plainText.800" bold>Really fun user data counter: {user.count}</Text>
+                <Button m={2} onPress={() => dispatch(incrementCount())}>Increment Count</Button>
+                <Button m={2} onPress={() => dispatch(decrementCount())}>Decrement Count</Button>
+            </Box>
+            {
+                user.isAnonymous ?
+                <Button
+                    mt="2"
+                    colorScheme="indigo"
+                    onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
+                    Login to real account
+                </Button> : null
+            }
             <Button
                 mt="2"
                 colorScheme="indigo"
@@ -50,7 +64,7 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                 Start Pickup Session
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
-                {loggedIn ? 'Logout' : 'Login'}
+                {user.loggedIn ? 'Logout' : 'Login'}
             </Button>
         </Box>
     );

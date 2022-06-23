@@ -8,6 +8,7 @@ const initialUser: User = {
     isAnonymous: false,
     emailVerified: false,
     loggedIn: false,
+    count: 0,
 };
 
 export const userSlice = createSlice({
@@ -17,7 +18,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: initialUser,
     reducers: {
-        signIn: (state, action: PayloadAction<User>) => {
+        emailSignIn: (state, action: PayloadAction<User>) => {
             // updates the user object
             state.uid = action.payload.uid;
             state.email = action.payload.email;
@@ -27,13 +28,25 @@ export const userSlice = createSlice({
 
             state.loggedIn = true;
         },
+        guestSignIn: (state, action: PayloadAction<string>) => {
+            state.uid = action.payload;
+
+            state.isAnonymous = true;
+            state.loggedIn = true;
+        },
         signOut: () => initialUser, // reset to initial state
         updateEmail: (state, action: PayloadAction<string>) => {
             state.email = action.payload;
             state.loggedIn = true;
         },
+        incrementCount: (state) => {
+            state.count += 1;
+        },
+        decrementCount: (state) => {
+            state.count -= 1;
+        },
     },
 });
 
-export const { signIn, signOut, updateEmail } = userSlice.actions;
+export const { emailSignIn, guestSignIn, signOut, updateEmail, incrementCount, decrementCount } = userSlice.actions;
 export default userSlice.reducer;
