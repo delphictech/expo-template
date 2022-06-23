@@ -149,11 +149,11 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
                 safeArea>
                 <VStack space={3} w="100%" >
                     <FormControl>
-                        <HStack alignItems='center' justifyContent='center' w='100%' py={3} px={7}>
-                            <Box px={3} >
+                        <HStack alignItems='center' justifyContent='space-between' w='100%' flex={1} py={5} >
+                            <Box pr={3} >
                                 <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
                             </Box>
-                            <Heading textAlign='left' color="plainText.800" alignSelf='center'>{ !signInMethods.length ? 'Please create your account password.' : 'Enter your password to login.'}</Heading>
+                            <Heading flex={1} textAlign='left' color="plainText.800" alignSelf='center'>{ !signInMethods.length ? 'Please create your account password.' : 'Enter your password to login.'}</Heading>
                         </HStack>
                         {!signInMethods.length ? (
                             <>

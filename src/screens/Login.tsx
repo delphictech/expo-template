@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useColorScheme } from 'react-native';
-import { Box, VStack, Button, Image, Heading, Text, useToast } from 'native-base';
-import { useNavigation } from '@react-navigation/native';
+import { Box, VStack, Button, Image, Heading, Text, useToast, Icon } from 'native-base';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -13,7 +12,7 @@ import { useAppSelector, useAppDispatch } from 'src/hooks/useful-ducks';
 import { guestSignIn } from 'src/ducks/user-slice';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
-import MaetIcon from 'assets/MaetIcon.svg';
+import MaetSvg from 'assets/MaetSvg.svg';
 import { AlertToast } from 'src/components/feedback/alert-toast';
 
 // define navigation props
@@ -30,7 +29,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     const navigation = useNavigation<LoginScreenProps>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const dispatch = useAppDispatch();
-    const scheme = useColorScheme();
+    const iconColor = useTheme().colors.text;
     const toast = useToast();
     const {
         control,
@@ -101,13 +100,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                 <VStack space={3} alignItems="center" w="100%">
                     {!isAnonymous ? (
                         <>
-                            {/* <Image
-                                alignSelf="center"
-                                alt="Logo"
-                                source={{uri: './assets/icon-light.png'}}
-                                style={{ width: 150, height: 150 }}
-                            /> */}
-                            <MaetIcon height={150} width={150} fill={scheme === 'dark' ?  "#f3f4f6" : "#262626"} />
+                            <MaetSvg height={150} width={150} fill={iconColor} />
                             <Heading mb={3} color="plainText.900">Welcome to Maet!</Heading>
                         </>
                     ) : null}
