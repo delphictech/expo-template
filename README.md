@@ -1,94 +1,69 @@
-# React Native School TypeScript Expo Template
+# Maet React Native Template
+This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.  
 
-**todo: write documentation for absolute imports, compiling and linting
-**Development: light mode and dark mode, form validation, firebase integration
-## Running locally
-Run the following commands to run the app locally
-```
-git clone
-expo prebuild -–npm
-expo run:ios -–device
-```
-Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
+> To use this templace, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
 
-To compile typescript run
-```
-yarn tsc
+```bash
+expo init --template @maet/template
 ```
 
-Linting from home directory
-```
-yarn run eslint [file or directory]
-yarn run eslint [file or directory] --fix
-```
+## Development Philosophy
+As an engineer at Maet, **we strive to create elegant features for our fellow developers and our users**. We have created the following values that help us in our purpose to build valuable developer tools and delightful user experiences.
+
+### **Developer Values**
+For our community of developers to create tools that they love to use and get excited about sharing with others.
+1. **Modularity:** When we play Legos, having many well-defined pieces is much more valuable (and fun) than a completed static project. We want to be able to put together great tools, allowing us the space for flexibility and creativity. Examples include our implementation of [form-input](https://github.com/maetio/template/blob/main/src/screens/Login.tsx) component with [built-in form validation](https://github.com/maetio/template/blob/main/src/components/user-input/form-input.tsx).
+2. **Communication of Knowledge:** As a talented developer at Maet, one of your top duties is effectively communicating your knowledge to our developer community, strengthening the experience of our whole team. Therefore, leave a paper trail of your methods to help transfer your knowledge to others, as we did in our [firebase configuration](https://github.com/maetio/template/blob/main/src/firebase/firebase-config.ts) and [redux hooks declarations](https://github.com/maetio/template/blob/main/src/hooks/useful-ducks.ts).
+3. **Responsive and Lightweight:** Write code that automatically adapts to changes, like we did by choosing responsive sizing values or by [automatically generating dark and light themes](https://github.com/maetio/template/blob/main/src/constants/theme.ts). Additionally, only include libraries and files that are strictly necessary while avoiding copying and pasting the same code.
+
+### **Design Values**
+Create an experience for the user that empathetically caters to their needs. There are many [more important design heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) to consider from experts, but we list some of our most important ones here.
+1. **Simplicity:** Offer users only options that are needed and do not overwhelm them with too many bright colors or complex functionality. Allow them the space to make easy, small decisions while generating a response to their needs. An example of this is the decision on the authentication flow to not ask the user whether they want to login in or sign-up, but automatically generating the next screen based on their email input.
+2. **Agency:** Give the user the power to navigate the experience effectively, while also allowing them to go back and correct their mistakes when necessary. An example of this can be seen by confirming when to exit certain actions.
+3. **Effort-Awareness:** Understand that the user does not want to fill out long forms or navigate many clicks to do a simple task. Give them smaller, digestable steps, being aware of their capacity for effort. An example of this is allowing the user to generate a guest account to temporarily experience the app so they do not have to initially commit to a long sign-up process.
+4. **Feedback:** Illustrate to the user that their action occurred in some way, so that they can feel the response and not be lost in confusion/questioning if their response went through. An example of this would be generating alerts for their actions. 
 
 ## Stack and Dependencies
 
-React Native, TypeScript, Expo, 
+A [React Native](https://reactnative.dev/), [TypeScript](https://www.typescriptlang.org/), and [Expo](https://expo.dev/) template configured with:
 
-Redux, Redux Toolkit, ESlint, Prettier, Storybook, Firebase, React Navigation
-
-* [React Native](https://reactnative.dev/)
-* [TypeScript](https://www.typescriptlang.org/): In order to retain organization and annoying relative imports, we have configured our tsconfig.json file and babel.config.js file to make use of absolute imports. It may be useful to reference the typescript documentation on [module resolution](https://www.typescriptlang.org/docs/handbook/module-resolution.html), or reference [this medium blog](https://medium.com/geekculture/making-life-easier-with-absolute-imports-react-in-javascript-and-typescript-bbdab8a8a3a1).
-* [Firebase V9](https://firebase.google.com/docs/web/modular-upgrade): Firebase V9 is modular and more lightweight, allowing us to import specific functions from firebase instead of initializing the whole app. There are many useful resources to see how to get started with this new version, including this [authentication tutorial](https://firebase.google.com/docs/auth/web/start).
-* [Expo](https://expo.dev/): We are using expo to get started as it help us handle some of the underlying native features with its packages and cli.
-* [React Navigation](https://reactnavigation.org/docs/getting-started/): For navigating between screens, we are using react navigation.
+* [Firebase V9](https://firebase.google.com/docs/web/modular-upgrade): Firebase V9 is modular and more lightweight than previous versions of firebase, allowing us to import specific functions from firebase instead of initializing the whole app. There are many useful resources to see how to get started with this new version, including this [authentication tutorial](https://firebase.google.com/docs/auth/web/start).
+* [React Navigation](https://reactnavigation.org/docs/getting-started/): For navigating through screens, we are using react navigation's tab and stack navigators. Additionally, react navigation has [custom theming support](https://reactnavigation.org/docs/themes) built in, which is defined in *src/constants/theme*. 
 * [NativeBase](https://nativebase.io/): Well built and responsive component library for ios, android, and web.
-* [Redux Toolkit](): We use redux toolkit to manage universal state. This [tutorial](https://www.youtube.com/watch?v=9zySeP5vH9c) is helpful for understanding. We divide our redux by concept, all in the "ducks" directory under src. We are under the slice pattern. Only use redux when necessary, handling internal state with react's useState when possible. We are using redux toolkit because it simplifies redux, allowing us to ["mutate" the state](https://redux.js.org/tutorials/quick-start#create-a-redux-state-slice) in the reducers without having to explicitly make a copy. This will shorten the amount of code we will have to write.
-* [React Native SVGs](): Will render local SVGs for logos with [react-native-svg-transformer](https://github.com/react-native-svg/react-native-svg#use-with-svg-files).
+* [Redux Toolkit](): We use redux toolkit to manage universal state. An introduction into redux toolkit can be found [here](https://www.youtube.com/watch?v=9zySeP5vH9c). We divide our redux by concept, all in the "ducks" directory under src, using the slice pattern. Only use redux when necessary, handling internal state with react's useState when possible. We are using redux toolkit because it simplifies redux, allowing us to ["mutate" the state](https://redux.js.org/tutorials/quick-start#create-a-redux-state-slice) in the reducers without having to explicitly make a copy. This will shorten the amount of code we will have to write. [This tutorial](https://blog.gmagnenat.co/user-authentication-and-persistence-firebase-9-react-redux-toolkit) is useful to reference to understand how to combine redux toolkit and firebase 9 for authentication. 
+* [React Native SVGs](): To render local SVGs for our logos with [react-native-svg-transformer](https://github.com/react-native-svg/react-native-svg#use-with-svg-files).
 * [ESlint](https://eslint.org/) and [Prettier](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
-
-* Form Validation: React-Hook-Form, hookform, and yup: https://dev.to/franciscomendes10866/react-form-validation-with-react-hook-form-and-yup-4a98
-
-## Philosophy
-* Modular code, build pieces rather than screens
-    Use example of form-input with controller and alert-toast
-* User empathy
-
-## Learning Resources
-* Combining redux toolkit and firebase 9 for authentication [here](https://blog.gmagnenat.co/user-authentication-and-persistence-firebase-9-react-redux-toolkit)
-
-## Organization and Conventions
-* naming files/directories with -, functional components and interfaces with Caps "FuncComp", functions with camelCase getUser,
-* writing as modular as possible
-
-A simple Expo template with the following features:
-
-- All TypeScript
-- Eslint & Prettier configured
-- React Navigation v6
-- Testing Configured
-- Simple project structure
-- Small component library to get started with
-
-It's easy to create a project, strip out the few components included, and still have the architecture in place to quickly start building an app.
+* **Absolute Imports:** To avoid annoying relative imports, we have configured our tsconfig.json file and babel.config.js file to make use of absolute imports. It may be useful to reference the typescript documentation on [module resolution](https://www.typescriptlang.org/docs/handbook/module-resolution.html), or reference [this medium blog](https://medium.com/geekculture/making-life-easier-with-absolute-imports-react-in-javascript-and-typescript-bbdab8a8a3a1).
+* **Dark and Light Theme:** We configured our own [theme](https://github.com/maetio/template/blob/main/src/constants/theme.ts) to extent to themes for [NativeBase](https://docs.nativebase.io/customizing-theme) and [React Navigation](https://reactnavigation.org/docs/themes).
+* **Form Validation:** We are using [react-hook-form](https://react-hook-form.com/) and [yup](https://www.npmjs.com/package/yup) to validate our user inputs, checking them in our form-input component while passing the yup schema in the screens. [This tutorial](https://dev.to/franciscomendes10866/react-form-validation-with-react-hook-form-and-yup-4a98) is useful to reference. 
 
 ## Usage
-
 > Be sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
 
 ```bash
-expo init --template @react-native-school/expo-typescript-template
+expo init --template @maet/template
 ```
 
-- Run on iOS: `yarn ios` or `npm run ios`
-- Run on Android: `yarn android` or `npm run android`
-- Run on Web: `yarn web` or `npm run web`
+- Run on Web: `yarn web` or `expo start --web`
+- Prebuild: `yarn prebuild` or `expo prebuild -–npm`
+    > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
+- Run on iOS: `yarn ios` or `expo run:ios -–device`
+- Run on Android: `yarn android` or `expo run:android --device`
 - Compile TypeScript: `yarn tsc`
-- Run Tests: `yarn test` or `npm run test`
-- Lint Code: `yarn lint` or `npm run lint`
-- Format Code: `yarn format` or `npm run format`
+- Lint Code: `yarn lint` or `yarn eslint .`
+- Format Code: `yarn format` or `yarn eslint . --fix`
 
-## Screenshots
+### **Development Practices**
+1. **Responsive:** Make sure to utilize responsive sizing for components and using responsive color values (defined in theme.ts) where necessary.
+2. **Lightweight Files:** Keep files under ~500 lines of code. If you much longer than this you should probably be creating a different component to import in.
+3. **Compilation and Formatting:** Strongly type when possible to cut down on runtime errors while also linting code often to maintain strong formatting.
+4. **Naming Conventions:**   
+    *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
+    *Components/Interfaces:* Capital first letter and CamelCase (ex. FormInput)  
+    *Variables:* camelCase (ex. isLoading)
 
-List Screen
-![List Screen](./assets/screenshots/list.png)
 
-Text Screen
-![Text Screen](./assets/screenshots/text.png)
+## Organization
 
-Form Screen
-![Form Screen](./assets/screenshots/form.png)
 
-Button Screen
-![Button Screen](./assets/screenshots/button.png)
+## License
