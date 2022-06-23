@@ -24,7 +24,6 @@ const schema = yup.object().shape({
 });
 
 export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
-
     // hooks
     const navigation = useNavigation<LoginScreenProps>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
@@ -40,7 +39,6 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         resolver: yupResolver(schema),
     });
 
-
     // react states
     const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
     const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
@@ -48,7 +46,11 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
 
     // toast component for guest
     const renderGuestToast = () => (
-        <AlertToast title='Using Maet as a Guest.' type='primary' toExit={() => toast.close('guestToast')} />
+        <AlertToast
+            title="Using Maet as a Guest."
+            type="primary"
+            toExit={() => toast.close('guestToast')}
+        />
     );
 
     const handleEmail = async (data: any) => {
@@ -78,7 +80,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             toast.show({
                 placement: 'top',
                 render: renderGuestToast,
-                id: 'guestToast'
+                id: 'guestToast',
             });
         } catch (e: any) {
             console.log(`Error with Guest sign in ${e}`);
@@ -101,7 +103,9 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
                     {!isAnonymous ? (
                         <>
                             <MaetSvg height={150} width={150} fill={iconColor} />
-                            <Heading mb={3} color="plainText.900">Welcome to Maet!</Heading>
+                            <Heading mb={3} color="plainText.900">
+                                Welcome to Maet!
+                            </Heading>
                         </>
                     ) : null}
                     <FormInput

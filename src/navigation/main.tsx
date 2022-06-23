@@ -51,7 +51,13 @@ export const MainStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 options={{
                     headerTitle: 'Login or Sign Up',
                     headerRight: () => (
-                        <Icon as={MaterialCommunityIcons} color="plainText.800" name="close" size={22} onPress={checkLogin} />
+                        <Icon
+                            as={MaterialCommunityIcons}
+                            color="plainText.800"
+                            name="close"
+                            size={22}
+                            onPress={checkLogin}
+                        />
                     ),
                     presentation: 'modal',
                 }}

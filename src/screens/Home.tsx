@@ -32,31 +32,41 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     };
 
     return (
-        <Box w="100%" h="100%" bgColor="background.100" flex={1} alignItems="center"
-        justifyContent="center" >
-            {
-                user.isAnonymous ? 
+        <Box
+            w="100%"
+            h="100%"
+            bgColor="background.100"
+            flex={1}
+            alignItems="center"
+            justifyContent="center">
+            {user.isAnonymous ? (
                 <Text color="plainText.800">User is a guest</Text>
-                : <>
+            ) : (
+                <>
                     <Text color="plainText.800">Account Email: {user.email}</Text>
                     <Text color="plainText.800">Email Verified: {String(user.emailVerified)}</Text>
                 </>
-            }
+            )}
             <Text color="plainText.800">User ID: {user.uid}</Text>
             <Box py={3}>
-                <Text color="plainText.800" bold>Really fun user data counter: {user.count}</Text>
-                <Button m={2} onPress={() => dispatch(incrementCount())}>Increment Count</Button>
-                <Button m={2} onPress={() => dispatch(decrementCount())}>Decrement Count</Button>
+                <Text color="plainText.800" bold>
+                    Really fun user data counter: {user.count}
+                </Text>
+                <Button m={2} onPress={() => dispatch(incrementCount())}>
+                    Increment Count
+                </Button>
+                <Button m={2} onPress={() => dispatch(decrementCount())}>
+                    Decrement Count
+                </Button>
             </Box>
-            {
-                user.isAnonymous ?
+            {user.isAnonymous ? (
                 <Button
                     mt="2"
                     colorScheme="indigo"
                     onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
                     Login to real account
-                </Button> : null
-            }
+                </Button>
+            ) : null}
             <Button
                 mt="2"
                 colorScheme="indigo"

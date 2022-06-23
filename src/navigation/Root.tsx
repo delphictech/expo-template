@@ -6,18 +6,18 @@ import { useAppSelector } from 'src/hooks/useful-ducks';
 import { MainStackNavigator } from './main';
 import { AuthStackNavigator } from './auth-stack';
 
-
 export interface RootParams {
     scheme?: ColorSchemeName; // the color scheme of the app
-};
+}
 
 export const RootNavigator: React.FC<RootParams> = (props) => {
     // redux handlers
     const loggedIn = useAppSelector((state) => state.user.loggedIn);
 
     return (
-        <NavigationContainer theme={props.scheme === 'dark' ? navigationDarkTheme : navigationLightTheme}>
+        <NavigationContainer
+            theme={props.scheme === 'dark' ? navigationDarkTheme : navigationLightTheme}>
             {loggedIn ? <MainStackNavigator /> : <AuthStackNavigator />}
         </NavigationContainer>
     );
-}
+};

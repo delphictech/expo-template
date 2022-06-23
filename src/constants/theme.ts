@@ -13,8 +13,8 @@ export const nativeBaseLightTheme = extendTheme({
     colors: {
         primary: theme.colors.indigo,
         background: theme.colors.muted,
-        plainText : theme.colors.blueGray
-    }
+        plainText: theme.colors.blueGray,
+    },
 });
 
 export const nativeBaseDarkTheme = extendTheme({
@@ -56,9 +56,9 @@ export const nativeBaseDarkTheme = extendTheme({
             600: nativeBaseLightTheme.colors.plainText['300'],
             700: nativeBaseLightTheme.colors.plainText['200'],
             800: nativeBaseLightTheme.colors.plainText['100'],
-            900: nativeBaseLightTheme.colors.plainText['50'],     
-        }
-    }
+            900: nativeBaseLightTheme.colors.plainText['50'],
+        },
+    },
 });
 
 /*
@@ -68,23 +68,23 @@ export const nativeBaseDarkTheme = extendTheme({
 export const navigationLightTheme = {
     dark: false,
     colors: {
-      primary: nativeBaseLightTheme.colors.primary['500'],
-      background: nativeBaseLightTheme.colors.background['100'],
-      card: nativeBaseLightTheme.colors.background['100'],
-      text: nativeBaseLightTheme.colors.plainText['800'],
-      border: nativeBaseLightTheme.colors.background['300'],
-      notification: 'rgb(255, 69, 58)',
+        primary: nativeBaseLightTheme.colors.primary['500'],
+        background: nativeBaseLightTheme.colors.background['100'],
+        card: nativeBaseLightTheme.colors.background['100'],
+        text: nativeBaseLightTheme.colors.plainText['800'],
+        border: nativeBaseLightTheme.colors.background['300'],
+        notification: 'rgb(255, 69, 58)',
     },
-}
+};
 
 export const navigationDarkTheme = {
     dark: true,
     colors: {
-      primary: nativeBaseDarkTheme.colors.primary['500'],
-      background: nativeBaseDarkTheme.colors.background['100'],
-      card: nativeBaseDarkTheme.colors.background['100'],
-      text: nativeBaseDarkTheme.colors.plainText['800'],
-      border: nativeBaseDarkTheme.colors.background['300'],
-      notification: 'rgb(255, 69, 58)',
+        primary: nativeBaseDarkTheme.colors.primary['500'],
+        background: nativeBaseDarkTheme.colors.background['100'],
+        card: nativeBaseDarkTheme.colors.background['100'],
+        text: nativeBaseDarkTheme.colors.plainText['800'],
+        border: nativeBaseDarkTheme.colors.background['300'],
+        notification: 'rgb(255, 69, 58)',
     },
-}
+};

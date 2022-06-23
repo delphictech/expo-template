@@ -33,7 +33,7 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
                 cause = 'password';
                 break;
             case 'auth/too-many-requests':
-                message = 'Account has exceeded its request limit.'
+                message = 'Account has exceeded its request limit.';
                 cause = 'account';
             default:
                 message = 'Backend Error';

@@ -37,25 +37,23 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
         ...inputParams
     } = props;
     // password props
-    const passwordProps = props.password ? {
-        type: showPassword ? 'text' : 'password',
-        InputRightElement: 
-            <Icon
-                as={
-                    <MaterialIcons
-                        name={
-                            showPassword ? 'visibility' : 'visibility-off'
-                        }/>
-                }
-                size={5}
-                mr="2"
-                color="muted.400"
-                onPress={() => setShowPassword(!showPassword)}
-            />
-    } : {};
+    const passwordProps = props.password
+        ? {
+              type: showPassword ? 'text' : 'password',
+              InputRightElement: (
+                  <Icon
+                      as={<MaterialIcons name={showPassword ? 'visibility' : 'visibility-off'} />}
+                      size={5}
+                      mr="2"
+                      color="muted.400"
+                      onPress={() => setShowPassword(!showPassword)}
+                  />
+              ),
+          }
+        : {};
 
     return (
-        <FormControl  key="testing" isInvalid={props.isInvalid} {...inputParams}>
+        <FormControl key="testing" isInvalid={props.isInvalid} {...inputParams}>
             <FormControl.Label color="plainText.500">{props.label}</FormControl.Label>
             <Controller
                 key="email"
@@ -66,8 +64,8 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                     <>
                         {props.password ? (
                             <Input
-                                variant='filled'
-                                color='plainText.800'
+                                variant="filled"
+                                color="plainText.800"
                                 value={value}
                                 bgColor="background.200"
                                 selectionColor="plainText.500"
@@ -77,18 +75,19 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                                 w="100%"
                                 h="auto"
                                 fontSize="lg"
-                                size='lg'
+                                size="lg"
                                 clearButtonMode="while-editing"
                                 autoCapitalize="none"
                                 placeholder={props.placeholder}
                                 type={showPassword ? 'text' : 'password'}
-                                InputRightElement={ 
+                                InputRightElement={
                                     <Icon
                                         as={
                                             <MaterialIcons
                                                 name={
                                                     showPassword ? 'visibility' : 'visibility-off'
-                                                }/>
+                                                }
+                                            />
                                         }
                                         size={5}
                                         mr="2"
@@ -100,7 +99,7 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                         ) : (
                             <Input
                                 value={value}
-                                color='plainText.800'
+                                color="plainText.800"
                                 bgColor="background.200"
                                 selectionColor="plainText.500"
                                 borderColor="background.400"
@@ -108,7 +107,7 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                                 onChangeText={onChange}
                                 w="100%"
                                 fontSize="lg"
-                                size='lg'
+                                size="lg"
                                 clearButtonMode="while-editing"
                                 autoCapitalize="none"
                                 placeholder={props.placeholder}

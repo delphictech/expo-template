@@ -25,7 +25,7 @@ export const AuthStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
     });
 
     return (
-        <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName='Email'>
+        <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName="Email">
             <StackNav.Screen
                 name="Email"
                 component={LoginScreen}

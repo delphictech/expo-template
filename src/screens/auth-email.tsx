@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Box, VStack, Button, Text, useToast, FormControl, Heading, HStack, Icon } from 'native-base';
+import {
+    Box,
+    VStack,
+    Button,
+    Text,
+    useToast,
+    FormControl,
+    Heading,
+    HStack,
+    Icon,
+} from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
@@ -63,10 +73,20 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
 
     // rendering functions
     const renderPasswordToast = () => (
-        <AlertToast title='Email Sent!' type='success' message={`Password reset instructions sent to ${email}.`} toExit={() => toast.close('resetToast')} />
+        <AlertToast
+            title="Email Sent!"
+            type="success"
+            message={`Password reset instructions sent to ${email}.`}
+            toExit={() => toast.close('resetToast')}
+        />
     );
     const renderVerificationToast = () => (
-        <AlertToast title='Email Sent!' type='success' message={`Verification email sent to ${email}.`} toExit={() => toast.close('verificationToast')} />
+        <AlertToast
+            title="Email Sent!"
+            type="success"
+            message={`Verification email sent to ${email}.`}
+            toExit={() => toast.close('verificationToast')}
+        />
     );
 
     // handle login
@@ -74,7 +94,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
         setIsLoading(true);
         try {
             const { user } = await signInWithEmail(email, data.password);
-            const newUser: User = { 
+            const newUser: User = {
                 uid: user.uid,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
@@ -98,7 +118,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
         setIsLoading(true);
         try {
             const { user } = await signUpWithEmail(email, data.password);
-            const newUser: User = { 
+            const newUser: User = {
                 uid: user.uid,
                 email: user.email,
                 phoneNumber: user.phoneNumber,
@@ -113,7 +133,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
             toast.show({
                 placement: 'bottom',
                 render: renderVerificationToast,
-                id: 'verificationToast'
+                id: 'verificationToast',
             });
             reset();
         } catch (e: any) {
@@ -130,7 +150,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
             toast.show({
                 placement: 'bottom',
                 render: renderPasswordToast,
-                id: 'resetToast'
+                id: 'resetToast',
             });
             reset();
         } catch (e: any) {
@@ -142,18 +162,32 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
 
     return (
         <KeyboardBehaviorWrapper bounces={false} centerVertically>
-            <Box px="10"
-                w="100%"
-                h="100%"
-                bgColor="background.100"
-                safeArea>
-                <VStack space={3} w="100%" >
+            <Box px="10" w="100%" h="100%" bgColor="background.100" safeArea>
+                <VStack space={3} w="100%">
                     <FormControl>
-                        <HStack alignItems='center' justifyContent='space-between' w='100%' flex={1} py={5} >
-                            <Box pr={3} >
-                                <Icon as={MaterialIcons} name='lock-outline' size={50} color="plainText.800" />
+                        <HStack
+                            alignItems="center"
+                            justifyContent="space-between"
+                            w="100%"
+                            flex={1}
+                            py={5}>
+                            <Box pr={3}>
+                                <Icon
+                                    as={MaterialIcons}
+                                    name="lock-outline"
+                                    size={50}
+                                    color="plainText.800"
+                                />
                             </Box>
-                            <Heading flex={1} textAlign='left' color="plainText.800" alignSelf='center'>{ !signInMethods.length ? 'Please create your account password.' : 'Enter your password to login.'}</Heading>
+                            <Heading
+                                flex={1}
+                                textAlign="left"
+                                color="plainText.800"
+                                alignSelf="center">
+                                {!signInMethods.length
+                                    ? 'Please create your account password.'
+                                    : 'Enter your password to login.'}
+                            </Heading>
                         </HStack>
                         {!signInMethods.length ? (
                             <>

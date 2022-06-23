@@ -48,5 +48,6 @@ export const userSlice = createSlice({
     },
 });
 
-export const { emailSignIn, guestSignIn, signOut, updateEmail, incrementCount, decrementCount } = userSlice.actions;
+export const { emailSignIn, guestSignIn, signOut, updateEmail, incrementCount, decrementCount } =
+    userSlice.actions;
 export default userSlice.reducer;
