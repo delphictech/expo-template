@@ -1,13 +1,14 @@
 {
   "scripts": {
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "start": "expo start",
+    "android": "expo run:android --device",
+    "ios": "expo run:ios -–device",
     "web": "expo start --web",
     "eject": "expo eject",
     "compile": "tsc",
-    "lint": "eslint",
-    "format": "prettier --write '**/*.js'",
+    "prebuild": "expo prebuild --npm",
+    "lint": "yarn eslint .",
+    "format": "yarn eslint . --fix",
     "test": "jest"
   },
   "dependencies": {
