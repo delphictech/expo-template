@@ -1,4 +1,4 @@
-# <img src="./assets/MaetSvg.svg" width="40" height="40" align="center" margin-bottom="15px"> Maet Expo Template
+# <img src="./assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
 This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.  
 
 > To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
