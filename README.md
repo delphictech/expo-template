@@ -1,10 +1,10 @@
-# <img src="./assets/MaetSvg.svg" width="40" height="40" align="center"> Maet React Native Template
+# <img src="./assets/MaetSvg.svg" width="40" height="40" align="center" margin-bottom="15px"> Maet Expo Template
 This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.  
 
 > To use this templace, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
 
 ```bash
-expo init --template @maet/template
+expo init --template @maetio/template
 ```
 
 ## ⚖️ Development Philosophy
@@ -59,11 +59,14 @@ expo init --template @maet/template
 3. **Compilation and Formatting:** Strongly type when possible to cut down on runtime errors while also linting code often to maintain strong formatting.
 4. **Naming Conventions:**   
     *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
-    *Components/Interfaces:* Capital first letter and CamelCase (ex. FormInput)  
-    *Variables:* camelCase (ex. isLoading)
+    *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
+    *Variables:* camelCase (ex. const isLoading)
 
 
 ## 📂 Organization
 
 
 ## 📋 License
+[MIT License](https://opensource.org/licenses/mit-license.html)
+
+Copyright 2022 © Maet LLC
