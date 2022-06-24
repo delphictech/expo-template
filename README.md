@@ -4,7 +4,7 @@ This repository contains a template configured with various tools and practices 
 > To use this templace, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
 
 ```bash
-expo init --template @maetio/template
+expo init --template @maetio/expo-template
 ```
 
 ## ⚖️ Development Philosophy
@@ -41,7 +41,7 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 > Be sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
 
 ```bash
-expo init --template @maet/template
+expo init --template @maetio/expo-template
 ```
 
 - Run on Web: `yarn web` or `expo start --web`

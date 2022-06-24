@@ -13,8 +13,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { signupSchema, loginSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'src/firebase/api';
@@ -27,26 +27,6 @@ import { useAppDispatch } from 'src/hooks/useful-ducks';
 import { emailSignIn } from 'src/ducks/user-slice';
 
 type AuthEmailProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
-
-// define schemas for form input
-const signupSchema = yup.object().shape({
-    password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
-    confirmPassword: yup.string().test({
-        name: 'confirmPassword',
-        message: 'Passwords must match',
-        test() {
-            const { password, confirmPassword } = this.parent;
-            if (password && confirmPassword !== password) {
-                return false;
-            }
-            return true;
-        },
-    }),
-});
-// login schema
-const loginSchema = yup.object().shape({
-    password: yup.string().required('Password is required'),
-});
 
 export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
     // route params
