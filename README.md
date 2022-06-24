@@ -1,29 +1,29 @@
-# Maet React Native Template
+# <img src="./assets/MaetSvg.svg" width="40" height="40" align="center" margin-bottom="15px"> Maet Expo Template
 This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.  
 
 > To use this templace, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
 
 ```bash
-expo init --template @maet/template
+expo init --template @maetio/expo-template
 ```
 
-## Development Philosophy
+## ⚖️ Development Philosophy
 As an engineer at Maet, **we strive to create elegant features for our fellow developers and our users**. We have created the following values that help us in our purpose to build valuable developer tools and delightful user experiences.
 
-### **Developer Values**
+### ✌️ **Developer Values**
 For our community of developers to create tools that they love to use and get excited about sharing with others.
 1. **Modularity:** When we play Legos, having many well-defined pieces is much more valuable (and fun) than a completed static project. We want to be able to put together great tools, allowing us the space for flexibility and creativity. Examples include our implementation of [form-input](https://github.com/maetio/template/blob/main/src/screens/Login.tsx) component with [built-in form validation](https://github.com/maetio/template/blob/main/src/components/user-input/form-input.tsx).
 2. **Communication of Knowledge:** As a talented developer at Maet, one of your top duties is effectively communicating your knowledge to our developer community, strengthening the experience of our whole team. Therefore, leave a paper trail of your methods to help transfer your knowledge to others, as we did in our [firebase configuration](https://github.com/maetio/template/blob/main/src/firebase/firebase-config.ts) and [redux hooks declarations](https://github.com/maetio/template/blob/main/src/hooks/useful-ducks.ts).
 3. **Responsive and Lightweight:** Write code that automatically adapts to changes, like we did by choosing responsive sizing values or by [automatically generating dark and light themes](https://github.com/maetio/template/blob/main/src/constants/theme.ts). Additionally, only include libraries and files that are strictly necessary while avoiding copying and pasting the same code.
 
-### **Design Values**
+### 💡 **Design Values**
 Create an experience for the user that empathetically caters to their needs. There are many [design heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) to consider, but we list some of our most important ones here.
 1. **Simplicity:** Offer users only options that are needed and do not overwhelm them with too many bright colors or complex functionality. Allow them the space to make easy, small decisions while generating a response to their needs. An example of this is the decision on the authentication flow to not ask the user whether they want to login in or sign-up, but automatically generating the next screen based on their email input.
 2. **Agency:** Give the user the power to navigate the experience effectively, while also allowing them to go back and correct their mistakes when necessary. An example of this can be seen by confirming when to exit certain actions.
 3. **Effort-Awareness:** Understand that the user does not want to fill out long forms or navigate many clicks to do a simple task. Give them smaller, digestable steps, being aware of their capacity for effort. An example of this is allowing the user to generate a guest account to temporarily experience the app so they do not have to initially commit to a long sign-up process.
 4. **Feedback:** Illustrate to the user that their action occurred in some way, so that they can feel the response and not be lost in confusion/questioning if their response went through. An example of this would be generating alerts for their actions. 
 
-## Stack and Dependencies
+## ⚡ Stack and Dependencies
 
 A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typescriptlang.org/), and [**Expo**](https://expo.dev/) template configured with:
 
@@ -37,11 +37,11 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 * **Dark and Light Theme:** We configured our own [theme](https://github.com/maetio/template/blob/main/src/constants/theme.ts) to extent to themes for [NativeBase](https://docs.nativebase.io/customizing-theme) and [React Navigation](https://reactnavigation.org/docs/themes).
 * **Form Validation:** We are using [react-hook-form](https://react-hook-form.com/) and [yup](https://www.npmjs.com/package/yup) to validate our user inputs, checking them in our form-input component while passing the yup schema in the screens. [This tutorial](https://dev.to/franciscomendes10866/react-form-validation-with-react-hook-form-and-yup-4a98) is useful to reference. 
 
-## Usage
+## 🔧 Usage
 > Be sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
 
 ```bash
-expo init --template @maet/template
+expo init --template @maetio/expo-template
 ```
 
 - Run on Web: `yarn web` or `expo start --web`
@@ -53,17 +53,28 @@ expo init --template @maet/template
 - Lint Code: `yarn lint` or `yarn eslint .`
 - Format Code: `yarn format` or `yarn eslint . --fix`
 
-### **Development Practices**
+### 💻  **Development Practices**
 1. **Responsive:** Make sure to utilize responsive sizing for components and using responsive color values (defined in theme.ts) where necessary.
 2. **Lightweight Files:** Keep files under ~500 lines of code. If you much longer than this you should probably be creating a different component to import in.
 3. **Compilation and Formatting:** Strongly type when possible to cut down on runtime errors while also linting code often to maintain strong formatting.
 4. **Naming Conventions:**   
     *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
-    *Components/Interfaces:* Capital first letter and CamelCase (ex. FormInput)  
-    *Variables:* camelCase (ex. isLoading)
+    *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
+    *Variables:* camelCase (ex. const isLoading)
 
 
-## Organization
+## 📂 Organization 
+`src/components`: useful re-usable component library.  
+`src/constants`: app constants, such as theme, that remain consistent throughout the app.  
+`src/ducks`: redux features, organized using the slice pattern. 
+`src/firebase`: all backend firebase configuration, promise handlers, and api.  
+`src/hooks`: useful hooks that can be re-used throughout the app.  
+`src/navigation`: react-navigation navigators, including stack and tab navigators.  
+`src/screens`: the main screens of the app.  
+`src/types`: definitions of important interfaces and types.  
+`src/utils`: utility files, including yup form schemas.
 
+## 📋 License
+[MIT License](https://opensource.org/licenses/mit-license.html)
 
-## License
+Copyright 2022 © Maet LLC

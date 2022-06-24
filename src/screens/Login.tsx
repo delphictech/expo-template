@@ -3,8 +3,8 @@ import { Box, VStack, Button, Image, Heading, Text, useToast, Icon } from 'nativ
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { emailSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
@@ -17,11 +17,6 @@ import { AlertToast } from 'src/components/feedback/alert-toast';
 
 // define navigation props
 type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
-
-// define schema for form input
-const schema = yup.object().shape({
-    email: yup.string().email('Invalid email').required('Email is required'),
-});
 
 export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     // hooks
@@ -36,7 +31,7 @@ export const LoginScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
         formState: { errors },
         reset,
     } = useForm({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(emailSchema),
     });
 
     // react states
