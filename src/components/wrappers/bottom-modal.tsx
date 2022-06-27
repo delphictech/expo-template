@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { Text, Modal } from 'native-base';
 
 export interface BottomModalProps {
@@ -16,34 +15,39 @@ export interface BottomModalProps {
     // navigation for where to close?
 }
 
-export const BottomModal: React.FC<BottomModalProps> = (props) => {
-    // states
-    const [internalIsOpen, setIsOpen] = useState(true);
-
+export const BottomModal: React.FC<BottomModalProps> = ({
+    title,
+    isOpen,
+    onClose,
+    inputActive,
+    children,
+}) => {
     // function to check if modal should close
     const checkClose = () => {
-        props.inputActive
-            ? Alert.alert(
-                  'Are you sure you want to exit?',
-                  'Your progress will not be saved.',
-                  [
-                      { text: 'Exit', onPress: () => props.onClose(), style: 'destructive' },
-                      {
-                          text: 'Return',
-                          onPress: () => console.log('Ask me later pressed'),
-                          style: 'cancel',
-                      },
-                  ],
-                  { cancelable: false },
-              )
-            : props.onClose();
+        if (inputActive) {
+            Alert.alert(
+                'Are you sure you want to exit?',
+                'Your progress will not be saved.',
+                [
+                    { text: 'Exit', onPress: () => onClose(), style: 'destructive' },
+                    {
+                        text: 'Return',
+                        onPress: () => null,
+                        style: 'cancel',
+                    },
+                ],
+                { cancelable: false },
+            );
+        } else {
+            onClose();
+        }
     };
 
     return (
         <Modal
             closeOnOverlayClick={false}
-            isOpen={props.isOpen}
-            onClose={props.onClose}
+            isOpen={isOpen}
+            onClose={onClose}
             avoidKeyboard
             size="full"
             animationPreset="slide">
@@ -52,11 +56,15 @@ export const BottomModal: React.FC<BottomModalProps> = (props) => {
                 {/* <Modal.CloseButton /> */}
                 <Modal.Header alignItems="center">
                     <Text fontSize="lg" fontWeight="semibold">
-                        {props.title}
+                        {title}
                     </Text>
                 </Modal.Header>
-                <Modal.Content>{props.children}</Modal.Content>
+                <Modal.Content>{children}</Modal.Content>
             </Modal.Content>
         </Modal>
     );
+};
+
+BottomModal.defaultProps = {
+    inputActive: false,
 };

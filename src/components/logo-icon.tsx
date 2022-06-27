@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Svg, { Path, G } from 'react-native-svg';
-import { Center, Icon } from 'native-base';
+import Svg, { Path } from 'react-native-svg';
+import { Icon } from 'native-base';
 import { InterfaceIconProps } from 'native-base/lib/typescript/components/primitives/Icon/types';
 import { useTheme } from '@react-navigation/native';
 
