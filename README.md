@@ -75,7 +75,7 @@ FIREBASE_MEASUREMENT_ID=[...]
 
 ## 📂 Organization 
 `src/components`: useful re-usable component library.  
-`src/constants`: app constants, such as theme, that remain consistent throughout the app.  
+`src/constants`: app constants, such as theme, that remain consistent throughout the app.   
 `src/ducks`: redux features, organized using the slice pattern.   
 `src/firebase`: all backend firebase configuration, promise handlers, and api.  
 `src/hooks`: useful hooks that can be re-used throughout the app.  
