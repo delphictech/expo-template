@@ -6,19 +6,16 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
 import { signOutUser } from 'src/firebase/api';
 import { incrementCount, decrementCount, signOut } from 'src/ducks/user-slice';
 import { HomeStackParams } from 'src/navigation/home-stack';
-import { MainStackParams } from 'src/navigation/main';
 import { ScreenParams } from 'src/types/screen';
 
 /*
     Define Screen Typee
 */
 type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
-type AuthScreenProps = StackNavigationProp<MainStackParams, 'Main'>;
 
 export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
     // navigation
     const navigation = useNavigation<HomeScreenProps>();
-    const parentNavigator = useNavigation<AuthScreenProps>();
 
     // redux handlers
     const user = useAppSelector((state) => state.user);
@@ -30,7 +27,7 @@ export const HomeScreen: React.FC<ScreenParams> = (props: ScreenParams) => {
             const res = await signOutUser();
             dispatch(signOut());
         } else {
-            navigation.getParent<AuthScreenProps>('MainStackNavigator')?.navigate('Auth');
+            navigation.getParent('MainStackNavigator')?.navigate('Auth');
         }
     };
 
