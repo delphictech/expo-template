@@ -4,7 +4,7 @@ This repository contains a template configured with various tools and practices 
 > To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
 
 ```bash
-expo init --template @maetio/expo-template
+expo init --template maet-expo-template
 ```
 
 ## ⚖️ Development Philosophy
@@ -41,7 +41,7 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 > Be sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
 
 ```bash
-expo init --template @maetio/expo-template
+expo init [name] --template maet-expo-template
 ```
 Create a Firebase project ([How?](https://firebase.google.com/docs/web/setup)), add a web app, and copy your Firebase config to a **.env** file in the top level of your project:
 ```

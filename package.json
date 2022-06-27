@@ -97,7 +97,7 @@
     "prettier"
   ],
   "author": "Maet Development <team@maet.io> (https://maet.io/)",
-  "name": "@maetio/expo-template",
+  "name": "maet-expo-template",
   "version": "1.0.0",
   "homepage": "https://github.com/maetio/expo-template",
   "description": "A template that introduces Maet's developer and design philosophy, configured with our current understanding of best practices.",

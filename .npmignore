@@ -12,6 +12,10 @@ web-build/
 .env
 .env*
 
+# ignore ios and android folders
+ios/
+android/
+
 # macOS
 .DS_Store
 
