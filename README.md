@@ -43,12 +43,22 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 ```bash
 expo init --template @maetio/expo-template
 ```
-
+Create a Firebase project ([How?](https://firebase.google.com/docs/web/setup)), add a web app, and copy your Firebase config to a **.env** file in the top level of your project:
+```
+FIREBASE_API_KEY=[...]
+FIREBASE_AUTH_DOMAIN=[...]
+FIREBASE_PROJECT_ID=[...]
+FIREBASE_STORAGE_BUCKET=[...]
+FIREBASE_MESSENAGING_SENDER_ID=[...]
+FIREBASE_APP_ID=[...]
+FIREBASE_MEASUREMENT_ID=[...]
+```
 - Run on Web: `yarn web` or `expo start --web`
 - Prebuild: `yarn prebuild` or `expo prebuild -–npm`
     > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
 - Run on iOS: `yarn ios` or `expo run:ios -–device`
 - Run on Android: `yarn android` or `expo run:android --device`
+- Install dependencies: `yarn`
 - Compile TypeScript: `yarn tsc`
 - Lint Code: `yarn lint` or `yarn eslint .`
 - Format Code: `yarn format` or `yarn eslint . --fix`
