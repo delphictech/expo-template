@@ -12,7 +12,7 @@ As an engineer at Maet, **we strive to create elegant features for our fellow de
 
 ### ✌️ **Developer Values**
 For our community of developers to create tools that they love to use and get excited about sharing with others.
-1. **Modularity:** When we play Legos, having many well-defined pieces is much more valuable (and fun) than a completed static project. We want to be able to put together great tools, allowing us the space for flexibility and creativity. Examples include our implementation of [form-input](https://github.com/maetio/template/blob/main/src/screens/Login.tsx) component with [built-in form validation](https://github.com/maetio/template/blob/main/src/components/user-input/form-input.tsx).
+1. **Modularity:** When we play Legos, having many well-defined pieces is much more valuable (and fun) than a completed static project. We want to be able to put together great tools, allowing us the space for flexibility and creativity. Examples include our implementation of [form-input](https://github.com/maetio/template/blob/main/src/screens/Login.tsx#L106) component with [built-in form validation](https://github.com/maetio/template/blob/main/src/components/user-input/form-input.tsx).
 2. **Communication of Knowledge:** As a talented developer at Maet, one of your top duties is effectively communicating your knowledge to our developer community, strengthening the experience of our whole team. Therefore, leave a paper trail of your methods to help transfer your knowledge to others, as we did in our [firebase configuration](https://github.com/maetio/template/blob/main/src/firebase/firebase-config.ts) and [redux hooks declarations](https://github.com/maetio/template/blob/main/src/hooks/useful-ducks.ts).
 3. **Responsive and Lightweight:** Write code that automatically adapts to changes, like we did by choosing responsive sizing values or by [automatically generating dark and light themes](https://github.com/maetio/template/blob/main/src/constants/theme.ts). Additionally, only include libraries and files that are strictly necessary while avoiding copying and pasting the same code.
 
@@ -43,12 +43,22 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 ```bash
 expo init --template @maetio/expo-template
 ```
-
+Create a Firebase project ([How?](https://firebase.google.com/docs/web/setup)), add a web app, and copy your Firebase config to a **.env** file in the top level of your project:
+```
+FIREBASE_API_KEY=[...]
+FIREBASE_AUTH_DOMAIN=[...]
+FIREBASE_PROJECT_ID=[...]
+FIREBASE_STORAGE_BUCKET=[...]
+FIREBASE_MESSENAGING_SENDER_ID=[...]
+FIREBASE_APP_ID=[...]
+FIREBASE_MEASUREMENT_ID=[...]
+```
 - Run on Web: `yarn web` or `expo start --web`
 - Prebuild: `yarn prebuild` or `expo prebuild -–npm`
     > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
 - Run on iOS: `yarn ios` or `expo run:ios -–device`
 - Run on Android: `yarn android` or `expo run:android --device`
+- Install dependencies: `yarn`
 - Compile TypeScript: `yarn tsc`
 - Lint Code: `yarn lint` or `yarn eslint .`
 - Format Code: `yarn format` or `yarn eslint . --fix`
@@ -65,8 +75,8 @@ expo init --template @maetio/expo-template
 
 ## 📂 Organization 
 `src/components`: useful re-usable component library.  
-`src/constants`: app constants, such as theme, that remain consistent throughout the app.  
-`src/ducks`: redux features, organized using the slice pattern.  
+`src/constants`: app constants, such as theme, that remain consistent throughout the app.   
+`src/ducks`: redux features, organized using the slice pattern.   
 `src/firebase`: all backend firebase configuration, promise handlers, and api.  
 `src/hooks`: useful hooks that can be re-used throughout the app.  
 `src/navigation`: react-navigation navigators, including stack and tab navigators.  
