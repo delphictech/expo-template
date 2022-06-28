@@ -1,7 +1,7 @@
-export interface FirebaseError {
-    message: string | null;
+export interface FirebaseError extends Error {
+    message: string;
     code: string | null;
-    cause: 'email' | 'password' | 'account' | string;
+    errorCause: 'email' | 'password' | 'account' | string;
 }
 
 export const fbHandler = async (fbQuery: Promise<any>) => {
@@ -35,6 +35,7 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
             case 'auth/too-many-requests':
                 message = 'Account has exceeded its request limit.';
                 cause = 'account';
+                break;
             default:
                 message = 'Backend Error';
                 cause = 'account';
@@ -44,9 +45,10 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
 
         // assign values to interface
         const fbError: FirebaseError = {
+            name: 'Firebase Error',
             message,
             code: error.code,
-            cause,
+            errorCause: cause,
         };
         throw fbError;
     }

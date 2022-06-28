@@ -2,31 +2,23 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { HomeScreen, PickupScreen, LoginScreen } from 'src/screens';
+import { HomeScreen } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScreenParams } from 'src/types/screen';
+import { AuthStackNavigator } from './auth-stack';
 
 export type HomeStackParams = {
     Home: undefined;
-    PickupSession: undefined;
+    Auth: undefined;
 };
 
 const StackNav = createNativeStackNavigator<HomeStackParams>();
 
-export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
-    const navigation = useNavigation();
+const CloseIcon = (onClose: () => void) => (
+    <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
+);
 
-    const checkPickup = () => {
-        Alert.alert(
-            'Are you sure you want to end this session?',
-            'All members will be forced to leave and any games will be discontinued.',
-            [
-                { text: 'Keep Playing', style: 'cancel' },
-                { text: 'End the Session', onPress: navigation.goBack, style: 'destructive' },
-            ],
-            { cancelable: false },
-        );
-    };
+export const HomeStackNavigator: React.FC<any> = () => {
+    const navigation = useNavigation();
 
     const checkLogin = () => {
         Alert.alert(
@@ -36,7 +28,7 @@ export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 { text: 'Exit', onPress: navigation.goBack, style: 'destructive' },
                 {
                     text: 'Return',
-                    onPress: () => console.log('Ask me later pressed'),
+                    onPress: () => null,
                     style: 'cancel',
                 },
             ],
@@ -48,15 +40,12 @@ export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
         <StackNav.Navigator>
             <StackNav.Screen name="Home" component={HomeScreen} options={{ headerTitle: 'Home' }} />
             <StackNav.Screen
-                name="PickupSession"
-                component={PickupScreen}
+                name="Auth"
+                component={AuthStackNavigator}
                 options={{
-                    headerTitle: 'Play Pickup!',
-                    headerRight: () => (
-                        <MaterialCommunityIcons name="close" size={22} onPress={checkPickup} />
-                    ),
-                    presentation: 'fullScreenModal',
-                    gestureEnabled: false,
+                    headerTitle: 'Login or Sign Up',
+                    headerRight: () => CloseIcon(checkLogin),
+                    presentation: 'modal',
                 }}
             />
         </StackNav.Navigator>

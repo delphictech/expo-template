@@ -8,7 +8,7 @@ import {
     sendPasswordResetEmail,
     sendEmailVerification,
 } from 'firebase/auth';
-import { app, auth, db } from './firebase-config';
+import { auth } from './firebase-config';
 import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
@@ -40,15 +40,16 @@ export async function signUpWithEmail(email: string, password: string) {
 }
 
 // Email Verifcation:
-export async function verifyEmail(email: string) {
+export async function verifyEmail() {
     // https://firebase.google.com/docs/reference/js/auth.md#sendemailverification
     if (auth.currentUser) {
         return fbHandler(sendEmailVerification(auth.currentUser));
     }
     const error: FirebaseError = {
+        name: 'Firebase Error',
         message: 'User does not exist',
         code: 'auth/user-not-found',
-        cause: 'account',
+        errorCause: 'account',
     };
     return error;
 }
@@ -61,9 +62,10 @@ export async function deleteCurrentUser() {
         return fbHandler(deleteUser(auth.currentUser));
     }
     const error: FirebaseError = {
+        name: 'Firebase Error',
         message: 'User does not exist',
         code: 'auth/user-not-found',
-        cause: 'account',
+        errorCause: 'account',
     };
     return error;
 }

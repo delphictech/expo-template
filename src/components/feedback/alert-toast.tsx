@@ -15,13 +15,17 @@ export interface AlertToastParams extends IAlertProps {
     toExit?: () => void | undefined; // function to close the toast
     message?: string | undefined;
     type?: 'danger' | 'warning' | 'success' | 'primary' | undefined;
-    icon?: JSX.Element | undefined;
+    icon?: React.ReactNode | undefined;
 }
 
-export const AlertToast: React.FC<AlertToastParams> = (props) => {
-    // destructure props to access alert props
-    const { title, toExit, message, icon, type, ...alertParams } = props;
-
+export const AlertToast: React.FC<AlertToastParams> = ({
+    title,
+    toExit,
+    message,
+    icon,
+    type,
+    ...alertParams
+}) => {
     // icons
     const icons = {
         danger: 'error-outline',
@@ -40,7 +44,7 @@ export const AlertToast: React.FC<AlertToastParams> = (props) => {
                         ) : null}
                         {icon}
                         <Text fontSize="md" fontWeight="medium" color="white">
-                            {props.title}
+                            {title}
                         </Text>
                     </HStack>
                     {toExit ? (
@@ -48,16 +52,23 @@ export const AlertToast: React.FC<AlertToastParams> = (props) => {
                             alignSelf="flex-end"
                             variant="unstyled"
                             icon={<CloseIcon size="3" color="white" />}
-                            onPress={props.toExit}
+                            onPress={toExit}
                         />
                     ) : null}
                 </HStack>
                 {message ? (
                     <Text pl="6" color="white">
-                        {props.message}
+                        {message}
                     </Text>
                 ) : null}
             </VStack>
         </Alert>
     );
+};
+
+AlertToast.defaultProps = {
+    toExit: undefined,
+    message: undefined,
+    type: 'success',
+    icon: undefined,
 };

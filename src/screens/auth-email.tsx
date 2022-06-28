@@ -109,7 +109,7 @@ export const AuthEmail: React.FC<ScreenParams> = ({ route }) => {
             };
 
             dispatch(emailSignIn(newUser));
-            await verifyEmail(email);
+            await verifyEmail();
             toast.show({
                 placement: 'bottom',
                 render: renderVerificationToast,

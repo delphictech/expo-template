@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 /*
     File defines varies yup schemas to be used for form validation
-*/ 
+*/
 
 // define email scheme
 export const emailSchema = yup.object().shape({

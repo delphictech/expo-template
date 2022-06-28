@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { NativeSyntheticEvent, TextInputEndEditingEventData } from 'react-native';
-import { FormControl, Input, Icon, WarningOutlineIcon, IInputProps } from 'native-base';
+import React, { useState } from 'react';
+import { FormControl, Input, Icon, WarningOutlineIcon, IInputProps, View } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 
@@ -17,7 +16,17 @@ export interface FormInputParams extends IInputProps {
     defaultValue?: string | undefined; // default value to put into form controller
 }
 
-export const FormInput: React.FC<FormInputParams> = (props) => {
+export const FormInput: React.FC<FormInputParams> = ({
+    control,
+    name,
+    isInvalid,
+    label,
+    password,
+    errorMessage,
+    defaultValue,
+    placeholder,
+    ...inputParams
+}) => {
     /*
         Component that will validate the user input and renders a form input
     */
@@ -25,44 +34,33 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
     // states
     const [showPassword, setShowPassword] = useState(false);
 
-    // destructure props so that inputParams can be inputted cleanly into nativebase input component
-    const {
-        control,
-        name,
-        isInvalid,
-        label,
-        password,
-        errorMessage,
-        defaultValue,
-        ...inputParams
-    } = props;
     // password props
-    const passwordProps = props.password
-        ? {
-              type: showPassword ? 'text' : 'password',
-              InputRightElement: (
-                  <Icon
-                      as={<MaterialIcons name={showPassword ? 'visibility' : 'visibility-off'} />}
-                      size={5}
-                      mr="2"
-                      color="muted.400"
-                      onPress={() => setShowPassword(!showPassword)}
-                  />
-              ),
-          }
-        : {};
+    // const passwordProps = password
+    //     ? {
+    //           type: showPassword ? 'text' : 'password',
+    //           InputRightElement: (
+    //               <Icon
+    //                   as={<MaterialIcons name={showPassword ? 'visibility' : 'visibility-off'} />}
+    //                   size={5}
+    //                   mr="2"
+    //                   color="muted.400"
+    //                   onPress={() => setShowPassword(!showPassword)}
+    //               />
+    //           ),
+    //       }
+    //     : {};
 
     return (
-        <FormControl key="testing" isInvalid={props.isInvalid} {...inputParams}>
-            <FormControl.Label color="plainText.500">{props.label}</FormControl.Label>
+        <FormControl key="testing" isInvalid={isInvalid} {...inputParams}>
+            <FormControl.Label color="plainText.500">{label}</FormControl.Label>
             <Controller
                 key="email"
-                name={props.name}
-                control={props.control}
-                defaultValue={props.defaultValue}
+                name={name}
+                control={control}
+                defaultValue={defaultValue}
                 render={({ field: { onBlur, onChange, value } }) => (
-                    <>
-                        {props.password ? (
+                    <View>
+                        {password ? (
                             <Input
                                 variant="filled"
                                 color="plainText.800"
@@ -78,7 +76,7 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                                 size="lg"
                                 clearButtonMode="while-editing"
                                 autoCapitalize="none"
-                                placeholder={props.placeholder}
+                                placeholder={placeholder}
                                 type={showPassword ? 'text' : 'password'}
                                 InputRightElement={
                                     <Icon
@@ -110,17 +108,25 @@ export const FormInput: React.FC<FormInputParams> = (props) => {
                                 size="lg"
                                 clearButtonMode="while-editing"
                                 autoCapitalize="none"
-                                placeholder={props.placeholder}
+                                placeholder={placeholder}
                             />
                         )}
-                    </>
+                    </View>
                 )}
             />
-            {props.isInvalid ? (
+            {isInvalid ? (
                 <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon />}>
-                    {props.errorMessage}
+                    {errorMessage}
                 </FormControl.ErrorMessage>
             ) : null}
         </FormControl>
     );
+};
+
+FormInput.defaultProps = {
+    isInvalid: false,
+    label: '',
+    password: false,
+    errorMessage: undefined,
+    defaultValue: undefined,
 };

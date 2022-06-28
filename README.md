@@ -31,6 +31,7 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 * [**React Navigation**](https://reactnavigation.org/docs/getting-started/): For navigating through screens, we are using react navigation's tab and stack navigators. Additionally, react navigation has [custom theming support](https://reactnavigation.org/docs/themes) built in, which is defined in *src/constants/theme*. 
 * [**NativeBase**](https://nativebase.io/): Well built and responsive component library for ios, android, and web.
 * [**Redux Toolkit**](): We use redux toolkit to manage universal state. An introduction into redux toolkit can be found [here](https://www.youtube.com/watch?v=9zySeP5vH9c). We divide our redux by concept, all in the "ducks" directory under src, using the slice pattern. Only use redux when necessary, handling internal state with react's useState when possible. We are using redux toolkit because it simplifies redux, allowing us to ["mutate" the state](https://redux.js.org/tutorials/quick-start#create-a-redux-state-slice) in the reducers without having to explicitly make a copy. This will shorten the amount of code we will have to write. [This tutorial](https://blog.gmagnenat.co/user-authentication-and-persistence-firebase-9-react-redux-toolkit) is useful to reference to understand how to combine redux toolkit and firebase 9 for authentication. 
+* [**Redux-Persist**](https://www.npmjs.com/package/redux-persist): Allows us to maintain the state of the app, with the data associated with the user even after the app is quit. To see how to integrate with redux toolkit, check out the [documentation](https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist) or this [tutorial](https://edvins.io/how-to-use-redux-persist-with-redux-toolkit).
 * [**React Native SVGs**](): To render local SVGs for our logos with [react-native-svg-transformer](https://github.com/react-native-svg/react-native-svg#use-with-svg-files).
 * [**ESlint**](https://eslint.org/) and [**Prettier**](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
 * **Absolute Imports:** To avoid annoying relative imports, we have configured our tsconfig.json file and babel.config.js file to make use of absolute imports. It may be useful to reference the typescript documentation on [module resolution](https://www.typescriptlang.org/docs/handbook/module-resolution.html), or reference [this medium blog](https://medium.com/geekculture/making-life-easier-with-absolute-imports-react-in-javascript-and-typescript-bbdab8a8a3a1).
@@ -56,7 +57,7 @@ FIREBASE_MEASUREMENT_ID=[...]
 - Run on Web: `yarn web` or `expo start --web`
 - Prebuild: `yarn prebuild` or `expo prebuild -–npm`
     > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
-- Run on iOS: `yarn ios` or `expo run:ios -–device`
+- Run on iOS: `yarn ios` or `expo run:ios –d`
 - Run on Android: `yarn android` or `expo run:android --device`
 - Install dependencies: `yarn`
 - Compile TypeScript: `yarn tsc`
