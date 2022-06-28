@@ -26,7 +26,7 @@ export const HomeScreen: React.FC<any> = () => {
             await signOutUser();
             dispatch(signOut());
         } else {
-            navigation.getParent('MainStackNavigator')?.navigate('Auth');
+            navigation.navigate('Auth');
         }
     };
 
@@ -62,7 +62,7 @@ export const HomeScreen: React.FC<any> = () => {
                 <Button
                     mt="2"
                     colorScheme="indigo"
-                    onPress={() => navigation.getParent('MainStackNavigator')?.navigate('Auth')}>
+                    onPress={() => navigation.navigate('Auth')}>
                     Login to real account
                 </Button>
             ) : null}
