@@ -63,12 +63,6 @@ export const HomeScreen: React.FC<any> = () => {
                     Login to real account
                 </Button>
             ) : null}
-            <Button
-                mt="2"
-                colorScheme="indigo"
-                onPress={() => navigation.navigate('PickupSession')}>
-                Start Pickup Session
-            </Button>
             <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
                 {user.loggedIn ? 'Logout' : 'Login'}
             </Button>
