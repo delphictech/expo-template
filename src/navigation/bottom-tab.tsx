@@ -1,8 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { HomeScreen, ExploreScreen } from 'src/screens';
+import { ExploreScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { ScreenParams } from 'src/types/screen';
 import { HomeStackNavigator } from './home-stack';
 
 export type BottomTabParams = {
@@ -12,7 +11,23 @@ export type BottomTabParams = {
 
 const Tabs = createBottomTabNavigator<BottomTabParams>();
 
-export const BottomTabNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
+/*
+    Define Icons
+*/
+interface TabBarIconProps {
+    focused: boolean;
+    color: string;
+    size: number;
+}
+const HomeIcon = ({ focused, color, size }: TabBarIconProps) => (
+    <MaterialCommunityIcons name={focused ? 'home' : 'home-outline'} color={color} size={size} />
+);
+
+const ExploreIcon = ({ focused, color, size }: TabBarIconProps) => (
+    <MaterialIcons name={focused ? 'search' : 'search'} color={color} size={size} />
+);
+
+export const BottomTabNavigator: React.FC<any> = () => {
     return (
         <Tabs.Navigator>
             <Tabs.Screen
@@ -22,13 +37,7 @@ export const BottomTabNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                     title: 'Home',
                     headerTitle: 'Home',
                     headerShown: false,
-                    tabBarIcon: ({ focused, color }) => (
-                        <MaterialCommunityIcons
-                            name={focused ? 'home' : 'home-outline'}
-                            color={color}
-                            size={36}
-                        />
-                    ),
+                    tabBarIcon: HomeIcon,
                 }}
             />
             <Tabs.Screen
@@ -36,9 +45,7 @@ export const BottomTabNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 component={ExploreScreen}
                 options={{
                     headerTitle: 'Explore',
-                    tabBarIcon: ({ focused, color }) => (
-                        <MaterialIcons name="search" color={color} size={36} />
-                    ),
+                    tabBarIcon: ExploreIcon,
                 }}
             />
         </Tabs.Navigator>

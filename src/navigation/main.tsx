@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
 import { Icon } from 'native-base';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScreenParams } from 'src/types/screen';
 import { AuthStackNavigator } from './auth-stack';
 import { BottomTabNavigator } from './bottom-tab';
 
@@ -15,7 +14,17 @@ export type MainStackParams = {
 
 const StackNav = createNativeStackNavigator<MainStackParams>();
 
-export const MainStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
+const CloseIcon = (onClose: () => void) => (
+    <Icon
+        as={MaterialCommunityIcons}
+        color="plainText.800"
+        name="close"
+        size={22}
+        onPress={onClose}
+    />
+);
+
+export const MainStackNavigator: React.FC<any> = () => {
     /*
     This stack navigator will add the login modal that can pop up from wherever in the app, 
     if the user does certain actions that require an account
@@ -30,7 +39,7 @@ export const MainStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 { text: 'Exit', onPress: navigation.goBack, style: 'destructive' },
                 {
                     text: 'Return',
-                    onPress: () => console.log('Ask me later pressed'),
+                    onPress: () => null,
                     style: 'cancel',
                 },
             ],
@@ -50,15 +59,7 @@ export const MainStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 component={AuthStackNavigator}
                 options={{
                     headerTitle: 'Login or Sign Up',
-                    headerRight: () => (
-                        <Icon
-                            as={MaterialCommunityIcons}
-                            color="plainText.800"
-                            name="close"
-                            size={22}
-                            onPress={checkLogin}
-                        />
-                    ),
+                    headerRight: () => CloseIcon(checkLogin),
                     presentation: 'modal',
                 }}
             />

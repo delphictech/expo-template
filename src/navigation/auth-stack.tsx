@@ -1,11 +1,6 @@
 import React, { useEffect } from 'react';
-import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { LoginScreen, AuthEmail } from 'src/screens';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useEvent } from 'react-native-reanimated';
-import { ScreenParams } from 'src/types/screen';
 
 export type AuthStackParams = {
     Email?: undefined;
@@ -18,10 +13,9 @@ export type AuthStackParams = {
 
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
-export const AuthStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
-    const navigation = useNavigation();
+export const AuthStackNavigator: React.FC<any> = () => {
     useEffect(() => {
-        console.log('Rendering');
+        // console.log('Rendering');
     });
 
     return (

@@ -2,9 +2,8 @@ import React from 'react';
 import { Alert } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
-import { HomeScreen, PickupScreen, LoginScreen } from 'src/screens';
+import { HomeScreen, PickupScreen } from 'src/screens';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { ScreenParams } from 'src/types/screen';
 
 export type HomeStackParams = {
     Home: undefined;
@@ -13,7 +12,11 @@ export type HomeStackParams = {
 
 const StackNav = createNativeStackNavigator<HomeStackParams>();
 
-export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) => {
+const CloseIcon = (onClose: () => void) => (
+    <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
+);
+
+export const HomeStackNavigator: React.FC<any> = () => {
     const navigation = useNavigation();
 
     const checkPickup = () => {
@@ -28,22 +31,6 @@ export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
         );
     };
 
-    const checkLogin = () => {
-        Alert.alert(
-            'Are you sure you want to exit?',
-            'Your progress will not be saved.',
-            [
-                { text: 'Exit', onPress: navigation.goBack, style: 'destructive' },
-                {
-                    text: 'Return',
-                    onPress: () => console.log('Ask me later pressed'),
-                    style: 'cancel',
-                },
-            ],
-            { cancelable: false },
-        );
-    };
-
     return (
         <StackNav.Navigator>
             <StackNav.Screen name="Home" component={HomeScreen} options={{ headerTitle: 'Home' }} />
@@ -52,9 +39,7 @@ export const HomeStackNavigator: React.FC<ScreenParams> = (props: ScreenParams) 
                 component={PickupScreen}
                 options={{
                     headerTitle: 'Play Pickup!',
-                    headerRight: () => (
-                        <MaterialCommunityIcons name="close" size={22} onPress={checkPickup} />
-                    ),
+                    headerRight: () => CloseIcon(checkPickup),
                     presentation: 'fullScreenModal',
                     gestureEnabled: false,
                 }}
