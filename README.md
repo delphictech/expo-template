@@ -56,7 +56,7 @@ FIREBASE_MEASUREMENT_ID=[...]
 - Run on Web: `yarn web` or `expo start --web`
 - Prebuild: `yarn prebuild` or `expo prebuild -–npm`
     > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
-- Run on iOS: `yarn ios` or `expo run:ios -–device`
+- Run on iOS: `yarn ios` or `expo run:ios –d`
 - Run on Android: `yarn android` or `expo run:android --device`
 - Install dependencies: `yarn`
 - Compile TypeScript: `yarn tsc`

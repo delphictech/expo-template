@@ -18,14 +18,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "io.pickup.maet"
+      "bundleIdentifier": "io.template.maet"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "io.pickup.maet"
+      "package": "io.template.maet"
     },
     "web": {
       "favicon": "./assets/favicon.png"
