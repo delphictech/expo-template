@@ -59,10 +59,7 @@ export const HomeScreen: React.FC<any> = () => {
                 </Button>
             </Box>
             {user.isAnonymous ? (
-                <Button
-                    mt="2"
-                    colorScheme="indigo"
-                    onPress={() => navigation.navigate('Auth')}>
+                <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate('Auth')}>
                     Login to real account
                 </Button>
             ) : null}

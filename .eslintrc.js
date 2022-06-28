@@ -39,5 +39,7 @@ module.exports = {
         "import/prefer-default-export": "off",
         // for managing state with redux toolkit: https://redux-starter-kit.js.org/usage/immer-reducers#linting-state-mutations
         "no-param-reassign": ["error", { props: true, ignorePropertyModificationsFor: ["state"] }],
+        // for throwing firebase errors: https://typescript-eslint.io/rules/no-throw-literal/#options
+        "@typescript-eslint/no-throw-literal": ["error", { "allowThrowingAny": true }]
     }
 };
