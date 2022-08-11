@@ -1,141 +1,263 @@
 import React, { useState } from 'react';
-import { Box, VStack, Button, Heading, Text, useToast } from 'native-base';
-import { useNavigation, useTheme } from '@react-navigation/native';
+import {
+    Box,
+    VStack,
+    Button,
+    Text,
+    useToast,
+    FormControl,
+    Heading,
+    HStack,
+    Icon,
+} from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { emailSchema } from 'src/utils/schemas';
+import { signupSchema, loginSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
-import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
-import { useAppSelector, useAppDispatch } from 'src/hooks/useful-ducks';
-import { guestSignIn } from 'src/ducks/user-slice';
+import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'src/firebase/api';
 import { AuthStackParams } from 'src/navigation/auth-stack';
-import MaetSvg from 'assets/MaetSvg.svg';
+import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
+import { User } from 'src/types/user';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useAppDispatch } from 'src/hooks/useful-ducks';
+import { emailSignIn } from 'src/ducks/user-slice';
 
-// define navigation props
-type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
+type LoginScreenProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
 
-export const LoginScreen: React.FC<any> = () => {
+export const LoginScreen: React.FC<ScreenParams> = ({ route }) => {
+    // route params
+    const { signInMethods } = route.params;
+    const { email } = route.params;
+
     // hooks
     const navigation = useNavigation<LoginScreenProps>();
-    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const dispatch = useAppDispatch();
-    const iconColor = useTheme().colors.text;
     const toast = useToast();
+    const schema = signInMethods.length ? loginSchema : signupSchema;
     const {
         control,
         handleSubmit,
         formState: { errors },
         reset,
     } = useForm({
-        resolver: yupResolver(emailSchema),
+        resolver: yupResolver(schema),
     });
 
     // react states
-    const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
-    const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
-    // toast component for guest
-    const renderGuestToast = () => (
+    // rendering functions
+    const renderPasswordToast = () => (
         <AlertToast
-            title="Using Maet as a Guest."
-            type="primary"
-            toExit={() => toast.close('guestToast')}
+            title="Email Sent!"
+            type="success"
+            message={`Password reset instructions sent to ${email}.`}
+            toExit={() => toast.close('resetToast')}
+        />
+    );
+    const renderVerificationToast = () => (
+        <AlertToast
+            title="Email Sent!"
+            type="success"
+            message={`Verification email sent to ${email}.`}
+            toExit={() => toast.close('verificationToast')}
         />
     );
 
-    const handleEmail = async (data: any) => {
-        setEmailLoading(true);
-        try {
-            const methods = await fetchSignInMethods(data.email);
-            setEmailLoading(false);
-
-            // reset react form and navigate to new screen
-            reset();
-            navigation.navigate('AuthEmail', {
-                signInMethods: methods,
-                email: data.email,
-            });
-        } catch (e: any) {
-            console.log(`Error with email: ${e}`);
-            setError(e.message);
-            setEmailLoading(false);
+    // navigate back if not root auth screen
+    const handleNavigation = () => {
+        const parentNavigator = navigation.getParent();
+        if (parentNavigator?.getId() !== 'root') {
+            parentNavigator?.goBack();
         }
     };
 
-    const handleAnonymous = async () => {
-        setIsGuestLoading(true);
+    // handle login
+    const handleLogin = async (data: any) => {
+        setIsLoading(true);
         try {
-            const response = await anonymousSignIn();
-            dispatch(guestSignIn(response.user.uid));
+            const { user } = await signInWithEmail(email, data.password);
+            const newUser: User = {
+                uid: user.uid,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                isAnonymous: false,
+                emailVerified: user.emailVerified,
+                loggedIn: true,
+                count: 0,
+            };
+            dispatch(emailSignIn(newUser));
+            reset();
+            handleNavigation();
+        } catch (e: any) {
+            console.log(`Error with login: ${e}`);
+            setError(e.message);
+            setIsLoading(false);
+        }
+    };
+
+    // handle sign up
+    const handleSignup = async (data: any) => {
+        setIsLoading(true);
+        try {
+            const { user } = await signUpWithEmail(email, data.password);
+            const newUser: User = {
+                uid: user.uid,
+                email: user.email,
+                phoneNumber: user.phoneNumber,
+                isAnonymous: false,
+                emailVerified: user.emailVerified,
+                loggedIn: true,
+                count: 0,
+            };
+            dispatch(emailSignIn(newUser));
+            await verifyEmail();
             toast.show({
                 placement: 'top',
-                render: renderGuestToast,
-                id: 'guestToast',
+                render: renderVerificationToast,
+                id: 'verificationToast',
             });
+            reset();
+            handleNavigation();
         } catch (e: any) {
-            console.log(`Error with Guest sign in ${e}`);
+            console.log(`Error with sign up: ${e}`);
             setError(e.message);
-            setIsGuestLoading(false);
+            setIsLoading(false);
+        }
+    };
+
+    // handle password reset
+    const handlePasswordReset = async () => {
+        try {
+            await resetPassword(email);
+            toast.show({
+                placement: 'top',
+                render: renderPasswordToast,
+                id: 'resetToast',
+            });
+            reset();
+        } catch (e: any) {
+            console.log(`Error with password reset: ${e}`);
+            setError(e.message);
+            setIsLoading(false);
         }
     };
 
     return (
         <KeyboardBehaviorWrapper bounces={false} centerVertically>
-            <Box
-                px="10"
-                w="100%"
-                h="100%"
-                bg="background.100"
-                justifyContent={!isAnonymous ? 'center' : 'flex-start'}
-                alignItems="center"
-                safeArea={!isAnonymous ? true : undefined}>
-                <VStack space={3} alignItems="center" w="100%">
-                    {!isAnonymous ? (
-                        <>
-                            <MaetSvg height={150} width={150} fill={iconColor} />
-                            <Heading mb={3} color="plainText.900">
-                                Welcome to Maet!
+            <Box px="10" w="100%" h="100%" bgColor="background.100" safeArea>
+                <VStack space={3} w="100%">
+                    <FormControl>
+                        <HStack
+                            alignItems="center"
+                            justifyContent="space-between"
+                            w="100%"
+                            flex={1}
+                            py={5}>
+                            <Box pr={3}>
+                                <Icon
+                                    as={MaterialIcons}
+                                    name="lock-outline"
+                                    size={50}
+                                    color="plainText.800"
+                                />
+                            </Box>
+                            <Heading
+                                flex={1}
+                                textAlign="left"
+                                color="plainText.800"
+                                alignSelf="center">
+                                {!signInMethods.length
+                                    ? 'Please create your account password.'
+                                    : 'Enter your password to login.'}
                             </Heading>
-                        </>
-                    ) : null}
-                    <FormInput
-                        key="login-email"
-                        name="email"
-                        control={control}
-                        isInvalid={'email' in errors}
-                        label="Input your email"
-                        placeholder="name@example.com"
-                        defaultValue=""
-                        errorMessage={errors?.email?.message}
-                    />
-                    {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
+                        </HStack>
+                        {!signInMethods.length ? (
+                            <>
+                                <FormInput
+                                    key="password"
+                                    name="password"
+                                    control={control}
+                                    isInvalid={'password' in errors}
+                                    password
+                                    label="Enter your password"
+                                    placeholder="Password"
+                                    defaultValue=""
+                                    errorMessage={errors?.password?.message}
+                                />
+                                <FormInput
+                                    key="confirm-password"
+                                    name="confirmPassword"
+                                    control={control}
+                                    isInvalid={'confirmPassword' in errors}
+                                    password
+                                    label="Confirm your password"
+                                    placeholder="Confirm Password"
+                                    defaultValue=""
+                                    errorMessage={errors?.confirmPassword?.message}
+                                    py={3}
+                                />
+                                <Button
+                                    key="Password-Button"
+                                    w="100%"
+                                    mt={3}
+                                    colorScheme="primary"
+                                    onPress={handleSubmit(handleSignup)}
+                                    isLoading={isLoading}
+                                    isLoadingText="Signing Up">
+                                    Sign Up
+                                </Button>
+                            </>
+                        ) : null}
+                        {signInMethods.includes('password') ? (
+                            <>
+                                <FormInput
+                                    key="password"
+                                    name="password"
+                                    control={control}
+                                    isInvalid={'password' in errors}
+                                    password
+                                    label="Enter your password"
+                                    placeholder="Password"
+                                    defaultValue=""
+                                    errorMessage={errors?.password?.message}
+                                />
+                                <Button
+                                    alignSelf="flex-end"
+                                    variant="link"
+                                    mb={6}
+                                    onPress={handlePasswordReset}>
+                                    Forget Password?
+                                </Button>
+                                <Button
+                                    key="Password-Button"
+                                    w="100%"
+                                    colorScheme="primary"
+                                    onPress={handleSubmit(handleLogin)}
+                                    isLoading={isLoading}
+                                    isLoadingText="Logging In">
+                                    Login
+                                </Button>
+                            </>
+                        ) : null}
+                        {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
                         Send me a sign-in link
                     </Button> */}
+                    </FormControl>
+                    <Text color="danger.600">{error}</Text>
                     <Button
-                        key="Password-Button"
                         w="100%"
                         colorScheme="primary"
-                        onPress={handleSubmit(handleEmail)}
-                        isLoading={isEmailLoading}
-                        isLoadingText="Submitting">
-                        Submit
+                        variant="link"
+                        p={0}
+                        onPress={() => navigation.goBack()}>
+                        Return to previous screen
                     </Button>
-                    {!isAnonymous ? (
-                        <Button
-                            w="100%"
-                            colorScheme="primary"
-                            variant="link"
-                            onPress={handleAnonymous}
-                            isLoading={isGuestLoading}
-                            isLoadingText="Continuing">
-                            Continue as guest
-                        </Button>
-                    ) : null}
-                    <Text color="danger.600">{error}</Text>
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>
