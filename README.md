@@ -7,6 +7,7 @@ This repository contains a template configured with various tools and practices 
 expo init --template maet-expo-template
 ```
 
+## 🚀 Get Involved
 Maet is a sports-technology startup that is ***Redefining the Athletic Community***. We are always looking for software developers to join our team that resonate with our *development philosophy* and want to have a positive impact on the open-source community. 
 > **You can apply to be a TeamMaet [here](https://angel.co/l/2xAQpw)**.
 
