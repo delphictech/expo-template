@@ -1,4 +1,4 @@
-# <img src="./assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
+# <img src="https://raw.githubusercontent.com/maetio/expo-template/main/assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
 This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.  
 
 > To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
@@ -6,6 +6,11 @@ This repository contains a template configured with various tools and practices 
 ```bash
 expo init --template maet-expo-template
 ```
+
+Maet is a sports-technology startup that is ***Redefining the Athletic Community***. We are always looking for software developers to join our team that resonate with our *development philosophy* and want to have a positive impact on the open-source community. 
+> **You can apply to be a TeamMaet [here](https://angel.co/l/2xAQpw)**.
+
+Drop us a ⭐ if you find this template helpful! Additionally, if you want to stay up-to-date about Maet, visit our website at [Maet.io](https://www.maet.io/), or follow our [Instagram](https://instagram.com/playmaet) and [LinkedIn](https://www.linkedin.com/company/maetio). 
 
 ## ⚖️ Development Philosophy
 As an engineer at Maet, **we strive to create elegant features for our fellow developers and our users**. We have created the following values that help us in our purpose to build valuable developer tools and delightful user experiences.
