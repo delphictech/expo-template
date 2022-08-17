@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "expo start --dev-client",
+    "start": "expo start",
     "android": "expo run:android --device",
     "ios": "expo run:ios -d",
     "web": "expo start --web",
@@ -100,8 +100,8 @@
   ],
   "author": "Maet Development <team@maet.io> (https://maet.io/)",
   "name": "maet-expo-template",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "homepage": "https://github.com/maetio/expo-template",
-  "description": "A template that introduces Maet's developer and design philosophy, configured with our current understanding of best practices.",
+  "description": "An open-source template that introduces Maet's developer and design philosophy, configured with our current understanding of best practices.",
   "license": "MIT"
 }
