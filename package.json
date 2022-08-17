@@ -100,7 +100,7 @@
   ],
   "author": "Maet Development <team@maet.io> (https://maet.io/)",
   "name": "maet-expo-template",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "homepage": "https://github.com/maetio/expo-template",
   "description": "An open-source template that introduces Maet's developer and design philosophy, configured with our current understanding of best practices.",
   "license": "MIT"
