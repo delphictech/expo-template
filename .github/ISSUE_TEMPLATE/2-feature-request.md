@@ -1,8 +1,8 @@
 ---
 name: "🚀 Feature Request"
-about: "Report a bug that you may have discovered."
-title: "[Insert Bug Name]"
-labels: "bug"
+about: "Suggest an idea or possible new feature for this project."
+title: "[New Feature]"
+labels: "new-feature"
 
 ---
 
