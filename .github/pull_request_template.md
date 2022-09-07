@@ -6,20 +6,26 @@
 4. ✅ **Documentation**: If needed, the documentation is updated with any relevant information or links to new resources.  
 5. ✅ **Developer Values**: Code is *modular*, *well-communicated*, *responsive*, and as *lightweight* as possible.
 
+
 ### 🔄 **What was changed?**
 ___  
-> *Insert general overview of features/files/functions...*  
+<!-- Insert overview of code organizational changes and user-facing difference. If applicable, add videos/gifs of UI. -->
+> *Insert response here...*
 
 
 ### 🤔 **Why were these changes made?**
 ___  
-> *Insert motivation behind PR...*  
+<!-- Insert motivation behind changes, or reference any existing issues or PRs. -->
+> *Insert response here...*  
+
 
 ### ⚙️ **How to test:**
 ___ 
-1. Step One...
-2. Step Two...
+<!-- Clearly layout the actions to test, pointing out where the new behavior should occur. -->
+1. Insert Step One...
+2. Insert Step Two...
 
-### 🔗 **Additional resources/links** (optional):
+
+### 🔗 **Useful resources/links**:
 ___  
 - [Example Link](https://www.maet.io/)
