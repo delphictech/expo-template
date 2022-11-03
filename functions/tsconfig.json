@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "outDir": "lib",
+        "sourceMap": true,
+        "strict": true,
+        "target": "es2017",
+        "baseUrl": "../",
+        "skipLibCheck": true
+    },
+    "compileOnSave": true,
+    "include": [
+        "./*.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.ts",
+        "./src/*",
+        "./assets/*",
+        "./src/types/declarations.d.ts",
+        "./jest.config.js"
+    ],
+    "exclude": ["node_modules, ../node_modules", "dist", "../src"]
+}
