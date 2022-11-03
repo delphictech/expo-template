@@ -91,9 +91,9 @@ FIREBASE_MEASUREMENT_ID=[...]
 2. **Lightweight Files:** Keep files under ~500 lines of code. If you much longer than this you should probably be creating a different component to import in.
 3. **Compilation and Formatting:** Strongly type when possible to cut down on runtime errors while also linting code often to maintain strong formatting.
 4. **Naming Conventions:**   
-    *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
-    *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
-    *Variables:* camelCase (ex. const isLoading)
+    * Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
+    * Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
+    * Variables:* camelCase (ex. const isLoading)
 
 ## :microscope: Unit Testing
 ### :fire: FireStore: 
@@ -110,7 +110,7 @@ firebase init
 yarn install **only use this if you did not install your packages**
 ```
 3. You will see a couple of files added to your directory, and a new folder called functions. (Offline Only) If you are setting this up in offline mode you will also see a file called firestore.rules and here you can edit your local firestore rules. We recomend installing the [firestore extension](https://marketplace.visualstudio.com/items?itemName=toba.vsfire) in VScode to get highlighting for this file.
-4. cd into you new functions folder and start init the emulator. Select functions and firestore and click yes on the rest of the settings
+4. cd into you new functions folder(from this point we will stay in this folder) and start initializing the emulator. Select functions and firestore and click yes on the rest of the settings. We also recomend copying and pasting our tsconfig.json and tsconfig.dev.json code into your functions folder as well. This may help prevent errors in testing.
  ```bash
 firebase init emulators
 ```
@@ -118,7 +118,7 @@ firebase init emulators
   ```bash
 firebase deploy --only functions **Only run this if you are testing online**
 ```
-6. Install Jest and firebase-function-test. Please make sure firebase-functions-test installed a recent version (3.0+), if not you can get module errors.
+6. Install Jest and firebase-function-test. Please make sure firebase-functions-test installed a recent version (3.0+), if not you can get module errors. Once jest is fully installed in your package.json "scripts" object add **"test": "jest --watchAll"**.
  ```bash
 npm install --save-dev firebase-functions-test or yarn add --dev firebase-functions-test@latest
 jest:
@@ -126,12 +126,44 @@ npm i -D jest typescript or yarn add --dev jest typescript
 npm i -D ts-jest @types/jest or yarn add --dev ts-jest @types/jest
 npx ts-jest config:init or yarn ts-jest config:init
 ```
-7. If you are testing offline or using more than just the functions emulator, please download the java SDK. These emulators were build with java and needs this installed to run. [Here](https://www.oracle.com/java/technologies/downloads/#jdk19-windows) is the link and just download and install the Java SE Development Kit onto your machine. We recomend using the  exe file for a quick and easy install.
-8. Finally start your emulators.
- ```bash
+7. If you are testing offline or using more than just the functions emulator, please download the java SDK. These emulators were build with java and needs this installed to run. [Here](https://www.oracle.com/java/technologies/downloads/#jdk19-windows) is the link and just download and install the Java SE Development Kit onto your machine. We recomend using the  exe file for a quick and easy install. Once that is done you may want to test your emulator by starting it with the command in section 10.
+8. Set up your test (offline only, see 9 for online). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste code down below into your new file. Make sure to edit the fields below to match your projects.
+```bash
+import 'jest';
+import * as admin from 'firebase-admin';
 
+const projectId = 'your-project-name'; //you can find this in your .firebaseerc in the root of your project
+process.env.GCLOUD_PROJECT = projectId;
+process.env.FIRESTORE_EMULATOR_HOST = local-host-of-the-firestore-emulator; //You can find this by starting your emulator(next step)
+admin.initializeApp({ projectId: projectId });
+const db = admin.firestore();
 ```
+9. Set up your test (online only, see 8 for offline). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste code down below into your new file. Make sure to edit the fields below to match your projects. Also for online mode, you need to generate the Firebase admin SDK keys. To do this on your project overview click "Project Settings" and go to "Service accounts". Here you can download your keys as json and we recomend renaming the file to "serviceAccountKey.json". Before you do anything to this files make sure to add it to your gitignore file since you dont wnat to be pushing these keys anywhere public. Once that is finished place this file in your functions folder.
 
+```bash
+import * as functions from 'firebase-functions-test';
+import 'jest';
+import * as admin from 'firebase-admin';
+
+const projectId = 'your-project-name';
+
+admin.initializeApp({ projectId });
+
+const db = admin.firestore();
+
+functions(
+    {
+        projectId: projectId,
+    },
+    './serviceAccountKey.json',
+);
+```
+10. Run the emulators, make a jest test and run it! We are not going to go over how to make a jest test, but we do have a lot of resources and good examples in our resources section. If you are running this code offline, you should be able to see these functions in action on the emulator UI in the browser. If you are running it online, you shoud be able to see these take place on your actual firebase project. Down below is the command to start the emulator and start the test.
+
+```bash
+firebase emulators:start
+npm test or yarn test
+```
 
 
 ### :blue_book: StoryBook: ...Later
