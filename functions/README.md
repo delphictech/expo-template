@@ -97,6 +97,41 @@ FIREBASE_MEASUREMENT_ID=[...]
 
 ## :microscope: Unit Testing
 ### :fire: FireStore: 
+1. Install firebase-tools with either yarn or npm. Once that is finished login to firebase with the command down below. Choose the google account associated with the project you to work on. You should see a confirmation message in the terminal once that is finished.
+```bash
+npm install -g firebase-tools or yarn add global add firebase-tools
+
+firebase login
+```
+2. Run firebase init and set up your project. If you are setting up the project in offline mode select functons and firestore and continue. For online just select funtions. Choose or create your project, and click yes on all the questions they ask you. The only settings to change are using Typescript and not installing the packages with npm if you are using yarn.
+ ```bash
+firebase init
+
+yarn install **only use this if you did not install your packages**
+```
+3. You will see a couple of files added to your directory, and a new folder called functions. (Offline Only) If you are setting this up in offline mode you will also see a file called firestore.rules and here you can edit your local firestore rules. We recomend installing the [firestore extension](https://marketplace.visualstudio.com/items?itemName=toba.vsfire) in VScode to get highlighting for this file.
+4. cd into you new functions folder and start init the emulator. Select functions and firestore and click yes on the rest of the settings
+ ```bash
+firebase init emulators
+```
+5. Write your firebase function. This should be like any other firebase function you made in the past(Look at our /functions/src/index.ts file for an example). **(Online only)** Once that is finihsed if you are doing this online, you must deploy your function to your live firebase project(command down below. Also fix any TS or esLint errors while running that command). Once that is deployed you should be able to see the function by going to your projects overview and clicking functions.
+  ```bash
+firebase deploy --only functions **Only run this if you are testing online**
+```
+6. Install Jest and firebase-function-test. Please make sure firebase-functions-test installed a recent version (3.0+), if not you can get module errors.
+ ```bash
+npm install --save-dev firebase-functions-test or yarn add --dev firebase-functions-test@latest
+jest:
+npm i -D jest typescript or yarn add --dev jest typescript
+npm i -D ts-jest @types/jest or yarn add --dev ts-jest @types/jest
+npx ts-jest config:init or yarn ts-jest config:init
+```
+7. If you are testing offline or using more than just the functions emulator, please download the java SDK. These emulators were build with java and needs this installed to run. [Here](https://www.oracle.com/java/technologies/downloads/#jdk19-windows) is the link and just download and install the Java SE Development Kit onto your machine. We recomend using the  exe file for a quick and easy install.
+8. Finally start your emulators.
+ ```bash
+
+```
+
 
 
 ### :blue_book: StoryBook: ...Later
