@@ -16,7 +16,6 @@ const db = admin.firestore();
 
 // const testENV = functions(
 //     {
-//        s
 //         projectId: projectId,
 //     },
 //     './serviceAccountKey.json',
@@ -83,14 +82,14 @@ describe('working tests', () => {
         const publicRef = db.collection('public-user-data').doc(privateRefID);
 
         // console.log(publicRef);
-        await new Promise((r) => setTimeout(r, 12000));
+        await new Promise((r) => setTimeout(r, 5000));
 
         const publicDoc = await publicRef.get();
 
         console.log(publicDoc.data());
 
         expect(publicDoc.data()).toEqual(expectedValue);
-    }, 20000);
+    }, 8000);
 });
 
 
