@@ -49,16 +49,17 @@ Engineering can be tricky, so we compiled a list of great resources and videos t
 
 ### :video_camera: Videos:
 
-* How do I [Paginate](https://www.youtube.com/watch?v=poqTHxtDXwU&t=2s) From FireStore? This a great Video for getting an overview of what pagination is and how to implement it with FireStore.
-* [RTK Query](https://www.youtube.com/watch?v=HyZzCHgG3AY&t=160s) Crud overview. Although we used query functions(queryFn), this is a great starting point for implementing RTK query.
-* Add users to collection on [Signup](https://www.youtube.com/watch?v=qWy9ylc3f9U). This video uses an older version of FireBase, but we still recommend it since it is very basic and allows anyone to add it to their project.
-* Implementing Stripe payment with Firebase, [video 1](https://www.youtube.com/watch?v=5rc0pe2qRjg&t=1119s), [video 2](https://www.youtube.com/watch?v=VnntkusKinM&t=661s). There are not too many extensive videos on this topic, however, with both of these and the official stripe documentation, you should be ready to get payments in your app!
+* Unit Testing security rules with Firebase Emulator by [Firebase](https://www.youtube.com/watch?v=VDulvfBpzZE&t=806s)
+* Setting up unit testing [online](https://www.youtube.com/watch?v=UDMDpdu5-rE&t=183s)
+* Setting up unit testing [offline](https://www.youtube.com/watch?v=8IoCPZJ-zwA)
+
 
 
 ### :gear: Documentation and articles:
-* Official Pagination with FireStore [Docs](https://firebase.google.com/docs/firestore/query-data/query-cursors). Highly recommend the FireStore docs, for everything FireStore-related.
-* RTK Query custom functions [Docs](https://redux-toolkit.js.org/rtk-query/usage/customizing-queries) since we are not using endpoints like a traditional API, we recommend learning about the queryFn tool that we used to connect RTK to FireStore.
-* Unfortunately, you can not look at the stripe FireBase extension docs without downloading them to your own FireBase project. We have instructions on how to set this up further up in this readme. In the meantime, you can look at the official Stripe Docs here, and get the stripe extension downloaded [here](https://firebase.google.com/products/extensions/stripe-firestore-stripe-payments).
+* Unit testing Cloud Functions offical [docs](https://firebase.google.com/docs/functions/unit-testing)
+* Emulator offical [docs](https://firebase.google.com/docs/functions/local-emulator)
+* Jest offical [docs](https://jestjs.io/docs/getting-started)
+* A few google articles for examples, [here](https://javascript.plainenglish.io/unit-testing-firebase-firestore-cloud-functions-7192c2c4649e), [here](https://fireship.io/lessons/testing-cloud-functions-in-firebase/), and [here](https://timo-santi.medium.com/jest-testing-firebase-functions-with-emulator-suite-409907f31f39)
 
 ## 🔧 Usage
 > Be sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
@@ -97,24 +98,24 @@ FIREBASE_MEASUREMENT_ID=[...]
 
 ## :microscope: Unit Testing
 ### :fire: FireStore: 
-1. Install firebase-tools with either yarn or npm. Once that is finished login to firebase with the command down below. Choose the google account associated with the project you to work on. You should see a confirmation message in the terminal once that is finished.
+1. Install firebase-tools with either yarn or npm. Once that is finished login to firebase with the command down below. Choose the google account associated with the project you want to work on. You should see a confirmation message in the terminal once that is finished.
 ```bash
 npm install -g firebase-tools or yarn add global add firebase-tools
 
 firebase login
 ```
-2. Run firebase init and set up your project. If you are setting up the project in offline mode select functons and firestore and continue. For online just select funtions. Choose or create your project, and click yes on all the questions they ask you. The only settings to change are using Typescript and not installing the packages with npm if you are using yarn.
+2. Run firebase init and set up your project. If you are setting up the project in offline mode select functions and firestore and continue. For online just select functions. Choose or create your project, and click yes on all the questions they ask you. The only settings to change are using Typescript and not installing the packages with npm if you are using yarn.
  ```bash
 firebase init
 
 yarn install **only use this if you did not install your packages**
 ```
-3. You will see a couple of files added to your directory, and a new folder called functions. (Offline Only) If you are setting this up in offline mode you will also see a file called firestore.rules and here you can edit your local firestore rules. We recomend installing the [firestore extension](https://marketplace.visualstudio.com/items?itemName=toba.vsfire) in VScode to get highlighting for this file.
-4. cd into you new functions folder(from this point we will stay in this folder) and start initializing the emulator. Select functions and firestore and click yes on the rest of the settings. We also recomend copying and pasting our tsconfig.json and tsconfig.dev.json code into your functions folder as well. This may help prevent errors in testing.
+3. You will see a couple of files added to your directory, and a new folder called functions. (Offline Only) If you are setting this up in offline mode you will also see a file called firestore.rules and here you can edit your local firestore rules. We recommend installing the [firestore extension](https://marketplace.visualstudio.com/items?itemName=toba.vsfire) in VScode to get highlighting for this file.
+4. cd into your new functions folder(from this point we will stay in this folder) and start initializing the emulator. Select functions and firestore and click yes on the rest of the settings. We also recommend copying and pasting our tsconfig.json and tsconfig.dev.json code into your functions folder as well. This may help prevent errors in testing.
  ```bash
 firebase init emulators
 ```
-5. Write your firebase function. This should be like any other firebase function you made in the past(Look at our /functions/src/index.ts file for an example). **(Online only)** Once that is finihsed if you are doing this online, you must deploy your function to your live firebase project(command down below. Also fix any TS or esLint errors while running that command). Once that is deployed you should be able to see the function by going to your projects overview and clicking functions.
+5. Write your firebase function. This should be like any other firebase function you made in the past(Look at our /functions/src/index.ts file for an example). **(Online only)** Once that is finished, if you are doing this online, you must deploy your function to your live firebase project(command down below. Also fix any TS or esLint errors while running that command). Once that is deployed you should be able to see the function by going to your projects overview and clicking functions.
   ```bash
 firebase deploy --only functions **Only run this if you are testing online**
 ```
@@ -126,8 +127,8 @@ npm i -D jest typescript or yarn add --dev jest typescript
 npm i -D ts-jest @types/jest or yarn add --dev ts-jest @types/jest
 npx ts-jest config:init or yarn ts-jest config:init
 ```
-7. If you are testing offline or using more than just the functions emulator, please download the java SDK. These emulators were build with java and needs this installed to run. [Here](https://www.oracle.com/java/technologies/downloads/#jdk19-windows) is the link and just download and install the Java SE Development Kit onto your machine. We recomend using the  exe file for a quick and easy install. Once that is done you may want to test your emulator by starting it with the command in section 10.
-8. Set up your test (offline only, see 9 for online). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste code down below into your new file. Make sure to edit the fields below to match your projects.
+7. If you are testing offline or using more than just the functions emulator, please download the java SDK. These emulators were built with java and need this installed to run. [Here](https://www.oracle.com/java/technologies/downloads/#jdk19-windows) is the link and just download and install the Java SE Development Kit onto your machine. Use the exe file for a quick and easy install. Once that is done you may want to test your emulator by starting it with the command in section 10.
+8. Set up your test (offline only, see 9 for online). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste the code down below into your new file. Make sure to edit the fields below to match your projects.
 ```bash
 import 'jest';
 import * as admin from 'firebase-admin';
@@ -138,7 +139,7 @@ process.env.FIRESTORE_EMULATOR_HOST = local-host-of-the-firestore-emulator; //Yo
 admin.initializeApp({ projectId: projectId });
 const db = admin.firestore();
 ```
-9. Set up your test (online only, see 8 for offline). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste code down below into your new file. Make sure to edit the fields below to match your projects. Also for online mode, you need to generate the Firebase admin SDK keys. To do this on your project overview click "Project Settings" and go to "Service accounts". Here you can download your keys as json and we recomend renaming the file to "serviceAccountKey.json". Before you do anything to this files make sure to add it to your gitignore file since you dont wnat to be pushing these keys anywhere public. Once that is finished place this file in your functions folder.
+9. Set up your test (online only, see 8 for offline). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste the code down below into your new file. Make sure to edit the fields below to match your projects. Also for online mode, you need to generate the Firebase admin SDK keys. To do this on your project overview click "Project Settings" and go to "Service accounts". Here you can download your keys as json and we recommend renaming the file to "serviceAccountKey.json". Before you do anything to this file make sure to add it to your gitignore file since you don't want to be pushing these keys anywhere public. Once that is finished place this file in your functions folder.
 
 ```bash
 import * as functions from 'firebase-functions-test';
@@ -158,7 +159,7 @@ functions(
     './serviceAccountKey.json',
 );
 ```
-10. Run the emulators, make a jest test and run it! We are not going to go over how to make a jest test, but we do have a lot of resources and good examples in our resources section. If you are running this code offline, you should be able to see these functions in action on the emulator UI in the browser. If you are running it online, you shoud be able to see these take place on your actual firebase project. Down below is the command to start the emulator and start the test.
+10. Run the emulators, make a jest test and run it! We are not going to go over how to make a jest test, but we do have a lot of resources and good examples in our resources section. If you are running this code offline, you should be able to see these functions in action on the emulator UI in the browser. If you are running it online, you should be able to see these take place on your actual firebase project. Down below is the command to start the emulator and start the test.
 
 ```bash
 firebase emulators:start
