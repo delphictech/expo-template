@@ -36,7 +36,7 @@ npm install -g firebase-tools or yarn add global add firebase-tools
 firebase login
 ```
 2. Run firebase init and set up your project. If you are setting up the project in offline mode select functions and firestore and continue. For online just select functions. Choose or create your project, and click yes on all the questions they ask you. The only settings to change are using Typescript and not installing the packages with npm if you are using yarn.
- ```bash
+ ```
 firebase init
 
 yarn install **only use this if you did not install your packages**
@@ -47,7 +47,7 @@ yarn install **only use this if you did not install your packages**
 firebase init emulators
 ```
 5. Write your firebase function. This should be like any other firebase function you made in the past(Look at our /functions/src/index.ts file for an example). **(Online only)** Once that is finished, if you are doing this online, you must deploy your function to your live firebase project(command down below. Also fix any TS or esLint errors while running that command). Once that is deployed you should be able to see the function by going to your projects overview and clicking functions.
-  ```bash
+  ```
 firebase deploy --only functions **Only run this if you are testing online**
 ```
 6. Install Jest and firebase-function-test. Please make sure firebase-functions-test installed a recent version (3.0+), if not you can get module errors. Once jest is fully installed in your package.json "scripts" object add **"test": "jest --watchAll"**.
@@ -60,7 +60,7 @@ npx ts-jest config:init or yarn ts-jest config:init
 ```
 7. If you are testing offline or using more than just the functions emulator, please download the java SDK. These emulators were built with java and need this installed to run. [Here](https://www.oracle.com/java/technologies/downloads/#jdk19-windows) is the link and just download and install the Java SE Development Kit onto your machine. Use the exe file for a quick and easy install. Once that is done you may want to test your emulator by starting it with the command in section 10.
 8. Set up your test (offline only, see 9 for online). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste the code down below into your new file. Make sure to edit the fields below to match your projects.
-```bash
+```typescript
 import 'jest';
 import * as admin from 'firebase-admin';
 
@@ -72,7 +72,7 @@ const db = admin.firestore();
 ```
 9. Set up your test (online only, see 8 for offline). Make a new folder under your functions folder called test. In this make your test file(index.offline.test.ts or js). Copy and paste the code down below into your new file. Make sure to edit the fields below to match your projects. Also for online mode, you need to generate the Firebase admin SDK keys. To do this on your project overview click "Project Settings" and go to "Service accounts". Here you can download your keys as json and we recommend renaming the file to "serviceAccountKey.json". Before you do anything to this file make sure to add it to your gitignore file since you don't want to be pushing these keys anywhere public. Once that is finished place this file in your functions folder.
 
-```bash
+```typescript
 import * as functions from 'firebase-functions-test';
 import 'jest';
 import * as admin from 'firebase-admin';
@@ -92,7 +92,7 @@ functions(
 ```
 10. Run the emulators, make a jest test and run it! We are not going to go over how to make a jest test, but we do have a lot of resources and good examples in our resources section. If you are running this code offline, you should be able to see these functions in action on the emulator UI in the browser. If you are running it online, you should be able to see these take place on your actual firebase project. Down below is the command to start the emulator and start the test.
 
-```bash
+```
 firebase emulators:start
 npm test or yarn test
 ```
