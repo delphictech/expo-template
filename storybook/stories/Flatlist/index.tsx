@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { Text, FlatList, Box } from 'native-base';
 import { Product } from './Product';
+import {LastDoc} from '../../../src/types/products'
+
+import { useFetchProductsQuery } from '../../../src/services/product-queries';
 // import { Text, View} from 'react-native';
 
 interface prod {
@@ -21,24 +24,35 @@ export interface BasicProductData {
     }[];
 }
 
-const BasicFlatList: React.FC<BasicProductData> = ({ inputToFlatList }) => (
-    <NativeBaseProvider>
-        <Box w="100%" h="100%" flex={1} alignItems="center" justifyContent="center">
-            <Box w="100%" flex={1} justifyContent="space-around">
-                {/* <FlatList
+const BasicFlatList: React.FC<BasicProductData> = ({ inputToFlatList }) => {
+    const timeStampRef = useRef(String(Date.now())).current;
+    const [lastDocID, setLastDocID] = useState<LastDoc>({
+        prod: undefined,
+        time: timeStampRef,
+    });
+
+    const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
+        useFetchProductsQuery(lastDocID);
+
+    return (
+        <NativeBaseProvider>
+            <Box w="100%" h="100%" flex={1} alignItems="center" justifyContent="center">
+                <Box w="100%" flex={1} justifyContent="space-around">
+                    {/* <FlatList
                     data={[inputToFlatList.text]}
                     renderItem={({ item }) => <Text>{item}</Text>}
                 /> */}
-                <FlatList
-                    data={inputToFlatList}
-                    renderItem={({ item }) => <Product productData={item} />}
-                />
+                    <FlatList
+                        data={inputToFlatList}
+                        renderItem={({ item }) => <Product productData={item} />}
+                    />
+                </Box>
             </Box>
-        </Box>
-    </NativeBaseProvider>
-    //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    //     <Text>{inputToFlatList.text}</Text>
-    //   </View>
-);
+        </NativeBaseProvider>
+        //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        //     <Text>{inputToFlatList.text}</Text>
+        //   </View>
+    );
+};
 
 export default BasicFlatList;

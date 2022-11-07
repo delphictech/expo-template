@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import userReducer from './user-slice';
+import { productsApi } from 'src/services/product-queries';
 
 const persistConfig = {
     key: 'root',
@@ -11,6 +12,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
     user: userReducer,
+    [productsApi.reducerPath]: productsApi.reducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, reducers);
@@ -26,7 +28,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }),
+        }).concat(productsApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;
