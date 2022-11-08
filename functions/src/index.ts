@@ -1,8 +1,10 @@
+import { initializeApp } from 'firebase-admin/app';
+import { firestore } from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
-// admin.initializeApp();
+
+initializeApp();
 // I initialized the app in the test file
-const db = admin.firestore();
+export const db = firestore();
 
 export const makeDetailedData = functions.firestore
     .document('private-user-data/{productID}')

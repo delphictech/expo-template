@@ -1,18 +1,18 @@
-// import * as firebase from '@firebase/rules-unit-testing';
 import * as functions from 'firebase-functions-test';
+import { db, makeDetailedData } from '../src/index';
 import 'jest';
 
-import * as admin from 'firebase-admin';
-const projectId = 'maet-test-payment';
+// import * as admin from 'firebase-admin';
+const projectId = 'maet-pickup-dev';
 
 // Setup for offline
 // process.env.GCLOUD_PROJECT = projectId;
 // process.env.FIRESTORE_EMULATOR_HOST = process.env.localHost;
 // End Setup for offline
 
-admin.initializeApp({ projectId });
+// admin.initializeApp({ projectId });
 
-const db = admin.firestore();
+// const db = admin.firestore();
 
 // const testENV = functions(
 //     {
@@ -21,19 +21,22 @@ const db = admin.firestore();
 //     './serviceAccountKey.json',
 // );
 
-functions(
-    {
-        projectId: projectId,
-    },
-    './serviceAccountKey.json',
-);
+const testEnv = functions({ projectId: projectId }, './service-account.json');
 
-// import * as myFunction from '../src/index';
+// declare tests 
+describe("Firebase functions testing", () => {
+    let wrapped;
+    beforeAll(() => {
+        wrapped = testEnv.wrap(makeDetailedData);
+    });
+});
 
+/*
 // let wrapped: any;
 describe('working tests', () => {
     let privateRefID: string;
     beforeAll(() => {
+        // let wrapped = testEnv.wrap(makeDetailedData);
         // wrapped = testENV.wrap(myFunction.makeDetailedData);
     });
 
@@ -60,6 +63,7 @@ describe('working tests', () => {
         };
 
         console.log(expectedValue);
+        
 
         // const snap = await testENV.firestore.makeDocumentSnapshot(inputToDB, 'private-user-data');
 
@@ -90,6 +94,10 @@ describe('working tests', () => {
 
         expect(publicDoc.data()).toEqual(expectedValue);
     }, 8000);
+
+    test('Sample ', () => {
+        expect(1).toBe(1);
+    });
 });
 
-
+*/

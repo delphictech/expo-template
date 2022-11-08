@@ -3,6 +3,10 @@ Contains the server side firebase functions, as well as how to unit test these f
 
 ## ✏️ Notes
 Server side functions are an amazing tool for adding more backend functionality to your firebase app. As we move forward as a company we will be implementing more of these functions, so this template is a good starting point for anyone looking to learn how to write and unit test these functions.
+*** To Include**
+Have the `npm run serve` instead of firebase emulators.
+Set the FirebaseConfig and GCloud_Project env variables. 
+Include the service-acount.json locally.
 
 
 ### 🟥 Concerns or Unknown Functionality
