@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { Text, FlatList, Box } from 'native-base';
+import { ActivityIndicator } from 'react-native';
 import { Product } from './Product';
-import {LastDoc} from '../../../src/types/products'
+import { LastDoc } from '../../../src/types/products';
 
 import { useFetchProductsQuery } from '../../../src/services/product-queries';
 // import { Text, View} from 'react-native';
@@ -34,7 +35,20 @@ const BasicFlatList: React.FC<BasicProductData> = ({ inputToFlatList }) => {
     const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
         useFetchProductsQuery(lastDocID);
 
+    useEffect(() => {
+        console.log(data);
+    }, [data]);
+
+    console.log(data);
+    console.log('this is from the flatlist')
+
+  
+
     return (
+        <>
+            {isLoading && <ActivityIndicator color="#36d7b7" />}
+            {isError && <Text>Something went wrong, Error</Text>}
+            {isSuccess && data && (
         <NativeBaseProvider>
             <Box w="100%" h="100%" flex={1} alignItems="center" justifyContent="center">
                 <Box w="100%" flex={1} justifyContent="space-around">
@@ -42,8 +56,10 @@ const BasicFlatList: React.FC<BasicProductData> = ({ inputToFlatList }) => {
                     data={[inputToFlatList.text]}
                     renderItem={({ item }) => <Text>{item}</Text>}
                 /> */}
+                <Text>It is working!</Text>
                     <FlatList
-                        data={inputToFlatList}
+                        // data={inputToFlatList}
+                        data={data}
                         renderItem={({ item }) => <Product productData={item} />}
                     />
                 </Box>
@@ -52,7 +68,11 @@ const BasicFlatList: React.FC<BasicProductData> = ({ inputToFlatList }) => {
         //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         //     <Text>{inputToFlatList.text}</Text>
         //   </View>
+    )}
+        </>
     );
+
+
 };
 
 export default BasicFlatList;

@@ -18,8 +18,9 @@ configure(() => {
 // To find allowed options for getStorybookUI
 // const StorybookUIRoot = getStorybookUI({});
 const StorybookUIRoot = getStorybookUI({
-    host: 'http://localhost:7007/',
+    // host: 'http://localhost:7007/',
     // host: '127.0.0.1',
+    
     // host: Platform.OS === 'android' ? '10.0.2.2' : '0.0.0.0',
 
     port: 7007,
