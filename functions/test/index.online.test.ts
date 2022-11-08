@@ -26,6 +26,7 @@ const testEnv = functions({ projectId: projectId }, './service-account.json');
 
 // declare tests 
 describe("Firebase functions testing", () => {
+    
     let wrapped: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>;
 
     beforeAll(() => {

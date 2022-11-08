@@ -10,7 +10,10 @@
         "strict": true,
         "target": "es2017",
         "baseUrl": "../",
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "paths": {
+            "types/*": ["./src/types/*", "./src/types/"],
+        },
     },
     "compileOnSave": true,
     "include": [
@@ -20,6 +23,7 @@
         "./src/*",
         "./assets/*",
         "./src/types/declarations.d.ts",
+        "./src/types/env.d.ts",
         "./jest.config.js"
     ],
     "exclude": ["node_modules, ../node_modules", "dist", "../src"]
