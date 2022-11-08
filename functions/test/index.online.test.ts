@@ -1,12 +1,19 @@
 import * as functions from 'firebase-functions-test';
 import { db, makeDetailedData } from '../src/index';
 import 'jest';
+import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
+import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
+import { Change } from 'firebase-functions/v1';
+
+/*
+    Shifted to making individual document snapshots for before and after
+    https://h-malik144.medium.com/jest-testing-for-firebase-functions-a51ce1094d38
+*/
 
 // import * as admin from 'firebase-admin';
 const projectId = 'maet-pickup-dev';
 
 // Setup for offline
-// process.env.GCLOUD_PROJECT = projectId;
 // process.env.FIRESTORE_EMULATOR_HOST = process.env.localHost;
 // End Setup for offline
 
@@ -14,21 +21,57 @@ const projectId = 'maet-pickup-dev';
 
 // const db = admin.firestore();
 
-// const testENV = functions(
-//     {
-//         projectId: projectId,
-//     },
-//     './serviceAccountKey.json',
-// );
 
 const testEnv = functions({ projectId: projectId }, './service-account.json');
 
 // declare tests 
 describe("Firebase functions testing", () => {
-    let wrapped;
+    let wrapped: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>;
+
     beforeAll(() => {
         wrapped = testEnv.wrap(makeDetailedData);
     });
+
+    const privateUserData = {
+        uid: 'testing-user',
+        name: 'seth',
+        count: '7',
+        image: 'dasadsadaawd',
+        email: 'seth@email',
+        emailVerified: true,
+        phone: 1234566,
+    };
+
+    const publicUserData  = {
+        name: privateUserData.name,
+        count: privateUserData.count,
+        image: privateUserData.image,
+    };
+
+    test("Testing firebase function", async () => {
+        const privatePath = `private-user-data/${privateUserData.uid}`;
+
+        // 
+        const changeDoc: Change<DocumentSnapshot> = {
+            before: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
+            after: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
+        };
+        // (privateUserData, privatePath);
+
+        await wrapped(changeDoc);
+
+        const publicPath = `public-user-data/${privateUserData.uid}`;
+        const after = await db.doc(publicPath).get();
+
+        expect(after.data()).toStrictEqual(publicUserData);
+
+    });
+
+    afterAll(() => {
+        // cleanup the testing data
+        testEnv.cleanup();
+    });
+
 });
 
 /*

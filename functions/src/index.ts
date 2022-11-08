@@ -2,13 +2,15 @@ import { initializeApp } from 'firebase-admin/app';
 import { firestore } from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
+process.env.GCLOUD_PROJECT = 'maet-pickup-dev';
 initializeApp();
 // I initialized the app in the test file
 export const db = firestore();
 
 export const makeDetailedData = functions.firestore
     .document('private-user-data/{productID}')
-    .onWrite(async (change, context) => {
+    .onWrite(async (change) => {
+        
         try {
             console.log('hello');
             const newValue = change.after.data();

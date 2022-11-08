@@ -1301,3 +1301,1978 @@ INFO: Detected non-HTTP/2 connection.
 [debug] [2022-11-08T21:32:07.837Z] shutdown requested via /__/quitquitquit
 
 [info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:33:18.359Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:33:19.361Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:33:21.799Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:33:21.799Z] Building nodejs source
+[debug] [2022-11-08T21:33:21.799Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:33:21.800Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:33:22.059Z] Serving at port 9007
+
+[debug] [2022-11-08T21:33:22.197Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:33:22.204Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:35:37.989Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:35:38.992Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:35:41.290Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:35:41.290Z] Building nodejs source
+[debug] [2022-11-08T21:35:41.290Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:35:41.291Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:35:41.581Z] Serving at port 9007
+
+[debug] [2022-11-08T21:35:41.692Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:35:41.700Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:36:38.415Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:36:39.418Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:36:41.653Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:36:41.653Z] Building nodejs source
+[debug] [2022-11-08T21:36:41.653Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:36:41.653Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:36:41.826Z] Serving at port 9007
+
+[debug] [2022-11-08T21:36:41.938Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:36:41.944Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:36:43.975Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:36:44.977Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:36:47.007Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:36:47.007Z] Building nodejs source
+[debug] [2022-11-08T21:36:47.007Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:36:47.007Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:36:47.160Z] Serving at port 9007
+
+[debug] [2022-11-08T21:36:47.224Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:36:47.231Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:38:31.840Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:38:32.841Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:38:34.989Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:38:34.989Z] Building nodejs source
+[debug] [2022-11-08T21:38:34.989Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:38:34.989Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:38:35.173Z] Serving at port 9007
+
+[debug] [2022-11-08T21:38:35.284Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:38:35.291Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:38:37.282Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:38:38.286Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:38:40.166Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:38:40.168Z] Building nodejs source
+[debug] [2022-11-08T21:38:40.168Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:38:40.168Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:38:40.322Z] Serving at port 9007
+
+[debug] [2022-11-08T21:38:40.391Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:38:40.399Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:40:30.768Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:40:31.771Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:40:33.950Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:40:33.950Z] Building nodejs source
+[debug] [2022-11-08T21:40:33.950Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:40:33.951Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:40:34.124Z] Serving at port 9007
+
+[debug] [2022-11-08T21:40:34.259Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:40:34.266Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:42:14.612Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:42:15.621Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:42:17.918Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:42:17.918Z] Building nodejs source
+[debug] [2022-11-08T21:42:17.918Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:42:17.920Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:42:18.122Z] Serving at port 9007
+
+[debug] [2022-11-08T21:42:18.241Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:42:18.250Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:45:16.091Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:45:17.094Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:45:19.175Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:45:19.176Z] Building nodejs source
+[debug] [2022-11-08T21:45:19.176Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:45:19.176Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:45:19.372Z] Serving at port 9007
+
+[debug] [2022-11-08T21:45:19.519Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:45:19.533Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:45:22.291Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:45:23.292Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:45:25.250Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:45:25.250Z] Building nodejs source
+[debug] [2022-11-08T21:45:25.250Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:45:25.250Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:45:25.460Z] Serving at port 9007
+
+[debug] [2022-11-08T21:45:25.544Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:45:25.551Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:45:42.252Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:45:43.257Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:45:45.209Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:45:45.209Z] Building nodejs source
+[debug] [2022-11-08T21:45:45.209Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:45:45.210Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:45:45.380Z] Serving at port 9007
+
+[debug] [2022-11-08T21:45:45.490Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:45:45.499Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:45:59.356Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:46:00.357Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:46:02.188Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:46:02.188Z] Building nodejs source
+[debug] [2022-11-08T21:46:02.188Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:46:02.188Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:46:02.371Z] Serving at port 9007
+
+[debug] [2022-11-08T21:46:02.477Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:46:02.483Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:46:07.600Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:46:08.601Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:46:10.564Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:46:10.564Z] Building nodejs source
+[debug] [2022-11-08T21:46:10.564Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:46:10.564Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:46:10.745Z] Serving at port 9007
+
+[debug] [2022-11-08T21:46:10.845Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:46:10.850Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:47:15.659Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:47:16.661Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:47:18.885Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:47:18.885Z] Building nodejs source
+[debug] [2022-11-08T21:47:18.886Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:47:18.886Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:47:19.091Z] Serving at port 9007
+
+[debug] [2022-11-08T21:47:19.204Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:47:19.211Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:49:29.209Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:49:30.212Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:49:32.369Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:49:32.369Z] Building nodejs source
+[debug] [2022-11-08T21:49:32.369Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:49:32.370Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:49:32.549Z] Serving at port 9007
+
+[debug] [2022-11-08T21:49:32.686Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:49:32.698Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:49:39.999Z] Nov 08, 2022 4:49:39 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 4:49:39 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-08T21:49:40.068Z] Nov 08, 2022 4:49:40 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 4:49:40 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected HTTP/2 connection.\n"}}
+[debug] [2022-11-08T21:50:42.697Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:50:43.703Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:50:46.010Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:50:46.010Z] Building nodejs source
+[debug] [2022-11-08T21:50:46.010Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:50:46.010Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:50:46.237Z] Serving at port 9007
+
+[debug] [2022-11-08T21:50:46.331Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:50:46.339Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:51:10.508Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:51:11.510Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:51:13.373Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:51:13.373Z] Building nodejs source
+[debug] [2022-11-08T21:51:13.373Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:51:13.374Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:51:13.547Z] Serving at port 9007
+
+[debug] [2022-11-08T21:51:13.612Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:51:13.618Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:53:38.614Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:53:39.616Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:53:41.885Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:53:41.885Z] Building nodejs source
+[debug] [2022-11-08T21:53:41.885Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:53:41.886Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:53:42.074Z] Serving at port 9007
+
+[debug] [2022-11-08T21:53:42.140Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:53:42.148Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:54:55.248Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:54:56.252Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:54:58.591Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:54:58.591Z] Building nodejs source
+[debug] [2022-11-08T21:54:58.591Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:54:58.595Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:54:58.797Z] Serving at port 9007
+
+[debug] [2022-11-08T21:54:58.898Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:54:58.908Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:55:26.187Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:55:27.187Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:55:29.403Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:55:29.403Z] Building nodejs source
+[debug] [2022-11-08T21:55:29.403Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:55:29.403Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:55:29.404Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:55:29.583Z] Serving at port 9007
+
+[debug] [2022-11-08T21:55:29.679Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:55:29.689Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:55:30.406Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:55:32.428Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:55:32.429Z] Building nodejs source
+[debug] [2022-11-08T21:55:32.429Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:55:32.429Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:55:32.594Z] Serving at port 9007
+
+[debug] [2022-11-08T21:55:32.665Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:55:32.674Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:55:43.675Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:55:44.677Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:55:47.203Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:55:47.203Z] Building nodejs source
+[debug] [2022-11-08T21:55:47.203Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:55:47.203Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:55:47.515Z] Serving at port 9007
+
+[debug] [2022-11-08T21:55:47.671Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:55:47.690Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:57:00.522Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:57:01.527Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:57:03.851Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:57:03.851Z] Building nodejs source
+[debug] [2022-11-08T21:57:03.851Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:57:03.851Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:57:04.045Z] Serving at port 9007
+
+[debug] [2022-11-08T21:57:04.135Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:57:04.143Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:57:27.574Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:57:28.575Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:57:30.934Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:57:30.934Z] Building nodejs source
+[debug] [2022-11-08T21:57:30.934Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:57:30.934Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:57:31.120Z] Serving at port 9007
+
+[debug] [2022-11-08T21:57:31.216Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:57:31.222Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:57:53.917Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:57:54.919Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:57:56.921Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:57:56.921Z] Building nodejs source
+[debug] [2022-11-08T21:57:56.921Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:57:56.921Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:57:57.108Z] Serving at port 9007
+
+[debug] [2022-11-08T21:57:57.181Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:57:57.190Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:58:12.053Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:58:13.055Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:58:15.234Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:58:15.234Z] Building nodejs source
+[debug] [2022-11-08T21:58:15.234Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:58:15.234Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:58:15.421Z] Serving at port 9007
+
+[debug] [2022-11-08T21:58:15.598Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:58:15.616Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:58:16.859Z] Nov 08, 2022 4:58:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 4:58:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-08T21:58:16.868Z] Nov 08, 2022 4:58:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 4:58:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-08T21:59:21.267Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:59:22.268Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:59:24.334Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:59:24.334Z] Building nodejs source
+[debug] [2022-11-08T21:59:24.334Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:59:24.334Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:59:24.543Z] Serving at port 9007
+
+[debug] [2022-11-08T21:59:24.641Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:59:24.650Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T21:59:38.868Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T21:59:39.872Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T21:59:41.792Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T21:59:41.793Z] Building nodejs source
+[debug] [2022-11-08T21:59:41.793Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T21:59:41.793Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T21:59:41.972Z] Serving at port 9007
+
+[debug] [2022-11-08T21:59:42.067Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T21:59:42.076Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:03:19.625Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:03:20.628Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:03:22.766Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:03:22.766Z] Building nodejs source
+[debug] [2022-11-08T22:03:22.766Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:03:22.767Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:03:23.034Z] Serving at port 9007
+
+[debug] [2022-11-08T22:03:23.111Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:03:23.119Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:08:00.998Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:08:02.005Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:08:04.219Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:08:04.219Z] Building nodejs source
+[debug] [2022-11-08T22:08:04.219Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:08:04.220Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:08:04.498Z] Serving at port 9007
+
+[debug] [2022-11-08T22:08:04.677Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:08:04.683Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:09:13.520Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:09:14.523Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:09:17.376Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:09:17.377Z] Building nodejs source
+[debug] [2022-11-08T22:09:17.377Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:09:17.377Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:09:17.580Z] Serving at port 9007
+
+[debug] [2022-11-08T22:09:17.671Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:09:17.679Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:09:17.703Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:09:18.704Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:09:20.779Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:09:20.779Z] Building nodejs source
+[debug] [2022-11-08T22:09:20.779Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:09:20.779Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:09:20.979Z] Serving at port 9007
+
+[debug] [2022-11-08T22:09:21.073Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:09:21.081Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:10:01.052Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:10:02.053Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:10:04.094Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:10:04.094Z] Building nodejs source
+[debug] [2022-11-08T22:10:04.094Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:10:04.094Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:10:04.280Z] Serving at port 9007
+
+[debug] [2022-11-08T22:10:04.377Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:10:04.385Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:11:01.526Z] Nov 08, 2022 5:11:01 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+INFO: Connected to new websocket client
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:11:01 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
+[debug] [2022-11-08T22:11:03.330Z] Nov 08, 2022 5:11:03 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:11:03 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-08T22:17:13.985Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:17:14.993Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:17:18.772Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:17:18.772Z] Building nodejs source
+[debug] [2022-11-08T22:17:18.772Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:17:18.773Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:17:18.966Z] Serving at port 9007
+
+[debug] [2022-11-08T22:17:19.063Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:17:19.072Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:18:42.339Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:18:43.344Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:18:45.580Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:18:45.580Z] Building nodejs source
+[debug] [2022-11-08T22:18:45.580Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:18:45.580Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:18:45.768Z] Serving at port 9007
+
+[debug] [2022-11-08T22:18:45.869Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:18:45.878Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:20:18.251Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:20:19.254Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:20:21.536Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:20:21.536Z] Building nodejs source
+[debug] [2022-11-08T22:20:21.537Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:20:21.538Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:20:21.864Z] Serving at port 9007
+
+[debug] [2022-11-08T22:20:21.973Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:20:21.986Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:21:12.120Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:21:13.122Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:21:15.643Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:21:15.643Z] Building nodejs source
+[debug] [2022-11-08T22:21:15.643Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:21:15.643Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:21:15.825Z] Serving at port 9007
+
+[debug] [2022-11-08T22:21:15.925Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:21:15.936Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:21:42.957Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:21:43.899Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:21:44.900Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:21:47.014Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:21:47.015Z] Building nodejs source
+[debug] [2022-11-08T22:21:47.015Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:21:47.015Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:21:47.196Z] Serving at port 9007
+
+[debug] [2022-11-08T22:21:47.262Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:21:47.271Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:22:10.854Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-08T22:22:11.857Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
+[debug] [2022-11-08T22:22:13.904Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "emulator": "npm run build && firebase emulators:start",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log",
+    "test": "jest --watchAll"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "firebase-admin": "^10.0.2",
+    "firebase-functions": "^3.18.0",
+    "firebase-tools": "^11.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.2.1",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.0.0",
+    "jest": "^29.2.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  },
+  "private": true
+}
+[debug] [2022-11-08T22:22:13.905Z] Building nodejs source
+[debug] [2022-11-08T22:22:13.905Z] Analyzing nodejs backend spec
+[debug] [2022-11-08T22:22:13.905Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-08T22:22:14.091Z] Serving at port 9007
+
+[debug] [2022-11-08T22:22:14.158Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-08T22:22:14.167Z] shutdown requested via /__/quitquitquit
+
+[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
+[debug] [2022-11-08T22:22:58.408Z] Nov 08, 2022 5:22:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:22:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-08T22:22:58.417Z] Nov 08, 2022 5:22:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:22:58 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
