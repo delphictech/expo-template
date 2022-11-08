@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions-test';
-import { db, makeDetailedData } from '../src/index';
+import { db, makeDetailedData, firebaseConfig } from '../src/index';
 import 'jest';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
@@ -10,19 +10,8 @@ import { Change } from 'firebase-functions/v1';
     https://h-malik144.medium.com/jest-testing-for-firebase-functions-a51ce1094d38
 */
 
-// import * as admin from 'firebase-admin';
-const projectId = 'maet-pickup-dev';
 
-// Setup for offline
-// process.env.FIRESTORE_EMULATOR_HOST = process.env.localHost;
-// End Setup for offline
-
-// admin.initializeApp({ projectId });
-
-// const db = admin.firestore();
-
-
-const testEnv = functions({ projectId: projectId }, './service-account.json');
+const testEnv = functions(firebaseConfig, './service-account.json');
 
 // declare tests 
 describe("Firebase functions testing", () => {

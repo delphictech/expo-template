@@ -1,30 +1,18 @@
 import { initializeApp } from 'firebase-admin/app';
 import { firestore } from 'firebase-admin';
-
-// process.env.GCLOUD_PROJECT = 'maet-pickup-dev';
-// Setup Keys
-import {
-    FIREBASE_API_KEY,
-    FIREBASE_AUTH_DOMAIN,
-    FIREBASE_PROJECT_ID,
-    FIREBASE_STORAGE_BUCKET,
-    FIREBASE_MESSAGING_SENDER_ID,
-    FIREBASE_APP_ID,
-    FIREBASE_MEASUREMENT_ID,
-} from '@env';
-
-const firebaseConfig = {
-    apiKey: FIREBASE_API_KEY,
-    authDomain: FIREBASE_AUTH_DOMAIN,
-    projectId: FIREBASE_PROJECT_ID,
-    storageBucket: FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
-    appId: FIREBASE_APP_ID,
-    measurementId: FIREBASE_MEASUREMENT_ID,
-};
-initializeApp(firebaseConfig);
-
 import * as functions from 'firebase-functions';
+
+export const firebaseConfig = {
+    apiKey: process.env.FB_API_KEY,
+    authDomain: process.env.FB_AUTH_DOMAIN,
+    projectId: process.env.FB_PROJECT_ID,
+    storageBucket: process.env.FB_STORAGE_BUCKET,
+    messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
+    appId: process.env.FB_APP_ID,
+    measurementId: process.env.FB_MEASUREMENT_ID,
+};
+
+initializeApp(firebaseConfig);
 
 // I initialized the app in the test file
 export const db = firestore();
