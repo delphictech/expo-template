@@ -9,4 +9,8 @@ export default {
     },
 };
 
-export const Basic = (args: any) => <Button {...args} />;
+export const Basic = (args) => (
+    <>
+        <Button {...args} />
+    </>
+);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-import { NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider } from 'native-base'; 
 import BasicFlatList from '.';
 import { Product } from './Product';
 import CenterView from '../CenterView';

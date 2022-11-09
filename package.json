@@ -69,7 +69,6 @@
         "@storybook/addon-ondevice-actions": "^5.3.23",
         "@storybook/addon-ondevice-knobs": "^5.3.26",
         "@storybook/react-native": "^6.0.1-beta.9",
-        "@storybook/react-native-server": "^5.3.23",
         "@testing-library/jest-native": "^4.0.2",
         "@testing-library/react-hooks": "^7.0.2",
         "@testing-library/react-native": "^8.0.0",

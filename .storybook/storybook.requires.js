@@ -18,7 +18,11 @@ if (parameters) {
 }
 
 const getStories = () => {
-  return [require("./components/Button.stories.tsx")];
+  return [
+    require("./stories/Button.stories.tsx"),
+    require("./stories/Product.stories.tsx"),
+    require("./stories/Test.stories.tsx"),
+  ];
 };
 
 configure(getStories, module, false);

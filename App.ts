@@ -9,5 +9,8 @@ export { StorybookUIRoot as default };
 // App.tsx
 // const STORYBOOK_START = true;
 // export default STORYBOOK_START
-// ? require('./storybook').default
+// ? require('./.storybook').default
 // : App;
+
+// const STORYBOOK_START = true;
+// export default STORYBOOK_START ? StorybookUIRoot : App;
