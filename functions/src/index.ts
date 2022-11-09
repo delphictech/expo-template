@@ -2,12 +2,6 @@ import { initializeApp } from 'firebase-admin/app';
 import { firestore } from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
-// export const firebaseConfig = {
-//     projectId: process.env.FB_PROJECT_ID,
-//     storageBucket: process.env.FB_STORAGE_BUCKET,
-//     appId: process.env.FB_APP_ID,
-// };
-// process.env.GCLOUD_PROJECT = 'maet-pickup-dev';
 initializeApp();
 
 // I initialized the app in the test file
@@ -16,7 +10,6 @@ export const db = firestore();
 export const makeDetailedData = functions.firestore
     .document('private-user-data/{productID}')
     .onWrite(async (change, context) => {
-
         try {
             const newValue = change.after.data();
             if (newValue) {

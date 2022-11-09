@@ -12,7 +12,7 @@ import { Change } from 'firebase-functions/v1';
 */
 
 
-const testEnv = functions({ projectId: 'maet-pickup-dev'}, './service-account.json');
+const testEnv = functions({ projectId: process.env.PROJECT_NAME }, './service-account.json');
 
 // declare tests 
 describe("Firebase functions testing", () => {
