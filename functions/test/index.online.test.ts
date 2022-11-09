@@ -1,5 +1,5 @@
 import * as functions from 'firebase-functions-test';
-import { db, makeDetailedData, firebaseConfig } from '../src/index';
+import { db, makeDetailedData } from '../src/index';
 import 'jest';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
@@ -8,20 +8,24 @@ import { Change } from 'firebase-functions/v1';
 /*
     Shifted to making individual document snapshots for before and after
     https://h-malik144.medium.com/jest-testing-for-firebase-functions-a51ce1094d38
+    https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional
 */
 
 
-const testEnv = functions(firebaseConfig, './service-account.json');
+const testEnv = functions({ projectId: 'maet-pickup-dev'}, './service-account.json');
 
 // declare tests 
 describe("Firebase functions testing", () => {
     
+    // declare wrapped as a scheduled firebase function that has not been invoked yet
     let wrapped: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>;
 
     beforeAll(() => {
+        // wrap the firebase function, ready to be invoked
         wrapped = testEnv.wrap(makeDetailedData);
     });
 
+    // declare the data to test
     const privateUserData = {
         uid: 'testing-user',
         name: 'seth',
@@ -38,16 +42,18 @@ describe("Firebase functions testing", () => {
         image: privateUserData.image,
     };
 
+    // run the test
     test("Testing firebase function", async () => {
         const privatePath = `private-user-data/${privateUserData.uid}`;
 
-        // 
+        // create the example snapshots
+        // we cn change the inputted data for before and after depending on if we want the data to change at all.
         const changeDoc: Change<DocumentSnapshot> = {
             before: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
             after: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
         };
-        // (privateUserData, privatePath);
 
+        // call firebase function with the changes inputted to the function
         await wrapped(changeDoc);
 
         const publicPath = `public-user-data/${privateUserData.uid}`;
@@ -63,74 +69,3 @@ describe("Firebase functions testing", () => {
     });
 
 });
-
-/*
-// let wrapped: any;
-describe('working tests', () => {
-    let privateRefID: string;
-    beforeAll(() => {
-        // let wrapped = testEnv.wrap(makeDetailedData);
-        // wrapped = testENV.wrap(myFunction.makeDetailedData);
-    });
-
-    // afterEach(() => {
-    //     db.collection('private-user-data').doc(privateRefID).delete();
-    //     db.collection('public-user-data').doc(privateRefID).delete();
-    // });
-
-    test('Add new collection doc', async () => {
-        // const path = 'public-user-data/';
-        const inputToDB = {
-            name: 'seth',
-            count: '7',
-            image: 'dasadsadaawd',
-            email: 'seth@email',
-            emailVerified: true,
-            phone: 1234566,
-        };
-
-        const expectedValue = {
-            name: inputToDB.name,
-            count: inputToDB.count,
-            image: inputToDB.image,
-        };
-
-        console.log(expectedValue);
-        
-
-        // const snap = await testENV.firestore.makeDocumentSnapshot(inputToDB, 'private-user-data');
-
-        // const snap = db.collection('private-user-data').doc().set(inputToDB);
-
-        const privateRef = db.collection('private-user-data').doc();
-        await privateRef.set(inputToDB);
-
-
-        // await wrapped(snap);
-
-        privateRefID = privateRef.id;
-
-        console.log(privateRefID);
-
-        // await privateRef.set(inputToDB);
-
-        // console.log('snap', snap);
-
-        const publicRef = db.collection('public-user-data').doc(privateRefID);
-
-        // console.log(publicRef);
-        await new Promise((r) => setTimeout(r, 5000));
-
-        const publicDoc = await publicRef.get();
-
-        console.log(publicDoc.data());
-
-        expect(publicDoc.data()).toEqual(expectedValue);
-    }, 8000);
-
-    test('Sample ', () => {
-        expect(1).toBe(1);
-    });
-});
-
-*/

@@ -1,65 +1,62 @@
-[debug] [2022-11-08T22:52:37.154Z] ----------------------------------------------------------------------
-[debug] [2022-11-08T22:52:37.156Z] Command:       /usr/local/Cellar/node/18.2.0/bin/node /Users/kekoawong/code/maet-template/functions/node_modules/.bin/firebase emulators:start
-[debug] [2022-11-08T22:52:37.156Z] CLI Version:   11.16.0
-[debug] [2022-11-08T22:52:37.157Z] Platform:      darwin
-[debug] [2022-11-08T22:52:37.158Z] Node Version:  v18.2.0
-[debug] [2022-11-08T22:52:37.159Z] Time:          Tue Nov 08 2022 17:52:37 GMT-0500 (Eastern Standard Time)
-[debug] [2022-11-08T22:52:37.159Z] ----------------------------------------------------------------------
+[debug] [2022-11-09T23:54:10.445Z] ----------------------------------------------------------------------
+[debug] [2022-11-09T23:54:10.447Z] Command:       /usr/local/Cellar/node/18.2.0/bin/node /Users/kekoawong/code/maet-template/functions/node_modules/.bin/firebase emulators:start
+[debug] [2022-11-09T23:54:10.447Z] CLI Version:   11.16.0
+[debug] [2022-11-09T23:54:10.447Z] Platform:      darwin
+[debug] [2022-11-09T23:54:10.448Z] Node Version:  v18.2.0
+[debug] [2022-11-09T23:54:10.448Z] Time:          Wed Nov 09 2022 18:54:10 GMT-0500 (Eastern Standard Time)
+[debug] [2022-11-09T23:54:10.449Z] ----------------------------------------------------------------------
 [debug] 
-[debug] [2022-11-08T22:52:37.250Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2022-11-08T22:52:37.251Z] > authorizing via signed-in user (kekoa@maet.io)
-[debug] [2022-11-08T22:52:37.478Z] java version "19.0.1" 2022-10-18
+[debug] [2022-11-09T23:54:10.541Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-11-09T23:54:10.542Z] > authorizing via signed-in user (kekoa@maet.io)
+[debug] [2022-11-09T23:54:10.776Z] java version "19.0.1" 2022-10-18
 
-[debug] [2022-11-08T22:52:37.479Z] Java(TM) SE Runtime Environment (build 19.0.1+10-21)
+[debug] [2022-11-09T23:54:10.777Z] Java(TM) SE Runtime Environment (build 19.0.1+10-21)
 Java HotSpot(TM) 64-Bit Server VM (build 19.0.1+10-21, mixed mode, sharing)
 
-[debug] [2022-11-08T22:52:37.486Z] Parsed Java major version: 19
+[debug] [2022-11-09T23:54:10.782Z] Parsed Java major version: 19
 [info] i  emulators: Starting emulators: functions, firestore {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: functions, firestore"}}
-[debug] [2022-11-08T22:52:37.932Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2022-11-08T22:52:37.932Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2022-11-08T22:52:37.932Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2022-11-08T22:52:37.932Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}]},"metadata":{"message":"assigned listening specs for emulators"}}
-[debug] [2022-11-08T22:52:37.941Z] [hub] writing locator at /var/folders/qp/kbk93qxn41s488wn8qj4p7mm0000gn/T/hub-maet-test-payment.json
-[debug] [2022-11-08T22:52:38.113Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2022-11-08T22:52:38.113Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
-[debug] [2022-11-08T22:52:38.113Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
+[debug] [2022-11-09T23:54:11.199Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-11-09T23:54:11.199Z] [firestore] Firestore Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-11-09T23:54:11.199Z] [firestore.websocket] websocket server for firestore only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-11-09T23:54:11.199Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2022-11-09T23:54:11.207Z] [hub] writing locator at /var/folders/qp/kbk93qxn41s488wn8qj4p7mm0000gn/T/hub-maet-test-payment.json
+[debug] [2022-11-09T23:54:11.376Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-11-09T23:54:11.376Z] [eventarc] Eventarc Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2022-11-09T23:54:11.376Z] late-assigned ports for functions and eventarc emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":4000},{"address":"::1","family":"IPv6","port":4000}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"firestore":[{"address":"127.0.0.1","family":"IPv4","port":8080}],"firestore.websocket":[{"address":"127.0.0.1","family":"IPv4","port":9150}],"functions":[{"address":"127.0.0.1","family":"IPv4","port":5001}],"eventarc":[{"address":"127.0.0.1","family":"IPv4","port":9299}]},"metadata":{"message":"late-assigned ports for functions and eventarc emulators"}}
 [warn] ⚠  functions: The following emulators are not running, calls to these services from the Functions emulator will affect production: auth, database, hosting, pubsub, storage {"metadata":{"emulator":{"name":"functions"},"message":"The following emulators are not running, calls to these services from the Functions emulator will affect production: \u001b[1mauth, database, hosting, pubsub, storage\u001b[22m"}}
 [warn] ⚠  Your requested "node" version "16" doesn't match your global version "18". Using node@18 from host. {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"16\" doesn't match your global version \"18\". Using node@18 from host."}}
-[debug] [2022-11-08T22:52:38.119Z] defaultcredentials: writing to file /Users/kekoawong/.config/firebase/kekoa_maet_io_application_default_credentials.json
-[debug] [2022-11-08T22:52:38.122Z] Setting GAC to /Users/kekoawong/.config/firebase/kekoa_maet_io_application_default_credentials.json {"metadata":{"emulator":{"name":"functions"},"message":"Setting GAC to /Users/kekoawong/.config/firebase/kekoa_maet_io_application_default_credentials.json"}}
-[debug] [2022-11-08T22:52:38.124Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/maet-test-payment/adminSdkConfig [none]
-[debug] [2022-11-08T22:52:38.365Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/maet-test-payment/adminSdkConfig 200
-[debug] [2022-11-08T22:52:38.366Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/maet-test-payment/adminSdkConfig {"projectId":"maet-test-payment","storageBucket":"maet-test-payment.appspot.com","locationId":"us-central"}
-[debug] [2022-11-08T22:52:38.412Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
-[debug] [2022-11-08T22:52:38.412Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
-[debug] [2022-11-08T22:52:38.412Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/kekoawong/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","maet-test-payment","--rules","/Users/kekoawong/code/maet-template/firestore.rules","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/kekoawong/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"maet-test-payment\",\"--rules\",\"/Users/kekoawong/code/maet-template/firestore.rules\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
+[warn] ⚠  functions: Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to ./service-account.json. Non-emulated services will access production using these credentials. Be careful! {"metadata":{"emulator":{"name":"functions"},"message":"Your GOOGLE_APPLICATION_CREDENTIALS environment variable points to ./service-account.json. Non-emulated services will access production using these credentials. Be careful!"}}
+[debug] [2022-11-09T23:54:11.382Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/maet-test-payment/adminSdkConfig [none]
+[debug] [2022-11-09T23:54:11.670Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/maet-test-payment/adminSdkConfig 200
+[debug] [2022-11-09T23:54:11.670Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/maet-test-payment/adminSdkConfig {"projectId":"maet-test-payment","storageBucket":"maet-test-payment.appspot.com","locationId":"us-central"}
+[debug] [2022-11-09T23:54:11.716Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-11-09T23:54:11.717Z] Ignoring unsupported arg: single_project_mode_error {"metadata":{"emulator":{"name":"firestore"},"message":"Ignoring unsupported arg: single_project_mode_error"}}
+[debug] [2022-11-09T23:54:11.717Z] Starting Firestore Emulator with command {"binary":"java","args":["-Dgoogle.cloud_firestore.debug_log_level=FINE","-Duser.language=en","-jar","/Users/kekoawong/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar","--host","127.0.0.1","--port",8080,"--websocket_port",9150,"--project_id","maet-test-payment","--rules","/Users/kekoawong/code/maet-template/firestore.rules","--single_project_mode",true,"--functions_emulator","127.0.0.1:5001"],"optionalArgs":["port","webchannel_port","host","rules","websocket_port","functions_emulator","seed_from_export","project_id","single_project_mode"],"joinArgs":false} {"metadata":{"emulator":{"name":"firestore"},"message":"Starting Firestore Emulator with command {\"binary\":\"java\",\"args\":[\"-Dgoogle.cloud_firestore.debug_log_level=FINE\",\"-Duser.language=en\",\"-jar\",\"/Users/kekoawong/.cache/firebase/emulators/cloud-firestore-emulator-v1.15.1.jar\",\"--host\",\"127.0.0.1\",\"--port\",8080,\"--websocket_port\",9150,\"--project_id\",\"maet-test-payment\",\"--rules\",\"/Users/kekoawong/code/maet-template/firestore.rules\",\"--single_project_mode\",true,\"--functions_emulator\",\"127.0.0.1:5001\"],\"optionalArgs\":[\"port\",\"webchannel_port\",\"host\",\"rules\",\"websocket_port\",\"functions_emulator\",\"seed_from_export\",\"project_id\",\"single_project_mode\"],\"joinArgs\":false}"}}
 [info] i  firestore: Firestore Emulator logging to firestore-debug.log {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator logging to \u001b[1mfirestore-debug.log\u001b[22m"}}
-[debug] [2022-11-08T22:52:39.629Z] Nov 08, 2022 5:52:39 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
+[debug] [2022-11-09T23:54:12.972Z] Nov 09, 2022 6:54:12 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start
 INFO: Started WebSocket server on ws://127.0.0.1:9150
- {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:52:39 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://127.0.0.1:9150\n"}}
-[debug] [2022-11-08T22:52:39.657Z] API endpoint: http://127.0.0.1:8080 {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://127.0.0.1:8080"}}
-[debug] [2022-11-08T22:52:39.657Z] 
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:12 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketServer start\nINFO: Started WebSocket server on ws://127.0.0.1:9150\n"}}
+[debug] [2022-11-09T23:54:12.995Z] API endpoint: http:// {"metadata":{"emulator":{"name":"firestore"},"message":"API endpoint: http://"}}
+[debug] [2022-11-09T23:54:12.995Z] 127.0.0.1:8080
 If you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:
 
    export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080
 
 Dev App Server is now running.
 
- {"metadata":{"emulator":{"name":"firestore"},"message":"\nIf you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\n\n   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080\n\nDev App Server is now running.\n\n"}}
+ {"metadata":{"emulator":{"name":"firestore"},"message":"127.0.0.1:8080\nIf you are using a library that supports the FIRESTORE_EMULATOR_HOST environment variable, run:\n\n   export FIRESTORE_EMULATOR_HOST=127.0.0.1:8080\n\nDev App Server is now running.\n\n"}}
 [info] ✔  firestore: Firestore Emulator UI websocket is running on 9150. {"metadata":{"emulator":{"name":"firestore"},"message":"Firestore Emulator UI websocket is running on 9150."}}
-[debug] [2022-11-08T22:52:39.699Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
-[debug] [2022-11-08T22:52:39.700Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
-[debug] [2022-11-08T22:52:39.700Z] Starting Emulator UI with command {"binary":"node","args":["/Users/kekoawong/.cache/firebase/emulators/ui-v1.11.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/kekoawong/.cache/firebase/emulators/ui-v1.11.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
+[debug] [2022-11-09T23:54:13.252Z] Ignoring unsupported arg: auto_download {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: auto_download"}}
+[debug] [2022-11-09T23:54:13.253Z] Ignoring unsupported arg: port {"metadata":{"emulator":{"name":"ui"},"message":"Ignoring unsupported arg: port"}}
+[debug] [2022-11-09T23:54:13.253Z] Starting Emulator UI with command {"binary":"node","args":["/Users/kekoawong/.cache/firebase/emulators/ui-v1.11.1/server/server.js"],"optionalArgs":[],"joinArgs":false} {"metadata":{"emulator":{"name":"ui"},"message":"Starting Emulator UI with command {\"binary\":\"node\",\"args\":[\"/Users/kekoawong/.cache/firebase/emulators/ui-v1.11.1/server/server.js\"],\"optionalArgs\":[],\"joinArgs\":false}"}}
 [info] i  ui: Emulator UI logging to ui-debug.log {"metadata":{"emulator":{"name":"ui"},"message":"Emulator UI logging to \u001b[1mui-debug.log\u001b[22m"}}
-[debug] [2022-11-08T22:52:39.856Z] Web / API server started at 127.0.0.1:4000
+[debug] [2022-11-09T23:54:13.390Z] Web / API server started at 127.0.0.1:4000
  {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at 127.0.0.1:4000\n"}}
-[debug] [2022-11-08T22:52:39.856Z] Web / API server started at ::1:4000
+[debug] [2022-11-09T23:54:13.391Z] Web / API server started at ::1:4000
  {"metadata":{"emulator":{"name":"ui"},"message":"Web / API server started at ::1:4000\n"}}
 [info] i  functions: Watching "/Users/kekoawong/code/maet-template/functions" for Cloud Functions... {"metadata":{"emulator":{"name":"functions"},"message":"Watching \"/Users/kekoawong/code/maet-template/functions\" for Cloud Functions..."}}
-[debug] [2022-11-08T22:52:39.968Z] Validating nodejs source
-[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
-[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
-[debug] [2022-11-08T22:52:41.848Z] > [functions] package.json contents: {
+[debug] [2022-11-09T23:54:13.520Z] Validating nodejs source
+[debug] [2022-11-09T23:54:15.311Z] > [functions] package.json contents: {
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
@@ -79,7 +76,7 @@ Dev App Server is now running.
   "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0",
+    "firebase-functions": "^4.0.2",
     "firebase-tools": "^11.16.0"
   },
   "devDependencies": {
@@ -96,26 +93,26 @@ Dev App Server is now running.
   },
   "private": true
 }
-[debug] [2022-11-08T22:52:41.848Z] Building nodejs source
-[debug] [2022-11-08T22:52:41.848Z] Analyzing nodejs backend spec
-[debug] [2022-11-08T22:52:41.850Z] Could not find functions.yaml. Must use http discovery
-[debug] [2022-11-08T22:52:42.029Z] Serving at port 9007
+[debug] [2022-11-09T23:54:15.311Z] Building nodejs source
+[debug] [2022-11-09T23:54:15.311Z] Analyzing nodejs backend spec
+[debug] [2022-11-09T23:54:15.313Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-09T23:54:15.741Z] Serving at port 9007
 
-[debug] [2022-11-08T22:52:42.169Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
-[debug] [2022-11-08T22:52:42.180Z] shutdown requested via /__/quitquitquit
+[debug] [2022-11-09T23:54:16.023Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-09T23:54:16.034Z] shutdown requested via /__/quitquitquit
 
 [info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
-[debug] [2022-11-08T22:52:42.188Z] addFirestoreTrigger "{\"eventTrigger\":{\"eventType\":\"providers/cloud.firestore/eventTypes/document.write\",\"resource\":\"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}\",\"service\":\"firestore.googleapis.com\"}}"
-[debug] [2022-11-08T22:52:42.189Z] >>> [apiv2][query] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 [none]
-[debug] [2022-11-08T22:52:42.189Z] >>> [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 "{\"eventTrigger\":{\"eventType\":\"providers/cloud.firestore/eventTypes/document.write\",\"resource\":\"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}\",\"service\":\"firestore.googleapis.com\"}}"
-[debug] [2022-11-08T22:52:42.198Z] Nov 08, 2022 5:52:42 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+[debug] [2022-11-09T23:54:16.043Z] addFirestoreTrigger "{\"eventTrigger\":{\"eventType\":\"providers/cloud.firestore/eventTypes/document.write\",\"resource\":\"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}\",\"service\":\"firestore.googleapis.com\"}}"
+[debug] [2022-11-09T23:54:16.043Z] >>> [apiv2][query] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 [none]
+[debug] [2022-11-09T23:54:16.043Z] >>> [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 "{\"eventTrigger\":{\"eventType\":\"providers/cloud.firestore/eventTypes/document.write\",\"resource\":\"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}\",\"service\":\"firestore.googleapis.com\"}}"
+[debug] [2022-11-09T23:54:16.054Z] Nov 09, 2022 6:54:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected non-HTTP/2 connection.
- {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:52:42 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
-[debug] [2022-11-08T22:52:42.398Z] Nov 08, 2022 5:52:42 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-09T23:54:16.258Z] Nov 09, 2022 6:54:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
 INFO: Detected HTTP/2 connection.
- {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:52:42 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected HTTP/2 connection.\n"}}
-[debug] [2022-11-08T22:52:42.936Z] <<< [apiv2][status] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 200
-[debug] [2022-11-08T22:52:42.936Z] <<< [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 {}
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:16 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected HTTP/2 connection.\n"}}
+[debug] [2022-11-09T23:54:16.865Z] <<< [apiv2][status] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 200
+[debug] [2022-11-09T23:54:16.865Z] <<< [apiv2][body] PUT http://127.0.0.1:8080/emulator/v1/projects/maet-test-payment/triggers/us-central1-makeDetailedData-0 {}
 [info] ✔  functions[us-central1-makeDetailedData]: firestore function initialized. {"metadata":{"emulator":{"name":"functions"},"message":"\u001b[1mfirestore\u001b[22m function initialized."}}
 [info] 
 ┌─────────────────────────────────────────────────────────────┐
@@ -135,17 +132,30 @@ INFO: Detected HTTP/2 connection.
 
 Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
  
-[debug] [2022-11-08T22:53:16.503Z] Nov 08, 2022 5:53:16 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+[debug] [2022-11-09T23:54:22.313Z] Nov 09, 2022 6:54:22 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
 INFO: Connected to new websocket client
- {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:53:16 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
-[debug] [2022-11-08T22:53:16.574Z] Nov 08, 2022 5:53:16 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:22 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
+[debug] [2022-11-09T23:54:33.050Z] Nov 09, 2022 6:54:33 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
 INFO: Connected to new websocket client
- {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 08, 2022 5:53:16 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
-[debug] [2022-11-08T22:54:13.511Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
-[debug] [2022-11-08T22:54:14.516Z] Validating nodejs source
-[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
-[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
-[debug] [2022-11-08T22:54:16.976Z] > [functions] package.json contents: {
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:33 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
+[debug] [2022-11-09T23:54:36.640Z] Nov 09, 2022 6:54:36 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:36 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\n"}}
+[debug] [2022-11-09T23:54:36.643Z] Nov 09, 2022 6:54:36 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel
+INFO: Connected to new websocket client
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:36 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler initChannel\nINFO: Connected to new websocket client\n"}}
+[debug] [2022-11-09T23:54:37.244Z] Nov 09, 2022 6:54:37 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed
+INFO: Websocket client disconnected
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:37 PM com.google.cloud.datastore.emulator.firestore.websocket.WebSocketChannelHandler channelClosed\nINFO: Websocket client disconnected\n"}}
+[debug] [2022-11-09T23:54:41.876Z] Nov 09, 2022 6:54:41 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:41 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-09T23:54:41.882Z] Nov 09, 2022 6:54:41 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead
+INFO: Detected non-HTTP/2 connection.
+ {"metadata":{"emulator":{"name":"firestore"},"message":"Nov 09, 2022 6:54:41 PM io.gapi.emulators.netty.HttpVersionRoutingHandler channelRead\nINFO: Detected non-HTTP/2 connection.\n"}}
+[debug] [2022-11-09T23:55:38.186Z] File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/test/index.online.test.ts changed, reloading triggers"}}
+[debug] [2022-11-09T23:55:39.189Z] Validating nodejs source
+[debug] [2022-11-09T23:55:41.531Z] > [functions] package.json contents: {
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
@@ -165,7 +175,7 @@ INFO: Connected to new websocket client
   "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0",
+    "firebase-functions": "^4.0.2",
     "firebase-tools": "^11.16.0"
   },
   "devDependencies": {
@@ -182,62 +192,12 @@ INFO: Connected to new websocket client
   },
   "private": true
 }
-[debug] [2022-11-08T22:54:16.976Z] Building nodejs source
-[debug] [2022-11-08T22:54:16.976Z] Analyzing nodejs backend spec
-[debug] [2022-11-08T22:54:16.976Z] Could not find functions.yaml. Must use http discovery
-[debug] [2022-11-08T22:54:17.165Z] Serving at port 9007
+[debug] [2022-11-09T23:55:41.531Z] Building nodejs source
+[debug] [2022-11-09T23:55:41.531Z] Analyzing nodejs backend spec
+[debug] [2022-11-09T23:55:41.532Z] Could not find functions.yaml. Must use http discovery
+[debug] [2022-11-09T23:55:41.729Z] Serving at port 9007
 
-[debug] [2022-11-08T22:54:17.259Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
-[debug] [2022-11-08T22:54:17.267Z] shutdown requested via /__/quitquitquit
-
-[info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}
-[debug] [2022-11-08T22:57:23.858Z] File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers {"metadata":{"emulator":{"name":"functions"},"message":"File /Users/kekoawong/code/maet-template/functions/src/index.ts changed, reloading triggers"}}
-[debug] [2022-11-08T22:57:24.864Z] Validating nodejs source
-[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
-[warn] ⚠  functions: Please note that there will be breaking changes when you upgrade. 
-[debug] [2022-11-08T22:57:27.931Z] > [functions] package.json contents: {
-  "name": "functions",
-  "scripts": {
-    "lint": "eslint --ext .js,.ts .",
-    "build": "tsc",
-    "build:watch": "tsc --watch",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "emulator": "npm run build && firebase emulators:start",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log",
-    "test": "jest --watchAll"
-  },
-  "engines": {
-    "node": "16"
-  },
-  "main": "lib/index.js",
-  "dependencies": {
-    "firebase-admin": "^10.0.2",
-    "firebase-functions": "^3.18.0",
-    "firebase-tools": "^11.16.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^29.2.1",
-    "@typescript-eslint/eslint-plugin": "^5.12.0",
-    "@typescript-eslint/parser": "^5.12.0",
-    "eslint": "^8.9.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "^2.25.4",
-    "firebase-functions-test": "^3.0.0",
-    "jest": "^29.2.2",
-    "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4"
-  },
-  "private": true
-}
-[debug] [2022-11-08T22:57:27.932Z] Building nodejs source
-[debug] [2022-11-08T22:57:27.932Z] Analyzing nodejs backend spec
-[debug] [2022-11-08T22:57:27.933Z] Could not find functions.yaml. Must use http discovery
-[debug] [2022-11-08T22:57:28.247Z] Serving at port 9007
-
-[debug] [2022-11-08T22:57:28.321Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
-[debug] [2022-11-08T22:57:28.331Z] shutdown requested via /__/quitquitquit
+[debug] [2022-11-09T23:55:41.940Z] Got response from /__/functions.yaml {"endpoints":{"makeDetailedData":{"platform":"gcfv1","availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"serviceAccountEmail":null,"vpc":null,"eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.write","eventFilters":{"resource":"projects/maet-test-payment/databases/(default)/documents/private-user-data/{productID}"},"retry":false},"labels":{},"entryPoint":"makeDetailedData"}},"specVersion":"v1alpha1","requiredAPIs":[]}
+[debug] [2022-11-09T23:55:41.949Z] shutdown requested via /__/quitquitquit
 
 [info] ✔  functions: Loaded functions definitions from source: makeDetailedData. {"metadata":{"emulator":{"name":"functions"},"message":"Loaded functions definitions from source: makeDetailedData."}}

@@ -2,17 +2,13 @@ import { initializeApp } from 'firebase-admin/app';
 import { firestore } from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
-export const firebaseConfig = {
-    apiKey: process.env.FB_API_KEY,
-    authDomain: process.env.FB_AUTH_DOMAIN,
-    projectId: process.env.FB_PROJECT_ID,
-    storageBucket: process.env.FB_STORAGE_BUCKET,
-    messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
-    appId: process.env.FB_APP_ID,
-    measurementId: process.env.FB_MEASUREMENT_ID,
-};
-
-initializeApp(firebaseConfig);
+// export const firebaseConfig = {
+//     projectId: process.env.FB_PROJECT_ID,
+//     storageBucket: process.env.FB_STORAGE_BUCKET,
+//     appId: process.env.FB_APP_ID,
+// };
+// process.env.GCLOUD_PROJECT = 'maet-pickup-dev';
+initializeApp();
 
 // I initialized the app in the test file
 export const db = firestore();
@@ -22,8 +18,6 @@ export const makeDetailedData = functions.firestore
     .onWrite(async (change, context) => {
 
         try {
-            console.log('hello');
-            console.log(context);
             const newValue = change.after.data();
             if (newValue) {
                 // console.log(newValue.name, newValue.image, newValue.count);
