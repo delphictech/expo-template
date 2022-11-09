@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react-native';
-
+import { NativeBaseProvider } from 'native-base';
 import BasicFlatList from '.';
 import CenterView from '../CenterView';
 import { Provider } from 'react-redux';
@@ -22,7 +22,9 @@ const dataExample = [
 ];
 
 storiesOf('FlatListBasic', module)
-    .addDecorator((getStory) => <Provider store={store}>{getStory()}</Provider>)
+    .addDecorator((getStory) => (
+        <Provider store={store}>
+            <NativeBaseProvider>{getStory()}</NativeBaseProvider>
+        </Provider>
+    ))
     .add('basic', () => <BasicFlatList inputToFlatList={dataExample} />);
-
-

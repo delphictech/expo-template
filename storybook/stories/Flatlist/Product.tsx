@@ -4,6 +4,8 @@ import { Flex, Image, Text, Pressable } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
+import { BasicProductDataID } from '../../../src/types/products';
+
 // import { ExploreStackParams } from 'src/navigation/explore-stack';
 
 export interface BasicProductData {
@@ -13,9 +15,8 @@ export interface BasicProductData {
     id: string;
 }
 
-
 interface CartItemParams {
-    productData: BasicProductData;
+    productData: BasicProductDataID;
     // cartData: DetailedProductData;
 }
 
@@ -27,7 +28,7 @@ interface CartItemParams {
 
 export const Product: React.FC<CartItemParams> = ({ productData }) => {
     // const navigation = useNavigation<ProductNavProps>();
-    console.log('SETH HERE IS THE CURRENT NAVIGATION OBJECT');
+    // console.log('SETH HERE IS THE CURRENT NAVIGATION OBJECT');
     // console.log(navigation.getState());
     // const locateProduct = (id) => {};
 

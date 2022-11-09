@@ -19,8 +19,9 @@ export const productsApi = createApi({
                 console.log('from query');
 
                 try {
+                    console.log('this is before the fetch function');
                     const prod = await fetchProducts(lastDocID?.prod);
-                    console.log(prod);
+                    console.log('products', prod);
 
                     return { data: prod };
                 } catch (err) {

@@ -1,20 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { NativeBaseProvider } from 'native-base';
 import { Text, FlatList, Box } from 'native-base';
 import { ActivityIndicator } from 'react-native';
 import { Product } from './Product';
 import { LastDoc } from '../../../src/types/products';
+import { fetchProducts } from '../../../src/firebase//products-api';
+import { BasicProductDataID } from '../../../src/types/products';
 
-import { useFetchProductsQuery } from '../../../src/services/product-queries';
+// import { useFetchProductsQuery } from '../../../src/services/product-queries';
 // import { Text, View} from 'react-native';
-
-interface prod {
-    name: string;
-}
-
-interface Props {
-    // inputToFlatList: prod[];
-}
 
 export interface BasicProductData {
     inputToFlatList: {
@@ -31,48 +24,72 @@ const BasicFlatList: React.FC<BasicProductData> = ({ inputToFlatList }) => {
         prod: undefined,
         time: timeStampRef,
     });
-
-    const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
-        useFetchProductsQuery(lastDocID);
+    const [prod, setProd] = useState<BasicProductDataID[]>([
+        {
+            name: 'seth',
+            img: 'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=600',
+            price: 100,
+            id: 'dadalk23e3',
+            lat:1,
+            long:2,
+            geohash:'dasasd',
+        },
+        {
+            name: 'seth25',
+            img: 'https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=600',
+            price: 125,
+            id: 'dadalk23e3vz',
+            lat:1,
+            long:2,
+            geohash:'dasasd',
+        },
+    ]);
 
     useEffect(() => {
-        console.log(data);
-    }, [data]);
+        getData();
+    }, []);
 
-    console.log(data);
-    console.log('this is from the flatlist')
+    const getData = async () => {
+        const prod = await fetchProducts(undefined);
+        setProd(prod);
+        console.log('this is from prods')
+        console.log(prod);
+    };
 
-  
+    // const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
+    //     useFetchProductsQuery(lastDocID);
+
+    // useEffect(() => {
+    //     console.log(data);
+    // }, [data]);
+
+    // console.log('data', data);
+    // console.log('error', error);
+    console.log('this is from the flatlist');
 
     return (
         <>
-            {isLoading && <ActivityIndicator color="#36d7b7" />}
-            {isError && <Text>Something went wrong, Error</Text>}
-            {isSuccess && data && (
-        <NativeBaseProvider>
+            {/* {isLoading && <ActivityIndicator color="#36d7b7" />} */}
+            {/* {isError && <Text>Something went wrong, Error</Text>} */}
+            {/* {isSuccess && data && ( */}
             <Box w="100%" h="100%" flex={1} alignItems="center" justifyContent="center">
                 <Box w="100%" flex={1} justifyContent="space-around">
                     {/* <FlatList
                     data={[inputToFlatList.text]}
                     renderItem={({ item }) => <Text>{item}</Text>}
                 /> */}
-                <Text>It is working!</Text>
+                    <Text>It is working!</Text>
                     <FlatList
                         // data={inputToFlatList}
-                        data={data}
+                        data={prod}
                         renderItem={({ item }) => <Product productData={item} />}
                     />
                 </Box>
             </Box>
-        </NativeBaseProvider>
-        //     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        //     <Text>{inputToFlatList.text}</Text>
-        //   </View>
-    )}
+
+            {/* )} */}
         </>
     );
-
-
 };
 
 export default BasicFlatList;
