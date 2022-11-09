@@ -19,3 +19,10 @@ config.transformer = {
 
 
 module.exports = config;
+
+module.exports = {
+  /* existing config */
+  resolver: {
+    resolverMainFields: ['sbmodern', 'react-native', 'browser', 'main'],
+  },
+};
