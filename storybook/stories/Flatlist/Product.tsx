@@ -15,8 +15,17 @@ export interface BasicProductData {
     id: string;
 }
 
+interface styleProp {
+    padding?: string;
+    height?: string;
+    width?: string;
+    bRadius?: number;
+    backgroundColor: string;
+}
+
 interface CartItemParams {
     productData: BasicProductDataID;
+    styleProp?: styleProp;
     // cartData: DetailedProductData;
 }
 
@@ -26,7 +35,10 @@ interface CartItemParams {
 */
 // type ProductNavProps = StackNavigationProp<ExploreStackParams, "Product">;
 
-export const Product: React.FC<CartItemParams> = ({ productData }) => {
+export const Product: React.FC<CartItemParams> = ({
+    productData,
+    styleProp = { padding: '3', height: '200', width: '95%', bRadius: 40, backgroundColor:'gray.300' },
+}) => {
     // const navigation = useNavigation<ProductNavProps>();
     // console.log('SETH HERE IS THE CURRENT NAVIGATION OBJECT');
     // console.log(navigation.getState());
@@ -39,17 +51,17 @@ export const Product: React.FC<CartItemParams> = ({ productData }) => {
     return (
         <Flex
             // this is the format to make a button
-            width="95%"
+            width={styleProp.width}
             // maxHeight="100%"
-            borderColor="lightBlue.300"
-            backgroundColor="gray.700"
+            
+            backgroundColor={styleProp.backgroundColor}
             direction="row"
             alignItems="center"
             // justifyContent="center"
-            p="3"
+            p={styleProp.padding}
             m="2"
-            height="280"
-            borderRadius={40}>
+            borderRadius={styleProp.bRadius}
+            height={styleProp.height}>
             <Pressable
                 // onPress={() => {
                 //     if (productData.id) {
