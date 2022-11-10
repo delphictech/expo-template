@@ -2,9 +2,10 @@ import { initializeApp } from 'firebase-admin/app';
 import { firestore } from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
+// initialize firebase app
 initializeApp();
 
-// I initialized the app in the test file
+// initialize firestore
 export const db = firestore();
 
 export const makeDetailedData = functions.firestore
@@ -20,7 +21,6 @@ export const makeDetailedData = functions.firestore
                     image: newValue.image,
                 };
                 const docID = change.after.id;
-                // console.log(docID);
 
                 const publicDataRef = db.collection('public-user-data').doc(docID);
                 return await publicDataRef.set(publicData);
@@ -31,11 +31,3 @@ export const makeDetailedData = functions.firestore
             return Promise.reject(err);
         }
     });
-
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
