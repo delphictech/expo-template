@@ -1,10 +1,11 @@
 import * as functions from 'firebase-functions-test';
+import 'jest';
 import { db } from 'functions/src';
 import { updatePublicUserData } from 'functions/src/user';
-import 'jest';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
 import { Change } from 'firebase-functions/v1';
+import { PrivateUserData, PublicUserData } from 'types/user';
 
 /*
     Shifted to making individual document snapshots for before and after
@@ -14,7 +15,6 @@ import { Change } from 'firebase-functions/v1';
     Set the env variable for project name
     download the service account name, add to your gitignore
 */
-
 
 const testEnv = functions({ projectId: process.env.PROJECT_NAME }, './service-account.json');
 
@@ -30,24 +30,28 @@ describe("Firebase functions testing", () => {
     });
 
     // declare the data to test
-    const privateUserData = {
-        uid: 'testing-user',
-        name: 'seth',
-        count: '7',
-        image: 'dasadsadaawd',
-        email: 'seth@email',
+    const privateUserData: PrivateUserData = {
+        id: 'testing-user',
+        firstName: 'Snoopy',
+        lastName: 'Smith',
+        count: 7,
+        image: 'https://yt3.ggpht.com/a/AGF-l79gvcqBbQiq6cwh9GC8FpdUjs0WAAeo7_8D2g=s900-c-k-c0xffffffff-no-rj-mo',
+        email: 'snoops@example.com',
         emailVerified: true,
-        phone: 1234566,
+        isAnonymous: false,
+        loggedIn: true,
     };
 
-    const publicUserData  = {
-        name: privateUserData.name,
+    const publicUserData: PublicUserData  = {
+        id: privateUserData.id,
+        firstName: privateUserData.firstName,
+        lastName: privateUserData.lastName,
         count: privateUserData.count,
         image: privateUserData.image,
     };
 
-    const privatePath = `private-user-data/${privateUserData.uid}`;
-    const publicPath = `public-user-data/${privateUserData.uid}`;
+    const privatePath = `private-user-data/${privateUserData.id}`;
+    const publicPath = `public-user-data/${publicUserData.id}`;
 
     // run the test
     test("Testing firebase function", async () => {
@@ -55,7 +59,7 @@ describe("Firebase functions testing", () => {
         // create the example snapshots
         // we can change the inputted data for before and after depending on if we want the data to change at all.
         const changeDoc: Change<DocumentSnapshot> = {
-            before: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
+            before: testEnv.firestore.makeDocumentSnapshot({}, privatePath),
             after: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
         };
 

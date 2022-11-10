@@ -14,7 +14,7 @@ export interface PrivateUserData extends PublicUserData {
     /*  
         User object that can be written by the user. Will update the public data.
     */
-    email: string;
+    email?: string | null;
     phoneNumber?: string | null;
     isAnonymous: boolean;
     emailVerified: boolean;
