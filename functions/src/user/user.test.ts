@@ -11,7 +11,6 @@ import { PrivateUserData, PublicUserData } from 'types/user';
     Shifted to making individual document snapshots for before and after
     https://h-malik144.medium.com/jest-testing-for-firebase-functions-a51ce1094d38
     https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional
-    No need to run firebase emulators
     Set the env variable for project name
     download the service account name, add to your gitignore
 */
@@ -22,11 +21,11 @@ const testEnv = functions({ projectId: process.env.PROJECT_NAME }, './service-ac
 describe("Firebase functions testing", () => {
     
     // declare wrapped as a scheduled firebase function that has not been invoked yet
-    let wrapped: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>;
+    let wrappedOnWrite: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>;
 
     beforeAll(() => {
         // wrap the firebase function, ready to be invoked
-        wrapped = testEnv.wrap(updatePublicUserData);
+        wrappedOnWrite = testEnv.wrap(updatePublicUserData);
     });
 
     // declare the data to test
@@ -54,7 +53,7 @@ describe("Firebase functions testing", () => {
     const publicPath = `public-user-data/${publicUserData.id}`;
 
     // run the test
-    test("Testing firebase function", async () => {
+    test("Testing onWrite function", async () => {
 
         // create the example snapshots
         // we can change the inputted data for before and after depending on if we want the data to change at all.
@@ -64,7 +63,7 @@ describe("Firebase functions testing", () => {
         };
 
         // call firebase function with the changes inputted to the function
-        await wrapped(changeDoc);
+        await wrappedOnWrite(changeDoc);
 
         const after = await db.doc(publicPath).get();
 
@@ -78,7 +77,7 @@ describe("Firebase functions testing", () => {
         // cleanup the private data, any env variables and firebase apps
         testEnv.cleanup();
 
-        // delete firebase function data
+        // delete firebase function data for onWrite function
         await db.doc(publicPath).delete();
         
     });
