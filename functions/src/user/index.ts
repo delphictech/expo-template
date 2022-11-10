@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions';
 
 export const updatePublicUserData = functions.firestore
     .document('private-user-data/{productID}')
-    .onWrite(async (change, context) => {
+    .onWrite(async (change) => {
         try {
             const newValue = change.after.data();
             if (newValue) {
