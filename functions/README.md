@@ -7,6 +7,7 @@ Server side functions are an amazing tool for adding more backend functionality 
 Have the `npm run serve` instead of firebase emulators.
 Set the FirebaseConfig and GCloud_Project env variables. 
 Include the service-acount.json locally.
+Include file structure to include within the src directory. Sort by type of functions for. 
 
 
 ### 🟥 Concerns or Unknown Functionality

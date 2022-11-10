@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions-test';
-import { db, makeDetailedData } from '../index';
+import { db } from 'functions/src';
+import { updatePublicUserData } from 'functions/src/user';
 import 'jest';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
@@ -25,7 +26,7 @@ describe("Firebase functions testing", () => {
 
     beforeAll(() => {
         // wrap the firebase function, ready to be invoked
-        wrapped = testEnv.wrap(makeDetailedData);
+        wrapped = testEnv.wrap(updatePublicUserData);
     });
 
     // declare the data to test
