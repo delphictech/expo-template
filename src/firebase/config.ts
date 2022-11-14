@@ -3,7 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { initializeAuth, browserPopupRedirectResolver } from 'firebase/auth';
 import { getReactNativePersistence } from 'firebase/auth/react-native';
 // import { getAnalytics } from "firebase/analytics";
-import { collection, CollectionReference, DocumentData, FirestoreDataConverter, getFirestore, QueryDocumentSnapshot, SnapshotOptions, WithFieldValue } from 'firebase/firestore';
+import { collection, DocumentData, FirestoreDataConverter, getFirestore, QueryDocumentSnapshot, SnapshotOptions, WithFieldValue } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -42,13 +42,15 @@ export const auth = initializeAuth(app, {
     popupRedirectResolver: browserPopupRedirectResolver,
 });
 
-/*
-    Initialize firestore and define typed helping collection function
-        References: 
+
+/**
+    * Initialize firestore and define typed helping collection function
+    * References: 
         https://plainenglish.io/blog/using-firestore-with-typescript-in-the-v9-sdk-cf36851bb099
         https://medium.com/swlh/using-firestore-with-typescript-65bd2a602945
 */
 export const db = getFirestore(app);
+
 
 // Generic data type converter from firestore
 const genericConverter = <T>() => ({
@@ -65,7 +67,8 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
     return collection(db, collectionName).withConverter<T>(converter);
 };
 
-/*
+
+/**
     Define the collections
 */
 export const privateUserCollection = createCollection('private-user-data');
