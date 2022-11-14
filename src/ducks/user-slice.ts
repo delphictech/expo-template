@@ -29,9 +29,11 @@ export const userSlice = createSlice({
             return { ...state, email: action.payload, loggedIn: true }
         },
         incrementCount: (state) => {
+            // increment, or set to 1
             state.count ? state.count += 1 : state.count = 1;
         },
         decrementCount: (state) => {
+            // decrement, or set to -1
             state.count ? state.count -= 1 : state.count = -1;
         },
     },

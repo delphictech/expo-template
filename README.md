@@ -79,6 +79,8 @@ FIREBASE_MEASUREMENT_ID=[...]
     *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
     *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
     *Variables:* camelCase (ex. const isLoading)
+5. **Comments:**
+    *We follow the standardized [TSDoc](https://tsdoc.org/) comments.
 
 
 ## 📂 Organization 

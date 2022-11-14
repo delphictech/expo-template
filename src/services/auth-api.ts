@@ -8,7 +8,7 @@ import {
     signUpWithEmail,
     verifyEmail,
 } from 'src/firebase/auth-api';
-import { deleterPrivateUserData, getPrivateUserData, updatePrivateUserData } from 'src/firebase/user-api';
+import { deletePrivateUserData, getPrivateUserData, updatePrivateUserData } from 'src/firebase/user-api';
 import { PrivateUserData } from 'src/types/user';
 import { ConfigApi } from './config-api';
 
@@ -24,9 +24,10 @@ import { ConfigApi } from './config-api';
 export const AuthUserApi = ConfigApi.injectEndpoints({
     endpoints: (build) => ({
 
-        /* 
-            Will fetch the sign in methods of the user, returning a list
-        */
+        /**
+         * Will fetch the sign in methods of the user, returning a list
+         * @param email
+         */
         fetchSignInMethods: build.query<string[], string>({
             async queryFn(email) {
                 try {
@@ -132,7 +133,7 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
         deleteAccount: build.query<PrivateUserData, string>({
             async queryFn(uid: string) {
                 try {
-                    await deleterPrivateUserData(uid);
+                    await deletePrivateUserData(uid);
                     await deleteCurrentUser();
                     // set isDeleted field in the user
                     return { data: { id: '', isAnonymous: false, loggedIn: false, emailVerified: false } };
@@ -142,6 +143,7 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
+
         /*
             Re-authenticate user for security sensitive actions
         */
@@ -184,28 +186,8 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-        refreshUserData: build.query<User, undefined>({
-            async queryFn() {
-                try {
-                    // reload the user
-                    const user = await reloadUser();
-                    const userData = await getUser(user.uid);
-                    // store user data in firestore
-                    const updatedFields: User = {
-                        ...userData,
-                        email: user.email,
-                        isAnonymous: user.isAnonymous,
-                        emailVerified: user.emailVerified,
-                        loggedIn: true,
-                    };
-                    return { data: updatedFields };
-                } catch (e: any) {
-                    console.log(`Error with refreshing user:`);
-                    console.log(e);
-                    return { error: e };
-                }
-            },
-        }),
+
+
         updatePassword: build.query<null, string>({
             async queryFn(password: string) {
                 try {
