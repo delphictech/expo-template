@@ -44,7 +44,8 @@ export const auth = initializeAuth(app, {
 
 /*
     Initialize firestore and define typed helping collection function
-        Reference: https://plainenglish.io/blog/using-firestore-with-typescript-in-the-v9-sdk-cf36851bb099
+        References: 
+        https://plainenglish.io/blog/using-firestore-with-typescript-in-the-v9-sdk-cf36851bb099
         https://medium.com/swlh/using-firestore-with-typescript-65bd2a602945
 */
 export const db = getFirestore(app);
