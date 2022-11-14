@@ -23,7 +23,7 @@ import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
 import { User } from 'src/types/user';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useAppDispatch } from 'src/hooks/useful-ducks';
+import { useAppDispatch } from 'src/ducks/useful-hooks';
 import { emailSignIn } from 'src/ducks/user-slice';
 
 type LoginScreenProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;

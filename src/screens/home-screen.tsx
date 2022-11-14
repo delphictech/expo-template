@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Box, Button, Text } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
+import { useAppDispatch, useAppSelector } from 'src/ducks/useful-hooks';
 import { signOutUser } from 'src/firebase/api';
 import { incrementCount, decrementCount, signOut } from 'src/ducks/user-slice';
 import { HomeStackParams } from 'src/navigation/home-stack';
