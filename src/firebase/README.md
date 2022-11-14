@@ -20,6 +20,7 @@ This custom api will keep all the firebase calls and specific functions in one d
 
 ## 🔗 Resources
 - [Firebase V9 Documentation](https://firebase.google.com/docs/web/modular-upgrade)
+- [Typing collections with firestore](https://plainenglish.io/blog/using-firestore-with-typescript-in-the-v9-sdk-cf36851bb099)
 
 ## 💡 Potential Future Changes
 1. Integrate listeners for certain database updates.
