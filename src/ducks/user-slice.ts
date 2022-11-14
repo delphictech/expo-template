@@ -1,14 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from 'src/types/user';
+import { PrivateUserData } from 'src/types/user';
 
-const initialUser: User = {
-    uid: '',
-    email: '',
-    phoneNumber: '',
+const initialUser: PrivateUserData = {
+    id: '',
     isAnonymous: false,
     emailVerified: false,
-    loggedIn: false,
-    count: 0,
+    loggedIn: false
 };
 
 export const userSlice = createSlice({
@@ -18,32 +15,24 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: initialUser,
     reducers: {
-        emailSignIn: (state, action: PayloadAction<User>) => {
-            // updates the user object
-            state.uid = action.payload.uid;
-            state.email = action.payload.email;
-            state.phoneNumber = action.payload.phoneNumber;
-            state.isAnonymous = action.payload.isAnonymous;
-            state.emailVerified = action.payload.emailVerified;
-
-            state.loggedIn = true;
+        emailSignIn: (state, action: PayloadAction<PrivateUserData>) => {
+            // updates the user object to the signed in user
+            return { ...state, ...action.payload, loggedIn: true };
         },
         guestSignIn: (state, action: PayloadAction<string>) => {
-            state.uid = action.payload;
-
-            state.isAnonymous = true;
-            state.loggedIn = true;
+            // set the id, keep anonymous and logged in
+            return { ...initialUser, id: action.payload, isAnonymous: true, loggedIn: true };
         },
         signOut: () => initialUser, // reset to initial state
         updateEmail: (state, action: PayloadAction<string>) => {
-            state.email = action.payload;
-            state.loggedIn = true;
+            // update the email, keep everything else updated
+            return { ...state, email: action.payload, loggedIn: true }
         },
         incrementCount: (state) => {
-            state.count += 1;
+            state.count ? state.count += 1 : state.count = 1;
         },
         decrementCount: (state) => {
-            state.count -= 1;
+            state.count ? state.count -= 1 : state.count = -1;
         },
     },
 });
