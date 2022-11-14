@@ -19,6 +19,7 @@ import {
     FIREBASE_APP_ID,
     FIREBASE_MEASUREMENT_ID,
 } from '@env';
+import { PrivateUserData, PublicUserData } from 'src/types/user';
 
 const firebaseConfig = {
     apiKey: FIREBASE_API_KEY,
@@ -71,7 +72,7 @@ const createCollection = <T = DocumentData>(collectionName: string) => {
 /**
     Define the collections
 */
-export const privateUserCollection = createCollection('private-user-data');
-export const publicUserCollection = createCollection('public-user-data');
+export const privateUserCollection = createCollection<PrivateUserData>('private-user-data');
+export const publicUserCollection = createCollection<PublicUserData>('public-user-data');
 
 
