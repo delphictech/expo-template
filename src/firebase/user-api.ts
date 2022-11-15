@@ -26,6 +26,7 @@ export async function updatePrivateUserData(userData: PrivateUserData, newUser?:
  * @return {*}  {Promise<QueryDocumentSnapshot<PrivateUserData>>}
  */
 export async function getPrivateUserData(userID: string): Promise<QueryDocumentSnapshot<PrivateUserData>> {
+    
     const userRef = doc(privateUserCollection, userID);
     return firestoreGetHandler<PrivateUserData>(getDoc(userRef));
 };
@@ -44,4 +45,4 @@ export async function deletePrivateUserData(userID: string): Promise<void> {
 
     const userRef = doc(privateUserCollection, userID);
     return fbHandler<void>(deleteDoc(userRef));
-}
+};
