@@ -1,12 +1,25 @@
-import { UserCredential } from "firebase/auth";
-import { DocumentSnapshot } from "firebase/firestore";
+import { DocumentSnapshot, QueryDocumentSnapshot } from "firebase/firestore";
 
+/**
+ * FirebaseError type used to render errors to the user in the frontend
+ *
+ * @export
+ * @interface FirebaseError
+ * @extends {Error}
+ */
 export interface FirebaseError extends Error {
     message: string;
     code: string | null;
     errorCause: 'email' | 'password' | 'account' | string;
 }
 
+/**
+ * fbHandler will handle the promise and throw a firebase error if it is not handled correctly
+ *
+ * @template T
+ * @param {Promise<any>} fbQuery
+ * @return {*}  {Promise<Awaited<T>>}
+ */
 export const fbHandler = async <T>(fbQuery: Promise<any>): Promise<Awaited<T>> => {
     /*
         Function will handles catching errors with firebase, returning errors in the Firebase Error format
@@ -57,7 +70,14 @@ export const fbHandler = async <T>(fbQuery: Promise<any>): Promise<Awaited<T>> =
     }
 };
 
-export const firestoreGetHandler = async <T>(firestoreQuery: Promise<DocumentSnapshot<T>>) => {
+ /**
+ * Function used to handle functions that fetch data using a getDoc method, will return an error if no documents match
+ *
+ * @template T
+ * @param {Promise<DocumentSnapshot<T>>} firestoreQuery
+ * @return {Promise<QueryDocumentSnapshot<T>>}
+ */
+export const firestoreGetHandler = async <T>(firestoreQuery: Promise<DocumentSnapshot<T>>): Promise<QueryDocumentSnapshot<T>> => {
 
     try {
         const result = await fbHandler<DocumentSnapshot<T>>(firestoreQuery);
