@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PrivateUserData } from 'src/types/user';
 
+/** 
+ * Define the initial user
+*/
 const initialUser: PrivateUserData = {
     id: '',
     isAnonymous: false,
@@ -8,18 +11,24 @@ const initialUser: PrivateUserData = {
     loggedIn: false
 };
 
+/**
+ * Define the intiaial user slice object
+ * @resources
+ * https://redux-toolkit.js.org/api/createSlice 
+ */
 export const userSlice = createSlice({
-    /*
-        Redux state management of the user component
-    */
     name: 'user',
     initialState: initialUser,
+
+    /**
+     * Define the reducers for this slice
+     */
     reducers: {
         emailSignIn: (state, action: PayloadAction<PrivateUserData>) => {
             // updates the user object to the signed in user
             return { ...state, ...action.payload, loggedIn: true };
         },
-        guestSignIn: (state, action: PayloadAction<string>) => {
+        guestSignIn: (_state, action: PayloadAction<string>) => {
             // set the id, keep anonymous and logged in
             return { ...initialUser, id: action.payload, isAnonymous: true, loggedIn: true };
         },
@@ -39,6 +48,9 @@ export const userSlice = createSlice({
     },
 });
 
+/**
+ * Export the corresponding redux methods
+ */
 export const { emailSignIn, guestSignIn, signOut, updateEmail, incrementCount, decrementCount } =
     userSlice.actions;
 export default userSlice.reducer;
