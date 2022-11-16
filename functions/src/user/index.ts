@@ -1,7 +1,11 @@
-import { db } from 'functions/src';
+import { db } from 'functions/src/config';
 import * as functions from 'firebase-functions';
 import { PublicUserData, PrivateUserData } from 'src/types/user';
 
+/**
+ * Function will update the public user data from the private user data
+ * Executes on write
+ */
 export const updatePublicUserData = functions.firestore
     .document('private-user-data/{productID}')
     .onWrite(async (change) => {

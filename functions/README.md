@@ -29,9 +29,9 @@ Engineering can be tricky, so we compiled a list of great resources and videos t
 * Setting up unit testing [offline](https://www.youtube.com/watch?v=8IoCPZJ-zwA)
 
 
-
 ### :gear: Documentation and articles:
 * Unit testing Cloud Functions offical [docs](https://firebase.google.com/docs/functions/unit-testing)
 * Emulator offical [docs](https://firebase.google.com/docs/functions/local-emulator)
 * Jest offical [docs](https://jestjs.io/docs/getting-started)
 * A few google articles for examples, [here](https://javascript.plainenglish.io/unit-testing-firebase-firestore-cloud-functions-7192c2c4649e), [here](https://fireship.io/lessons/testing-cloud-functions-in-firebase/), and [here](https://timo-santi.medium.com/jest-testing-firebase-functions-with-emulator-suite-409907f31f39)
+* Code splitting and file structure for firebase functions examples [here](https://github.com/mInzamamMalik/firebase-functions-with-typescript/blob/master/functions/src/index.ts)

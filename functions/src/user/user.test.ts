@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions-test';
 import 'jest';
-import { db } from 'functions/src';
+import { db } from 'functions/src/config';
 import { updatePublicUserData } from 'functions/src/user';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
