@@ -10,4 +10,10 @@ export default {
     },
 };
 
-export const thing = (args) => <Test {...args} />;
+const Template = (args) => <Test {...args} />;
+
+export const red = Template.bind({});
+red.args = {
+    props: 'red',
+    otherprops: 'red2',
+};

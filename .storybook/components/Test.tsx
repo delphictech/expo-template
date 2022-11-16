@@ -4,8 +4,8 @@ import { Text, Box, NativeBaseProvider } from 'native-base';
 
 export const Test = ({ props, otherprops }) => {
     return (
-        <Box>
-            <Text>{props}</Text>
+        <Box backgroundColor={"blue.100"}>
+            <Text color={'red.500'}>{props}</Text>
             <Text>{otherprops}</Text>
         </Box>
 
