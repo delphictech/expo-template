@@ -17,6 +17,8 @@ import { db } from '../index';
 
 const testEnv = functions({ projectId: process.env.PROJECT_NAME }, './service-account.json');
 
+console.log(process.env);
+
 // declare tests
 describe('Firebase functions testing', () => {
     // declare wrapped as a scheduled firebase function that has not been invoked yet
@@ -26,9 +28,6 @@ describe('Firebase functions testing', () => {
         // wrap the firebase function, ready to be invoked
         wrappedOnWrite = testEnv.wrap(updatePublicUserData);
     });
-
-    console.log('Project Name');
-    console.log(process.env.PROJECT_NAME);
 
     // declare the data to test
     const privateUserData: PrivateUserData = {
