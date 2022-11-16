@@ -7,10 +7,10 @@ Under *src*, files should be divided underneath directories for the features tha
 Server side functions are an amazing tool for adding more backend functionality to your firebase app. They can handle much functionality behind the scenes, such as keeping your database consistent and clean. However, it is also important to test that they work correctly, which we exemplify here.
 
 ## 🔧 Usage
-1. Setup [firebase emulators and jest](https://github.com/maetio/expo-template/wiki/Firebase-and-Jest-Testing).
+1. Setup [firebase emulators and jest](https://github.com/maetio/expo-template/wiki/Firebase-and-Jest-Testing). 
 2. Download your firebase service account key as a json file. Remember to add this file to your `.gitignore`.
 3. Add your firebase project name as environmental variable in your .env file. 
-4. Run `firebase functions:config:set project.name="your-firebase-project-name"`
+4. Run `export GOOGLE_APPLICATION_CREDENTIALS="path/to/key.json"`. See [here](https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional)
 4. Run `yarn test`.
 
 ## Switching between dev and prod

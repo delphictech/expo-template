@@ -4,8 +4,8 @@ import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
 import { Change } from 'firebase-functions/v1';
 import { PrivateUserData, PublicUserData } from 'types/user';
-import { updatePublicUserData } from './index';
-import { db } from '../index';
+import { updatePublicUserData } from '../src/user/index';
+import { db } from '../src/index';
 
 /*
     Shifted to making individual document snapshots for before and after
@@ -15,9 +15,7 @@ import { db } from '../index';
     download the service account name, add to your gitignore
 */
 
-const testEnv = functions({ projectId: process.env.PROJECT_NAME }, './service-account.json');
-
-console.log(process.env);
+const testEnv = functions({ projectId: "maet-pickup-dev"}, 'service-account.json');
 
 // declare tests
 describe('Firebase functions testing', () => {

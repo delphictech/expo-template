@@ -23,7 +23,6 @@
         "./src/**/*.ts",
         "./src/*",
         "./assets/*",
-        "./jest.config.js"
-    ],
-    "exclude": ["node_modules, ../node_modules", "dist"]
+        "./jest.config.js"],
+    "exclude": ["node_modules, ../node_modules", "dist", "tests"]
 }
