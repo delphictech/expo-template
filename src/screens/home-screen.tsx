@@ -12,7 +12,12 @@ import { useLazySignOutQuery } from 'src/services';
 */
 type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 
-export const HomeScreen: React.FC<any> = () => {
+/**
+ * Home screen, will display basic data to the user
+ *
+ * @return {*} 
+ */
+export const HomeScreen: React.FC<{}> = () => {
 
     // hooks
     const navigation = useNavigation<HomeScreenProps>();

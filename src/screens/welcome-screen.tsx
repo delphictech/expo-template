@@ -110,7 +110,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
                                 textAlign="left"
                                 color="plainText.800"
                                 alignSelf="center">
-                                Create an account to view this template!
+                                Example call to action to create an account!
                             </Heading>
                         </HStack>
                     )}

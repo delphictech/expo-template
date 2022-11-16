@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from 'native-base';
 
-export const ExploreScreen: React.FC<any> = () => {
+export const ExploreScreen: React.FC<{}> = () => {
     return (
         <Box
             w="100%"
