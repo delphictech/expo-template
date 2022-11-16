@@ -13,6 +13,7 @@
         "skipLibCheck": true,
         "paths": {
             "types/*": ["./src/types/*", "./src/types/"],
+            "functions/*": ["./functions/*", "./functions/"]
         },
     },
     "compileOnSave": true,

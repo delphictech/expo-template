@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import { PublicUserData, PrivateUserData } from 'src/types/user';
-import { db } from 'functions/src';
+import { db } from '../index';
 
 /**
  * Function will update the public user data from the private user data

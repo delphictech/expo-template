@@ -1,11 +1,11 @@
 import * as functions from 'firebase-functions-test';
 import 'jest';
-import { updatePublicUserData } from 'functions/src/user';
+import { updatePublicUserData } from './index';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
 import { Change } from 'firebase-functions/v1';
 import { PrivateUserData, PublicUserData } from 'types/user';
-import { db } from 'functions/src';
+import { db } from '../index';
 
 /*
     Shifted to making individual document snapshots for before and after
