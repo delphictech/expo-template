@@ -1,11 +1,11 @@
 import * as functions from 'firebase-functions-test';
 import 'jest';
-import { db } from 'functions/src/config';
 import { updatePublicUserData } from 'functions/src/user';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
 import { Change } from 'firebase-functions/v1';
 import { PrivateUserData, PublicUserData } from 'types/user';
+import { db } from 'functions/src';
 
 /*
     Shifted to making individual document snapshots for before and after
@@ -26,6 +26,9 @@ describe('Firebase functions testing', () => {
         // wrap the firebase function, ready to be invoked
         wrappedOnWrite = testEnv.wrap(updatePublicUserData);
     });
+
+    console.log('Project Name');
+    console.log(process.env.PROJECT_NAME);
 
     // declare the data to test
     const privateUserData: PrivateUserData = {
