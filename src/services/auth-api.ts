@@ -22,13 +22,16 @@ import { ConfigApi } from './config-api';
 */
 
 export const AuthUserApi = ConfigApi.injectEndpoints({
+
     endpoints: (build) => ({
 
-        /**
-         * Will fetch the sign in methods of the user, returning a list
-         * @param email
-         */
         fetchSignInMethods: build.query<string[], string>({
+            /**
+             * Will fetch the sign in methods of the user, returning a list
+             *
+             * @param {*} email
+             * @return {*} 
+             */
             async queryFn(email) {
                 try {
                     const methods = await fetchSignInMethods(email);
@@ -40,13 +43,16 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        /*
-            Will sign up the user. No parameters mean a guest account will be generated
-        */
         signUp: build.query<
             PrivateUserData,
             { email: string; password: string; firstName: string; lastName: string } | 'guest'
         >({
+            /**
+             * Will sign up the user. No parameters mean a guest account will be generated
+             *
+             * @param {*} accountInfo
+             * @return {*} 
+             */
             async queryFn(accountInfo) {
                 if (accountInfo === 'guest') {
                     console.log('Sign up guest user');
@@ -93,10 +99,13 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        /*
-            Used to login the user with the credentials
-        */
         signIn: build.query<PrivateUserData, { email: string; password: string }>({
+            /**
+             * Used to login the user with the credentials
+             *
+             * @param {*} { email, password }
+             * @return {*} 
+             */
             async queryFn({ email, password }) {
                 console.log('signing in user');
                 try {
@@ -112,10 +121,12 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        /*
-            Sign out user
-        */
         signOut: build.query<null, undefined>({
+            /**
+             * Sign out user
+             *
+             * @return {*} 
+             */
             async queryFn() {
                 try {
                     await signOutUser();
@@ -127,10 +138,13 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        /*
-            Delete account query
-        */
         deleteAccount: build.query<PrivateUserData, string>({
+            /**
+             * Delete account query
+             *
+             * @param {string} uid
+             * @return {*} 
+             */
             async queryFn(uid: string) {
                 try {
                     await deletePrivateUserData(uid);
@@ -144,24 +158,13 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        /*
-            Re-authenticate user for security sensitive actions
-        */
-        reauthenticate: build.query<null, { email: string; password: string }>({
-            async queryFn({ email, password }) {
-                try {
-                    await reauthenticate(email, password);
-                    return { data: null };
-                } catch (e: any) {
-                    console.log(`Error with reauthenticating user`);
-                    return { error: e };
-                }
-            },
-        }),
-        /*
-            Generating query for forgetting user password
-        */
         sendPasswordReset: build.query<string, string>({
+            /**
+             * Generating query for forgetting user password
+             *
+             * @param {*} email
+             * @return {*} 
+             */
             async queryFn(email) {
                 try {
                     await resetPassword(email);
@@ -172,58 +175,19 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-        /*
-            Generating query for sending verification email
-        */
+
         sendVerificationEmail: build.query<null, undefined>({
+            /**
+             * Generating query for sending verification email
+             *
+             * @return {*} 
+             */
             async queryFn() {
                 try {
                     await verifyEmail();
                     return { data: null };
                 } catch (e: any) {
                     console.log(`Error with verification email`);
-                    return { error: e };
-                }
-            },
-        }),
-
-
-        updatePassword: build.query<null, string>({
-            async queryFn(password: string) {
-                try {
-                    await setNewPassword(password);
-                    return { data: null };
-                } catch (e: any) {
-                    return { error: e };
-                }
-            },
-        }),
-        updateEmail: build.query<string, { user: User; newEmail: string }>({
-            async queryFn({ user, newEmail }) {
-                try {
-                    console.log('updating email right now');
-                    await setNewEmail(newEmail);
-                    await updateUser(user);
-                    await verifyEmail();
-                    // return email to set for user state object
-                    return { data: newEmail };
-                } catch (e: any) {
-                    console.log('error with updating email');
-                    console.log(e);
-                    return { error: e };
-                }
-            },
-        }),
-        updateUser: build.mutation<User, User>({
-            async queryFn(userFields) {
-                // const newUser = initializeUser(user);
-                try {
-                    // get existing user doc
-                    await updateUser(userFields);
-                    return { data: userFields };
-                } catch (e: any) {
-                    console.log(`Error with updating user: ${e}`);
-                    console.log(e);
                     return { error: e };
                 }
             },
@@ -238,11 +202,6 @@ export const {
     useLazySignOutQuery,
     useLazyDeleteAccountQuery,
     useLazySignInQuery,
-    useLazyReauthenticateQuery,
     useLazySendPasswordResetQuery,
     useLazySendVerificationEmailQuery,
-    useLazyRefreshUserDataQuery,
-    useLazyUpdateEmailQuery,
-    useLazyUpdatePasswordQuery,
-    useUpdateUserMutation,
 } = AuthUserApi;
