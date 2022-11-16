@@ -3,7 +3,7 @@ import { initializeAuth, browserPopupRedirectResolver } from 'firebase/auth';
 import { getReactNativePersistence } from 'firebase/auth/react-native';
 import { collection, CollectionReference, DocumentData, FirestoreDataConverter, getFirestore, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PrivateUserData, PublicUserData } from 'src/types/user';
+import { PrivateUserData, PublicUserData } from 'src/types';
 import {
     FIREBASE_API_KEY,
     FIREBASE_AUTH_DOMAIN,

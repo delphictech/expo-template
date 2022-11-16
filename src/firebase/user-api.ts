@@ -1,7 +1,7 @@
 import { deleteDoc, doc, getDoc, QueryDocumentSnapshot, setDoc } from "firebase/firestore";
 import { privateUserCollection } from "src/firebase/config";
 import { fbHandler, firestoreGetHandler } from "src/firebase/handler";
-import { PrivateUserData } from "src/types/user";
+import { PrivateUserData } from "src/types";
 
 /**
  * Function will update the user with the input fields, will overwrite if newUser set to True

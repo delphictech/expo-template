@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthUserApi } from 'src/services';
-import { PrivateUserData } from 'src/types/user';
+import { PrivateUserData } from 'src/types';
 
 /** 
  * Define the initial user
@@ -50,6 +50,9 @@ const userSlice = createSlice({
 
     /** 
      * For syncing with rtk-query, updating the local state when a query fetches
+     * 
+     * @remarks
+     * Only need these extra reducers for many actions that are handling the universal state for the user
     */
    extraReducers: (builder) => {
        
@@ -105,7 +108,7 @@ const userSlice = createSlice({
 });
 
 /**
- * Export the corresponding redux methods
+ * Export the corresponding redux actions
  */
 export const { incrementCount, decrementCount } =
     userSlice.actions;

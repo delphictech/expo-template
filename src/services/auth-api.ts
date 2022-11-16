@@ -9,7 +9,7 @@ import {
     verifyEmail,
 } from 'src/firebase/auth-api';
 import { deletePrivateUserData, getPrivateUserData, updatePrivateUserData } from 'src/firebase/user-api';
-import { PrivateUserData } from 'src/types/user';
+import { PrivateUserData } from 'src/types';
 import { ConfigApi } from './config-api';
 
 /** 

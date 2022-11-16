@@ -21,7 +21,7 @@ import { resetPassword, signInWithEmail, signUpWithEmail, verifyEmail } from 'sr
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
-import { PrivateUserData } from 'src/types/user';
+import { PrivateUserData } from 'src/types';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useAppDispatch } from 'src/ducks/useful-hooks';
 import { emailSignIn } from 'src/ducks/user-slice';
