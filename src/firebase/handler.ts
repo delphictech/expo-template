@@ -20,7 +20,7 @@ export interface FirebaseError extends Error {
  * @param {Promise<any>} fbQuery
  * @return {*}  {Promise<Awaited<T>>}
  */
-export const fbHandler = async <T>(fbQuery: Promise<any>): Promise<Awaited<T>> => {
+export const fbHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
     /*
         Function will handles catching errors with firebase, returning errors in the Firebase Error format
         This will help with catching and display error messages to the user on the frontend.

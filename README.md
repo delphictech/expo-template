@@ -80,7 +80,8 @@ FIREBASE_MEASUREMENT_ID=[...]
     *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
     *Variables:* camelCase (ex. const isLoading)
 5. **Comments:**
-    *We follow the standardized [TSDoc](https://tsdoc.org/) comments.
+    * We follow the standardized [TSDoc](https://tsdoc.org/) comments.
+    * Install the VSCode [Document This extension](https://marketplace.visualstudio.com/items?itemName=oouo-diogo-perdigao.docthis) and update the [keyboard command](https://code.visualstudio.com/docs/getstarted/keybindings) to whatever you wish.
 
 
 ## 📂 Organization 

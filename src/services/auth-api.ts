@@ -12,13 +12,16 @@ import { deletePrivateUserData, getPrivateUserData, updatePrivateUserData } from
 import { PrivateUserData } from 'src/types/user';
 import { ConfigApi } from './config-api';
 
-/*
-    Check documentation resources for additional questions
-    Customizing RTK Query with 
-        firebase api calls with RTK-Query: https://stackoverflow.com/questions/71587312/is-it-possible-to-use-firebase-query-with-redux-toolkit-or-rtk-query-in-react)
-        queryfn: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn 
-        fakeBaseQuery: https://redux-toolkit.js.org/rtk-query/usage-with-typescript#typing-a-queryfn
-    Code Splitting: https://redux-toolkit.js.org/rtk-query/usage/code-splitting 
+/** 
+ * Check documentation resources for additional questions
+ * 
+ * @resources
+ * Customizing RTK Query with following resources
+ * Firebase api calls with RTK-Query: https://stackoverflow.com/questions/71587312/is-it-possible-to-use-firebase-query-with-redux-toolkit-or-rtk-query-in-react)
+ * Using queryfn: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn 
+ * Using fakeBaseQuery: https://redux-toolkit.js.org/rtk-query/usage-with-typescript#typing-a-queryfn
+ * Code Splitting: https://redux-toolkit.js.org/rtk-query/usage/code-splitting 
+ * 
 */
 
 export const AuthUserApi = ConfigApi.injectEndpoints({
@@ -73,7 +76,6 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
                 } else {
                     console.log('Sign up user');
                     try {
-                        // TODO: send guest account to new account user data
                         const userCredential = await signUpWithEmail(
                             accountInfo.email,
                             accountInfo.password,
@@ -193,6 +195,7 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
             },
         }),
     }),
+
     overrideExisting: true,
 });
 

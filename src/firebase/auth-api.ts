@@ -14,52 +14,82 @@ import { fbHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
 
-/*
-  AUTH FUNCTIONS: https://firebase.google.com/docs/reference/js/auth.md#auth_package
+/** 
+ * AUTH FUNCTIONS: https://firebase.google.com/docs/reference/js/auth.md#auth_package
 */
-// Sign In Anonymously
-export async function anonymousSignIn() {
-    // https://firebase.google.com/docs/reference/js/auth.md#signinanonymously
+
+/**
+ * sign in as a guest user
+ * https://firebase.google.com/docs/reference/js/auth.md#signinanonymously
+ * @export
+ * @return {*}  {Promise<UserCredential>}
+ */
+export async function anonymousSignIn(): Promise<UserCredential> {
     return fbHandler<UserCredential>(signInAnonymously(auth));
 }
 
-// Check Sign In Methods
-export async function fetchSignInMethods(email: string) {
-    // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#fetchsigninmethodsforemail
+/**
+ * Get the sign in methods
+ * https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#fetchsigninmethodsforemail
+ * @export
+ * @param {string} email
+ * @return {*}  {Promise<string[]>} a list of the sign in methods
+ */
+export async function fetchSignInMethods(email: string): Promise<string[]> {
     return fbHandler<string[]>(fetchSignInMethodsForEmail(auth, email));
 }
 
-// Sign In With Email
-export async function signInWithEmail(email: string, password: string) {
-    // https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
+/**
+ * Sign in with an email and password
+ * https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#signinwithemailandpassword
+ * @export
+ * @param {string} email
+ * @param {string} password
+ * @return {*}  {Promise<UserCredential>}
+ */
+export async function signInWithEmail(email: string, password: string): Promise<UserCredential> {
     return fbHandler<UserCredential>(signInWithEmailAndPassword(auth, email, password));
 }
 
-// Sign Up With Email
-export async function signUpWithEmail(email: string, password: string) {
+/**
+ * Sign up with an email and password
+ * https://firebase.google.com/docs/reference/js/v8/firebase.auth.Auth#createuserwithemailandpassword
+ * @export
+ * @param {string} email
+ * @param {string} password
+ * @return {*}  {Promise<UserCredential>}
+ */
+export async function signUpWithEmail(email: string, password: string): Promise<UserCredential> {
     return fbHandler<UserCredential>(createUserWithEmailAndPassword(auth, email, password));
 }
 
-// Email Verifcation:
-export async function verifyEmail() {
-    // https://firebase.google.com/docs/reference/js/auth.md#sendemailverification
+/**
+ * Send verification email to the account email
+ * https://firebase.google.com/docs/reference/js/auth.md#sendemailverification
+ * @export
+ * @return {*}  {Promise<void>}
+ */
+export async function verifyEmail(): Promise<void> {
     if (auth.currentUser) {
         return fbHandler<void>(sendEmailVerification(auth.currentUser));
-    }
+    };
     const error: FirebaseError = {
         name: 'Firebase Error',
         message: 'User does not exist',
         code: 'auth/user-not-found',
         errorCause: 'account',
     };
-    return error;
+    throw error;
 }
 
-// Delete user
-export async function deleteCurrentUser() {
+/**
+ * Delete the current user
+ * https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
+ * @export
+ * @return {*}  {Promise<void>}
+ */
+export async function deleteCurrentUser(): Promise<void> {
     if (auth.currentUser) {
-        console.log('deleting user');
-        // https://firebase.google.com/docs/auth/web/manage-users#delete_a_user
         return fbHandler<void>(deleteUser(auth.currentUser));
     }
     const error: FirebaseError = {
@@ -68,11 +98,16 @@ export async function deleteCurrentUser() {
         code: 'auth/user-not-found',
         errorCause: 'account',
     };
-    return error;
+    throw error;
 }
 
-// Sign Out
-export async function signOutUser() {
+/**
+ * Sign out the current user
+ * https://firebase.google.com/s/#signout
+ * @export
+ * @return {*}  {Promise<void>}
+ */
+export async function signOutUser(): Promise<void> {
     // Delete user if anonymous
     if (auth.currentUser?.isAnonymous) {
         return fbHandler<void>(deleteCurrentUser());
@@ -80,8 +115,13 @@ export async function signOutUser() {
     return fbHandler<void>(signOut(auth));
 }
 
-// Handle password reset
-export async function resetPassword(email: string) {
-    // https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
+/**
+ * Handle the password reset
+ * https://firebase.google.com/docs/reference/js/auth.md#sendpasswordresetemail
+ * @export
+ * @param {string} email
+ * @return {*}  {Promise<void>}
+ */
+export async function resetPassword(email: string): Promise<void> {
     return fbHandler<void>(sendPasswordResetEmail(auth, email));
 }
