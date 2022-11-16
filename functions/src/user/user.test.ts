@@ -1,10 +1,10 @@
 import * as functions from 'firebase-functions-test';
 import 'jest';
-import { updatePublicUserData } from './index';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
 import { Change } from 'firebase-functions/v1';
 import { PrivateUserData, PublicUserData } from 'types/user';
+import { updatePublicUserData } from './index';
 import { db } from '../index';
 
 /*
