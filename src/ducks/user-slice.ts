@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AuthUserApi } from 'src/services';
 import { PrivateUserData } from 'src/types/user';
 
 /** 
@@ -16,7 +17,7 @@ const initialUser: PrivateUserData = {
  * @resources
  * https://redux-toolkit.js.org/api/createSlice 
  */
-export const userSlice = createSlice({
+const userSlice = createSlice({
     name: 'user',
     initialState: initialUser,
 
@@ -24,19 +25,19 @@ export const userSlice = createSlice({
      * Define the reducers for this slice
      */
     reducers: {
-        emailSignIn: (state, action: PayloadAction<PrivateUserData>) => {
-            // updates the user object to the signed in user
-            return { ...state, ...action.payload, loggedIn: true };
-        },
-        guestSignIn: (_state, action: PayloadAction<string>) => {
-            // set the id, keep anonymous and logged in
-            return { ...initialUser, id: action.payload, isAnonymous: true, loggedIn: true };
-        },
-        signOut: () => initialUser, // reset to initial state
-        updateEmail: (state, action: PayloadAction<string>) => {
-            // update the email, keep everything else updated
-            return { ...state, email: action.payload, loggedIn: true }
-        },
+        // emailSignIn: (state, action: PayloadAction<PrivateUserData>) => {
+        //     // updates the user object to the signed in user
+        //     return { ...state, ...action.payload, loggedIn: true };
+        // },
+        // guestSignIn: (_state, action: PayloadAction<string>) => {
+        //     // set the id, keep anonymous and logged in
+        //     return { ...initialUser, id: action.payload, isAnonymous: true, loggedIn: true };
+        // },
+        // signOut: () => initialUser, // reset to initial state
+        // updateEmail: (state, action: PayloadAction<string>) => {
+        //     // update the email, keep everything else updated
+        //     return { ...state, email: action.payload, loggedIn: true }
+        // },
         incrementCount: (state) => {
             // increment, or set to 1
             state.count ? state.count += 1 : state.count = 1;
@@ -46,11 +47,66 @@ export const userSlice = createSlice({
             state.count ? state.count -= 1 : state.count = -1;
         },
     },
+
+    /** 
+     * For syncing with rtk-query, updating the local state when a query fetches
+    */
+   extraReducers: (builder) => {
+       
+        /**
+         * When user signs up, set the local state to the returned private user data
+         *
+         * @param {*} _state
+         * @param {PayloadAction<PrivateUserData>} action
+         * @return {*} 
+         */
+        builder.addMatcher(AuthUserApi.endpoints.signUp.matchFulfilled,
+            (_state, action: PayloadAction<PrivateUserData>) => {
+                return { ...action.payload };
+            },
+        );
+
+        /**
+         * When user signs in, set the local state to the returned private user data
+         *
+         * @param {*} _state
+         * @param {PayloadAction<PrivateUserData>} action
+         * @return {*} 
+         */
+         builder.addMatcher(AuthUserApi.endpoints.signIn.matchFulfilled,
+            (_state, action: PayloadAction<PrivateUserData>) => {
+                return { ...action.payload };
+            },
+        );
+
+        /**
+         * When user signs out, reset the state to the initial user
+         *
+         * @param {*} _state
+         * @param {PayloadAction<PrivateUserData>} action
+         * @return {*} 
+         */
+         builder.addMatcher(AuthUserApi.endpoints.signOut.matchFulfilled,
+            () => initialUser,
+        );
+
+        /**
+         * When user deletes their account, reset the state to the initial user
+         *
+         * @param {*} _state
+         * @param {PayloadAction<PrivateUserData>} action
+         * @return {*} 
+         */
+         builder.addMatcher(AuthUserApi.endpoints.deleteAccount.matchFulfilled,
+            () => initialUser,
+        );
+   },
+    
 });
 
 /**
  * Export the corresponding redux methods
  */
-export const { emailSignIn, guestSignIn, signOut, updateEmail, incrementCount, decrementCount } =
+export const { incrementCount, decrementCount } =
     userSlice.actions;
 export default userSlice.reducer;
