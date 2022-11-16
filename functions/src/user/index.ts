@@ -5,22 +5,21 @@ import { PublicUserData, PrivateUserData } from 'src/types/user';
 export const updatePublicUserData = functions.firestore
     .document('private-user-data/{productID}')
     .onWrite(async (change) => {
-
         try {
             // declare newValue to be a PrivateUserData with a required id
-            const oldValue: { id: string } & Partial<PrivateUserData> | undefined = {
+            const oldValue: ({ id: string } & Partial<PrivateUserData>) | undefined = {
                 id: change.before.id,
                 ...change.before.data(),
             };
 
-            const newValue: { id: string } & Partial<PrivateUserData> | undefined = {
+            const newValue: ({ id: string } & Partial<PrivateUserData>) | undefined = {
                 id: change.after.id,
                 ...change.after.data(),
             };
-            
+
             // check if the public data needs to be updated
-            const publicDataUpdated = 
-                oldValue.id !== newValue.id || 
+            const publicDataUpdated =
+                oldValue.id !== newValue.id ||
                 oldValue.firstName !== newValue.firstName ||
                 oldValue.lastName !== newValue.lastName ||
                 oldValue.count !== newValue.count ||
@@ -38,14 +37,16 @@ export const updatePublicUserData = functions.firestore
                 };
 
                 // set the public data
-                return await db.collection('public-user-data').doc(newPublicData.id).set(newPublicData);
-            } else if (!newValue && oldValue) {
-
+                return await db
+                    .collection('public-user-data')
+                    .doc(newPublicData.id)
+                    .set(newPublicData);
+            }
+            if (!newValue && oldValue) {
                 // if product was deleted, delete the public data as well
                 return await db.collection('public-user-data').doc(oldValue.id).delete();
-            };
+            }
             return null;
-
         } catch (err) {
             return Promise.reject(err);
         }

@@ -17,9 +17,8 @@ import { PrivateUserData, PublicUserData } from 'types/user';
 
 const testEnv = functions({ projectId: process.env.PROJECT_NAME }, './service-account.json');
 
-// declare tests 
-describe("Firebase functions testing", () => {
-    
+// declare tests
+describe('Firebase functions testing', () => {
     // declare wrapped as a scheduled firebase function that has not been invoked yet
     let wrappedOnWrite: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>;
 
@@ -41,7 +40,7 @@ describe("Firebase functions testing", () => {
         loggedIn: true,
     };
 
-    const publicUserData: PublicUserData  = {
+    const publicUserData: PublicUserData = {
         id: privateUserData.id,
         firstName: privateUserData.firstName,
         lastName: privateUserData.lastName,
@@ -53,8 +52,7 @@ describe("Firebase functions testing", () => {
     const publicPath = `public-user-data/${publicUserData.id}`;
 
     // run the test
-    test("Testing onWrite function", async () => {
-
+    test('Testing onWrite function', async () => {
         // create the example snapshots
         // we can change the inputted data for before and after depending on if we want the data to change at all.
         const changeDoc: Change<DocumentSnapshot> = {
@@ -69,17 +67,13 @@ describe("Firebase functions testing", () => {
 
         // expect it to be the same data object, which is what toStrictEqual checks
         expect(after.data()).toStrictEqual(publicUserData);
-
     });
 
     afterAll(async () => {
-
         // cleanup the private data, any env variables and firebase apps
         testEnv.cleanup();
 
         // delete firebase function data for onWrite function
         await db.doc(publicPath).delete();
-        
     });
-
 });
