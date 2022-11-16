@@ -10,11 +10,11 @@ import {
     HStack,
     Icon,
 } from 'native-base';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
 import { RouteProp, useNavigation } from '@react-navigation/native';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signupSchema, passwordSchema } from 'src/utils/schemas';
+import { loginSchema, signupSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { AuthStackParams } from 'src/navigation/auth-stack';
@@ -29,18 +29,17 @@ import {
 } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 
-type AuthEmailProps = StackNavigationProp<AuthStackParams, 'AuthEmail'>;
-type AuthRouteProp = RouteProp<AuthStackParams, 'AuthEmail'>;
+type LoginScreenProps = StackScreenProps<AuthStackParams, 'Login'>;
+// type AuthRouteProp = RouteProp<AuthStackParams, 'AuthEmail'>;
 
-export const LoginScreen: React.FC<ScreenParams<AuthRouteProp>> = ({ route }) => {
+export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) => {
     // route params
     const { signInMethods, email, title } = route.params;
     const isSignInScreen = signInMethods ? Boolean(signInMethods.length) : false;
 
     // hooks
-    const navigation = useNavigation<AuthEmailProps>();
     const toast = useToast();
-    const schema = isSignInScreen ? passwordSchema : signupSchema;
+    const schema = isSignInScreen ? loginSchema : signupSchema;
     const {
         control,
         handleSubmit,

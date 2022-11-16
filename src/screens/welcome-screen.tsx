@@ -19,7 +19,7 @@ import {
 import { LogoIcon } from 'src/components/logo-icon';
 
 // define navigation props
-type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
+type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Welcome'>;
 
 export const WelcomeScreen: React.FC<{}> = () => {
     // hooks
@@ -58,7 +58,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
         // updating variables within function, since they need to be sent to new screen
         try {
             const emailSignInMethods = await getSignInMethods(data.email).unwrap();
-            navigation.navigate('AuthEmail', {
+            navigation.navigate('Login', {
                 signInMethods: emailSignInMethods,
                 email: data.email,
             });
