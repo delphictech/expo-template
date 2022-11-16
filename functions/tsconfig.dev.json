@@ -1,5 +1,8 @@
 {
   "include": [
     ".eslintrc.js",
+    "./src/**.test.ts",
+    "./src/**/*.ts",
+    "./src/*",
   ]
 }

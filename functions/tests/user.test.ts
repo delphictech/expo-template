@@ -15,7 +15,7 @@ import { db } from '../src/index';
     download the service account name, add to your gitignore
 */
 
-const testEnv = functions({ projectId: "maet-pickup-dev"}, 'service-account.json');
+const testEnv = functions({ projectId: process.env.PROJECT_NAME }, 'service-account.json');
 
 // declare tests
 describe('Firebase functions testing', () => {
