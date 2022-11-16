@@ -1,14 +1,14 @@
 import React from 'react';
-// import {Text, Box, NativeBaseProvider} from 'native-base'
-import { View, Text } from 'react-native';
-import { Box } from 'native-base';
+import { Text, Box, NativeBaseProvider } from 'native-base';
+// import { View, Text } from 'react-native';
 
 export const Test = ({ props, otherprops }) => {
     return (
-        <View>
+        <Box>
             <Text>{props}</Text>
             <Text>{otherprops}</Text>
-        </View>
+        </Box>
+
         // <View>
         //     <Box>
         //         <Text>dawdawdwa</Text>
