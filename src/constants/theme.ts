@@ -1,37 +1,38 @@
 import { extendTheme, theme } from 'native-base';
+import { fontConfig } from 'src/constants/fonts';
 
-/*
-    This file defines the light and dark themes for nativebase and react navigation components
-    The dark themes and react navigation compnents are all based on the light nativeBase theme
+/** 
+ * This file defines the light and dark themes for nativebase and react navigation components
+ * The dark themes and react navigation compnents are all based on the light nativeBase theme
 */
 
+/**
+ * To setup fonts with nativebase, expo-font, and ts, view the following blog
+ * https://dev.to/nerdjfpb/how-to-use-custom-google-font-with-react-native-expo-nativebase-and-typescript-3jf7
+ */
+const fontStyles = {
+    heading: 'Nunito',
+    body: 'Nunito',
+    mono: 'Nunito',
+};
+
+/**
+ * Add nativebase theming, can use base theme colors
+ * https://docs.nativebase.io/default-theme
+ */
 export const nativeBaseLightTheme = extendTheme({
-    /*
-        Add colors based on native base theming
-        https://docs.nativebase.io/default-theme
-    */
     colors: {
         primary: theme.colors.indigo,
         background: theme.colors.muted,
         plainText: theme.colors.blueGray,
     },
+    fonts: fontStyles,
+    fontConfig,
 });
 
 export const nativeBaseDarkTheme = extendTheme({
     colors: {
-        primary: nativeBaseLightTheme.colors.primary, // do not reverse primary
-        // primary: {
-        //     50: nativeBaseLightTheme.colors.primary['900'],
-        //     100: nativeBaseLightTheme.colors.primary['800'],
-        //     200: nativeBaseLightTheme.colors.primary['700'],
-        //     300: nativeBaseLightTheme.colors.primary['600'],
-        //     400: nativeBaseLightTheme.colors.primary['500'],
-        //     500: nativeBaseLightTheme.colors.primary['400'],
-        //     600: nativeBaseLightTheme.colors.primary['300'],
-        //     700: nativeBaseLightTheme.colors.primary['200'],
-        //     800: nativeBaseLightTheme.colors.primary['100'],
-        //     900: nativeBaseLightTheme.colors.primary['50'],
-        // },
+        primary: nativeBaseLightTheme.colors.primary,
         // background is opposite of light theme
         background: {
             50: nativeBaseLightTheme.colors.background['900'],
@@ -59,12 +60,14 @@ export const nativeBaseDarkTheme = extendTheme({
             900: nativeBaseLightTheme.colors.plainText['50'],
         },
     },
+    fonts: fontStyles,
+    fontConfig,
 });
 
-/*
-    Define the theming for react navigation
-*/
-
+/**
+ * Define theme for react navigation
+ * https://reactnavigation.org/docs/themes/
+ */
 export const navigationLightTheme = {
     dark: false,
     colors: {
