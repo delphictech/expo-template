@@ -5,7 +5,12 @@ module.exports = {
         // '../components/**/*.stories.?(ts|tsx|js|jsx)'
         './stories/**/*.stories.?(ts|tsx|js|jsx)',
     ],
-    addons: ['@storybook/addon-interactions', '@storybook/addon-react-native-web'],
+    addons: [
+        // '@storybook/addon-essentials',
+        // '@storybook/addon-interactions',
+        '@storybook/addon-react-native-web',
+    ],
+    //  managerEntries: ['@storybook/addon-postcss'],
     framework: '@storybook/react',
 };
 
@@ -22,7 +27,7 @@ module.exports = {
 //     stories: ['./stories/**/*.stories.?(ts|tsx|js|jsx)'],
 
 //     addons: [
-//         // '@storybook/addon-essentials',
+//         // 'tor@sybook/addon-essentials',
 //         '@storybook/addon-interactions',
 //         '@storybook/addon-react-native-web',
 //     ],
