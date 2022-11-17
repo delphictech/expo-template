@@ -7,7 +7,6 @@ import { FirebaseError } from 'src/firebase/handler';
  * @resources
  * Code splitting: https://redux-toolkit.js.org/rtk-query/usage/code-splitting
 */
-
 export const ConfigApi = createApi({
     baseQuery: fakeBaseQuery<FirebaseError>(),
     endpoints: () => ({}),

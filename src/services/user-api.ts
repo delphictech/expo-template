@@ -1,9 +1,9 @@
-import { deletePrivateUserData, getPrivateUserData, updatePrivateUserData } from 'src/firebase/user-api';
-import { PrivateUserData } from 'src/types';
+import { deletePrivateUserData, getPrivateUserData, getUsers, updatePrivateUserData } from 'src/firebase/user-api';
+import { PrivateUserData, PublicUserData } from 'src/types';
 import { ConfigApi } from './config-api';
 
 /** 
- * Check documentation resources for additional questions
+ * Users api for fetching data related to users
  * 
  * @resources
  * Customizing RTK Query with following resources
@@ -13,30 +13,29 @@ import { ConfigApi } from './config-api';
  * Code Splitting: https://redux-toolkit.js.org/rtk-query/usage/code-splitting 
  * 
 */
-
 export const UserApi = ConfigApi.injectEndpoints({
-
     endpoints: (build) => ({
-        getUsers: build.query<null, undefined>({
+        getUsers: build.query<Array<PublicUserData>, string | undefined>({
             /**
-             * Generating query for sending verification email
+             * Generating query for fetching and paginating users
              *
              * @return {*} 
              */
-            async queryFn() {
+            async queryFn(begID) {
                 try {
-                    await verifyEmail();
-                    return { data: null };
+                    const querySnapshot = await getUsers(begID, 10, 'desc');
+                    const users = querySnapshot.docs.map(userDoc => userDoc.data());
+                    return { data: users };
                 } catch (e: any) {
-                    console.log(`Error with verification email`);
+                    console.warn(`Error with fetching users`);
                     return { error: e };
                 }
             },
         }),
-
+    }),
     overrideExisting: true,
 });
 
 export const {
-
+    useGetUsersQuery
 } = UserApi;

@@ -67,4 +67,4 @@ export async function getUsers(begID: string | undefined = undefined, lim: numbe
         q = query(publicUserCollection, orderBy('count', direction), limit(lim));
     };
     return getDocs(q);
-}
+};
