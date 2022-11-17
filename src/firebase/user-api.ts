@@ -1,7 +1,7 @@
-import { deleteDoc, doc, getDoc, limit, orderBy, OrderByDirection, query, QueryDocumentSnapshot, setDoc, startAfter } from "firebase/firestore";
-import { privateUserCollection } from "src/firebase/config";
+import { deleteDoc, doc, getDoc, getDocs, limit, orderBy, OrderByDirection, query, QueryDocumentSnapshot, QuerySnapshot, setDoc, startAfter } from "firebase/firestore";
+import { privateUserCollection, publicUserCollection } from "src/firebase/config";
 import { firebaseHandler, firestoreGetHandler } from "src/firebase/handler";
-import { PrivateUserData } from "src/types";
+import { PrivateUserData, PublicUserData } from "src/types";
 
 /**
  * Function will update the user with the input fields, will overwrite if newUser set to True
@@ -47,32 +47,24 @@ export async function deletePrivateUserData(userID: string): Promise<void> {
     return firebaseHandler<void>(deleteDoc(userRef));
 };
 
-    /*
-        Function will return the data from the query type, generalizable to all supported collectionTypes
-        Getting custom objects for types: https://firebase.google.com/docs/firestore/query-data/get-data#custom_objects
-        begID: is the last uid of the document, will start after this
-    */
-export async function getUsers(begID: string | undefined = undefined, lim: number = 10, direction: OrderByDirection  = 'desc') {
+/**
+ * Will fetch the users from the public user data
+ *
+ * @export
+ * @param {(string | undefined)} [begID=undefined] - the beginning id of the last document
+ * @param {number} [lim=10] - limit of documents to fetch
+ * @param {OrderByDirection} [direction='desc'] - which direction to order the documents by
+ * @return {*}  {Promise<QuerySnapshot<PublicUserData>>}
+ */
+export async function getUsers(begID: string | undefined = undefined, lim: number = 10, direction: OrderByDirection  = 'desc'): Promise<QuerySnapshot<PublicUserData>> {
 
-    const collectionName = 'players';
-    const typeRef = collection(db, collectionName);
     let q;
-    const lastVisible = begID ? await getDoc(doc(db, collectionName, begID)) : undefined;
-    console.log(`fethcing more data from ${collectionName}`);
+    const lastVisible = begID ? await getDoc(doc(publicUserCollection, begID)) : undefined;
 
     if (lastVisible?.exists()) {
-        q = query(
-            typeRef.withConverter(converters.players),
-            orderBy(orderByStr, direction),
-            startAfter(lastVisible),
-            limit(lim),
-        );
+        q = query(publicUserCollection, orderBy('count', direction), startAfter(lastVisible), limit(lim));
     } else {
-        q = query(
-            typeRef.withConverter(converters.players),
-            orderBy(orderByStr, direction),
-            limit(lim),
-        );
-    }
-    return  getDocs(q);
+        q = query(publicUserCollection, orderBy('count', direction), limit(lim));
+    };
+    return getDocs(q);
 }
