@@ -8,7 +8,6 @@ import {
 } from "@storybook/react-native";
 
 import "@storybook/addon-essentials/register";
-import "@storybook/addon-interactions/register";
 import "@storybook/addon-react-native-web/register";
 
 import { decorators, parameters } from "./preview";
