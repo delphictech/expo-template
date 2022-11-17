@@ -89,7 +89,7 @@ export const AuthUserApi = ConfigApi.injectEndpoints({
                             lastName: accountInfo.lastName,
                             email: userCredential.user.email,
                         };
-
+                        await verifyEmail();
                         // store user data in firestore
                         await updatePrivateUserData(user, true);
                         return { data: user };

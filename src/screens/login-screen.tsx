@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     Box,
     VStack,
@@ -10,8 +10,7 @@ import {
     HStack,
     Icon,
 } from 'native-base';
-import { StackNavigationProp, StackScreenProps } from '@react-navigation/stack';
-import { RouteProp, useNavigation } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema, signupSchema } from 'src/utils/schemas';
@@ -91,20 +90,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
             lastName,
         });
 
-        // send verification email if sign up
-        if (!isSignInScreen && isSuccess) {
-            const { isSuccess: sentEmail } = await triggerVerificationEmail(undefined);
-            sentEmail
-                ? toast.show({
-                      placement: 'bottom',
-                      render: renderVerificationToast,
-                      id: 'verificationToast',
-                  })
-                : null;
-        };
-
         // navigate back screen if in stack
         if (isSuccess) {
+            toast.show({
+                placement: 'bottom',
+                render: renderVerificationToast,
+                id: 'verificationToast',
+            })
             navigateBack();
             reset();
         };
