@@ -24,7 +24,7 @@ import { ConfigApi } from './config-api';
  * 
 */
 
-export const AuthUserApi = ConfigApi.injectEndpoints({
+export const AuthApi = ConfigApi.injectEndpoints({
 
     endpoints: (build) => ({
 
@@ -207,4 +207,4 @@ export const {
     useLazySignInQuery,
     useLazySendPasswordResetQuery,
     useLazySendVerificationEmailQuery,
-} = AuthUserApi;
+} = AuthApi;

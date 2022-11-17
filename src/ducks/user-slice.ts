@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthUserApi } from 'src/services';
+import { AuthApi } from 'src/services';
 import { PrivateUserData } from 'src/types';
 
 /** 
@@ -63,7 +63,7 @@ const userSlice = createSlice({
          * @param {PayloadAction<PrivateUserData>} action
          * @return {*} 
          */
-        builder.addMatcher(AuthUserApi.endpoints.signUp.matchFulfilled,
+        builder.addMatcher(AuthApi.endpoints.signUp.matchFulfilled,
             (_state, action: PayloadAction<PrivateUserData>) => {
                 return { ...action.payload };
             },
@@ -76,7 +76,7 @@ const userSlice = createSlice({
          * @param {PayloadAction<PrivateUserData>} action
          * @return {*} 
          */
-         builder.addMatcher(AuthUserApi.endpoints.signIn.matchFulfilled,
+         builder.addMatcher(AuthApi.endpoints.signIn.matchFulfilled,
             (_state, action: PayloadAction<PrivateUserData>) => {
                 return { ...action.payload };
             },
@@ -89,7 +89,7 @@ const userSlice = createSlice({
          * @param {PayloadAction<PrivateUserData>} action
          * @return {*} 
          */
-         builder.addMatcher(AuthUserApi.endpoints.signOut.matchFulfilled,
+         builder.addMatcher(AuthApi.endpoints.signOut.matchFulfilled,
             () => initialUser,
         );
 
@@ -100,7 +100,7 @@ const userSlice = createSlice({
          * @param {PayloadAction<PrivateUserData>} action
          * @return {*} 
          */
-         builder.addMatcher(AuthUserApi.endpoints.deleteAccount.matchFulfilled,
+         builder.addMatcher(AuthApi.endpoints.deleteAccount.matchFulfilled,
             () => initialUser,
         );
    },

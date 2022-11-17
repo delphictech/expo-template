@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Box, Button, Text } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -31,6 +31,15 @@ export const HomeScreen: React.FC<{}> = () => {
     const handleLoginButton = async () => {
         user.loggedIn ? signOut(undefined) : navigation.navigate('Auth');
     };
+
+    useEffect(() => {
+        // update the count if it has changed
+        const initialCount = user.count;
+
+        return () => {
+            
+        }
+    });
 
     return (
         <Box

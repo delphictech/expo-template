@@ -73,6 +73,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     const navigateBack = () => {
         const parentNavigator = navigation.getParent();
         if (parentNavigator?.getId() !== 'root') {
+            console.log(parentNavigator?.getId());
             parentNavigator?.goBack();
         }
     };
