@@ -6,8 +6,8 @@ module.exports = {
         './stories/**/*.stories.?(ts|tsx|js|jsx)',
     ],
     addons: [
-        // '@storybook/addon-essentials',
-        // '@storybook/addon-interactions',
+        '@storybook/addon-essentials',
+        '@storybook/addon-interactions',
         '@storybook/addon-react-native-web',
     ],
     //  managerEntries: ['@storybook/addon-postcss'],
