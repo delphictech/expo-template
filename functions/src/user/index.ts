@@ -30,14 +30,18 @@ export const updatePublicUserData = functions.firestore
                 oldValue.image !== newValue.image;
 
             // if there is a new value and the values have changed, update the public user data
+            /**
+             * Need for exact types
+             * https://github.com/Microsoft/TypeScript/issues/12936
+             */
             if (newValue && publicDataUpdated) {
                 // set the new public data
                 const newPublicData: PublicUserData = {
                     id: newValue.id,
-                    firstName: newValue.firstName,
-                    lastName: newValue.lastName,
-                    count: newValue.count,
-                    image: newValue.image,
+                    firstName: newValue.firstName || null,
+                    lastName: newValue.lastName || null,
+                    count: newValue.count || null,
+                    image: newValue.image || null,
                 };
 
                 // set the public data

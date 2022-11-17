@@ -90,11 +90,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
             firstName,
             lastName,
         });
-        // navigate back screen if in stack
-        if (isSuccess) {
-            navigateBack();
-            reset();
-        }
 
         // send verification email if sign up
         if (!isSignInScreen && isSuccess) {
@@ -106,7 +101,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                       id: 'verificationToast',
                   })
                 : null;
-        }
+        };
+
+        // navigate back screen if in stack
+        if (isSuccess) {
+            navigateBack();
+            reset();
+        };
     };
 
     // handle password reset

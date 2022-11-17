@@ -14,7 +14,7 @@
         "test": "jest --watchAll"
     },
     "engines": {
-        "node": "18"
+        "node": "16"
     },
     "main": "lib/functions/index.js",
     "dependencies": {
