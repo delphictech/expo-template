@@ -10,7 +10,7 @@ import {
     UserCredential,
 } from 'firebase/auth';
 import { auth } from './config';
-import { fbHandler, FirebaseError } from './handler';
+import { firebaseHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
 
@@ -25,7 +25,7 @@ export { FirebaseError };
  * @return {*}  {Promise<UserCredential>}
  */
 export async function anonymousSignIn(): Promise<UserCredential> {
-    return fbHandler<UserCredential>(signInAnonymously(auth));
+    return firebaseHandler<UserCredential>(signInAnonymously(auth));
 }
 
 /**
@@ -36,7 +36,7 @@ export async function anonymousSignIn(): Promise<UserCredential> {
  * @return {*}  {Promise<string[]>} a list of the sign in methods
  */
 export async function fetchSignInMethods(email: string): Promise<string[]> {
-    return fbHandler<string[]>(fetchSignInMethodsForEmail(auth, email));
+    return firebaseHandler<string[]>(fetchSignInMethodsForEmail(auth, email));
 }
 
 /**
@@ -48,7 +48,7 @@ export async function fetchSignInMethods(email: string): Promise<string[]> {
  * @return {*}  {Promise<UserCredential>}
  */
 export async function signInWithEmail(email: string, password: string): Promise<UserCredential> {
-    return fbHandler<UserCredential>(signInWithEmailAndPassword(auth, email, password));
+    return firebaseHandler<UserCredential>(signInWithEmailAndPassword(auth, email, password));
 }
 
 /**
@@ -60,7 +60,7 @@ export async function signInWithEmail(email: string, password: string): Promise<
  * @return {*}  {Promise<UserCredential>}
  */
 export async function signUpWithEmail(email: string, password: string): Promise<UserCredential> {
-    return fbHandler<UserCredential>(createUserWithEmailAndPassword(auth, email, password));
+    return firebaseHandler<UserCredential>(createUserWithEmailAndPassword(auth, email, password));
 }
 
 /**
@@ -71,7 +71,7 @@ export async function signUpWithEmail(email: string, password: string): Promise<
  */
 export async function verifyEmail(): Promise<void> {
     if (auth.currentUser) {
-        return fbHandler<void>(sendEmailVerification(auth.currentUser));
+        return firebaseHandler<void>(sendEmailVerification(auth.currentUser));
     };
     const error: FirebaseError = {
         name: 'Firebase Error',
@@ -90,7 +90,7 @@ export async function verifyEmail(): Promise<void> {
  */
 export async function deleteCurrentUser(): Promise<void> {
     if (auth.currentUser) {
-        return fbHandler<void>(deleteUser(auth.currentUser));
+        return firebaseHandler<void>(deleteUser(auth.currentUser));
     }
     const error: FirebaseError = {
         name: 'Firebase Error',
@@ -110,9 +110,9 @@ export async function deleteCurrentUser(): Promise<void> {
 export async function signOutUser(): Promise<void> {
     // Delete user if anonymous
     if (auth.currentUser?.isAnonymous) {
-        return fbHandler<void>(deleteCurrentUser());
+        return firebaseHandler<void>(deleteCurrentUser());
     }
-    return fbHandler<void>(signOut(auth));
+    return firebaseHandler<void>(signOut(auth));
 }
 
 /**
@@ -123,5 +123,5 @@ export async function signOutUser(): Promise<void> {
  * @return {*}  {Promise<void>}
  */
 export async function resetPassword(email: string): Promise<void> {
-    return fbHandler<void>(sendPasswordResetEmail(auth, email));
+    return firebaseHandler<void>(sendPasswordResetEmail(auth, email));
 }
