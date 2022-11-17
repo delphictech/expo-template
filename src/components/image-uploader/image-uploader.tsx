@@ -1,0 +1,19 @@
+import React from 'react';
+import { Text, Box } from 'native-base';
+// import { View, Text } from 'react-native';
+
+export const ImageUploader: React.FC<any> = ({ props, otherprops }) => {
+    return (
+        <Box backgroundColor={'blue.100'}>
+            <Text color={'red.500'}>{props}</Text>
+            <Text>{otherprops}</Text>
+        </Box>
+
+        // <View>
+        //     <Box>
+        //         <Text>dawdawdwa</Text>
+        //         <Text>dawwad</Text>
+        //     </Box>
+        // </View>
+    );
+};

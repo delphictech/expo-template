@@ -22,9 +22,8 @@ if (parameters) {
 
 const getStories = () => {
   return [
-    require("./stories/Button.stories.tsx"),
-    require("./stories/Product.stories.tsx"),
-    require("./stories/Test.stories.tsx"),
+    require("../src/components/image-uploader/image-uploader.stories.tsx"),
+    require("../src/components/storybook-test/Test.stories.tsx"),
   ];
 };
 
