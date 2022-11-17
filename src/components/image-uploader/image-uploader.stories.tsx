@@ -18,8 +18,3 @@ Basic.args = {
     otherprops: 'red2',
 };
 
-export const Detailed: any = Template.bind({});
-Detailed.args = {
-    props: 'Detail',
-    otherprops: 'Detail',
-};

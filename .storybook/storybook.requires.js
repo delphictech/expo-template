@@ -7,9 +7,6 @@ import {
   addArgsEnhancer,
 } from "@storybook/react-native";
 
-import "@storybook/addon-essentials/register";
-import "@storybook/addon-react-native-web/register";
-
 import { decorators, parameters } from "./preview";
 
 if (decorators) {
@@ -23,7 +20,6 @@ if (parameters) {
 const getStories = () => {
   return [
     require("../src/components/image-uploader/image-uploader.stories.tsx"),
-    require("../src/components/storybook-test/Test.stories.tsx"),
   ];
 };
 

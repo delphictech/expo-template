@@ -4,9 +4,9 @@ module.exports = {
         '../src/components/**/*.stories.?(ts|tsx|js|jsx)',
     ],
     addons: [
-        '@storybook/addon-essentials',
-        // '@storybook/addon-interactions',
-        '@storybook/addon-react-native-web',
+        // '@storybook/addon-essentials',
+        // // '@storybook/addon-interactions',
+        // '@storybook/addon-react-native-web',
     ],
     framework: '@storybook/react',
 };
