@@ -17,19 +17,16 @@ import { loginSchema, signupSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { AuthStackParams } from 'src/navigation/auth-stack';
-import { ScreenParams } from 'src/types/screen';
 import { AlertToast } from 'src/components/feedback/alert-toast';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
     useLazySendPasswordResetQuery,
-    useLazySendVerificationEmailQuery,
     useLazySignInQuery,
     useLazySignUpQuery,
 } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 
 type LoginScreenProps = StackScreenProps<AuthStackParams, 'Login'>;
-// type AuthRouteProp = RouteProp<AuthStackParams, 'AuthEmail'>;
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) => {
     // route params
@@ -53,7 +50,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     const queryHook = isSignInScreen ? useLazySignInQuery : useLazySignUpQuery;
     const [triggerLogin, { isFetching, error }] = queryHook();
     const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
-    const [triggerVerificationEmail] = useLazySendVerificationEmailQuery();
 
     // rendering functions
     const renderPasswordToast = () => (
