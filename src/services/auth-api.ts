@@ -42,7 +42,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                     const methods = await fetchSignInMethods(email);
                     return { data: methods };
                 } catch (e: any) {
-                    console.log(`Error with email: ${e}`);
+                    console.warn(`Error with email: ${e}`);
                     return { error: e };
                 }
             },
@@ -60,7 +60,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
              */
             async queryFn(accountInfo) {
                 if (accountInfo === 'guest') {
-                    console.log('Sign up guest user');
+                    console.warn('Sign up guest user');
                     try {
                         const userCredential = await anonymousSignIn();
                         // setup guest user
@@ -72,11 +72,11 @@ export const AuthApi = ConfigApi.injectEndpoints({
                         };
                         return { data: user };
                     } catch (e: any) {
-                        console.log(`Error with guest sign in ${e}`);
+                        console.warn(`Error with guest sign in ${e}`);
                         return { error: e };
                     }
                 } else {
-                    console.log('Sign up user');
+                    console.warn('Sign up user');
                     try {
                         const userCredential = await signUpWithEmail(
                             accountInfo.email,
@@ -96,7 +96,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                         await updatePrivateUserData(user, true);
                         return { data: user };
                     } catch (e: any) {
-                        console.log(`Error with sign up: ${e}`);
+                        console.warn(`Error with sign up: ${e}`);
                         return { error: e };
                     }
                 }
@@ -111,7 +111,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
              * @return {*}
              */
             async queryFn({ email, password }) {
-                console.log('signing in user');
+                console.warn('signing in user');
                 try {
                     // sign in new user and get data from database
                     const userCredential = await signInWithEmail(email, password);
@@ -119,7 +119,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
 
                     return { data: { ...userDoc.data(), loggedIn: true } };
                 } catch (e: any) {
-                    console.log(`Error with login: ${e}`);
+                    console.warn(`Error with login: ${e}`);
                     return { error: e };
                 }
             },
@@ -136,7 +136,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                     await signOutUser();
                     return { data: null };
                 } catch (e: any) {
-                    console.log(`Error with signout`);
+                    console.warn(`Error with signout`);
                     return { error: e };
                 }
             },
@@ -158,7 +158,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                         data: { id: '', isAnonymous: false, loggedIn: false, emailVerified: false },
                     };
                 } catch (e: any) {
-                    console.log(`Error with deleting user`);
+                    console.warn(`Error with deleting user`);
                     return { error: e };
                 }
             },
@@ -176,7 +176,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                     await resetPassword(email);
                     return { data: email };
                 } catch (e: any) {
-                    console.log(`Error with password reset`);
+                    console.warn(`Error with password reset`);
                     return { error: e };
                 }
             },
@@ -193,7 +193,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                     await verifyEmail();
                     return { data: null };
                 } catch (e: any) {
-                    console.log(`Error with verification email`);
+                    console.warn(`Error with verification email`);
                     return { error: e };
                 }
             },

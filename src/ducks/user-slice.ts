@@ -25,19 +25,6 @@ const userSlice = createSlice({
      * Define the reducers for this slice
      */
     reducers: {
-        // emailSignIn: (state, action: PayloadAction<PrivateUserData>) => {
-        //     // updates the user object to the signed in user
-        //     return { ...state, ...action.payload, loggedIn: true };
-        // },
-        // guestSignIn: (_state, action: PayloadAction<string>) => {
-        //     // set the id, keep anonymous and logged in
-        //     return { ...initialUser, id: action.payload, isAnonymous: true, loggedIn: true };
-        // },
-        // signOut: () => initialUser, // reset to initial state
-        // updateEmail: (state, action: PayloadAction<string>) => {
-        //     // update the email, keep everything else updated
-        //     return { ...state, email: action.payload, loggedIn: true }
-        // },
         incrementCount: (state) => {
             // increment, or set to 1
             state.count ? (state.count += 1) : (state.count = 1);

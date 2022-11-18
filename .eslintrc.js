@@ -40,6 +40,10 @@ module.exports = {
         // for managing state with redux toolkit: https://redux-starter-kit.js.org/usage/immer-reducers#linting-state-mutations
         "no-param-reassign": ["error", { props: true, ignorePropertyModificationsFor: ["state"] }],
         // for throwing firebase errors: https://typescript-eslint.io/rules/no-throw-literal/#options
-        "@typescript-eslint/no-throw-literal": ["error", { "allowThrowingAny": true }]
+        "@typescript-eslint/no-throw-literal": ["error", { "allowThrowingAny": true }],
+        // allow inline iffs https://archive.eslint.org/docs/rules/no-unused-expressions
+        "@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
+        // allow warning and errors
+        "no-console": ["error", { allow: ["warn", "error"] }]
     }
 };

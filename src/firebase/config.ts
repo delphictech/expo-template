@@ -8,7 +8,6 @@ import {
     FirestoreDataConverter,
     getFirestore,
     QueryDocumentSnapshot,
-    SnapshotOptions,
 } from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PrivateUserData, PublicUserData } from 'src/types';
@@ -60,8 +59,7 @@ export const db = getFirestore(app);
  */
 const genericConverter = <T>() => ({
     toFirestore: (inputData: T) => inputData,
-    fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): T =>
-        snapshot.data() as T,
+    fromFirestore: (snapshot: QueryDocumentSnapshot): T => snapshot.data() as T,
 });
 
 /**

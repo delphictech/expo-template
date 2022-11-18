@@ -56,15 +56,11 @@ export const WelcomeScreen: React.FC<{}> = () => {
     // handling button presses
     const handleEmail = async (data: any) => {
         // updating variables within function, since they need to be sent to new screen
-        try {
-            const emailSignInMethods = await getSignInMethods(data.email).unwrap();
-            navigation.navigate('Login', {
-                signInMethods: emailSignInMethods,
-                email: data.email,
-            });
-        } catch (e: any) {
-            console.log('Error with email, caught by outer hook fetchingError');
-        }
+        const emailSignInMethods = await getSignInMethods(data.email).unwrap();
+        navigation.navigate('Login', {
+            signInMethods: emailSignInMethods,
+            email: data.email,
+        });
         reset();
     };
 
