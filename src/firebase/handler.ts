@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { DocumentSnapshot, QueryDocumentSnapshot } from 'firebase/firestore';
 
 /**
@@ -55,8 +56,8 @@ export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
             default:
                 message = 'Backend Error';
                 cause = 'account';
-                console.log(`New Backend error`);
-                console.log(error.code);
+                console.warn(`New Backend error`);
+                console.warn(error.code);
         }
 
         // assign values to interface
@@ -80,21 +81,17 @@ export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
 export const firestoreGetHandler = async <T>(
     firestoreQuery: Promise<DocumentSnapshot<T>>,
 ): Promise<QueryDocumentSnapshot<T>> => {
-    try {
-        const result = await firebaseHandler<DocumentSnapshot<T>>(firestoreQuery);
-        if (result.exists()) {
-            return result;
-        }
-
-        // throw document does not exist
-        const fbError: FirebaseError = {
-            name: 'Firebase Error',
-            message: 'Document does not exist',
-            code: 'firestore/does-not-exist',
-            errorCause: 'firestore-document',
-        };
-        throw fbError;
-    } catch (error: any) {
-        throw error;
+    const result = await firebaseHandler<DocumentSnapshot<T>>(firestoreQuery);
+    if (result.exists()) {
+        return result;
     }
+
+    // throw document does not exist
+    const fbError: FirebaseError = {
+        name: 'Firebase Error',
+        message: 'Document does not exist',
+        code: 'firestore/does-not-exist',
+        errorCause: 'firestore-document',
+    };
+    throw fbError;
 };

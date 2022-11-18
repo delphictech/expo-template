@@ -11,23 +11,18 @@ import { PublicUserData } from 'src/types';
 export const ExploreScreen: React.FC<{}> = () => {
     // state and query hooks
     const [begID, setBegID] = useState<string | undefined>(undefined);
-    const { data = [], isFetching, isError, error, refetch } = useGetUsersQuery(begID);
+    const { data = [], isFetching, refetch } = useGetUsersQuery(begID);
     const [users, setUsers] = useState<Array<PublicUserData>>(data);
 
     useEffect(() => {
-        console.log(begID);
-    }, [begID]);
-
-    useEffect(() => {
         // concat if there are more users, otherwise set equal to data
-        begID ? setUsers(users.concat(data)) : setUsers(data);
+        if (begID) {
+            setUsers(users.concat(data));
+        } else {
+            setUsers(data);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data[0]?.id]);
-
-    // define pagination function
-    const paginate = () => {
-        console.log('end reached');
-        setBegID(users.length ? users[users.length - 1].id : begID);
-    };
 
     return (
         <Box
@@ -59,7 +54,7 @@ export const ExploreScreen: React.FC<{}> = () => {
                     </Box>
                 )}
                 data={users}
-                onEndReached={paginate}
+                onEndReached={() => setBegID(users.length ? users[users.length - 1].id : begID)}
                 onEndReachedThreshold={0.2}
                 ListFooterComponent={
                     data.length ? (

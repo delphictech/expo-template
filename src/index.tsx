@@ -65,7 +65,7 @@ export const App = () => {
     });
 
     if (!fontsLoaded) {
-        return <></>;
+        return <StatusBar />;
     }
 
     return (

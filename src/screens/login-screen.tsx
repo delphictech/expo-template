@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
     Box,
     VStack,
@@ -73,7 +73,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     const navigateBack = () => {
         const parentNavigator = navigation.getParent();
         if (parentNavigator?.getId() && parentNavigator?.getId() !== 'root') {
-            console.log(parentNavigator?.getId());
             parentNavigator?.goBack();
         }
     };
@@ -102,13 +101,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     // handle password reset
     const handlePasswordReset = async () => {
         const { isSuccess } = await triggerPasswordReset(email);
-        isSuccess
-            ? toast.show({
-                  placement: 'bottom',
-                  render: renderPasswordToast,
-                  id: 'resetToast',
-              })
-            : null;
+        if (isSuccess) {
+            toast.show({
+                placement: 'bottom',
+                render: renderPasswordToast,
+                id: 'resetToast',
+            });
+        }
         reset();
     };
 

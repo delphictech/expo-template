@@ -1,10 +1,5 @@
-import {
-    deletePrivateUserData,
-    getPrivateUserData,
-    getUsers,
-    updatePrivateUserData,
-} from 'src/firebase/user-api';
-import { PrivateUserData, PublicUserData } from 'src/types';
+import { getUsers } from 'src/firebase/user-api';
+import { PublicUserData } from 'src/types';
 import { ConfigApi } from './config-api';
 
 /**

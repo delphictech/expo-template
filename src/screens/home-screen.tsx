@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Box, Button, Text } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -20,23 +20,11 @@ type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 export const HomeScreen: React.FC<{}> = () => {
     // hooks
     const navigation = useNavigation<HomeScreenProps>();
-    const [signOut, { isFetching, isError, error }] = useLazySignOutQuery();
+    const [signOut, { isFetching }] = useLazySignOutQuery();
 
     // redux handlers
     const user = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
-
-    // handling button functions
-    const handleLoginButton = async () => {
-        user.loggedIn ? signOut(undefined) : navigation.navigate('Auth');
-    };
-
-    useEffect(() => {
-        // update the count if it has changed
-        const initialCount = user.count;
-
-        return () => {};
-    });
 
     return (
         <Box
@@ -71,7 +59,11 @@ export const HomeScreen: React.FC<{}> = () => {
                     Login to real account
                 </Button>
             ) : null}
-            <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
+            <Button
+                isLoading={isFetching}
+                mt="2"
+                colorScheme="indigo"
+                onPress={() => (user.loggedIn ? signOut(undefined) : navigation.navigate('Auth'))}>
                 {user.loggedIn ? 'Logout' : 'Login'}
             </Button>
         </Box>
