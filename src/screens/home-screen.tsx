@@ -7,9 +7,9 @@ import { incrementCount, decrementCount } from 'src/ducks/user-slice';
 import { HomeStackParams } from 'src/navigation/home-stack';
 import { useLazySignOutQuery } from 'src/services';
 
-/*
-    Define Screen Typee
-*/
+/**
+ * Stack Navigation Prop for accessing screen navigation prop
+ */
 type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 
 /**
@@ -37,7 +37,7 @@ export const HomeScreen: React.FC<{}> = () => {
         const initialCount = user.count;
 
         return () => {
-            
+
         }
     });
 
