@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text } from 'native-base';
+import { Text } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader/image-uploader';
 
 export const EditProfileScreen = () => {

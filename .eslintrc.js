@@ -40,6 +40,8 @@ module.exports = {
         // for managing state with redux toolkit: https://redux-starter-kit.js.org/usage/immer-reducers#linting-state-mutations
         "no-param-reassign": ["error", { props: true, ignorePropertyModificationsFor: ["state"] }],
         // for throwing firebase errors: https://typescript-eslint.io/rules/no-throw-literal/#options
-        "@typescript-eslint/no-throw-literal": ["error", { "allowThrowingAny": true }]
+        "@typescript-eslint/no-throw-literal": ["error", { "allowThrowingAny": true }],
+        // for imporitng dev dependencies https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-extraneous-dependencies.md
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.ts", "**/*.stories.tsx"]}],
     }
 };

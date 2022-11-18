@@ -10,12 +10,7 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
     const [imageState, setImageState] = useState<string>();
 
     return (
-        <Box alignItems="center" backgroundColor={'blue.700'} >
-
-            {/* <Text style={styles.red} color={'red.500'}>
-                {props}
-            </Text>
-            <Text>{otherprops}</Text> */}
+        <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
                 <Image
                     borderRadius={imageProps.stylingProps ? imageProps.stylingProps.bRadius : 0}

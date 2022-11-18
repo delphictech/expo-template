@@ -3,9 +3,13 @@ import { FormControl, Input, Icon, WarningOutlineIcon, IInputProps, View } from 
 import { MaterialIcons } from '@expo/vector-icons';
 import { Control, Controller, FieldValues } from 'react-hook-form';
 
-/*
-Props extend from nativebase IInputProps props
-*/
+/**
+ * Props extend from nativebase IInputProps props
+ *
+ * @export
+ * @interface FormInputParams
+ * @extends {IInputProps}
+ */
 export interface FormInputParams extends IInputProps {
     control: Control<FieldValues, any>; // control passed into react-hook-form controller input: https://www.react-hook-form.com/get-started#IntegratingwithUIlibraries
     name: string; // required for the react-hook-form controller

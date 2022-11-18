@@ -1,4 +1,4 @@
-export interface imageArgProps {
+export interface ImageArgProps {
     imageProp: string;
     stylingProps?: {
         bRadius: number;
