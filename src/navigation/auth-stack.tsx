@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LoginScreen, WelcomeScreen } from 'src/screens';
 
 export type AuthStackParams = {
-    Email?: undefined;
-    AuthEmail: {
+    Welcome?: undefined;
+    Login: {
         signInMethods: Array<string>;
         email: string;
+        title?: string;
         extra?: any;
     };
 };
@@ -14,16 +15,15 @@ export type AuthStackParams = {
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
 export const AuthStackNavigator: React.FC<any> = () => {
-
     return (
-        <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName="Email">
+        <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName="Welcome">
             <StackNav.Screen
-                name="Email"
+                name="Welcome"
                 component={WelcomeScreen}
                 options={{ headerShown: false, animationTypeForReplace: 'pop' }}
             />
             <StackNav.Screen
-                name="AuthEmail"
+                name="Login"
                 component={LoginScreen}
                 options={{ headerShown: false }}
             />

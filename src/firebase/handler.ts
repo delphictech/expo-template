@@ -1,10 +1,27 @@
+/* eslint-disable no-console */
+import { DocumentSnapshot, QueryDocumentSnapshot } from 'firebase/firestore';
+
+/**
+ * FirebaseError type used to render errors to the user in the frontend
+ *
+ * @export
+ * @interface FirebaseError
+ * @extends {Error}
+ */
 export interface FirebaseError extends Error {
     message: string;
     code: string | null;
     errorCause: 'email' | 'password' | 'account' | string;
 }
 
-export const fbHandler = async (fbQuery: Promise<any>) => {
+/**
+ * fbHandler will handle the promise and throw a firebase error if it is not handled correctly
+ *
+ * @template T
+ * @param {Promise<any>} fbQuery
+ * @return {*}  {Promise<Awaited<T>>}
+ */
+export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
     /*
         Function will handles catching errors with firebase, returning errors in the Firebase Error format
         This will help with catching and display error messages to the user on the frontend.
@@ -39,8 +56,8 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
             default:
                 message = 'Backend Error';
                 cause = 'account';
-                console.log(`New Backend error`);
-                console.log(error.code);
+                console.warn(`New Backend error`);
+                console.warn(error.code);
         }
 
         // assign values to interface
@@ -52,4 +69,29 @@ export const fbHandler = async (fbQuery: Promise<any>) => {
         };
         throw fbError;
     }
+};
+
+/**
+ * Function used to handle functions that fetch data using a getDoc method, will return an error if no documents match
+ *
+ * @template T
+ * @param {Promise<DocumentSnapshot<T>>} firestoreQuery
+ * @return {Promise<QueryDocumentSnapshot<T>>}
+ */
+export const firestoreGetHandler = async <T>(
+    firestoreQuery: Promise<DocumentSnapshot<T>>,
+): Promise<QueryDocumentSnapshot<T>> => {
+    const result = await firebaseHandler<DocumentSnapshot<T>>(firestoreQuery);
+    if (result.exists()) {
+        return result;
+    }
+
+    // throw document does not exist
+    const fbError: FirebaseError = {
+        name: 'Firebase Error',
+        message: 'Document does not exist',
+        code: 'firestore/does-not-exist',
+        errorCause: 'firestore-document',
+    };
+    throw fbError;
 };

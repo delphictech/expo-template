@@ -12,6 +12,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo-google-fonts/nunito": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
     "@hookform/resolvers": "^2.9.1",
     "@react-aria/ssr": "^3.2.0",

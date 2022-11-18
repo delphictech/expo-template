@@ -4,7 +4,7 @@ import { Icon } from 'native-base';
 import { InterfaceIconProps } from 'native-base/lib/typescript/components/primitives/Icon/types';
 import { useTheme } from '@react-navigation/native';
 
-export const Logo: React.FC<InterfaceIconProps> = (props: InterfaceIconProps) => {
+export const LogoIcon: React.FC<InterfaceIconProps> = (props: InterfaceIconProps) => {
     /*
         Created custom maet icon:
         https://docs.nativebase.io/icon

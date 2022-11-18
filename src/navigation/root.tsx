@@ -2,7 +2,7 @@ import React from 'react';
 import { ColorSchemeName } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationLightTheme, navigationDarkTheme } from 'src/constants/theme';
-import { useAppSelector } from 'src/hooks/useful-ducks';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthStackNavigator } from './auth-stack';
 import { BottomTabNavigator } from './bottom-tab';
