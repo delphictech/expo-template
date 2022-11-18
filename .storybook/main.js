@@ -2,6 +2,7 @@ module.exports = {
     stories: [
         // './stories/**/*.stories.?(ts|tsx|js|jsx)',
         '../src/components/**/*.stories.?(ts|tsx|js|jsx)',
+        '../src/screens/**/*.stories.?(ts|tsx|js|jsx)',
     ],
     addons: [
         // '@storybook/addon-essentials',

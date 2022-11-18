@@ -10,7 +10,8 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
     const [imageState, setImageState] = useState<string>();
 
     return (
-        <Box flex={1} alignItems="center" backgroundColor={'blue.700'}>
+        <Box alignItems="center" backgroundColor={'blue.700'} >
+
             {/* <Text style={styles.red} color={'red.500'}>
                 {props}
             </Text>
@@ -22,7 +23,7 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
                         uri: imageProps.imageProp,
                     }}
                     alt="Alternate Text"
-                    size={imageProps.stylingProps ? imageProps.stylingProps.size : 'lg'}
+                    size={imageProps.stylingProps ? imageProps.stylingProps.size : 'xl'}
                 />
             </Pressable>
             {/* <Button>Actionsheet</Button> */}
@@ -40,6 +41,7 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
             </Actionsheet>
 
             {imageState && <Text>{imageState}</Text>}
+            <Text>Hello World</Text>
         </Box>
     );
 };

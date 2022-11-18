@@ -20,6 +20,7 @@ if (parameters) {
 const getStories = () => {
   return [
     require("../src/components/image-uploader/image-uploader.stories.tsx"),
+    require("../src/screens/edit-profile-screen/edit-profile-screen.stories.tsx"),
   ];
 };
 
