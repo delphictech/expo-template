@@ -14,7 +14,7 @@ module.exports = {
         "plugin:jsx-a11y/recommended",
         "plugin:prettier/recommended",
     ],
-    "ignorePatterns": ["/functions/**/*"],
+    "ignorePatterns": ["./functions/**/*"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
