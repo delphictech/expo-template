@@ -42,16 +42,15 @@ describe('Firebase functions testing', () => {
      * @param {(WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>)} wrappedOnWrite
      * @param {PrivateUserData} privateUserData
      * @param {string} privatePath
-     * @param {PublicUserData} publicUserData
      * @param {string} publicPath
+     * @return {*}  {PublicUserData}
      */
     const testFunction = async (
         wrappedOnWrite: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>, 
         privateUserData: PrivateUserData, 
         privatePath: string, 
-        publicUserData: PublicUserData, 
         publicPath: string
-        ) => {
+        ): Promise<PublicUserData> => {
 
         const changeDoc: Change<DocumentSnapshot> = {
             before: testEnv.firestore.makeDocumentSnapshot({}, privatePath),
@@ -62,9 +61,7 @@ describe('Firebase functions testing', () => {
         await wrappedOnWrite(changeDoc);
 
         const after = await db.doc(publicPath).get();
-
-        // expect it to be the same data object, which is what toStrictEqual checks
-        expect(after.data()).toEqual(publicUserData);
+        return after.data() as PublicUserData;
     };
 
     // declare wrapped as a scheduled firebase function that has not been invoked yet
@@ -93,7 +90,9 @@ describe('Firebase functions testing', () => {
     const publicPath = `public-user-data/${privateUserData.id}`;
     test('TEST 1: typical private user data', async () => {
         const publicUserData = createDataInput(privateUserData);
-        testFunction(wrappedOnWrite, privateUserData, privatePath, publicUserData, publicPath);
+        const returnedData = await testFunction(wrappedOnWrite, privateUserData, privatePath, publicPath);
+        // expect it to be the same data object, which is what toStrictEqual checks
+        expect(returnedData).toEqual(publicUserData);
     });
 
     /**
@@ -111,7 +110,9 @@ describe('Firebase functions testing', () => {
     };
     test('TEST 2: undefined count', async () => {
         const publicUserData = createDataInput(privateUserData);
-        testFunction(wrappedOnWrite, privateUserData, privatePath, publicUserData, publicPath);
+        const returnedData = await testFunction(wrappedOnWrite, privateUserData, privatePath, publicPath);
+        // expect it to be the same data object, which is what toStrictEqual checks
+        expect(returnedData).toEqual(publicUserData);
     });
 
     
