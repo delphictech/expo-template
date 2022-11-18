@@ -23,7 +23,7 @@ export const UserApi = ConfigApi.injectEndpoints({
              */
             async queryFn(begID) {
                 try {
-                    const querySnapshot = await getUsers(begID, 10, 'desc');
+                    const querySnapshot = await getUsers(begID, 3, 'desc');
                     const users = querySnapshot.docs.map(userDoc => userDoc.data());
                     return { data: users };
                 } catch (e: any) {
