@@ -1,8 +1,4 @@
-import { getStorybookUI, addDecorator } from '@storybook/react-native';
-
-// import { withKnobs } from '@storybook/addon-knobs';
-
-// addDecorator(withKnobs);
+import { getStorybookUI } from '@storybook/react-native';
 
 import './storybook.requires';
 

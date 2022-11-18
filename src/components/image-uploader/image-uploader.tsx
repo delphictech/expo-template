@@ -23,7 +23,7 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
                         uri: imageProps.imageProp,
                     }}
                     alt="Alternate Text"
-                    size={imageProps.stylingProps ? imageProps.stylingProps.size : 'xl'}
+                    size={imageProps.stylingProps ? imageProps.size : 'xl'}
                 />
             </Pressable>
             {/* <Button>Actionsheet</Button> */}

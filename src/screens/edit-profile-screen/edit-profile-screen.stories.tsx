@@ -6,7 +6,7 @@ import { imageArgProps } from 'src/types/component/image-uploader';
 export default {
     title: 'Edit Profile Screen',
     component: EditProfileScreen,
-    // args: {},
+   
 };
 
 const Template = (args: any) => <EditProfileScreen {...args} />;
