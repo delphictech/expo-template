@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Text, Box, Image, Actionsheet, Button, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
+import { imageArgProps } from 'src/types/component/image-uploader';
 
-export const ImageUploader: React.FC<any> = ({ props, otherprops }) => {
+export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
     const { isOpen, onOpen, onClose } = useDisclose();
 
     const [imageState, setImageState] = useState<string>();
 
     return (
         <Box flex={1} alignItems="center" backgroundColor={'blue.700'}>
-            <Text style={styles.red} color={'red.500'}>
+            {/* <Text style={styles.red} color={'red.500'}>
                 {props}
             </Text>
-            <Text>{otherprops}</Text>
-            <Pressable onPress={onOpen}>
+            <Text>{otherprops}</Text> */}
+            <Pressable mt={10} onPress={onOpen}>
                 <Image
-                    borderRadius={20}
+                    borderRadius={imageProps.stylingProps ? imageProps.stylingProps.bRadius : 0}
                     source={{
-                        uri: 'https://wallpaperaccess.com/full/317501.jpg',
+                        uri: imageProps.imageProp,
                     }}
                     alt="Alternate Text"
-                    size="xl"
+                    size={imageProps.stylingProps ? imageProps.stylingProps.size : 'lg'}
                 />
             </Pressable>
             {/* <Button>Actionsheet</Button> */}
@@ -29,10 +30,10 @@ export const ImageUploader: React.FC<any> = ({ props, otherprops }) => {
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
                     <Actionsheet.Item onPress={() => takePhoto(setImageState)}>
-                        Upload Image
+                        Take Photo
                     </Actionsheet.Item>
                     <Actionsheet.Item onPress={() => pickImage(setImageState)}>
-                        Take Image
+                        Upload Image
                     </Actionsheet.Item>
                     <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>
                 </Actionsheet.Content>
