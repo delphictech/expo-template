@@ -3,15 +3,15 @@ import 'jest';
 import { DocumentSnapshot } from 'firebase-functions/v1/firestore';
 import { WrappedFunction, WrappedScheduledFunction } from 'firebase-functions-test/lib/main';
 import { Change } from 'firebase-functions/v1';
-import { PrivateUserData, PublicUserData } from 'types/user';
-import { updatePublicUserData } from '../src/user/index';
-import { db } from '../src/index';
+import { PrivateUserData, PublicUserData } from 'src/types/user';
+import { updatePublicUserData } from './index';
+import { db } from '../index';
 
-/** 
+/**
  * @resources
  * https://h-malik144.medium.com/jest-testing-for-firebase-functions-a51ce1094d38
  * https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional
-*/
+ */
 
 /**
  * Configure the testing environment
@@ -46,12 +46,11 @@ describe('Firebase functions testing', () => {
      * @return {*}  {PublicUserData}
      */
     const testFunction = async (
-        wrappedOnWrite: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>, 
-        privateUserData: PrivateUserData, 
-        privatePath: string, 
-        publicPath: string
-        ): Promise<PublicUserData> => {
-
+        wrappedOnWrite: WrappedScheduledFunction | WrappedFunction<Change<DocumentSnapshot>, void>,
+        privateUserData: PrivateUserData,
+        privatePath: string,
+        publicPath: string,
+    ): Promise<PublicUserData> => {
         const changeDoc: Change<DocumentSnapshot> = {
             before: testEnv.firestore.makeDocumentSnapshot({}, privatePath),
             after: testEnv.firestore.makeDocumentSnapshot(privateUserData, privatePath),
@@ -90,14 +89,19 @@ describe('Firebase functions testing', () => {
     const publicPath = `public-user-data/${privateUserData.id}`;
     test('TEST 1: typical private user data', async () => {
         const publicUserData = createDataInput(privateUserData);
-        const returnedData = await testFunction(wrappedOnWrite, privateUserData, privatePath, publicPath);
+        const returnedData = await testFunction(
+            wrappedOnWrite,
+            privateUserData,
+            privatePath,
+            publicPath,
+        );
         // expect it to be the same data object, which is what toStrictEqual checks
         expect(returnedData).toEqual(publicUserData);
     });
 
     /**
      * Test 2: undefined properties
-    */
+     */
     privateUserData = {
         id: 'testing-user',
         firstName: 'Snoopy',
@@ -110,12 +114,15 @@ describe('Firebase functions testing', () => {
     };
     test('TEST 2: undefined count', async () => {
         const publicUserData = createDataInput(privateUserData);
-        const returnedData = await testFunction(wrappedOnWrite, privateUserData, privatePath, publicPath);
+        const returnedData = await testFunction(
+            wrappedOnWrite,
+            privateUserData,
+            privatePath,
+            publicPath,
+        );
         // expect it to be the same data object, which is what toStrictEqual checks
         expect(returnedData).toEqual(publicUserData);
     });
-
-    
 
     afterAll(async () => {
         // cleanup the private data, any env variables and firebase apps
