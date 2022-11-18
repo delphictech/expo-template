@@ -91,7 +91,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
                     {!isAnonymous ? (
                         <>
                             <MaetSvg height={150} width={150} fill={iconColor} />
-                            <Heading textAlign='center' mb={3} color="plainText.900">
+                            <Heading textAlign="center" mb={3} color="plainText.900">
                                 Welcome to the Maet template!
                             </Heading>
                         </>

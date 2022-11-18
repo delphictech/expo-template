@@ -1,16 +1,16 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import userReducer from './user-slice';
 import { ConfigApi } from 'src/services';
+import userReducer from './user-slice';
 
-/** 
- * @remarks 
+/**
+ * @remarks
  * set the persist configuration
- * 
+ *
  * @resources
  * Usage with redux persist: https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
- * Helpful tutorial: https://edvins.io/how-to-use-redux-persist-with-redux-toolkit 
+ * Helpful tutorial: https://edvins.io/how-to-use-redux-persist-with-redux-toolkit
  * Splitting the rtk-query api: https://stackoverflow.com/questions/71466817/splitting-api-definitions-with-rtk-query
  */
 const persistConfig = {

@@ -1,4 +1,4 @@
-import { DocumentSnapshot, QueryDocumentSnapshot } from "firebase/firestore";
+import { DocumentSnapshot, QueryDocumentSnapshot } from 'firebase/firestore';
 
 /**
  * FirebaseError type used to render errors to the user in the frontend
@@ -70,20 +70,21 @@ export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
     }
 };
 
- /**
+/**
  * Function used to handle functions that fetch data using a getDoc method, will return an error if no documents match
  *
  * @template T
  * @param {Promise<DocumentSnapshot<T>>} firestoreQuery
  * @return {Promise<QueryDocumentSnapshot<T>>}
  */
-export const firestoreGetHandler = async <T>(firestoreQuery: Promise<DocumentSnapshot<T>>): Promise<QueryDocumentSnapshot<T>> => {
-
+export const firestoreGetHandler = async <T>(
+    firestoreQuery: Promise<DocumentSnapshot<T>>,
+): Promise<QueryDocumentSnapshot<T>> => {
     try {
         const result = await firebaseHandler<DocumentSnapshot<T>>(firestoreQuery);
         if (result.exists()) {
             return result;
-        };
+        }
 
         // throw document does not exist
         const fbError: FirebaseError = {
@@ -93,9 +94,7 @@ export const firestoreGetHandler = async <T>(firestoreQuery: Promise<DocumentSna
             errorCause: 'firestore-document',
         };
         throw fbError;
-
     } catch (error: any) {
         throw error;
-    };
-
+    }
 };

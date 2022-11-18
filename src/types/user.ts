@@ -3,7 +3,7 @@
  *
  * @remarks
  * Should be read-only from the database.
- * 
+ *
  * @export
  * @interface PublicUserData
  */
@@ -13,7 +13,7 @@ export interface PublicUserData {
     lastName?: string | null;
     image?: string | null;
     count?: number | null;
-};
+}
 
 /**
  * User object that can be written by the user. Will update the public data.
@@ -28,4 +28,4 @@ export interface PrivateUserData extends PublicUserData {
     isAnonymous: boolean;
     emailVerified: boolean;
     loggedIn: boolean;
-};
+}

@@ -93,10 +93,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                 placement: 'bottom',
                 render: renderVerificationToast,
                 id: 'verificationToast',
-            })
+            });
             navigateBack();
             reset();
-        };
+        }
     };
 
     // handle password reset

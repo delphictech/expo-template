@@ -1,6 +1,6 @@
 /**
  * Environmental variables configuration, used in the firebase-config file
- * Uses the react-native-dotenv package: https://www.npmjs.com/package/react-native-dotenv 
+ * Uses the react-native-dotenv package: https://www.npmjs.com/package/react-native-dotenv
  */
 declare module '@env' {
     export const FIREBASE_API_KEY: string;

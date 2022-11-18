@@ -6,10 +6,9 @@ import { PublicUserData } from 'src/types';
 /**
  * Explore screen - where the user will be able to view other users.
  *
- * @return {*} 
+ * @return {*}
  */
 export const ExploreScreen: React.FC<{}> = () => {
-
     // state and query hooks
     const [begID, setBegID] = useState<string | undefined>(undefined);
     const { data = [], isFetching, isError, error, refetch } = useGetUsersQuery(begID);
@@ -23,7 +22,7 @@ export const ExploreScreen: React.FC<{}> = () => {
         // concat if there are more users, otherwise set equal to data
         begID ? setUsers(users.concat(data)) : setUsers(data);
     }, [data[0]?.id]);
-    
+
     // define pagination function
     const paginate = () => {
         console.log('end reached');
@@ -38,19 +37,27 @@ export const ExploreScreen: React.FC<{}> = () => {
             flex={1}
             alignItems="center"
             justifyContent="center">
-            <FlatList 
-                w='100%'
-                h='100%'
+            <FlatList
+                w="100%"
+                h="100%"
                 refreshing={isFetching}
-                onRefresh={() => begID ? setBegID(undefined) : refetch()}
-                renderItem={({ item }) => 
-                    <Box m={1} flex={1} bgColor='primary.400' >
-                        <Text fontWeight='black' fontSize='lg' p={10}>{item.id}</Text>
-                        <Text fontWeight='black' fontSize='lg' p={10}>{item.firstName}</Text>
-                        <Text fontWeight='black' fontSize='lg' p={10}>{item.lastName}</Text>
-                        <Text fontWeight='black' fontSize='lg' p={10}>{item.count}</Text>
+                onRefresh={() => (begID ? setBegID(undefined) : refetch())}
+                renderItem={({ item }) => (
+                    <Box m={1} flex={1} bgColor="primary.400">
+                        <Text fontWeight="black" fontSize="lg" p={10}>
+                            {item.id}
+                        </Text>
+                        <Text fontWeight="black" fontSize="lg" p={10}>
+                            {item.firstName}
+                        </Text>
+                        <Text fontWeight="black" fontSize="lg" p={10}>
+                            {item.lastName}
+                        </Text>
+                        <Text fontWeight="black" fontSize="lg" p={10}>
+                            {item.count}
+                        </Text>
                     </Box>
-                }
+                )}
                 data={users}
                 onEndReached={paginate}
                 onEndReachedThreshold={0.2}

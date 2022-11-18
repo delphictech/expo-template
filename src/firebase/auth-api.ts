@@ -14,9 +14,9 @@ import { firebaseHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
 
-/** 
+/**
  * AUTH FUNCTIONS: https://firebase.google.com/docs/reference/js/auth.md#auth_package
-*/
+ */
 
 /**
  * sign in as a guest user
@@ -72,7 +72,7 @@ export async function signUpWithEmail(email: string, password: string): Promise<
 export async function verifyEmail(): Promise<void> {
     if (auth.currentUser) {
         return firebaseHandler<void>(sendEmailVerification(auth.currentUser));
-    };
+    }
     const error: FirebaseError = {
         name: 'Firebase Error',
         message: 'User does not exist',

@@ -1,7 +1,15 @@
 import { initializeApp } from 'firebase/app';
 import { initializeAuth, browserPopupRedirectResolver } from 'firebase/auth';
 import { getReactNativePersistence } from 'firebase/auth/react-native';
-import { collection, CollectionReference, DocumentData, FirestoreDataConverter, getFirestore, QueryDocumentSnapshot, SnapshotOptions } from 'firebase/firestore';
+import {
+    collection,
+    CollectionReference,
+    DocumentData,
+    FirestoreDataConverter,
+    getFirestore,
+    QueryDocumentSnapshot,
+    SnapshotOptions,
+} from 'firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PrivateUserData, PublicUserData } from 'src/types';
 import {
@@ -31,19 +39,18 @@ export const app = initializeApp(firebaseConfig);
 /**
  * to get rid of async storage incompatibility with expo, initialize auth with the following method
  * @link https://github.com/firebase/firebase-js-sdk/issues/1847#issuecomment-915634151
- */ 
+ */
 export const auth = initializeAuth(app, {
     persistence: [getReactNativePersistence(AsyncStorage)],
     popupRedirectResolver: browserPopupRedirectResolver,
 });
 
-
 /**
-    * Initialize firestore and define typed helping collection function
-    * @references 
-    * https://plainenglish.io/blog/using-firestore-with-typescript-in-the-v9-sdk-cf36851bb099
-    * https://medium.com/swlh/using-firestore-with-typescript-65bd2a602945
-*/
+ * Initialize firestore and define typed helping collection function
+ * @references
+ * https://plainenglish.io/blog/using-firestore-with-typescript-in-the-v9-sdk-cf36851bb099
+ * https://medium.com/swlh/using-firestore-with-typescript-65bd2a602945
+ */
 export const db = getFirestore(app);
 
 /**
@@ -52,12 +59,9 @@ export const db = getFirestore(app);
  * @template T
  */
 const genericConverter = <T>() => ({
-
     toFirestore: (inputData: T) => inputData,
-    fromFirestore: (
-      snapshot: QueryDocumentSnapshot,
-      options: SnapshotOptions
-    ): T => snapshot.data() as T,
+    fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): T =>
+        snapshot.data() as T,
 });
 
 /**
@@ -72,11 +76,8 @@ const createCollection = <T = DocumentData>(collectionName: string): CollectionR
     return collection(db, collectionName).withConverter<T>(converter);
 };
 
-
 /**
  * Define the collections
-*/
+ */
 export const privateUserCollection = createCollection<PrivateUserData>('private-user-data');
 export const publicUserCollection = createCollection<PublicUserData>('public-user-data');
-
-

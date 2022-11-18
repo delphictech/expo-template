@@ -15,10 +15,9 @@ type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 /**
  * Home screen, will display basic data to the user
  *
- * @return {*} 
+ * @return {*}
  */
 export const HomeScreen: React.FC<{}> = () => {
-
     // hooks
     const navigation = useNavigation<HomeScreenProps>();
     const [signOut, { isFetching, isError, error }] = useLazySignOutQuery();
@@ -36,9 +35,7 @@ export const HomeScreen: React.FC<{}> = () => {
         // update the count if it has changed
         const initialCount = user.count;
 
-        return () => {
-
-        }
+        return () => {};
     });
 
     return (

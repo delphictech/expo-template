@@ -1,10 +1,10 @@
 import { extendTheme, theme } from 'native-base';
 import { fontConfig } from 'src/constants/fonts';
 
-/** 
+/**
  * This file defines the light and dark themes for nativebase and react navigation components
  * The dark themes and react navigation compnents are all based on the light nativeBase theme
-*/
+ */
 
 /**
  * To setup fonts with nativebase, expo-font, and ts, view the following blog

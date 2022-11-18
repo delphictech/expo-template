@@ -31,11 +31,11 @@ const persistor = persistStore(store);
 
 /**
  * Main app file
- * 
+ *
  * @remarks
  * Will load the google custom fonts along with setting the persistStore and other configuration
- * 
- * @return {*} 
+ *
+ * @return {*}
  */
 export const App = () => {
     // hook to find user preference for color scheme
@@ -66,7 +66,7 @@ export const App = () => {
 
     if (!fontsLoaded) {
         return <></>;
-    };
+    }
 
     return (
         <>

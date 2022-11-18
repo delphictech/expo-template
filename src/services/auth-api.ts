@@ -8,32 +8,34 @@ import {
     signUpWithEmail,
     verifyEmail,
 } from 'src/firebase/auth-api';
-import { deletePrivateUserData, getPrivateUserData, updatePrivateUserData } from 'src/firebase/user-api';
+import {
+    deletePrivateUserData,
+    getPrivateUserData,
+    updatePrivateUserData,
+} from 'src/firebase/user-api';
 import { PrivateUserData } from 'src/types';
 import { ConfigApi } from './config-api';
 
-/** 
+/**
  * Check documentation resources for additional questions
- * 
+ *
  * @resources
  * Customizing RTK Query with following resources
  * Firebase api calls with RTK-Query: https://stackoverflow.com/questions/71587312/is-it-possible-to-use-firebase-query-with-redux-toolkit-or-rtk-query-in-react)
- * Using queryfn: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn 
+ * Using queryfn: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#implementing-a-queryfn
  * Using fakeBaseQuery: https://redux-toolkit.js.org/rtk-query/usage-with-typescript#typing-a-queryfn
- * Code Splitting: https://redux-toolkit.js.org/rtk-query/usage/code-splitting 
- * 
-*/
+ * Code Splitting: https://redux-toolkit.js.org/rtk-query/usage/code-splitting
+ *
+ */
 
 export const AuthApi = ConfigApi.injectEndpoints({
-
     endpoints: (build) => ({
-
         fetchSignInMethods: build.query<string[], string>({
             /**
              * Will fetch the sign in methods of the user, returning a list
              *
              * @param {*} email
-             * @return {*} 
+             * @return {*}
              */
             async queryFn(email) {
                 try {
@@ -54,7 +56,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
              * Will sign up the user. No parameters mean a guest account will be generated
              *
              * @param {*} accountInfo
-             * @return {*} 
+             * @return {*}
              */
             async queryFn(accountInfo) {
                 if (accountInfo === 'guest') {
@@ -106,7 +108,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
              * Used to login the user with the credentials
              *
              * @param {*} { email, password }
-             * @return {*} 
+             * @return {*}
              */
             async queryFn({ email, password }) {
                 console.log('signing in user');
@@ -127,7 +129,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
             /**
              * Sign out user
              *
-             * @return {*} 
+             * @return {*}
              */
             async queryFn() {
                 try {
@@ -145,14 +147,16 @@ export const AuthApi = ConfigApi.injectEndpoints({
              * Delete account query
              *
              * @param {string} uid
-             * @return {*} 
+             * @return {*}
              */
             async queryFn(uid: string) {
                 try {
                     await deletePrivateUserData(uid);
                     await deleteCurrentUser();
                     // set isDeleted field in the user
-                    return { data: { id: '', isAnonymous: false, loggedIn: false, emailVerified: false } };
+                    return {
+                        data: { id: '', isAnonymous: false, loggedIn: false, emailVerified: false },
+                    };
                 } catch (e: any) {
                     console.log(`Error with deleting user`);
                     return { error: e };
@@ -165,7 +169,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
              * Generating query for forgetting user password
              *
              * @param {*} email
-             * @return {*} 
+             * @return {*}
              */
             async queryFn(email) {
                 try {
@@ -182,7 +186,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
             /**
              * Generating query for sending verification email
              *
-             * @return {*} 
+             * @return {*}
              */
             async queryFn() {
                 try {
