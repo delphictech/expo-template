@@ -60,7 +60,6 @@ export const AuthApi = ConfigApi.injectEndpoints({
              */
             async queryFn(accountInfo) {
                 if (accountInfo === 'guest') {
-                    console.warn('Sign up guest user');
                     try {
                         const userCredential = await anonymousSignIn();
                         // setup guest user
@@ -76,7 +75,6 @@ export const AuthApi = ConfigApi.injectEndpoints({
                         return { error: e };
                     }
                 } else {
-                    console.warn('Sign up user');
                     try {
                         const userCredential = await signUpWithEmail(
                             accountInfo.email,
@@ -111,7 +109,6 @@ export const AuthApi = ConfigApi.injectEndpoints({
              * @return {*}
              */
             async queryFn({ email, password }) {
-                console.warn('signing in user');
                 try {
                     // sign in new user and get data from database
                     const userCredential = await signInWithEmail(email, password);
