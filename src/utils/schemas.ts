@@ -29,3 +29,10 @@ export const signupSchema = yup.object().shape({
 export const loginSchema = yup.object().shape({
     password: yup.string().required('Password is required'),
 });
+
+// New schema for editing profile
+export const editProfileSchema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().email('Invalid email').required('Email is required'),
+    password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
+});
