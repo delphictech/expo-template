@@ -5,6 +5,9 @@ import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
+import { GestureResponderEvent } from 'react-native';
+
+
 
 export const EditProfileScreen = () => {
     const {
@@ -15,6 +18,11 @@ export const EditProfileScreen = () => {
     } = useForm({
         resolver: yupResolver(editProfileSchema),
     });
+
+    const handleSubmitF = (e: any) => {
+        console.log(e);
+        console.log('console from submit');
+    };
 
     return (
         <>
@@ -28,7 +36,7 @@ export const EditProfileScreen = () => {
                 label="Enter your name"
                 placeholder="name"
                 defaultValue=""
-                errorMessage={errors?.password?.message}
+                errorMessage={errors?.name?.message}
             />
             <FormInput
                 key="email"
@@ -38,7 +46,7 @@ export const EditProfileScreen = () => {
                 label="Enter your email"
                 placeholder="email"
                 defaultValue=""
-                errorMessage={errors?.password?.message}
+                errorMessage={errors?.email?.message}
             />
             <FormInput
                 key="password"
@@ -51,7 +59,8 @@ export const EditProfileScreen = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
-            <Button>Save Changes</Button>
+            <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
+           
         </>
     );
 };

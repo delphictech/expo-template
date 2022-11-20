@@ -5,8 +5,10 @@ module.exports = {
     ],
     addons: [
         '@storybook/addon-essentials',
-        '@storybook/addon-interactions',
+        // '@storybook/addon-interactions',
         '@storybook/addon-react-native-web',
+        // '@storybook/addon-console',
+        '@storybook/addon-docs',
     ],
     framework: '@storybook/react',
 };
