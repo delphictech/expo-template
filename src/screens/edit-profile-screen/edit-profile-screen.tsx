@@ -5,7 +5,7 @@ import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
-import { GestureResponderEvent } from 'react-native';
+
 
 
 

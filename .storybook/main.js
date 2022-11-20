@@ -1,5 +1,6 @@
 module.exports = {
     stories: [
+        './button-example/**/*.stories.?(ts|tsx|js|jsx)',
         '../src/components/**/*.stories.?(ts|tsx|js|jsx)',
         '../src/screens/**/*.stories.?(ts|tsx|js|jsx)',
     ],
