@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text, Box, Image, Actionsheet, Button, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
-import { imageArgProps } from 'src/types/component/image-uploader';
+import { imageArgProps } from './image-uploader.stories';
 
 export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
     const { isOpen, onOpen, onClose } = useDisclose();
@@ -10,8 +10,7 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
     const [imageState, setImageState] = useState<string>();
 
     return (
-        <Box alignItems="center" backgroundColor={'blue.700'} >
-
+        <Box alignItems="center" backgroundColor={'blue.700'}>
             {/* <Text style={styles.red} color={'red.500'}>
                 {props}
             </Text>

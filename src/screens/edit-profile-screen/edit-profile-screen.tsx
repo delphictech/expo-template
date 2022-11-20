@@ -6,9 +6,6 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
 
-
-
-
 export const EditProfileScreen = () => {
     const {
         control,
@@ -60,7 +57,6 @@ export const EditProfileScreen = () => {
                 errorMessage={errors?.password?.message}
             />
             <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
-           
         </>
     );
 };
