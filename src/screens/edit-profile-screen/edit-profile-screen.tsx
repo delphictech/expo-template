@@ -5,8 +5,9 @@ import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
+import { EditProfileProps } from './edit-profile-screen.stories';
 
-export const EditProfileScreen = () => {
+export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const {
         control,
         handleSubmit,
