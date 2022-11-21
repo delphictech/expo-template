@@ -9,6 +9,7 @@ import {
 
 import "@storybook/addon-essentials/register";
 import "@storybook/addon-react-native-web/register";
+import "@storybook/addon-docs/register";
 
 import { decorators, parameters } from "./preview";
 
@@ -22,6 +23,8 @@ if (parameters) {
 
 const getStories = () => {
   return [
+    require("./button-example/button-example.stories.tsx"),
+    require("../src/components/feedback/alert-toast.stories.tsx"),
     require("../src/components/image-uploader/image-uploader.stories.tsx"),
     require("../src/screens/edit-profile-screen/edit-profile-screen.stories.tsx"),
   ];

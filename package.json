@@ -1,19 +1,19 @@
 {
   "scripts": {
-    "start": "expo start",
-    "android": "expo run:android --device",
-    "ios": "expo run:ios -d",
-    "web": "expo start --web",
-    "eject": "expo eject",
+    "start": "STORYBOOK_START=false && expo start",
+    "android": "STORYBOOK_START=false && expo run:android --device",
+    "ios": "STORYBOOK_START=false && expo run:ios -d",
+    "web": "STORYBOOK_START=false && expo start --web",
+    "eject": "STORYBOOK_START=false && expo eject",
     "compile": "tsc",
-    "prebuild": "expo prebuild --npm",
+    "prebuild": "STORYBOOK_START=false && expo prebuild --npm",
     "lint": "yarn eslint .",
     "format": "yarn eslint . --fix",
     "test": "jest",
-    "storybook": "start-storybook -p 7007",
-    "build-storybook": "build-storybook",
-    "prestart": "sb-rn-get-stories",
-    "storybook-watcher": "sb-rn-watcher"
+    "storybook": "STORYBOOK_START=true && start-storybook -p 7007",
+    "build-storybook": "STORYBOOK_START=true && build-storybook",
+    "prestart": "STORYBOOK_START=true && sb-rn-get-stories",
+    "storybook-watcher": "STORYBOOK_START=true && sb-rn-watcher"
   },
   "dependencies": {
     "@expo-google-fonts/nunito": "^0.2.2",

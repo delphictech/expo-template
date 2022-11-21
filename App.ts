@@ -1,6 +1,6 @@
 import { App } from './src';
-import StorybookUIRoot from './.storybook/storybook';
+import StorybookUIRoot from './.storybook';
 
-const STORYBOOK_START = true;
-
-export default STORYBOOK_START ? StorybookUIRoot : App;
+// const STORYBOOK_START = true;
+console.log(process.env.STORYBOOK_START);
+export default process.env.STORYBOOK_START ? StorybookUIRoot : App;
