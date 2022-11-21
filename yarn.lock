@@ -2243,6 +2243,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@expo-google-fonts/nunito@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/nunito/-/nunito-0.2.2.tgz#591ba2e215204939c376c5f450071ef7626b4d87"
+  integrity sha512-ETADsCjZt6LmJKj3f1D01YZ3hJU3D2S0JEKd9yuTOmW7KJGuqEB37uE6SwMbmHOEWXmdtygw2k1Smm2xg3KnEw==
+
 "@expo/bunyan@4.0.0", "@expo/bunyan@^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/@expo/bunyan/-/bunyan-4.0.0.tgz"

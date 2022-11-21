@@ -2,33 +2,29 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Box, Button, Text } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useAppDispatch, useAppSelector } from 'src/hooks/useful-ducks';
-import { signOutUser } from 'src/firebase/api';
-import { incrementCount, decrementCount, signOut } from 'src/ducks/user-slice';
+import { useAppDispatch, useAppSelector } from 'src/ducks/useful-hooks';
+import { incrementCount, decrementCount } from 'src/ducks/user-slice';
 import { HomeStackParams } from 'src/navigation/home-stack';
+import { useLazySignOutQuery } from 'src/services';
 
-/*
-    Define Screen Typee
-*/
+/**
+ * Stack Navigation Prop for accessing screen navigation prop
+ */
 type HomeScreenProps = StackNavigationProp<HomeStackParams, 'Home'>;
 
-export const HomeScreen: React.FC<any> = () => {
-    // navigation
+/**
+ * Home screen, will display basic data to the user
+ *
+ * @return {*}
+ */
+export const HomeScreen: React.FC<{}> = () => {
+    // hooks
     const navigation = useNavigation<HomeScreenProps>();
+    const [signOut, { isFetching }] = useLazySignOutQuery();
 
     // redux handlers
     const user = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
-
-    // handling button functions
-    const handleLoginButton = async () => {
-        if (user.loggedIn) {
-            await signOutUser();
-            dispatch(signOut());
-        } else {
-            navigation.navigate('Auth');
-        }
-    };
 
     return (
         <Box
@@ -46,7 +42,7 @@ export const HomeScreen: React.FC<any> = () => {
                     <Text color="plainText.800">Email Verified: {String(user.emailVerified)}</Text>
                 </>
             )}
-            <Text color="plainText.800">User ID: {user.uid}</Text>
+            <Text color="plainText.800">User ID: {user.id}</Text>
             <Box py={3}>
                 <Text color="plainText.800" bold>
                     Really fun user data counter: {user.count}
@@ -63,7 +59,11 @@ export const HomeScreen: React.FC<any> = () => {
                     Login to real account
                 </Button>
             ) : null}
-            <Button mt="2" colorScheme="indigo" onPress={handleLoginButton}>
+            <Button
+                isLoading={isFetching}
+                mt="2"
+                colorScheme="indigo"
+                onPress={() => (user.loggedIn ? signOut(undefined) : navigation.navigate('Auth'))}>
                 {user.loggedIn ? 'Logout' : 'Login'}
             </Button>
         </Box>

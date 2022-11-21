@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, VStack, Button, Heading, Text, useToast } from 'native-base';
+import React from 'react';
+import { Box, VStack, Button, Heading, Text, useToast, HStack } from 'native-base';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
@@ -7,23 +7,28 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { emailSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
 import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
-import { anonymousSignIn, fetchSignInMethods } from 'src/firebase/api';
-import { useAppSelector, useAppDispatch } from 'src/hooks/useful-ducks';
-import { guestSignIn } from 'src/ducks/user-slice';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import MaetSvg from 'assets/MaetSvg.svg';
 import { AlertToast } from 'src/components/feedback/alert-toast';
+import {
+    useLazyFetchSignInMethodsQuery,
+    useLazySignOutQuery,
+    useLazySignUpQuery,
+} from 'src/services/auth-api';
+import { LogoIcon } from 'src/components/logo-icon';
 
 // define navigation props
-type WelcomeScreenProps = StackNavigationProp<AuthStackParams, 'Email'>;
+type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Welcome'>;
 
-export const WelcomeScreen: React.FC<any> = () => {
+export const WelcomeScreen: React.FC<{}> = () => {
     // hooks
-    const navigation = useNavigation<WelcomeScreenProps>();
+    const navigation = useNavigation<LoginScreenProps>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
-    const dispatch = useAppDispatch();
     const iconColor = useTheme().colors.text;
     const toast = useToast();
+
+    // form schema hooks
     const {
         control,
         handleSubmit,
@@ -33,10 +38,11 @@ export const WelcomeScreen: React.FC<any> = () => {
         resolver: yupResolver(emailSchema),
     });
 
-    // react states
-    const [isEmailLoading, setEmailLoading] = useState<boolean>(false);
-    const [isGuestLoading, setIsGuestLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string>('');
+    // redux query hooks
+    const [getSignInMethods, { isFetching: emailFetching, error: fetchingError }] =
+        useLazyFetchSignInMethodsQuery();
+    const [triggerSignUp, { isFetching: guestFetching }] = useLazySignUpQuery();
+    const [triggerSignOut] = useLazySignOutQuery();
 
     // toast component for guest
     const renderGuestToast = () => (
@@ -47,40 +53,24 @@ export const WelcomeScreen: React.FC<any> = () => {
         />
     );
 
+    // handling button presses
     const handleEmail = async (data: any) => {
-        setEmailLoading(true);
-        try {
-            const methods = await fetchSignInMethods(data.email);
-            setEmailLoading(false);
-
-            // reset react form and navigate to new screen
-            reset();
-            navigation.navigate('AuthEmail', {
-                signInMethods: methods,
-                email: data.email,
-            });
-        } catch (e: any) {
-            console.log(`Error with email: ${e}`);
-            setError(e.message);
-            setEmailLoading(false);
-        }
+        // updating variables within function, since they need to be sent to new screen
+        const emailSignInMethods = await getSignInMethods(data.email).unwrap();
+        navigation.navigate('Login', {
+            signInMethods: emailSignInMethods,
+            email: data.email,
+        });
+        reset();
     };
 
     const handleAnonymous = async () => {
-        setIsGuestLoading(true);
-        try {
-            const response = await anonymousSignIn();
-            dispatch(guestSignIn(response.user.uid));
-            toast.show({
-                placement: 'top',
-                render: renderGuestToast,
-                id: 'guestToast',
-            });
-        } catch (e: any) {
-            console.log(`Error with Guest sign in ${e}`);
-            setError(e.message);
-            setIsGuestLoading(false);
-        }
+        await triggerSignUp('guest');
+        toast.show({
+            placement: 'top',
+            render: renderGuestToast,
+            id: 'guestToast',
+        });
     };
 
     return (
@@ -93,15 +83,33 @@ export const WelcomeScreen: React.FC<any> = () => {
                 justifyContent={!isAnonymous ? 'center' : 'flex-start'}
                 alignItems="center"
                 safeArea={!isAnonymous ? true : undefined}>
-                <VStack pt={3} space={3} alignItems="center" w="100%">
+                <VStack space={3} alignItems="center" w="100%">
                     {!isAnonymous ? (
                         <>
                             <MaetSvg height={150} width={150} fill={iconColor} />
                             <Heading textAlign="center" mb={3} color="plainText.900">
-                                Welcome to Maet's Expo Template!
+                                Welcome to the Maet template!
                             </Heading>
                         </>
-                    ) : null}
+                    ) : (
+                        <HStack
+                            alignItems="center"
+                            justifyContent="space-between"
+                            w="100%"
+                            flex={1}
+                            pt={5}>
+                            <Box pr={3}>
+                                <LogoIcon size={50} color="plainText.800" />
+                            </Box>
+                            <Heading
+                                flex={1}
+                                textAlign="left"
+                                color="plainText.800"
+                                alignSelf="center">
+                                Example call to action to create an account!
+                            </Heading>
+                        </HStack>
+                    )}
                     <FormInput
                         key="login-email"
                         name="email"
@@ -110,9 +118,9 @@ export const WelcomeScreen: React.FC<any> = () => {
                         label="Input your email"
                         placeholder="name@example.com"
                         defaultValue=""
-                        errorMessage={errors?.email?.message}
+                        errorMessage={String(errors?.email?.message)}
                     />
-                    {/* <Button mt="3" colorScheme="primary" w="100%" disabled>
+                    {/* <Button mt="3" colorScheme="primary" w="100%" >
                         Send me a sign-in link
                     </Button> */}
                     <Button
@@ -120,7 +128,7 @@ export const WelcomeScreen: React.FC<any> = () => {
                         w="100%"
                         colorScheme="primary"
                         onPress={handleSubmit(handleEmail)}
-                        isLoading={isEmailLoading}
+                        isLoading={emailFetching}
                         isLoadingText="Submitting">
                         Submit
                     </Button>
@@ -130,12 +138,23 @@ export const WelcomeScreen: React.FC<any> = () => {
                             colorScheme="primary"
                             variant="link"
                             onPress={handleAnonymous}
-                            isLoading={isGuestLoading}
+                            isLoading={guestFetching}
                             isLoadingText="Continuing">
                             Continue as guest
                         </Button>
                     ) : null}
-                    <Text color="danger.600">{error}</Text>
+                    <Text color="danger.600">{fetchingError?.message}</Text>
+                    {isAnonymous ? (
+                        <Button
+                            w="100%"
+                            colorScheme="primary"
+                            variant="link"
+                            onPress={() => triggerSignOut(undefined)}
+                            isLoading={guestFetching}
+                            isLoadingText="Continuing">
+                            Logout of Guest
+                        </Button>
+                    ) : null}
                 </VStack>
             </Box>
         </KeyboardBehaviorWrapper>

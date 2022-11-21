@@ -1,5 +1,6 @@
 # <img src="https://raw.githubusercontent.com/maetio/expo-template/main/assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
-This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.  
+This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.
+
 
 > To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
 
@@ -19,7 +20,7 @@ As an engineer at Maet, **we strive to create elegant features for our fellow de
 ### ✌️ **Developer Values**
 For our community of developers to create tools that they love to use and get excited about sharing with others.
 1. **Modularity:** When we play Legos, having many well-defined pieces is much more valuable (and fun) than a completed static project. We want to be able to put together great tools, allowing us the space for flexibility and creativity. Examples include our implementation of [form-input](https://github.com/maetio/template/blob/main/src/screens/Login.tsx#L106) component with [built-in form validation](https://github.com/maetio/template/blob/main/src/components/user-input/form-input.tsx).
-2. **Communication of Knowledge:** As a talented developer at Maet, one of your top duties is effectively communicating your knowledge to our developer community, strengthening the experience of our whole team. Therefore, leave a paper trail of your methods to help transfer your knowledge to others, as we did in our [firebase configuration](https://github.com/maetio/template/blob/main/src/firebase/firebase-config.ts) and [redux hooks declarations](https://github.com/maetio/template/blob/main/src/hooks/useful-ducks.ts).
+2. **Communication of Knowledge:** As a talented developer at Maet, one of your top duties is effectively communicating your knowledge to our developer community, strengthening the experience of our whole team. Therefore, leave a paper trail of your methods to help transfer your knowledge to others, as we did in our [firebase configuration](https://github.com/maetio/template/blob/main/src/firebase/firebase-config.ts) and [redux hooks declarations](https://github.com/maetio/template/blob/main/src/ducks/useful-hooks.ts).
 3. **Responsive and Lightweight:** Write code that automatically adapts to changes, like we did by choosing responsive sizing values or by [automatically generating dark and light themes](https://github.com/maetio/template/blob/main/src/constants/theme.ts). Additionally, only include libraries and files that are strictly necessary while avoiding copying and pasting the same code.
 
 ### 💡 **Design Values**
@@ -78,6 +79,9 @@ FIREBASE_MEASUREMENT_ID=[...]
     *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
     *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
     *Variables:* camelCase (ex. const isLoading)
+5. **Comments:**
+    * We follow the standardized [TSDoc](https://tsdoc.org/) comments.
+    * Install the VSCode [Document This extension](https://marketplace.visualstudio.com/items?itemName=oouo-diogo-perdigao.docthis) and update the [keyboard command](https://code.visualstudio.com/docs/getstarted/keybindings) to whatever you wish.
 
 
 ## 📂 Organization 

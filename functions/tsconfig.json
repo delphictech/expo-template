@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "jsx": "react",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "outDir": "lib",
+        "sourceMap": true,
+        "strict": true,
+        "target": "es2017",
+        "baseUrl": "../",
+        "skipLibCheck": true,
+        "paths": {
+            "types/*": ["./src/types/*", "./src/types/"],
+            "functions/*": ["./functions/*", "./functions/"]
+        },
+    },
+    "compileOnSave": true,
+    "include": [
+        "./*.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.ts",
+        "./src/*",
+        "./assets/*",
+        "./jest.config.js"],
+    "exclude": ["node_modules, ../node_modules", "dist"]
+}

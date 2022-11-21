@@ -4,20 +4,21 @@ module.exports = {
         es2021: true,
         node: true,
     },
-    extends: [
-        'airbnb',
-        'airbnb-typescript',
-        'eslint:recommended',
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
-        'plugin:react/recommended',
-        'plugin:react-hooks/recommended',
-        'plugin:jsx-a11y/recommended',
+    "extends": [
+        "airbnb",
+        "airbnb-typescript",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:prettier/recommended",
     ],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
+    "ignorePatterns": ["./functions/**/*"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
         },
         ecmaVersion: 12,
         sourceType: 'module',
@@ -35,7 +36,10 @@ module.exports = {
         'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
         // for throwing firebase errors: https://typescript-eslint.io/rules/no-throw-literal/#options
         "@typescript-eslint/no-throw-literal": ["error", { "allowThrowingAny": true }],
-        // for imporitng dev dependencies https://github.com/import-js/eslint-plugin-import/blob/v2.26.0/docs/rules/no-extraneous-dependencies.md
+        // allow inline iffs https://archive.eslint.org/docs/rules/no-unused-expressions
+        "@typescript-eslint/no-unused-expressions": ["error", { "allowTernary": true }],
+        // allow warning and errors
+        "no-console": ["error", { allow: ["warn", "error"] }],
         "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.test.ts", "**/*.stories.tsx"]}],
     }
 };

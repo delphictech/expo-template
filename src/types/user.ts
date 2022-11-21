@@ -1,13 +1,31 @@
-export interface User {
-    /*  
-        User object that is set as the redux user object in src/ducks/user-slice
-        Must add onto the object as more fields become necessary
-    */
-    uid: string | undefined;
-    email: string | undefined | null;
-    phoneNumber: string | undefined | null;
-    isAnonymous: boolean | undefined;
-    emailVerified: boolean | undefined;
-    loggedIn: boolean | undefined;
-    count: number;
+/**
+ * Public facing user data. Will be updated in database from the PrivateUserData.
+ *
+ * @remarks
+ * Should be read-only from the database.
+ *
+ * @export
+ * @interface PublicUserData
+ */
+export interface PublicUserData {
+    id: string;
+    firstName?: string | null;
+    lastName?: string | null;
+    image?: string | null;
+    count?: number | null;
+}
+
+/**
+ * User object that can be written by the user. Will update the public data.
+ *
+ * @export
+ * @interface PrivateUserData
+ * @extends {PublicUserData}
+ */
+export interface PrivateUserData extends PublicUserData {
+    email?: string | null;
+    phoneNumber?: string | null;
+    isAnonymous: boolean;
+    emailVerified: boolean;
+    loggedIn: boolean;
 }

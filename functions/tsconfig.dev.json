@@ -1,0 +1,10 @@
+{
+  "include": [
+    ".eslintrc.js",
+    "./src/**/*.ts",
+    "./src/*",
+  ],
+  "exclude": [
+    "./src/**.test.ts",
+  ]
+}

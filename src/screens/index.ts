@@ -1,6 +1,4 @@
-import { HomeScreen } from 'src/screens/home-screen';
-import { ExploreScreen } from 'src/screens/explore-screen';
-import { WelcomeScreen } from 'src/screens/welcome-screen';
-import { LoginScreen } from 'src/screens/login-screen';
-
-export { HomeScreen, ExploreScreen, WelcomeScreen, LoginScreen };
+export { HomeScreen } from 'src/screens/home-screen';
+export { ExploreScreen } from 'src/screens/explore-screen';
+export { WelcomeScreen } from 'src/screens/welcome-screen';
+export { LoginScreen } from 'src/screens/login-screen';
