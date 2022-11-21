@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { StyleSheet } from 'react-native';
 import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
 

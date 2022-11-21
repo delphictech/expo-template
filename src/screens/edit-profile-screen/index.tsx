@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Text } from 'native-base';
-import { ImageUploader } from 'src/components/image-uploader/image-uploader';
+import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';

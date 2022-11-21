@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import { ImageUploader, ImageArgProps } from './image-uploader';
+import { ImageUploader, ImageArgProps } from '.';
 
 export default {
     title: 'Image Uploader',
