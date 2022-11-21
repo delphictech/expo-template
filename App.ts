@@ -1,5 +1,6 @@
-import 'react-native-gesture-handler';
-
 import { App } from './src';
+import StorybookUIRoot from './.storybook';
 
-export default App;
+// const STORYBOOK_START = true;
+console.log(process.env.STORYBOOK_START);
+export default process.env.STORYBOOK_START ? StorybookUIRoot : App;
