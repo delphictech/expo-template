@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 // import { StyleSheet } from 'react-native';
 import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
-// import { ImageArgProps } from './image-uploader.stories';
 
 export interface ImageArgProps {
     imageProp: string;
@@ -21,10 +20,6 @@ export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp
 
     return (
         <Box alignItems="center" backgroundColor="blue.700">
-            {/* <Text style={styles.red} color={'red.500'}>
-                {props}
-            </Text>
-            <Text>{otherprops}</Text> */}
             <Pressable mt={10} onPress={onOpen}>
                 <Image
                     borderRadius={stylingProps ? stylingProps.bRadius : 0}

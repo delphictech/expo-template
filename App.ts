@@ -1,5 +1,5 @@
 import { App } from './src';
-import StorybookUIRoot from './.storybook/Storybook';
+import StorybookUIRoot from './.storybook/storybook';
 
 const STORYBOOK_START = true;
 
