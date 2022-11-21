@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, Box, Image, Actionsheet, Button, Pressable, useDisclose } from 'native-base';
+// import { StyleSheet } from 'react-native';
+import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
-import { imageArgProps } from 'src/types/component/image-uploader';
 
-export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
+export interface ImageArgProps {
+    imageProp: string;
+    stylingProps?: {
+        bRadius?: number;
+    };
+    size?: 'lg' | 'xl' | '2xl';
+}
+
+export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp, size }) => {
+    // const { stylingProps, imageProp, size } = imageProps;
+
     const { isOpen, onOpen, onClose } = useDisclose();
 
     const [imageState, setImageState] = useState<string>();
@@ -13,12 +22,12 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
         <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
                 <Image
-                    borderRadius={imageProps.stylingProps ? imageProps.stylingProps.bRadius : 0}
+                    borderRadius={stylingProps ? stylingProps.bRadius : 0}
                     source={{
-                        uri: imageProps.imageProp,
+                        uri: imageProp,
                     }}
                     alt="Alternate Text"
-                    size={imageProps.stylingProps ? imageProps.size : 'xl'}
+                    size={stylingProps ? size : 'xl'}
                 />
             </Pressable>
             {/* <Button>Actionsheet</Button> */}
@@ -41,20 +50,9 @@ export const ImageUploader: React.FC<imageArgProps> = (imageProps) => {
     );
 };
 
-const styles = StyleSheet.create({
-    image: {
-        // height: 100,
-        // width: 'fit-content',
+ImageUploader.defaultProps = {
+    stylingProps: {
+        bRadius: 0,
     },
-    container: {
-        marginTop: 50,
-    },
-    bigBlue: {
-        color: 'blue',
-        fontWeight: 'bold',
-        fontSize: 30,
-    },
-    red: {
-        color: 'red',
-    },
-});
+    size: 'xl',
+};

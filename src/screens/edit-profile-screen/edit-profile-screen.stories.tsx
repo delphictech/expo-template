@@ -1,14 +1,13 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import { ImageArgProps } from 'src/types/component/image-uploader';
-import { EditProfileScreen } from './edit-profile-screen';
+import { EditProfileScreen, EditProfileProps } from './edit-profile-screen';
 
 export default {
     title: 'Edit Profile Screen',
     component: EditProfileScreen,
 };
 
-const Template = (args: any) => <EditProfileScreen {...args} />;
+const Template = (args: EditProfileProps) => <EditProfileScreen {...args} />;
 
-export const Basic: Story<ImageArgProps> = Template.bind({});
+export const Basic: Story<EditProfileProps> = Template.bind({});
 Basic.args = {};

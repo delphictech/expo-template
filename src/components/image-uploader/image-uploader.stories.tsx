@@ -1,7 +1,6 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import { ImageArgProps } from 'src/types/component/image-uploader';
-import { ImageUploader } from './image-uploader';
+import { ImageUploader, ImageArgProps } from './image-uploader';
 
 export default {
     title: 'Image Uploader',
@@ -17,4 +16,10 @@ Basic.args = {
         bRadius: 50,
     },
     size: '2xl',
+};
+
+export const Default: Story<ImageArgProps> = Template.bind({});
+Default.args = {
+    imageProp: 'https://wallpaperaccess.com/full/317501.jpg',
+    stylingProps: {},
 };

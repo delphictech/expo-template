@@ -1,8 +1,10 @@
 import * as ImagePicker from 'expo-image-picker';
-import { SetStateAction } from 'react';
+import React from 'react';
 
-export const takePhoto = async (setImageState: any) => {
-    let pickerResult = await ImagePicker.launchCameraAsync({
+export const takePhoto = async (
+    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>,
+) => {
+    const pickerResult = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
         aspect: [4, 3],
     });
@@ -17,8 +19,10 @@ export const takePhoto = async (setImageState: any) => {
     }
 };
 
-export const pickImage = async (setImageState: any) => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+export const pickImage = async (
+    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>,
+) => {
+    const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [4, 3],

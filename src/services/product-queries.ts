@@ -1,10 +1,5 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import {
-    BasicProductData,
-    BasicProductDataID,
-    DetailedProductData,
-    LastDoc,
-} from 'src/types/products';
+import { BasicProductDataID, DetailedProductData, LastDoc } from 'src/types/products';
 
 import { fetchDetailedData, fetchProducts } from 'src/firebase/products-api';
 
