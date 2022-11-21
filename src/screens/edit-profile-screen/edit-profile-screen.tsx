@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box, Button, Text } from 'native-base';
+import { Button, Text } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
-import { EditProfileProps } from './edit-profile-screen.stories';
+// import { EditProfileProps } from './edit-profile-screen.stories';
+
+export interface EditProfileProps {}
 
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const {

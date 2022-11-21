@@ -1,13 +1,11 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import { EditProfileScreen } from './edit-profile-screen';
+import { EditProfileScreen, EditProfileProps } from './edit-profile-screen';
 
 export default {
     title: 'Edit Profile Screen',
     component: EditProfileScreen,
 };
-
-export interface EditProfileProps {}
 
 const Template = (args: EditProfileProps) => <EditProfileScreen {...args} />;
 
