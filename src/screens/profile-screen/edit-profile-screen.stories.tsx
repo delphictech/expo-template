@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import { EditProfileScreen, EditProfileProps } from '.';
+import { EditProfileScreen, EditProfileProps } from './edit-profile-screen';
 
 export default {
     title: 'Edit Profile Screen',

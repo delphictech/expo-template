@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
 
@@ -11,6 +11,9 @@ export interface ImageArgProps {
 }
 
 export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp, size }) => {
+    useEffect(() => {
+        setImageState(imageProp);
+    }, []);
     // const { stylingProps, imageProp, size } = imageProps;
 
     const { isOpen, onOpen, onClose } = useDisclose();
@@ -21,12 +24,12 @@ export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp
         <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
                 <Image
-                    borderRadius={stylingProps ? stylingProps.bRadius : 0}
+                    borderRadius={stylingProps?.bRadius}
                     source={{
-                        uri: imageProp,
+                        uri: imageState,
                     }}
                     alt="Alternate Text"
-                    size={stylingProps ? size : 'xl'}
+                    size={size}
                 />
             </Pressable>
             {/* <Button>Actionsheet</Button> */}
