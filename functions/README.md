@@ -10,7 +10,7 @@ Server side functions are an amazing tool for adding more backend functionality 
 1. Setup [firebase emulators and jest](https://github.com/maetio/expo-template/wiki/Firebase-and-Jest-Testing). 
 2. Download your firebase service account key as a json file. Remember to add this file to your `.gitignore`.
 3. Add your firebase project name as environmental variable in your .env file. 
-4. Run `export GOOGLE_APPLICATION_CREDENTIALS="service-account.json"`. See [here](https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional).
+4. Run `export GOOGLE_APPLICATION_CREDENTIALS="serviceAccountKey.json"`. See [here](https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional).
 5. Run `export PROJECT_NAME='your-project-name'`
 4. Run `yarn test`.
 
