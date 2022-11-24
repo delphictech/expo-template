@@ -1,6 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ExploreScreen, HomeScreen, LoginScreen } from 'src/screens';
+import { LoginScreen } from 'src/screens';
 import { WelcomeScreen } from 'src/screens/welcome-screen';
 
 export type AuthStackParams = {
@@ -16,7 +16,6 @@ export type AuthStackParams = {
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
 export const AuthStackNavigator: React.FC<{}> = () => {
-    console.warn(WelcomeScreen);
     return (
         <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName="Welcome">
             <StackNav.Screen
