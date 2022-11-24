@@ -4,7 +4,7 @@
     "strict": true,
     "noImplicitAny": true,
     "target": "es2016",
-    "module": "commonjs",
+    "module": "ESNext",
     "baseUrl": ".",
     "paths": {
       "src/*": ["./src/*", "./src"],

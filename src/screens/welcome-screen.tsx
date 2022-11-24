@@ -1,12 +1,20 @@
 import React from 'react';
-import { Box, VStack, Button, Heading, Text, useToast, HStack } from 'native-base';
+import {
+    Box,
+    VStack,
+    Button,
+    Heading,
+    Text,
+    useToast,
+    HStack,
+    KeyboardAvoidingView,
+} from 'native-base';
 import { useNavigation, useTheme } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { emailSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
-import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import MaetSvg from 'assets/MaetSvg.svg';
@@ -17,13 +25,14 @@ import {
     useLazySignUpQuery,
 } from 'src/services/auth-api';
 import { LogoIcon } from 'src/components/logo-icon';
+import { Keyboard } from 'react-native';
 
 // define navigation props
-type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Welcome'>;
+type WelcomeScreenParams = StackNavigationProp<AuthStackParams, 'Welcome'>;
 
 export const WelcomeScreen: React.FC<{}> = () => {
     // hooks
-    const navigation = useNavigation<LoginScreenProps>();
+    const navigation = useNavigation<WelcomeScreenParams>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const iconColor = useTheme().colors.text;
     const toast = useToast();
@@ -74,7 +83,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
     };
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically>
+        <KeyboardAvoidingView onTouchStart={() => Keyboard.dismiss()} w="100%" h="100%">
             <Box
                 px="10"
                 w="100%"
@@ -157,6 +166,6 @@ export const WelcomeScreen: React.FC<{}> = () => {
                     ) : null}
                 </VStack>
             </Box>
-        </KeyboardBehaviorWrapper>
+        </KeyboardAvoidingView>
     );
 };
