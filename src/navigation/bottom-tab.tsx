@@ -27,7 +27,7 @@ const ExploreIcon = ({ focused, color, size }: TabBarIconProps) => (
     <MaterialIcons name={focused ? 'search' : 'search'} color={color} size={size} />
 );
 
-export const BottomTabNavigator: React.FC<any> = () => {
+export const BottomTabNavigator: React.FC<{}> = () => {
     return (
         <Tabs.Navigator>
             <Tabs.Screen

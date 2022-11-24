@@ -15,7 +15,7 @@ export type AuthStackParams = {
 
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
-export const AuthStackNavigator: React.FC<any> = () => {
+export const AuthStackNavigator: React.FC<{}> = () => {
     console.warn(WelcomeScreen);
     return (
         <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName="Welcome">
