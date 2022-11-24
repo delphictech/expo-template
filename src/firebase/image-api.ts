@@ -1,14 +1,23 @@
 import { storage } from 'src/firebase/config';
 import { getDownloadURL, ref, uploadBytesResumable, uploadBytes } from 'firebase/storage';
 
-export const fetchUserImage = (userID: string, imgURI: string | undefined) => {
-    const storageRef = ref(storage, `user-profile-img/${userID}`);
+export const fetchUserImage = async (
+    userID: string,
+    imgURI: string | undefined,
+): Promise<string> => {
+    const storageRef = ref(storage, `user-profile-img/${userID}/`);
 
-    const image = !imgURI
-        ? getDownloadURL(storageRef).then((url) => {
-              return url;
-          })
-        : 'adsawda';
+    let image;
+    if (!imgURI) {
+        image = getDownloadURL(storageRef).then((url) => {
+            return url;
+        });
+    } else {
+        const img = await fetch(imgURI);
+        const blobFile = await img.blob();
+        const uploadImage = uploadBytesResumable(storageRef, blobFile);
+        image = imgURI;
+    }
 
     return image;
 };

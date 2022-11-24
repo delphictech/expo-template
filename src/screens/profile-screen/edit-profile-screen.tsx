@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Text } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
+import { useGetUserImageQuery } from 'src/services/image-api';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 
 export interface EditProfileProps {}
 
+interface imageOBJ {
+    userID: string;
+    imageUri?: string | undefined;
+}
+
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
-    const [imageState, setImageState] = useState('https://wallpaperaccess.com/full/317501.jpg');
+    const user = useAppSelector((state) => state.user);
+
+    const [imageState, setImageState] = useState(
+        'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg',
+    );
+    const [queryState, setQueryState] = useState<imageOBJ>({
+        userID: user.id,
+        imageUri: imageState,
+    });
+
+    const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
+        useGetUserImageQuery(queryState);
+
+    useEffect(() => {
+        setImageState(data);
+    }, [data]);
 
     const {
         control,

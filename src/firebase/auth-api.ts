@@ -9,8 +9,9 @@ import {
     sendEmailVerification,
     UserCredential,
 } from 'firebase/auth';
-import { auth } from './config';
+import { auth, storage } from './config';
 import { firebaseHandler, FirebaseError } from './handler';
+import { ref, uploadBytesResumable, uploadBytes } from 'firebase/storage';
 
 export { FirebaseError };
 
@@ -124,4 +125,13 @@ export async function signOutUser(): Promise<void> {
  */
 export async function resetPassword(email: string): Promise<void> {
     return firebaseHandler<void>(sendPasswordResetEmail(auth, email));
+}
+
+export async function addDefaultPicture(userID: string) {
+    const file =
+        'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg';
+    const img = await fetch(file);
+    const blobFile = await img.blob();
+    const storageRef = ref(storage, `user-profile-img/${userID}/`);
+    const uploadImage = uploadBytesResumable(storageRef, blobFile);
 }

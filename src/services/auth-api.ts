@@ -7,6 +7,7 @@ import {
     signOutUser,
     signUpWithEmail,
     verifyEmail,
+    addDefaultPicture,
 } from 'src/firebase/auth-api';
 import {
     deletePrivateUserData,
@@ -69,6 +70,9 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
                         };
+
+                        await addDefaultPicture(userCredential.user.uid);
+
                         return { data: user };
                     } catch (e: any) {
                         console.warn(`Error with guest sign in ${e}`);
@@ -90,6 +94,8 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             email: userCredential.user.email,
                         };
                         await verifyEmail();
+
+                        addDefaultPicture(userCredential.user.uid);
                         // store user data in firestore
                         await updatePrivateUserData(user, true);
                         return { data: user };
