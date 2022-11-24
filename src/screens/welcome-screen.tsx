@@ -67,7 +67,6 @@ export const WelcomeScreen: React.FC<{}> = () => {
         navigation.navigate('Login', {
             signInMethods: emailSignInMethods,
             email: data.email,
-            title: emailSignInMethods.length ? 'Please enter your password' : 'Create an account',
         });
         reset();
     };

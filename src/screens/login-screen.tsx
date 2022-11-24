@@ -128,10 +128,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                 safeArea={user.loggedIn ? undefined : true}>
                 <VStack space={3} w="100%">
                     <FormControl>
-                        <HStack
-                            justifyContent="space-between"
-                            w="100%"
-                            py={5}>
+                        <HStack alignItems="center" justifyContent="space-between" w="100%" py={5}>
                             <Box pr={3}>
                                 <Icon
                                     as={MaterialIcons}
@@ -139,7 +136,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                                     size={50}
                                     color="plainText.800"
                                 />
-                                <Heading>TEsting</Heading>
                             </Box>
                             <Heading
                                 flex={1}
@@ -152,7 +148,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                                         : 'Enter your password to login.')}
                             </Heading>
                         </HStack>
-                        <Heading>TEsting</Heading>
                         {!isSignInScreen ? (
                             <VStack pb={3}>
                                 <FormInput
