@@ -1,15 +1,23 @@
 import React from 'react';
-import { Box, VStack, Button, Heading, Text, useToast, HStack } from 'native-base';
-import { useNavigation, useTheme } from '@react-navigation/native';
+import { Keyboard, Platform } from 'react-native';
+import {
+    Box,
+    VStack,
+    Button,
+    Heading,
+    Text,
+    useToast,
+    HStack,
+    KeyboardAvoidingView,
+} from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { emailSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
-import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
-import MaetSvg from 'assets/MaetSvg.svg';
 import { AlertToast } from 'src/components/feedback/alert-toast';
 import {
     useLazyFetchSignInMethodsQuery,
@@ -19,13 +27,12 @@ import {
 import { LogoIcon } from 'src/components/logo-icon';
 
 // define navigation props
-type LoginScreenProps = StackNavigationProp<AuthStackParams, 'Welcome'>;
+type WelcomeScreenParams = StackNavigationProp<AuthStackParams, 'Welcome'>;
 
 export const WelcomeScreen: React.FC<{}> = () => {
     // hooks
-    const navigation = useNavigation<LoginScreenProps>();
+    const navigation = useNavigation<WelcomeScreenParams>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
-    const iconColor = useTheme().colors.text;
     const toast = useToast();
 
     // form schema hooks
@@ -74,7 +81,13 @@ export const WelcomeScreen: React.FC<{}> = () => {
     };
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically>
+        <KeyboardAvoidingView
+            h={{
+                lg: 'auto',
+            }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            onTouchStart={() => Keyboard.dismiss()}
+            w="100%">
             <Box
                 px="10"
                 w="100%"
@@ -86,7 +99,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
                 <VStack space={3} alignItems="center" w="100%">
                     {!isAnonymous ? (
                         <>
-                            <MaetSvg height={150} width={150} fill={iconColor} />
+                            <LogoIcon size={200} color="plainText.800" />
                             <Heading textAlign="center" mb={3} color="plainText.900">
                                 Welcome to the Maet template!
                             </Heading>
@@ -157,6 +170,6 @@ export const WelcomeScreen: React.FC<{}> = () => {
                     ) : null}
                 </VStack>
             </Box>
-        </KeyboardBehaviorWrapper>
+        </KeyboardAvoidingView>
     );
 };

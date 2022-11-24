@@ -17,7 +17,7 @@ const CloseIcon = (onClose: () => void) => (
     <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
 );
 
-export const HomeStackNavigator: React.FC<any> = () => {
+export const HomeStackNavigator: React.FC<{}> = () => {
     const navigation = useNavigation();
 
     const checkLogin = () => {

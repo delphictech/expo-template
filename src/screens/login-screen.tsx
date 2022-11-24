@@ -9,13 +9,13 @@ import {
     Heading,
     HStack,
     Icon,
+    KeyboardAvoidingView,
 } from 'native-base';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema, signupSchema } from 'src/utils/schemas';
 import { FormInput } from 'src/components/user-input';
-import { KeyboardBehaviorWrapper } from 'src/components/wrappers';
 import { AuthStackParams } from 'src/navigation/auth-stack';
 import { AlertToast } from 'src/components/feedback/alert-toast';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -25,6 +25,7 @@ import {
     useLazySignUpQuery,
 } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
+import { Keyboard, Platform } from 'react-native';
 
 type LoginScreenProps = StackScreenProps<AuthStackParams, 'Login'>;
 
@@ -112,7 +113,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     };
 
     return (
-        <KeyboardBehaviorWrapper bounces={false} centerVertically>
+        <KeyboardAvoidingView
+            h={{
+                lg: 'auto',
+            }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            onTouchStart={() => Keyboard.dismiss()}
+            w="100%">
             <Box
                 px="10"
                 w="100%"
@@ -121,12 +128,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                 safeArea={user.loggedIn ? undefined : true}>
                 <VStack space={3} w="100%">
                     <FormControl>
-                        <HStack
-                            alignItems="center"
-                            justifyContent="space-between"
-                            w="100%"
-                            flex={1}
-                            py={5}>
+                        <HStack alignItems="center" justifyContent="space-between" w="100%" py={5}>
                             <Box pr={3}>
                                 <Icon
                                     as={MaterialIcons}
@@ -248,6 +250,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                     </Button>
                 </VStack>
             </Box>
-        </KeyboardBehaviorWrapper>
+        </KeyboardAvoidingView>
     );
 };

@@ -9,4 +9,7 @@ typings/
 node_modules/
 
 serviceAccountKey.json
-service-account.json
+**/service-account.json
+**/**/service-account.json
+**/*account.json
+functions/service-account.json

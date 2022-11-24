@@ -16,7 +16,7 @@ import { db } from '../index';
 /**
  * Configure the testing environment
  */
-const testEnv = functions({ projectId: process.env.PROJECT_NAME }, 'service-account.json');
+const testEnv = functions({ projectId: process.env.PROJECT_NAME }, 'serviceAccountKey.json');
 
 /**
  * Function will create the public data input to the testing functions
