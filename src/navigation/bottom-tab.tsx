@@ -35,7 +35,7 @@ const ProfileIcon = ({ focused, color, size }: TabBarIconProps) => (
 
 export const BottomTabNavigator: React.FC<{}> = () => {
     return (
-        <Tabs.Navigator>
+        <Tabs.Navigator screenOptions={{ tabBarHideOnKeyboard: true }}>
             <Tabs.Screen
                 name="HomeTab"
                 component={HomeStackNavigator}
@@ -58,7 +58,8 @@ export const BottomTabNavigator: React.FC<{}> = () => {
                 name="Profile"
                 component={ProfileStack}
                 options={{
-                    headerTitle: 'Profile-Stack',
+                    headerTitle: 'Profile-Stack-Screen',
+                    headerShown: false,
                     tabBarIcon: ProfileIcon,
                 }}
             />
