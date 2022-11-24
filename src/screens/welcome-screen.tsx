@@ -1,4 +1,5 @@
 import React from 'react';
+import { Keyboard } from 'react-native';
 import {
     Box,
     VStack,
@@ -25,7 +26,6 @@ import {
     useLazySignUpQuery,
 } from 'src/services/auth-api';
 import { LogoIcon } from 'src/components/logo-icon';
-import { Keyboard } from 'react-native';
 
 // define navigation props
 type WelcomeScreenParams = StackNavigationProp<AuthStackParams, 'Welcome'>;
