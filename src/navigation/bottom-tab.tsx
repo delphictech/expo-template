@@ -54,14 +54,14 @@ export const BottomTabNavigator: React.FC<any> = () => {
                     tabBarIcon: ExploreIcon,
                 }}
             />
-            <Tabs.Screen
+            {/* <Tabs.Screen
                 name="Profile"
                 component={ProfileStack}
                 options={{
                     headerTitle: 'Profile-Stack',
                     tabBarIcon: ProfileIcon,
                 }}
-            />
+            /> */}
         </Tabs.Navigator>
     );
 };

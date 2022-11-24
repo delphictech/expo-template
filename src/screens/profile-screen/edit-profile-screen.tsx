@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Text } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
@@ -9,6 +9,8 @@ import { editProfileSchema } from 'src/utils/schemas';
 export interface EditProfileProps {}
 
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
+    const [imageState, setImageState] = useState('https://wallpaperaccess.com/full/317501.jpg');
+
     const {
         control,
         handleSubmit,
@@ -25,7 +27,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
 
     return (
         <>
-            <ImageUploader imageProp="https://wallpaperaccess.com/full/317501.jpg" />
+            <ImageUploader imageProp={imageState} />
             <Text>dwawdwada</Text>
             <FormInput
                 key="name"

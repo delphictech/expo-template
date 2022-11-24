@@ -9,6 +9,7 @@ import {
     getFirestore,
     QueryDocumentSnapshot,
 } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { PrivateUserData, PublicUserData } from 'src/types';
 import {
@@ -51,6 +52,9 @@ export const auth = initializeAuth(app, {
  * https://medium.com/swlh/using-firestore-with-typescript-65bd2a602945
  */
 export const db = getFirestore(app);
+
+// ************************Ask Kekoa how to add Foramtting***********************
+export const storage = getStorage();
 
 /**
  * Generic data type converter from firestore
