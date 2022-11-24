@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard } from 'react-native';
+import { Keyboard, Platform } from 'react-native';
 import {
     Box,
     VStack,
@@ -67,6 +67,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
         navigation.navigate('Login', {
             signInMethods: emailSignInMethods,
             email: data.email,
+            title: emailSignInMethods.length ? 'Please enter your password' : 'Create an account',
         });
         reset();
     };
@@ -81,7 +82,13 @@ export const WelcomeScreen: React.FC<{}> = () => {
     };
 
     return (
-        <KeyboardAvoidingView onTouchStart={() => Keyboard.dismiss()} w="100%" h="100%">
+        <KeyboardAvoidingView
+            h={{
+                lg: 'auto',
+            }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            onTouchStart={() => Keyboard.dismiss()}
+            w="100%">
             <Box
                 px="10"
                 w="100%"

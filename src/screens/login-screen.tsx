@@ -25,7 +25,7 @@ import {
     useLazySignUpQuery,
 } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
-import { Keyboard } from 'react-native';
+import { Keyboard, Platform } from 'react-native';
 
 type LoginScreenProps = StackScreenProps<AuthStackParams, 'Login'>;
 
@@ -113,7 +113,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     };
 
     return (
-        <KeyboardAvoidingView onTouchStart={() => Keyboard.dismiss()} w="100%" h="100%">
+        <KeyboardAvoidingView
+            h={{
+                lg: 'auto',
+            }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            onTouchStart={() => Keyboard.dismiss()}
+            w="100%">
             <Box
                 px="10"
                 w="100%"
@@ -123,10 +129,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                 <VStack space={3} w="100%">
                     <FormControl>
                         <HStack
-                            alignItems="center"
                             justifyContent="space-between"
                             w="100%"
-                            flex={1}
                             py={5}>
                             <Box pr={3}>
                                 <Icon
@@ -135,6 +139,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                                     size={50}
                                     color="plainText.800"
                                 />
+                                <Heading>TEsting</Heading>
                             </Box>
                             <Heading
                                 flex={1}
@@ -147,6 +152,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
                                         : 'Enter your password to login.')}
                             </Heading>
                         </HStack>
+                        <Heading>TEsting</Heading>
                         {!isSignInScreen ? (
                             <VStack pb={3}>
                                 <FormInput
