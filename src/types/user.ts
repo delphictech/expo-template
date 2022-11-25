@@ -11,7 +11,7 @@ export interface PublicUserData {
     id: string;
     firstName?: string | null;
     lastName?: string | null;
-    image?: string;
+    image?: string | null;
     count?: number | null;
 }
 
