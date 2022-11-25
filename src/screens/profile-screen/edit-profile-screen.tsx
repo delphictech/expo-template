@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Text } from 'native-base';
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Text, Image } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
@@ -8,29 +8,62 @@ import { editProfileSchema } from 'src/utils/schemas';
 import { useGetUserImageQuery } from 'src/services/image-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 
+// Temporary imports
+import { ref, getDownloadURL } from 'firebase/storage';
+import { storage } from 'src/firebase/config';
+// end temp imports
+
 export interface EditProfileProps {}
 
 interface imageOBJ {
     userID: string;
     imageUri?: string | undefined;
+    time?: string;
 }
 
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
 
-    const [imageState, setImageState] = useState(
-        'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg',
-    );
+    const timeStampRef = useRef(String(Date.now())).current;
+
+    const [imageState, setImageState] = useState<string>();
     const [queryState, setQueryState] = useState<imageOBJ>({
         userID: user.id,
-        imageUri: imageState,
+        imageUri: undefined,
+        time: timeStampRef,
     });
+
+    const [newState, setNewState] = useState<string>();
+
+    // useEffect(() => {
+    //     const storageRef = ref(storage, `user-profile-img/${user.id}`);
+
+    //     getDownloadURL(storageRef).then((url) => {
+    //         console.log('url from mount useEffect', url);
+    //         setImageState(url);
+    //     });
+    // }, []);
 
     const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
         useGetUserImageQuery(queryState);
 
+    // useEffect(() => {
+    //     setImageState(data);
+    // }, []);
+
     useEffect(() => {
-        setImageState(data);
+        const input = {
+            userID: user.id,
+            imageUri: imageState,
+        };
+        console.log('input', input);
+        setQueryState(input);
+    }, [imageState]);
+
+    useEffect(() => {
+        // setImageState(data);
+        console.log('data', data);
+        setNewState(data);
     }, [data]);
 
     const {
@@ -49,7 +82,9 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
 
     return (
         <>
-            <ImageUploader imageProp={imageState} />
+            {data && isSuccess && newState && (
+                <ImageUploader setImageState={setImageState} imageProp={newState} />
+            )}
             <Text>dwawdwada</Text>
             <FormInput
                 key="name"
@@ -82,6 +117,14 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
+            {/* {data && (
+                <Image
+                    source={{
+                        uri: data,
+                    }}
+                    alt="Alternate Text"
+                />
+            )} */}
             <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
         </>
     );

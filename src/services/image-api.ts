@@ -4,6 +4,7 @@ import { fetchUserImage } from 'src/firebase/image-api';
 interface imageOBJ {
     userID: string;
     imageUri?: string | undefined;
+    time?: string;
 }
 
 export const ImageApi = ConfigApi.injectEndpoints({
@@ -15,8 +16,10 @@ export const ImageApi = ConfigApi.injectEndpoints({
              * @return {*}
              */
             async queryFn(obj) {
+                console.log('this is from RTK');
                 try {
                     const image = await fetchUserImage(obj.userID, obj.imageUri);
+                    console.log('image data being sent back', image);
                     return { data: image };
                 } catch (e: any) {
                     console.warn(`Error with fetching users`);

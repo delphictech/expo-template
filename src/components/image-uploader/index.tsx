@@ -4,21 +4,31 @@ import { takePhoto, pickImage } from 'src/utils/upload-image';
 
 export interface ImageArgProps {
     imageProp: string;
+    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>;
     stylingProps?: {
         bRadius?: number;
     };
     size?: 'lg' | 'xl' | '2xl';
 }
 
-export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp, size }) => {
+export const ImageUploader: React.FC<ImageArgProps> = ({
+    stylingProps,
+    imageProp,
+    size,
+    setImageState,
+}) => {
+    const [newState, setNewState] = useState<string>();
     useEffect(() => {
-        setImageState(imageProp);
-    }, []);
+        setNewState(imageProp);
+    }, [imageProp]);
+    // useEffect(() => {
+    //     setImageState(imageProp);
+    // }, []);
     // const { stylingProps, imageProp, size } = imageProps;
 
     const { isOpen, onOpen, onClose } = useDisclose();
 
-    const [imageState, setImageState] = useState<string>();
+    // const [imageState, setImageStates] = useState<string>();
 
     return (
         <Box alignItems="center" backgroundColor="blue.700">
@@ -26,7 +36,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp
                 <Image
                     borderRadius={stylingProps?.bRadius}
                     source={{
-                        uri: imageState,
+                        uri: newState,
                     }}
                     alt="Alternate Text"
                     size={size}
@@ -46,7 +56,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp
                 </Actionsheet.Content>
             </Actionsheet>
 
-            {imageState && <Text>{imageState}</Text>}
+            {imageProp && <Text>{imageProp}</Text>}
             <Text>Hello World</Text>
         </Box>
     );
