@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
 import { useGetUserImageQuery } from 'src/services/image-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
+import { ImageOBJ } from 'src/types/profile-image';
 
 // Temporary imports
 import { ref, getDownloadURL } from 'firebase/storage';
@@ -15,25 +16,19 @@ import { storage } from 'src/firebase/config';
 
 export interface EditProfileProps {}
 
-interface imageOBJ {
-    userID: string;
-    imageUri?: string | undefined;
-    time?: string;
-}
-
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
 
     const timeStampRef = useRef(String(Date.now())).current;
 
     const [imageState, setImageState] = useState<string>();
-    const [queryState, setQueryState] = useState<imageOBJ>({
+    const [queryState, setQueryState] = useState<ImageOBJ>({
         userID: user.id,
         imageUri: undefined,
         time: timeStampRef,
     });
 
-    const [newState, setNewState] = useState<string>();
+    console.log(timeStampRef);
 
     // useEffect(() => {
     //     const storageRef = ref(storage, `user-profile-img/${user.id}`);
@@ -63,8 +58,8 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     useEffect(() => {
         // setImageState(data);
         console.log('data', data);
-        setNewState(data);
-    }, [data]);
+        console.log(error);
+    }, [data, isError]);
 
     const {
         control,
@@ -80,11 +75,13 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
         console.log('console from submit');
     };
 
+    if (isLoading) {
+        return <Text>Loading</Text>;
+    }
+
     return (
         <>
-            {data && isSuccess && newState && (
-                <ImageUploader setImageState={setImageState} imageProp={newState} />
-            )}
+            {data && <ImageUploader setImageState={setImageState} imageProp={data} />}
             <Text>dwawdwada</Text>
             <FormInput
                 key="name"

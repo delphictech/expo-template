@@ -17,13 +17,17 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
     size,
     setImageState,
 }) => {
-    const [newState, setNewState] = useState<string>();
-    useEffect(() => {
-        setNewState(imageProp);
-    }, [imageProp]);
+    // const [newState, setNewState] = useState<string>();
     // useEffect(() => {
-    //     setImageState(imageProp);
-    // }, []);
+    //     setNewState(imageProp);
+    // }, [imageProp]);
+
+    useEffect(() => {
+        setImageState(imageProp);
+    }, []);
+    useEffect(() => {
+        setImageState(imageProp);
+    }, [imageProp]);
     // const { stylingProps, imageProp, size } = imageProps;
 
     const { isOpen, onOpen, onClose } = useDisclose();
@@ -36,7 +40,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                 <Image
                     borderRadius={stylingProps?.bRadius}
                     source={{
-                        uri: newState,
+                        uri: imageProp,
                     }}
                     alt="Alternate Text"
                     size={size}

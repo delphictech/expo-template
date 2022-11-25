@@ -1,15 +1,10 @@
 import { ConfigApi } from './config-api';
 import { fetchUserImage } from 'src/firebase/image-api';
-
-interface imageOBJ {
-    userID: string;
-    imageUri?: string | undefined;
-    time?: string;
-}
+import { ImageOBJ } from 'src/types/profile-image';
 
 export const ImageApi = ConfigApi.injectEndpoints({
     endpoints: (build) => ({
-        getUserImage: build.query<string, imageOBJ>({
+        getUserImage: build.query<string, ImageOBJ>({
             /**
              * Generating query for fetching and paginating users
              *
