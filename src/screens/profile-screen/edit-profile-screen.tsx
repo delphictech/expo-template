@@ -19,25 +19,27 @@ export interface EditProfileProps {}
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
 
-    const timeStampRef = useRef(String(Date.now())).current;
+    // const timeStampRef = useRef(String(Date.now())).current;
 
     const [imageState, setImageState] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({
         userID: user.id,
         imageUri: undefined,
-        time: timeStampRef,
+        // time: timeStampRef,
     });
 
-    console.log(timeStampRef);
+    // console.log(timeStampRef);
 
-    // useEffect(() => {
-    //     const storageRef = ref(storage, `user-profile-img/${user.id}`);
+    useEffect(() => {
+        const storageRef = ref(storage, `user-profile-img/${user.id}`);
 
-    //     getDownloadURL(storageRef).then((url) => {
-    //         console.log('url from mount useEffect', url);
-    //         setImageState(url);
-    //     });
-    // }, []);
+        getDownloadURL(storageRef).then((url) => {
+            console.log('url from mount useEffect', url);
+            setImageState(url);
+        });
+
+        console.log(user);
+    }, []);
 
     const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
         useGetUserImageQuery(queryState);

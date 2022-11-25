@@ -14,6 +14,7 @@ export const ImageApi = ConfigApi.injectEndpoints({
                 console.log('this is from RTK');
                 try {
                     const image = await fetchUserImage(obj.userID, obj.imageUri);
+                    // set into firebase object
                     console.log('image data being sent back', image);
                     return { data: image };
                 } catch (e: any) {

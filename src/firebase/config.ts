@@ -53,7 +53,10 @@ export const auth = initializeAuth(app, {
  */
 export const db = getFirestore(app);
 
-// ************************Ask Kekoa how to add Foramtting***********************
+
+/**
+ * @Test
+ */
 export const storage = getStorage();
 
 /**

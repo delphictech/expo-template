@@ -63,15 +63,19 @@ export const AuthApi = ConfigApi.injectEndpoints({
                 if (accountInfo === 'guest') {
                     try {
                         const userCredential = await anonymousSignIn();
+
+                        // add default user image to storage before adding it to firestore
+                        // In the future, will allow users to add image when they sign up
+                        await addDefaultPicture(userCredential.user.uid);
+
                         // setup guest user
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
                             isAnonymous: true,
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
+                            image: 'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg',
                         };
-
-                        await addDefaultPicture(userCredential.user.uid);
 
                         return { data: user };
                     } catch (e: any) {
@@ -84,6 +88,10 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             accountInfo.email,
                             accountInfo.password,
                         );
+
+                        // adds default image to storage
+                        await addDefaultPicture(userCredential.user.uid);
+
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
                             isAnonymous: false,
@@ -92,6 +100,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             firstName: accountInfo.firstName,
                             lastName: accountInfo.lastName,
                             email: userCredential.user.email,
+                            image: 'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg',
                         };
                         await verifyEmail();
 
