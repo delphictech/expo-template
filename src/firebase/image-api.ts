@@ -1,5 +1,7 @@
-import { storage } from 'src/firebase/config';
+import { storage, db } from 'src/firebase/config';
 import { getDownloadURL, ref, uploadBytesResumable, uploadBytes } from 'firebase/storage';
+import { upLoadFile } from 'src/utils/upload-image';
+import { getDoc, doc } from 'firebase/firestore';
 
 export const fetchUserImage = async (
     userID: string,
@@ -9,28 +11,20 @@ export const fetchUserImage = async (
     const storageRef = ref(storage, `user-profile-img/${userID}`);
 
     // let image: string | Promise<string>;
-    if (imgURI === undefined) {
-        const image = await getDownloadURL(storageRef).then((url) => {
-            return url;
-        });
-        console.log('image from undefined', image);
-        return image;
+    if (!imgURI) {
+        const docRef = doc(db, 'public-user-data', userID);
+        const docSnap = await getDoc(docRef);
+        const data = docSnap.data() as string;
+        // const image = await getDownloadURL(storageRef).then((url) => {
+        //     return url;
+        // });
+        // console.log('image from undefined', image);
+        // return image;
+        // console.log('doc snapshot', docSnap);
+        return data.image;
     } else {
-        const img = await fetch(imgURI);
-        const blobFile = await img.blob();
-        const uploadImage = uploadBytesResumable(storageRef, blobFile);
-        uploadImage.on(
-            'state_changed',
-            (snapshot) => {
-                const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-                console.log(percent);
-            },
-            (err) => console.log(err),
-            () => {
-                getDownloadURL(uploadImage.snapshot.ref).then((url) => console.log(url));
-            },
-        );
-        console.log('image from defined', imgURI);
+        console.log('upload function firing');
+        await upLoadFile(imgURI, userID);
         return imgURI;
     }
 };

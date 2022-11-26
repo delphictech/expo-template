@@ -20,13 +20,14 @@ export interface EditProfileProps {}
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
 
-    // const timeStampRef = useRef(String(Date.now())).current;
+    const timeStampRef = useRef(String(Date.now())).current;
 
     const [imageState, setImageState] = useState<string>();
+    const [imageDispalyed, setImageDisplayed] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({
         userID: user.id,
         imageUri: undefined,
-        // time: timeStampRef,
+        time: timeStampRef,
     });
 
     // console.log(timeStampRef);
@@ -55,17 +56,14 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
             imageUri: imageState,
         };
         console.log('input', input);
-        // setQueryState(input);
-        if (imageState) {
-            upLoadFile(imageState, user.id);
-        }
+        setQueryState(input);
     }, [imageState]);
 
-    useEffect(() => {
-        // setImageState(data);
-        console.log('data', data);
-        console.log(error);
-    }, [data, isError]);
+    // useEffect(() => {
+    //     setImageState(data);
+    //     console.log('data', data);
+    //     console.log(error);
+    // }, [data]);
 
     const {
         control,
