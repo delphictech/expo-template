@@ -20,17 +20,17 @@ export interface EditProfileProps {}
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
 
-    const timeStampRef = useRef(String(Date.now())).current;
+    // const timeStampRef = useRef(String(Date.now())).current;
 
     const [imageState, setImageState] = useState<string>();
     const [imageDispalyed, setImageDisplayed] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({
         userID: user.id,
         imageUri: undefined,
-        time: timeStampRef,
+        // time: timeStampRef,
     });
 
-    console.log(timeStampRef);
+    // console.log(timeStampRef);
 
     // useEffect(() => {
     //     const storageRef = ref(storage, `user-profile-img/${user.id}`);

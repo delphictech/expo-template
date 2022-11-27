@@ -22,12 +22,12 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
     //     setNewState(imageProp);
     // }, [imageProp]);
 
-    useEffect(() => {
-        setImageState(imageProp);
-    }, []);
-    useEffect(() => {
-        setImageState(imageProp);
-    }, [imageProp]);
+    // useEffect(() => {
+    //     setImageState(imageProp);
+    // }, []);
+    // useEffect(() => {
+    //     setImageState(imageProp);
+    // }, [imageProp]);
     // const { stylingProps, imageProp, size } = imageProps;
 
     const { isOpen, onOpen, onClose } = useDisclose();
