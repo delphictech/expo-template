@@ -30,7 +30,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
         time: timeStampRef,
     });
 
-    // console.log(timeStampRef);
+    console.log(timeStampRef);
 
     // useEffect(() => {
     //     const storageRef = ref(storage, `user-profile-img/${user.id}`);
@@ -43,12 +43,24 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     //     console.log(user);
     // }, []);
 
-    const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
-        useGetUserImageQuery(queryState);
+    const {
+        data = undefined,
+        isFetching,
+        isLoading,
+        isError,
+        error,
+        isSuccess,
+        refetch,
+    } = useGetUserImageQuery(queryState);
 
     // useEffect(() => {
     //     setImageState(data);
     // }, []);
+
+    useEffect(() => {
+        console.log('data back from RTK', data);
+        refetch();
+    }, [data]);
 
     useEffect(() => {
         const input = {
@@ -79,13 +91,22 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
         console.log('console from submit');
     };
 
-    if (isLoading) {
+    if (isLoading || isFetching) {
         return <Text>Loading</Text>;
     }
 
     return (
         <>
-            {data && <ImageUploader setImageState={setImageState} imageProp={data} />}
+            {data && isSuccess && <ImageUploader setImageState={setImageState} imageProp={data} />}
+
+            <Image
+                source={{
+                    uri: data,
+                }}
+                alt="Alternate Text"
+                size={'2xl'}
+            />
+
             <Text>dwawdwada</Text>
             <FormInput
                 key="name"
@@ -118,14 +139,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
-            {/* {data && (
-                <Image
-                    source={{
-                        uri: data,
-                    }}
-                    alt="Alternate Text"
-                />
-            )} */}
+
             <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
         </>
     );
