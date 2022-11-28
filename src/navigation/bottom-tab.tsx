@@ -4,6 +4,7 @@ import { ExploreScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { ProfileStack } from './profile-stack';
 import { HomeStackNavigator } from './home-stack';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 
 export type BottomTabParams = {
     HomeTab: undefined;
@@ -34,6 +35,7 @@ const ProfileIcon = ({ focused, color, size }: TabBarIconProps) => (
 );
 
 export const BottomTabNavigator: React.FC<{}> = () => {
+    const user = useAppSelector((state) => state.user);
     return (
         <Tabs.Navigator screenOptions={{ tabBarHideOnKeyboard: true }}>
             <Tabs.Screen
@@ -54,15 +56,17 @@ export const BottomTabNavigator: React.FC<{}> = () => {
                     tabBarIcon: ExploreIcon,
                 }}
             />
-            <Tabs.Screen
-                name="Profile"
-                component={ProfileStack}
-                options={{
-                    headerTitle: 'Profile-Stack-Screen',
-                    headerShown: false,
-                    tabBarIcon: ProfileIcon,
-                }}
-            />
+            {!user.isAnonymous && (
+                <Tabs.Screen
+                    name="Profile"
+                    component={ProfileStack}
+                    options={{
+                        headerTitle: 'Profile-Stack-Screen',
+                        headerShown: false,
+                        tabBarIcon: ProfileIcon,
+                    }}
+                />
+            )}
         </Tabs.Navigator>
     );
 };
