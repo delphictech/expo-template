@@ -66,7 +66,8 @@ export const AuthApi = ConfigApi.injectEndpoints({
 
                         // add default user image to storage before adding it to firestore
                         // In the future, will allow users to add image when they sign up
-                        await addDefaultPicture(userCredential.user.uid);
+
+                        // await addDefaultPicture(userCredential.user.uid);
 
                         // setup guest user
                         const user: PrivateUserData = {
@@ -74,7 +75,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             isAnonymous: true,
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
-                            image: 'https://ui-avatars.com/api/?name=Guest&size=214',
+                            // image: 'https://ui-avatars.com/api/?name=Guest&size=214',
                         };
 
                         return { data: user };

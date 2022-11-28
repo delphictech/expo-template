@@ -19,8 +19,6 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
 }) => {
     const { isOpen, onOpen, onClose } = useDisclose();
 
-    // const [imageState, setImageStates] = useState<string>();
-
     return (
         <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
@@ -32,17 +30,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                     alt="Alternate Text"
                     size={size}
                 />
-
-                {/* <Avatar size="2xl">SY</Avatar>
-                <Avatar
-                    source={{
-                        uri: 'https://ui-avatars.com/api/?size=512/?name=Seth+Man',
-                    }}
-                    size="2xl">
-                    SY
-                </Avatar> */}
             </Pressable>
-            {/* <Button>Actionsheet</Button> */}
 
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>

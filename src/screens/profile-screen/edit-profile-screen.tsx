@@ -9,12 +9,6 @@ import { useGetUserImageQuery } from 'src/services/image-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
 
-// Temporary imports
-// import { ref, getDownloadURL } from 'firebase/storage';
-// import { storage } from 'src/firebase/config';
-// import { upLoadFile } from 'src/utils/upload-image';
-// end temp imports
-
 export interface EditProfileProps {}
 
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
@@ -30,25 +24,8 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
         // time: timeStampRef,
     });
 
-    // console.log(timeStampRef);
-
-    // useEffect(() => {
-    //     const storageRef = ref(storage, `user-profile-img/${user.id}`);
-
-    //     getDownloadURL(storageRef).then((url) => {
-    //         console.log('url from mount useEffect', url);
-    //         setImageState(url);
-    //     });
-
-    //     console.log(user);
-    // }, []);
-
     const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
         useGetUserImageQuery(queryState);
-
-    // useEffect(() => {
-    //     setImageState(data);
-    // }, []);
 
     useEffect(() => {
         console.log('data back from RTK', data);
@@ -63,12 +40,6 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
         console.log('input', input);
         setQueryState(input);
     }, [imageState]);
-
-    // useEffect(() => {
-    //     setImageState(data);
-    //     console.log('data', data);
-    //     console.log(error);
-    // }, [data]);
 
     const {
         control,
