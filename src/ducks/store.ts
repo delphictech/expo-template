@@ -2,8 +2,8 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ConfigApi } from 'src/services';
-import userReducer from './user-slice';
 import { ImageApi } from 'src/services/image-api';
+import userReducer from './user-slice';
 
 /**
  * @remarks

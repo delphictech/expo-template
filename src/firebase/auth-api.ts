@@ -9,9 +9,9 @@ import {
     sendEmailVerification,
     UserCredential,
 } from 'firebase/auth';
+import { ref, uploadBytesResumable, uploadBytes } from 'firebase/storage';
 import { auth, storage } from './config';
 import { firebaseHandler, FirebaseError } from './handler';
-import { ref, uploadBytesResumable, uploadBytes } from 'firebase/storage';
 
 export { FirebaseError };
 

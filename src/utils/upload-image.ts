@@ -1,8 +1,8 @@
 import * as ImagePicker from 'expo-image-picker';
 import React from 'react';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { storage } from 'src/firebase/config';
-import { db } from 'src/firebase/config';
+import { storage, db } from 'src/firebase/config';
+
 import { collection, updateDoc, doc } from 'firebase/firestore';
 
 export const takePhoto = async (

@@ -55,4 +55,3 @@
 
 //     return detailedProductData;
 // };
-

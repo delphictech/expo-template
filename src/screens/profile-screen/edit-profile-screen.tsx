@@ -104,7 +104,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
                     uri: data,
                 }}
                 alt="Alternate Text"
-                size={'2xl'}
+                size="2xl"
             />
 
             <Text>dwawdwada</Text>

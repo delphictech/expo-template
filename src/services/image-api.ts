@@ -1,6 +1,6 @@
-import { ConfigApi } from './config-api';
 import { fetchUserImage } from 'src/firebase/image-api';
 import { ImageOBJ } from 'src/types/profile-image';
+import { ConfigApi } from './config-api';
 
 export const ImageApi = ConfigApi.injectEndpoints({
     endpoints: (build) => ({

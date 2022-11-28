@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ExploreScreen } from 'src/screens';
-import { ProfileStack } from './profile-stack';
 import { MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { ProfileStack } from './profile-stack';
 import { HomeStackNavigator } from './home-stack';
 
 export type BottomTabParams = {

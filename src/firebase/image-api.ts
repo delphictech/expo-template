@@ -22,9 +22,8 @@ export const fetchUserImage = async (
         // return image;
         // console.log('doc snapshot', docSnap);
         return data.image;
-    } else {
-        console.log('upload function firing');
-        await upLoadFile(imgURI, userID);
-        return imgURI;
     }
+    console.log('upload function firing');
+    await upLoadFile(imgURI, userID);
+    return imgURI;
 };
