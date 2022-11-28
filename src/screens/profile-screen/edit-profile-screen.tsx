@@ -43,15 +43,8 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     //     console.log(user);
     // }, []);
 
-    const {
-        data = undefined,
-        isFetching,
-        isLoading,
-        isError,
-        error,
-        isSuccess,
-        refetch,
-    } = useGetUserImageQuery(queryState);
+    const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
+        useGetUserImageQuery(queryState);
 
     // useEffect(() => {
     //     setImageState(data);
@@ -93,6 +86,10 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
 
     if (isLoading || isFetching) {
         return <Text>Loading</Text>;
+    }
+
+    if (isError) {
+        return <Text>{error}</Text>;
     }
 
     return (

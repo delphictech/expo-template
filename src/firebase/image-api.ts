@@ -1,4 +1,4 @@
-import { publicUserCollection } from 'src/firebase/config';
+import { publicUserCollection, db } from 'src/firebase/config';
 import { upLoadFile } from 'src/utils/upload-image';
 import { getDoc, doc } from 'firebase/firestore';
 

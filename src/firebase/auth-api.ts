@@ -127,9 +127,15 @@ export async function resetPassword(email: string): Promise<void> {
     return firebaseHandler<void>(sendPasswordResetEmail(auth, email));
 }
 
-export async function addDefaultPicture(userID: string) {
+export async function addDefaultPicture(
+    userID: string,
+    firstName?: string,
+    lastName?: string,
+) {
     const file =
-        'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg';
+        firstName && lastName
+            ? `https://ui-avatars.com/api/?name=${firstName}+${lastName}&size=214`
+            : `https://ui-avatars.com/api/?name=Guest&size=214`;
     const img = await fetch(file);
     const blobFile = await img.blob();
     const storageRef = ref(storage, `user-profile-img/${userID}/`);

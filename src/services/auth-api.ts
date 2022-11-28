@@ -74,7 +74,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             isAnonymous: true,
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
-                            image: 'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg',
+                            image: 'https://ui-avatars.com/api/?name=Guest&size=214',
                         };
 
                         return { data: user };
@@ -90,7 +90,11 @@ export const AuthApi = ConfigApi.injectEndpoints({
                         );
 
                         // adds default image to storage
-                        await addDefaultPicture(userCredential.user.uid);
+                        await addDefaultPicture(
+                            userCredential.user.uid,
+                            accountInfo.firstName,
+                            accountInfo.lastName,
+                        );
 
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
@@ -100,11 +104,10 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             firstName: accountInfo.firstName,
                             lastName: accountInfo.lastName,
                             email: userCredential.user.email,
-                            image: 'https://carta.fiu.edu/kopenhavercenter/wp-content/uploads/sites/17/2021/01/depositphotos_29387653-stock-photo-facebook-profile.jpg',
+                            image: `https://ui-avatars.com/api/?name=${accountInfo.firstName}+${accountInfo.lastName}&size=214`,
                         };
                         await verifyEmail();
 
-                        addDefaultPicture(userCredential.user.uid);
                         // store user data in firestore
                         await updatePrivateUserData(user, true);
                         return { data: user };
