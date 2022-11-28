@@ -2,9 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { ExploreScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons, AntDesign } from '@expo/vector-icons';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ProfileStack } from './profile-stack';
 import { HomeStackNavigator } from './home-stack';
-import { useAppSelector } from 'src/ducks/useful-hooks';
 
 export type BottomTabParams = {
     HomeTab: undefined;

@@ -127,11 +127,7 @@ export async function resetPassword(email: string): Promise<void> {
     return firebaseHandler<void>(sendPasswordResetEmail(auth, email));
 }
 
-export async function addDefaultPicture(
-    userID: string,
-    firstName?: string,
-    lastName?: string,
-) {
+export async function addDefaultPicture(userID: string, firstName?: string, lastName?: string) {
     const file =
         firstName && lastName
             ? `https://ui-avatars.com/api/?name=${firstName}+${lastName}&size=214`

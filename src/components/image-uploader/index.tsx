@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Text, Box, Image, Actionsheet, Pressable, useDisclose, Avatar } from 'native-base';
+import React from 'react';
+import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
 
 export interface ImageArgProps {
@@ -17,32 +17,6 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
     size,
     setImageState,
 }) => {
-    // const [newState, setNewState] = useState<string>();
-    // useEffect(() => {
-    //     setNewState(imageProp);
-    // }, [imageProp]);
-
-    // useEffect(() => {
-    //     setImageState(imageProp);
-    // }, []);
-    // useEffect(() => {
-    //     setImageState(imageProp);
-    // }, [imageProp]);
-    // const { stylingProps, imageProp, size } = imageProps;
-
-    // const [test, setTest] = useState();
-
-    // useEffect(() => {
-    //     const test = async () => {
-    //         const image = await fetch('https://ui-avatars.com/api/?name=John+Doe?size=128');
-    //         setTest(image);
-    //     };
-
-    //     test();
-
-    //     console.log('fetch function', test);
-    // }, []);
-
     const { isOpen, onOpen, onClose } = useDisclose();
 
     // const [imageState, setImageStates] = useState<string>();
