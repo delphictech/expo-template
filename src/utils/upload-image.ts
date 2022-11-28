@@ -3,7 +3,7 @@ import React from 'react';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { storage, db } from 'src/firebase/config';
 
-import { collection, updateDoc, doc } from 'firebase/firestore';
+import { updateDoc, doc } from 'firebase/firestore';
 
 export const takePhoto = async (
     setImageState: React.Dispatch<React.SetStateAction<string | undefined>>,

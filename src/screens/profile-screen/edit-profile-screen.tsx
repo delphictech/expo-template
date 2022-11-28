@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button, Text, Image } from 'native-base';
+import React, { useState, useEffect } from 'react';
+import { Button, Text } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
@@ -10,9 +10,9 @@ import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
 
 // Temporary imports
-import { ref, getDownloadURL } from 'firebase/storage';
-import { storage } from 'src/firebase/config';
-import { upLoadFile } from 'src/utils/upload-image';
+// import { ref, getDownloadURL } from 'firebase/storage';
+// import { storage } from 'src/firebase/config';
+// import { upLoadFile } from 'src/utils/upload-image';
 // end temp imports
 
 export interface EditProfileProps {}
@@ -23,7 +23,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     // const timeStampRef = useRef(String(Date.now())).current;
 
     const [imageState, setImageState] = useState<string>();
-    const [imageDispalyed, setImageDisplayed] = useState<string>();
+    // const [imageDispalyed, setImageDisplayed] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({
         userID: user.id,
         imageUri: undefined,
@@ -99,13 +99,13 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
         <>
             {data && isSuccess && <ImageUploader setImageState={setImageState} imageProp={data} />}
 
-            <Image
+            {/* <Image
                 source={{
                     uri: data,
                 }}
                 alt="Alternate Text"
                 size="2xl"
-            />
+            /> */}
 
             <Text>dwawdwada</Text>
             <FormInput

@@ -4,7 +4,7 @@ import { ConfigApi } from './config-api';
 
 export const ImageApi = ConfigApi.injectEndpoints({
     endpoints: (build) => ({
-        getUserImage: build.query<string, ImageOBJ>({
+        getUserImage: build.query<string | null, ImageOBJ>({
             /**
              * Generating query for fetching and paginating users
              *

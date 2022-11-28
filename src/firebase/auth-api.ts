@@ -9,7 +9,7 @@ import {
     sendEmailVerification,
     UserCredential,
 } from 'firebase/auth';
-import { ref, uploadBytesResumable, uploadBytes } from 'firebase/storage';
+import { ref, uploadBytesResumable } from 'firebase/storage';
 import { auth, storage } from './config';
 import { firebaseHandler, FirebaseError } from './handler';
 
@@ -133,5 +133,5 @@ export async function addDefaultPicture(userID: string) {
     const img = await fetch(file);
     const blobFile = await img.blob();
     const storageRef = ref(storage, `user-profile-img/${userID}/`);
-    const uploadImage = uploadBytesResumable(storageRef, blobFile);
+    await uploadBytesResumable(storageRef, blobFile);
 }
