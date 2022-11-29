@@ -5635,7 +5635,7 @@
     react-native-swipe-gestures "^1.0.5"
     util "^0.12.4"
 
-"@storybook/react@~6.5":
+"@storybook/react@^6.5":
   version "6.5.13"
   resolved "https://registry.yarnpkg.com/@storybook/react/-/react-6.5.13.tgz#9b02c4515b6c6a13ce92f1bb4869c20c8ae05dfa"
   integrity sha512-4gO8qihEkVZ8RNm9iQd7G2iZz4rRAHizJ6T5m58Sn21fxfyg9zAMzhgd0JzXuPXR8lTTj4AvRyPv1Qx7b43smg==

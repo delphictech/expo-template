@@ -1,6 +1,7 @@
 {
   "scripts": {
     "start": "set STORYBOOK_START=false && expo start",
+    "start-storybook": "set STORYBOOK_START=true && expo start",
     "android": "set STORYBOOK_START=false && expo run:android --device",
     "ios": "set STORYBOOK_START=false && expo run:ios -d",
     "web": "set STORYBOOK_START=false && expo start --web",
@@ -77,7 +78,7 @@
     "@storybook/addon-ondevice-controls": "next",
     "@storybook/addon-ondevice-notes": "next",
     "@storybook/addon-react-native-web": "^0.0.19",
-    "@storybook/react": "~6.5",
+    "@storybook/react": "^6.5",
     "@storybook/react-native": "next",
     "@testing-library/jest-native": "^4.0.2",
     "@testing-library/react-hooks": "^7.0.2",
