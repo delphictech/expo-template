@@ -65,7 +65,8 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
 
     return (
         <>
-            {data && isSuccess && <ImageUploader setImageState={setImageState} imageProp={data} />}
+            {/* {data && isSuccess && <ImageUploader setImageState={setImageState} imageProp={data} />} */}
+            <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
 
             {/* <Image
                 source={{

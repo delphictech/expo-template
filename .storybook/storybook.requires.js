@@ -7,6 +7,10 @@ import {
   addArgsEnhancer,
 } from "@storybook/react-native";
 
+import "@storybook/addon-essentials/register";
+import "@storybook/addon-react-native-web/register";
+import "@storybook/addon-docs/register";
+
 import { decorators, parameters } from "./preview";
 
 if (decorators) {
@@ -22,6 +26,7 @@ const getStories = () => {
     require("./button-example/button-example.stories.tsx"),
     require("../src/components/feedback/alert-toast.stories.tsx"),
     require("../src/components/image-uploader/image-uploader.stories.tsx"),
+    require("../src/components/user-input/form-inpit.stories.tsx"),
     require("../src/screens/profile-screen/edit-profile-screen.stories.tsx"),
   ];
 };
