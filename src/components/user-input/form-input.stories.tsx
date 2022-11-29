@@ -1,5 +1,6 @@
 import { Story } from '@storybook/react';
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { FormInput, FormInputParams } from './form-input';
 
 export default {
@@ -7,7 +8,13 @@ export default {
     component: FormInput,
 };
 
-const Template = (args: FormInputParams) => <FormInput {...args} />;
+const Template = (args: FormInputParams) => {
+    const { control } = useForm();
+    return <FormInput control={control} {...args} />;
+};
 
 export const Example: Story<FormInputParams> = Template.bind({});
-Example.args = {};
+
+Example.args = {
+    name: 'firstName',
+};
