@@ -15,11 +15,11 @@ module.exports = {
         '../src/screens/**/*.stories.?(ts|tsx|js|jsx)',
     ],
     addons: [
-        // '@storybook/addon-essentials',
-        // // '@storybook/addon-interactions',
-        // '@storybook/addon-react-native-web',
-        // // '@storybook/addon-console',
-        // '@storybook/addon-docs',
+        '@storybook/addon-essentials',
+        // '@storybook/addon-interactions',
+        '@storybook/addon-react-native-web',
+        // '@storybook/addon-console',
+        '@storybook/addon-docs',
     ],
     framework: '@storybook/react',
 };

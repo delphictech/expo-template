@@ -1,4 +1,4 @@
-import { fetchUserImage } from 'src/firebase/image-api';
+import { fetchUserImage } from 'src/firebase/user-api';
 import { ImageOBJ } from 'src/types/profile-image';
 import { ConfigApi } from './config-api';
 
@@ -6,9 +6,10 @@ export const ImageApi = ConfigApi.injectEndpoints({
     endpoints: (build) => ({
         getUserImage: build.query<string | null, ImageOBJ>({
             /**
-             * Generating query for fetching and paginating users
+             * Fetches the usser image either from firestore or uploads new image from state change.
              *
-             * @return {*}
+             * @param {*} obj - takes in an object with with userID(required) and iamgeUri(optional --upload only)
+             * @return {*} - returns a string or null
              */
             async queryFn(obj) {
                 console.log('this is from RTK');
