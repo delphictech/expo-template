@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Text } from 'native-base';
+import { Button, Text, Box } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
@@ -64,7 +64,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     }
 
     return (
-        <>
+        <Box>
             {/* {data && isSuccess && <ImageUploader setImageState={setImageState} imageProp={data} />} */}
             <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
 
@@ -110,6 +110,6 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
             />
 
             <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
-        </>
+        </Box>
     );
 };
