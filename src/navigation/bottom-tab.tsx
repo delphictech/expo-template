@@ -31,7 +31,7 @@ const ExploreIcon = ({ focused, color, size }: TabBarIconProps) => (
 );
 
 const ProfileIcon = ({ focused, color, size }: TabBarIconProps) => (
-    <AntDesign name={focused ? 'user' : 'user'} color={color} size={size} />
+    <MaterialIcons name={focused ? 'person' : 'person'} color={color} size={size} />
 );
 
 export const BottomTabNavigator: React.FC<{}> = () => {
