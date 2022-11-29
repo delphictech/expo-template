@@ -12,7 +12,7 @@
     "test": "jest",
     "storybook": "set STORYBOOK_START=true && start-storybook -p 7007",
     "build-storybook": "set STORYBOOK_START=true && build-storybook",
-    "prestart": "set STORYBOOK_START=true && sb-rn-get-stories",
+    "prestart": "set STORYBOOK_START=true && sb-rn-get-stories  --config-path .ondevice",
     "prestartfalse": "set STORYBOOK_START=false && sb-rn-get-stories",
     "storybook-watcher": "sb-rn-watcher"
   },
@@ -22,6 +22,8 @@
     "@hookform/resolvers": "^2.9.1",
     "@react-aria/ssr": "^3.2.0",
     "@react-native-async-storage/async-storage": "^1.17.7",
+    "@react-native-community/datetimepicker": "6.1.2",
+    "@react-native-community/slider": "4.2.1",
     "@react-native-masked-view/masked-view": "0.2.6",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.6",
