@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, GestureResponderEvent } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { EditProfileScreen, HomeScreen } from 'src/screens';
+import { SettingsScreen, HomeScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Icon, IconButton } from 'native-base';
 import { StackScreenProps } from '@react-navigation/stack';
@@ -59,7 +59,7 @@ export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => 
             />
             <StackNav.Screen
                 name="Settings"
-                component={EditProfileScreen}
+                component={SettingsScreen}
                 options={{ animationTypeForReplace: 'pop' }}
             />
             <StackNav.Screen

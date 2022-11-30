@@ -11,7 +11,7 @@ import { ImageOBJ } from 'src/types/profile-image';
 
 export interface EditProfileProps {}
 
-export const EditProfileScreen: React.FC<EditProfileProps> = () => {
+export const SettingsScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
     const [imageState, setImageState] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({

@@ -1,5 +1,5 @@
-export { HomeScreen } from 'src/screens/home-screen';
-export { ExploreScreen } from 'src/screens/explore-screen';
-export { WelcomeScreen } from 'src/screens/welcome-screen';
-export { LoginScreen } from 'src/screens/login-screen';
-export { EditProfileScreen } from 'src/screens/edit-profile-screen';
+export { HomeScreen } from 'src/screens/home';
+export { ExploreScreen } from 'src/screens/explore';
+export { WelcomeScreen } from 'src/screens/welcome';
+export { LoginScreen } from 'src/screens/login';
+export { SettingsScreen } from 'src/screens/settings';
