@@ -7,6 +7,7 @@ import {
     signOutUser,
     signUpWithEmail,
     verifyEmail,
+    addDefaultPicture,
 } from 'src/firebase/auth-api';
 import {
     deletePrivateUserData,
@@ -62,13 +63,21 @@ export const AuthApi = ConfigApi.injectEndpoints({
                 if (accountInfo === 'guest') {
                     try {
                         const userCredential = await anonymousSignIn();
+
+                        // add default user image to storage before adding it to firestore
+                        // In the future, will allow users to add image when they sign up
+
+                        // await addDefaultPicture(userCredential.user.uid);
+
                         // setup guest user
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
                             isAnonymous: true,
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
+                            // image: 'https://ui-avatars.com/api/?name=Guest&size=214',
                         };
+
                         return { data: user };
                     } catch (e: any) {
                         console.warn(`Error with guest sign in ${e}`);
@@ -80,6 +89,14 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             accountInfo.email,
                             accountInfo.password,
                         );
+
+                        // adds default image to storage
+                        await addDefaultPicture(
+                            userCredential.user.uid,
+                            accountInfo.firstName,
+                            accountInfo.lastName,
+                        );
+
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
                             isAnonymous: false,
@@ -88,8 +105,10 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             firstName: accountInfo.firstName,
                             lastName: accountInfo.lastName,
                             email: userCredential.user.email,
+                            image: `https://ui-avatars.com/api/?name=${accountInfo.firstName}+${accountInfo.lastName}&size=214`,
                         };
                         await verifyEmail();
+
                         // store user data in firestore
                         await updatePrivateUserData(user, true);
                         return { data: user };

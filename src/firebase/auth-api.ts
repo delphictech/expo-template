@@ -9,7 +9,8 @@ import {
     sendEmailVerification,
     UserCredential,
 } from 'firebase/auth';
-import { auth } from './config';
+import { ref, uploadBytesResumable } from 'firebase/storage';
+import { auth, storage } from './config';
 import { firebaseHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
@@ -124,4 +125,15 @@ export async function signOutUser(): Promise<void> {
  */
 export async function resetPassword(email: string): Promise<void> {
     return firebaseHandler<void>(sendPasswordResetEmail(auth, email));
+}
+
+export async function addDefaultPicture(userID: string, firstName?: string, lastName?: string) {
+    const file =
+        firstName && lastName
+            ? `https://ui-avatars.com/api/?name=${firstName}+${lastName}&size=214`
+            : `https://ui-avatars.com/api/?name=Guest&size=214`;
+    const img = await fetch(file);
+    const blobFile = await img.blob();
+    const storageRef = ref(storage, `user-profile-img/${userID}/`);
+    await uploadBytesResumable(storageRef, blobFile);
 }

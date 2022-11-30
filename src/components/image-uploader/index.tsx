@@ -1,35 +1,50 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
+import { PrivateUserData } from 'src/types';
 
 export interface ImageArgProps {
-    imageProp: string;
+    imageProp: string | undefined | null;
+    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>;
     stylingProps?: {
         bRadius?: number;
     };
     size?: 'lg' | 'xl' | '2xl';
+    user: PrivateUserData;
 }
 
-export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp, size }) => {
-    // const { stylingProps, imageProp, size } = imageProps;
-
+export const ImageUploader: React.FC<ImageArgProps> = ({
+    stylingProps,
+    imageProp,
+    size,
+    setImageState,
+    user,
+}) => {
     const { isOpen, onOpen, onClose } = useDisclose();
-
-    const [imageState, setImageState] = useState<string>();
 
     return (
         <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
-                <Image
-                    borderRadius={stylingProps ? stylingProps.bRadius : 0}
-                    source={{
-                        uri: imageProp,
-                    }}
-                    alt="Alternate Text"
-                    size={stylingProps ? size : 'xl'}
-                />
+                {imageProp ? (
+                    <Image
+                        borderRadius={stylingProps?.bRadius}
+                        source={{
+                            uri: imageProp,
+                        }}
+                        alt="Alternate Text"
+                        size={size}
+                    />
+                ) : (
+                    <Image
+                        borderRadius={stylingProps?.bRadius}
+                        source={{
+                            uri: `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&size=214`,
+                        }}
+                        alt="Alternate Text"
+                        size={size}
+                    />
+                )}
             </Pressable>
-            {/* <Button>Actionsheet</Button> */}
 
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
@@ -43,7 +58,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({ stylingProps, imageProp
                 </Actionsheet.Content>
             </Actionsheet>
 
-            {imageState && <Text>{imageState}</Text>}
+            {imageProp && <Text>{imageProp}</Text>}
             <Text>Hello World</Text>
         </Box>
     );

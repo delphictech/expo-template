@@ -8,11 +8,11 @@ const index_2 = require("../index");
  * @resources
  * https://h-malik144.medium.com/jest-testing-for-firebase-functions-a51ce1094d38
  * https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional
-*/
+ */
 /**
  * Configure the testing environment
  */
-const testEnv = functions({ projectId: process.env.PROJECT_NAME }, 'service-account.json');
+const testEnv = functions({ projectId: process.env.PROJECT_NAME }, 'serviceAccountKey.json');
 /**
  * Function will create the public data input to the testing functions
  *
@@ -79,7 +79,7 @@ describe('Firebase functions testing', () => {
     });
     /**
      * Test 2: undefined properties
-    */
+     */
     privateUserData = {
         id: 'testing-user',
         firstName: 'Snoopy',

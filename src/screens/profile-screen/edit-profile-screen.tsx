@@ -1,31 +1,67 @@
-import React from 'react';
-import { Button, Text } from 'native-base';
+import React, { useState, useEffect } from 'react';
+import { Button, Text, Box } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
+import { useGetUserImageQuery } from 'src/services/user-api';
+import { useAppSelector } from 'src/ducks/useful-hooks';
+import { ImageOBJ } from 'src/types/profile-image';
 
 export interface EditProfileProps {}
 
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
+    const user = useAppSelector((state) => state.user);
+    const [imageState, setImageState] = useState<string>();
+    const [queryState, setQueryState] = useState<ImageOBJ>({
+        userID: user.id,
+        imageUri: undefined,
+    });
+
+    // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
+    const { data, isFetching, isLoading, isError, error, refetch } =
+        useGetUserImageQuery(queryState);
+
+    // For more items that be destructured  https://react-hook-form.com/api/useform
     const {
         control,
         handleSubmit,
         formState: { errors },
-        reset,
     } = useForm({
         resolver: yupResolver(editProfileSchema),
     });
 
+    useEffect(() => {
+        refetch();
+    }, [data]);
+
+    useEffect(() => {
+        const input = {
+            userID: user.id,
+            imageUri: imageState,
+        };
+
+        setQueryState(input);
+    }, [imageState]);
+
+    // used for testing form validation
     const handleSubmitF = (e: any) => {
-        console.log(e);
-        console.log('console from submit');
+        console.warn(e);
     };
 
+    if (isLoading || isFetching) {
+        return <Text>Loading</Text>;
+    }
+
+    if (isError) {
+        return <Text>{error}</Text>;
+    }
+
     return (
-        <>
-            <ImageUploader imageProp="https://wallpaperaccess.com/full/317501.jpg" />
+        <Box>
+            <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
+
             <Text>dwawdwada</Text>
             <FormInput
                 key="name"
@@ -58,7 +94,8 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
+
             <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
-        </>
+        </Box>
     );
 };
