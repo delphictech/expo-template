@@ -1,7 +1,8 @@
 import { getUsers, fetchUserImage, updatePrivateUserData } from 'src/firebase/user-api';
-import { PublicUserData } from 'src/types';
+import { PrivateUserData, PublicUserData } from 'src/types';
 import { ImageOBJ } from 'src/types/profile-image';
 import { ConfigApi } from './config-api';
+import { resetEmail } from 'src/firebase/auth-api';
 
 /**
  * Users api for fetching data related to users
@@ -52,13 +53,14 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-        updateUserField: build.mutation<string, string>({
-            async queryFn(playerFields) {
+        updateUserField: build.mutation<PrivateUserData, PrivateUserData>({
+            async queryFn(userFields) {
                 // const newUser = initializeUser(user);
                 try {
                     // get existing user doc
-                    await updatePrivateUserData(playerFields);
-                    return { data: playerFields };
+                    await updatePrivateUserData(userFields);
+
+                    return { data: userFields };
                 } catch (e: any) {
                     console.log(`Error with updating player: ${e}`);
                     console.log(e);

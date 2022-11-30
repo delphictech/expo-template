@@ -87,6 +87,8 @@ const userSlice = createSlice({
          * @return {*}
          */
         builder.addMatcher(AuthApi.endpoints.deleteAccount.matchFulfilled, () => initialUser);
+
+        // builder.addMatcher()
     },
 });
 

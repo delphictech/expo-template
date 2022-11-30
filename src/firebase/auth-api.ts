@@ -8,6 +8,8 @@ import {
     sendPasswordResetEmail,
     sendEmailVerification,
     UserCredential,
+    updateEmail,
+    User,
 } from 'firebase/auth';
 import { ref, uploadBytesResumable } from 'firebase/storage';
 import { auth, storage } from './config';
@@ -127,6 +129,26 @@ export async function resetPassword(email: string): Promise<void> {
     return firebaseHandler<void>(sendPasswordResetEmail(auth, email));
 }
 
+/**
+ *Changes the email in the 'authentication' section in firebase
+ *
+ * @export
+ * @param {User} user
+ * @param {string} newEmail
+ * @return {*}
+ */
+export async function resetEmail(user: User, newEmail: string) {
+    return firebaseHandler<void>(updateEmail(user, newEmail));
+}
+
+/**
+ * Adds default image to firebase storage
+ *
+ * @export
+ * @param {string} userID
+ * @param {string} [firstName]
+ * @param {string} [lastName]
+ */
 export async function addDefaultPicture(userID: string, firstName?: string, lastName?: string) {
     const file =
         firstName && lastName

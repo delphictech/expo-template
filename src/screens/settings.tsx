@@ -48,8 +48,24 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     }, [imageState]);
 
     // used for testing form validation
-    const handleSubmitF = (e: any) => {
-        console.warn(e);
+    const handleSubmitF = async (e: any) => {
+        console.log(e);
+        // triggerUpdateUser()
+        const userObject = {
+            id: user.id,
+            isAnonymous: user.isAnonymous,
+            emailVerified: user.emailVerified,
+            loggedIn: user.loggedIn,
+        };
+
+        for (const items in e) {
+            if (e[items] !== '') {
+                userObject[items] = e[items];
+            }
+        }
+
+        // await triggerUpdateUser(userObject);
+        console.log(user);
     };
 
     if (isLoading || isFetching) {
@@ -64,14 +80,24 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         <Box px={5}>
             <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
             <FormInput
-                key="name"
-                name="name"
+                key="firstName"
+                name="firstName"
                 control={control}
-                isInvalid={'name' in errors}
-                label="Enter your name"
-                placeholder="name"
+                isInvalid={'firstName' in errors}
+                label="Enter your first name"
+                placeholder="first name"
                 defaultValue=""
-                errorMessage={errors?.name?.message}
+                errorMessage={errors?.firstName?.message}
+            />
+            <FormInput
+                key="lastName"
+                name="lastName"
+                control={control}
+                isInvalid={'lastName' in errors}
+                label="Enter your last name"
+                placeholder="last name"
+                defaultValue=""
+                errorMessage={errors?.lastName?.message}
             />
             <FormInput
                 key="email"
@@ -83,20 +109,11 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                 defaultValue=""
                 errorMessage={errors?.email?.message}
             />
-            <FormInput
-                key="password"
-                name="password"
-                control={control}
-                isInvalid={'password' in errors}
-                password
-                label="Enter your password"
-                placeholder="Password"
-                defaultValue=""
-                errorMessage={errors?.password?.message}
-            />
+          
             <Button my={5} onPress={handleSubmit(handleSubmitF)}>
                 Save Changes
             </Button>
+            <Button my={3}>Change password</Button>
         </Box>
     );
 };
