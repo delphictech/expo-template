@@ -59,9 +59,8 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     }
 
     return (
-        <Box>
+        <Box px={5}>
             <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
-            <Text>dwawdwada</Text>
             <FormInput
                 key="name"
                 name="name"
@@ -93,8 +92,9 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
-
-            <Button onPress={handleSubmit(handleSubmitF)}>Save Changes</Button>
+            <Button my={5} onPress={handleSubmit(handleSubmitF)}>
+                Save Changes
+            </Button>
         </Box>
     );
 };
