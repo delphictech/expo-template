@@ -1,7 +1,6 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ProfileScreen } from 'src/screens/profile-screen/profile-screen';
-import { EditProfileScreen } from 'src/screens/profile-screen/edit-profile-screen';
+import { ProfileScreen, EditProfileScreen } from 'src/screens';
 
 export type ProfileStackParams = {
     'Profile-Screen': undefined;

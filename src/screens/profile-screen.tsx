@@ -6,7 +6,7 @@ import { ProfileStackParams } from 'src/navigation/profile-stack';
 
 type ProfileScreenProps = StackNavigationProp<ProfileStackParams, 'Profile-Screen'>;
 
-export const ProfileScreen = () => {
+export const ProfileScreen: React.FC<{}> = () => {
     const navigation = useNavigation<ProfileScreenProps>();
     return (
         <Box>
