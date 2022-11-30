@@ -10,15 +10,15 @@ import {
     HStack,
     KeyboardAvoidingView,
 } from 'native-base';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { emailSchema } from 'src/utils/schemas';
-import { FormInput } from 'src/components/user-input';
+import { FormInput } from 'src/components/form-input';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AuthStackParams } from 'src/navigation/auth-stack';
-import { AlertToast } from 'src/components/feedback/alert-toast';
+import { AlertToast } from 'src/components/alert-toast';
 import {
     useLazyFetchSignInMethodsQuery,
     useLazySignOutQuery,
@@ -34,6 +34,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
     const navigation = useNavigation<WelcomeScreenParams>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const toast = useToast();
+    const iconColor = useTheme().colors.text;
 
     // form schema hooks
     const {
@@ -99,7 +100,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
                 <VStack space={3} alignItems="center" w="100%">
                     {!isAnonymous ? (
                         <>
-                            <LogoIcon size={200} color="plainText.800" />
+                            <LogoIcon size={200} color={iconColor} />
                             <Heading textAlign="center" mb={3} color="plainText.900">
                                 Welcome to the Maet template!
                             </Heading>
@@ -112,7 +113,7 @@ export const WelcomeScreen: React.FC<{}> = () => {
                             flex={1}
                             pt={5}>
                             <Box pr={3}>
-                                <LogoIcon size={50} color="plainText.800" />
+                                <LogoIcon size={50} color={iconColor} />
                             </Box>
                             <Heading
                                 flex={1}

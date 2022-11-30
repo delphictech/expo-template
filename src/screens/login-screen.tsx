@@ -15,9 +15,9 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginSchema, signupSchema } from 'src/utils/schemas';
-import { FormInput } from 'src/components/user-input';
+import { FormInput } from 'src/components/form-input';
 import { AuthStackParams } from 'src/navigation/auth-stack';
-import { AlertToast } from 'src/components/feedback/alert-toast';
+import { AlertToast } from 'src/components/alert-toast';
 import { MaterialIcons } from '@expo/vector-icons';
 import {
     useLazySendPasswordResetQuery,

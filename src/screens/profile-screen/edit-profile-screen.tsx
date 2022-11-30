@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Text, Box } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
-import { FormInput } from 'src/components/user-input';
+import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
@@ -61,7 +61,6 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     return (
         <Box>
             <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
-
             <Text>dwawdwada</Text>
             <FormInput
                 key="name"

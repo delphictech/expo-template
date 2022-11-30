@@ -1,16 +1,15 @@
 import * as React from 'react';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Color, Path } from 'react-native-svg';
 import { Icon } from 'native-base';
 import { InterfaceIconProps } from 'native-base/lib/typescript/components/primitives/Icon/types';
-import { useTheme } from '@react-navigation/native';
 
-export const LogoIcon: React.FC<InterfaceIconProps> = (props: InterfaceIconProps) => {
-    /*
-        Created custom maet icon:
-        https://docs.nativebase.io/icon
-    */
-    const color = useTheme().colors.text;
-
+export /**
+ * Main logo icon for the app
+ * Created custom icon: https://docs.nativebase.io/icon
+ * @param {InterfaceIconProps} props
+ * @return {*}
+ */
+const LogoIcon: React.FC<{ color?: Color } & InterfaceIconProps> = ({ color, ...props }) => {
     return (
         <Icon size={20} viewBox="0 0 1500.000000 1500.000000" {...props}>
             <Svg color={color}>
@@ -25,4 +24,8 @@ export const LogoIcon: React.FC<InterfaceIconProps> = (props: InterfaceIconProps
             </Svg>
         </Icon>
     );
+};
+
+LogoIcon.defaultProps = {
+    color: 'purple',
 };

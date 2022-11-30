@@ -1,7 +1,7 @@
 import { Story } from '@storybook/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { FormInput, FormInputParams } from './form-input';
+import { FormInput, FormInputParams } from '.';
 
 export default {
     title: 'Form input',

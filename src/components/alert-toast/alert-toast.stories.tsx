@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import React from 'react';
-import { AlertToast, AlertToastParams } from 'src/components/feedback/alert-toast';
+import { AlertToast, AlertToastParams } from 'src/components/alert-toast';
 
 export default {
     title: 'Alert Toast',
