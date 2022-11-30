@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Box, Image, Actionsheet, Pressable, useDisclose, Avatar } from 'native-base';
+import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
 import { PrivateUserData } from 'src/types';
 
@@ -25,16 +25,18 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
     return (
         <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
-                <Avatar
+                <Image
                     borderRadius={stylingProps?.bRadius}
                     source={{
                         uri:
                             imageProp ||
                             `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&size=214`,
                     }}
+                    alt="Profile Image"
                     size={size}
                 />
             </Pressable>
+
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
                     <Actionsheet.Item onPress={() => takePhoto(setImageState)}>
@@ -46,7 +48,9 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                     <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>
                 </Actionsheet.Content>
             </Actionsheet>
+
             {imageProp && <Text>{imageProp}</Text>}
+            <Text>Hello World</Text>
         </Box>
     );
 };
