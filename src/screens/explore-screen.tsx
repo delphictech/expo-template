@@ -52,7 +52,10 @@ export const ExploreScreen: React.FC<{}> = () => {
                 onEndReachedThreshold={0.2}
                 ListFooterComponent={
                     data.length ? (
-                        <Spinner color="background.400" animating={isFetching} />
+                        <Spinner
+                            color="background.400"
+                            animating={isFetching && Boolean(users.length)}
+                        />
                     ) : (
                         <Text
                             pt={3}
