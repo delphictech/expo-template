@@ -13,5 +13,4 @@ export const Basic: Story<AlertToastParams> = Template.bind({});
 Basic.args = {
     title: 'Primary Alter Toast',
     message: 'Check this out',
-    toExit: () => console.log('hi'),
 };
