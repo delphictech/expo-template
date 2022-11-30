@@ -5,7 +5,7 @@ import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
-import { useGetUserImageQuery } from 'src/services/user-api';
+import { useGetUserImageQuery, useUpdateUserFieldMutation } from 'src/services/user-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
 
@@ -18,6 +18,8 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         userID: user.id,
         imageUri: undefined,
     });
+
+    const [triggerUpdateUser, { data: userData }] = useUpdateUserFieldMutation();
 
     // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
     const { data, isFetching, isLoading, isError, error, refetch } =
