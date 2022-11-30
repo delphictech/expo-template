@@ -15,7 +15,7 @@ import {
 import { privateUserCollection, publicUserCollection } from 'src/firebase/config';
 import { firebaseHandler, firestoreGetHandler } from 'src/firebase/handler';
 import { PrivateUserData, PublicUserData } from 'src/types';
-import { upLoadFile } from 'src/utils/upload-image';
+import { upLoadFile } from 'src/firebase/storage-api';
 
 /**
  * Function will update the user with the input fields, will overwrite if newUser set to True
