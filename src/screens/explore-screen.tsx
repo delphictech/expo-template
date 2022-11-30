@@ -44,7 +44,7 @@ export const ExploreScreen: React.FC<{}> = () => {
                         firstName={item.firstName}
                         lastName={item.lastName}
                         count={item.count}
-                        image={item.image}
+                        image={item.image || undefined}
                     />
                 )}
                 data={users}

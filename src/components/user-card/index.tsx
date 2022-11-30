@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Box, Text } from 'native-base';
+import { Avatar, Box, HStack, Text } from 'native-base';
 import { InterfaceBoxProps } from 'native-base/lib/typescript/components/primitives/Box';
 
 /**
@@ -13,7 +13,7 @@ export interface UserCardParams extends InterfaceBoxProps {
     firstName?: string | null;
     lastName?: string | null;
     count?: number | null;
-    image?: string | null;
+    image?: string;
 }
 
 /**
@@ -36,16 +36,31 @@ const UserCardComp: React.FC<UserCardParams> = ({
     ...boxParams
 }) => {
     return (
-        <Box m={1} flex={1} bgColor="primary.400" {...boxParams}>
-            <Text fontWeight="black" fontSize="lg" p={10}>
-                {firstName}
-            </Text>
-            <Text fontWeight="black" fontSize="lg" p={10}>
-                {lastName}
-            </Text>
-            <Text fontWeight="black" fontSize="lg" p={10}>
-                {count}
-            </Text>
+        <Box
+            m={1}
+            justifyContent="center"
+            alignContent="center"
+            flex={1}
+            bgColor="muted.200"
+            borderRadius={7}
+            {...boxParams}>
+            <HStack p={3} justifyContent="space-between" alignItems="center" flex={1} w="100%">
+                <HStack alignItems="center">
+                    <Avatar
+                        backgroundColor="primary.500"
+                        source={{
+                            uri: image,
+                        }}>
+                        {`${firstName?.at(0)}${lastName?.at(0)}`}
+                    </Avatar>
+                    <Text fontWeight="black" fontSize="lg" px={2}>
+                        {firstName} {lastName}
+                    </Text>
+                </HStack>
+                <Text pr={5} fontWeight="black" fontSize="lg">
+                    Count: {count}
+                </Text>
+            </HStack>
         </Box>
     );
 };
