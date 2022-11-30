@@ -32,10 +32,11 @@ try {
 const getStories = () => {
   return [
     require("../.storybook/button-example/button-example.stories.tsx"),
-    require("../src/components/feedback/alert-toast.stories.tsx"),
+    require("../src/components/alert-toast/alert-toast.stories.tsx"),
+    require("../src/components/form-input/form-input.stories.tsx"),
     require("../src/components/image-uploader/image-uploader.stories.tsx"),
-    require("../src/components/user-input/form-input.stories.tsx"),
-    require("../src/screens/profile-screen/edit-profile-screen.stories.tsx"),
+    require("../src/components/logo-icon/logo-icon.stories.tsx"),
+    require("../src/components/user-card/user-card.stories.tsx"),
   ];
 };
 
