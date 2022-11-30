@@ -1,42 +1,35 @@
 import React from 'react';
-import { Text, Box, Image, Actionsheet, Pressable, useDisclose } from 'native-base';
+import { Text, Box, Actionsheet, Pressable, useDisclose, Avatar } from 'native-base';
 import { takePhoto, pickImage } from 'src/utils/upload-image';
 import { PrivateUserData } from 'src/types';
+import { InterfaceAvatarProps } from 'native-base/lib/typescript/components/composites/Avatar/types';
 
-export interface ImageArgProps {
-    imageProp: string | undefined | null;
+export interface ImageArgProps extends InterfaceAvatarProps {
+    imageProp?: string | null;
     setImageState: React.Dispatch<React.SetStateAction<string | undefined>>;
-    stylingProps?: {
-        bRadius?: number;
-    };
-    size?: 'lg' | 'xl' | '2xl';
-    user: PrivateUserData;
+    user?: PrivateUserData;
 }
 
 export const ImageUploader: React.FC<ImageArgProps> = ({
-    stylingProps,
     imageProp,
-    size,
     setImageState,
     user,
+    ...avatarParams
 }) => {
     const { isOpen, onOpen, onClose } = useDisclose();
 
     return (
         <Box alignItems="center" backgroundColor="blue.700">
             <Pressable mt={10} onPress={onOpen}>
-                <Image
-                    borderRadius={stylingProps?.bRadius}
+                <Avatar
+                    backgroundColor="primary.500"
                     source={{
-                        uri:
-                            imageProp ||
-                            `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&size=214`,
+                        uri: imageProp || undefined,
                     }}
-                    alt="Profile Image"
-                    size={size}
-                />
+                    {...avatarParams}>
+                    {`${user?.firstName?.at(0)}${user?.lastName?.at(0)}`}
+                </Avatar>
             </Pressable>
-
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
                     <Actionsheet.Item onPress={() => takePhoto(setImageState)}>
@@ -48,16 +41,12 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                     <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>
                 </Actionsheet.Content>
             </Actionsheet>
-
             {imageProp && <Text>{imageProp}</Text>}
-            <Text>Hello World</Text>
         </Box>
     );
 };
 
 ImageUploader.defaultProps = {
-    stylingProps: {
-        bRadius: 0,
-    },
-    size: 'xl',
+    imageProp: undefined,
+    user: undefined,
 };
