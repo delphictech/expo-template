@@ -1,13 +1,15 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, GestureResponderEvent } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
-import { HomeScreen } from 'src/screens';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { EditProfileScreen, HomeScreen } from 'src/screens';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
+import { Icon, IconButton } from 'native-base';
+import { StackScreenProps } from '@react-navigation/stack';
 import { AuthStackNavigator } from './auth-stack';
 
 export type HomeStackParams = {
     Home: undefined;
+    Settings: undefined;
     Auth: undefined;
 };
 
@@ -17,9 +19,18 @@ const CloseIcon = (onClose: () => void) => (
     <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
 );
 
-export const HomeStackNavigator: React.FC<{}> = () => {
-    const navigation = useNavigation();
+const SettingsButton = (onPress?: (event: GestureResponderEvent) => void) => (
+    <IconButton
+        alignSelf="flex-end"
+        variant="unstyled"
+        icon={<Icon as={MaterialIcons} name="settings" size="lg" color="primary.700" />}
+        onPress={onPress}
+    />
+);
 
+type HomeStackProps = StackScreenProps<HomeStackParams, 'Home'>;
+
+export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => {
     const checkLogin = () => {
         Alert.alert(
             'Are you sure you want to exit?',
@@ -38,7 +49,19 @@ export const HomeStackNavigator: React.FC<{}> = () => {
 
     return (
         <StackNav.Navigator>
-            <StackNav.Screen name="Home" component={HomeScreen} options={{ headerTitle: 'Home' }} />
+            <StackNav.Screen
+                name="Home"
+                component={HomeScreen}
+                options={{
+                    headerTitle: 'Home',
+                    headerRight: () => SettingsButton(() => navigation.navigate('Settings')),
+                }}
+            />
+            <StackNav.Screen
+                name="Settings"
+                component={EditProfileScreen}
+                options={{ animationTypeForReplace: 'pop' }}
+            />
             <StackNav.Screen
                 name="Auth"
                 component={AuthStackNavigator}
