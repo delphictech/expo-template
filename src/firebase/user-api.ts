@@ -104,8 +104,6 @@ const fetchUserImage = async (
     userID: string,
     imgURI: string | undefined,
 ): Promise<string | null> => {
-    console.log('this is from the fetch user imag function');
-
     // let image: string | Promise<string>;
     if (!imgURI) {
         // const docRef = doc(db, 'public-user-data', userID);
@@ -119,7 +117,7 @@ const fetchUserImage = async (
         }
         return null;
     }
-    console.log('upload function firing');
+
     await upLoadFile(imgURI, userID);
     return imgURI;
 };

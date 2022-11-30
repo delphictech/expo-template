@@ -2,7 +2,6 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ConfigApi } from 'src/services';
-import { ImageApi } from 'src/services/image-api';
 import userReducer from './user-slice';
 
 /**
@@ -24,7 +23,6 @@ const persistConfig = {
 const reducers = combineReducers({
     user: userReducer,
     [ConfigApi.reducerPath]: ConfigApi.reducer,
-    [ImageApi.reducerPath]: ImageApi.reducer,
 });
 
 // set the persisting reducers
@@ -38,9 +36,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        })
-            .concat(ConfigApi.middleware)
-            .concat(ImageApi.middleware),
+        }).concat(ConfigApi.middleware),
 });
 
 // export the redux dispatch and root states

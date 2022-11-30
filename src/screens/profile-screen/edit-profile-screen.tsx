@@ -5,7 +5,7 @@ import { FormInput } from 'src/components/user-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
-import { useGetUserImageQuery } from 'src/services/image-api';
+import { useGetUserImageQuery } from 'src/services/user-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
 
@@ -13,22 +13,26 @@ export interface EditProfileProps {}
 
 export const EditProfileScreen: React.FC<EditProfileProps> = () => {
     const user = useAppSelector((state) => state.user);
-
-    // const timeStampRef = useRef(String(Date.now())).current;
-
     const [imageState, setImageState] = useState<string>();
-    // const [imageDispalyed, setImageDisplayed] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({
         userID: user.id,
         imageUri: undefined,
-        // time: timeStampRef,
     });
 
-    const { data, isFetching, isLoading, isError, error, isSuccess, refetch } =
+    // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
+    const { data, isFetching, isLoading, isError, error, refetch } =
         useGetUserImageQuery(queryState);
 
+    // For more items that be destructured  https://react-hook-form.com/api/useform
+    const {
+        control,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(editProfileSchema),
+    });
+
     useEffect(() => {
-        console.log('data back from RTK', data);
         refetch();
     }, [data]);
 
@@ -37,22 +41,13 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
             userID: user.id,
             imageUri: imageState,
         };
-        console.log('input', input);
+
         setQueryState(input);
     }, [imageState]);
 
-    const {
-        control,
-        handleSubmit,
-        formState: { errors },
-        reset,
-    } = useForm({
-        resolver: yupResolver(editProfileSchema),
-    });
-
+    // used for testing form validation
     const handleSubmitF = (e: any) => {
-        console.log(e);
-        console.log('console from submit');
+        console.warn(e);
     };
 
     if (isLoading || isFetching) {
@@ -65,16 +60,7 @@ export const EditProfileScreen: React.FC<EditProfileProps> = () => {
 
     return (
         <Box>
-            {/* {data && isSuccess && <ImageUploader setImageState={setImageState} imageProp={data} />} */}
             <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
-
-            {/* <Image
-                source={{
-                    uri: data,
-                }}
-                alt="Alternate Text"
-                size="2xl"
-            /> */}
 
             <Text>dwawdwada</Text>
             <FormInput

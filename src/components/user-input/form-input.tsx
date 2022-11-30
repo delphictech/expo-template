@@ -55,7 +55,6 @@ export const FormInput: React.FC<FormInputParams> = ({
     //     : {};
 
     return (
-        // <FormProvider {...method}>
         <FormControl key="testing" isInvalid={isInvalid} {...inputParams}>
             <FormControl.Label color="plainText.500">{label}</FormControl.Label>
             <Controller
@@ -125,7 +124,6 @@ export const FormInput: React.FC<FormInputParams> = ({
                 </FormControl.ErrorMessage>
             ) : null}
         </FormControl>
-        // </FormProvider>
     );
 };
 
