@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Text, Box } from 'native-base';
+import { Button, Text, Box, FormControl, KeyboardAvoidingView } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
@@ -11,6 +11,7 @@ import { ImageOBJ } from 'src/types/profile-image';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SettingStackParams } from 'src/navigation/settings-stack';
+import { Keyboard, Platform } from 'react-native';
 
 export interface EditProfileProps {}
 
@@ -57,7 +58,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // used for testing form validation
     const handleSubmitF = async (e: any) => {
         console.log(e);
-        // triggerUpdateUser()
+
         const userObject = {
             id: user.id,
             isAnonymous: user.isAnonymous,
@@ -66,13 +67,19 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         };
 
         for (const items in e) {
-            if (e[items] !== '') {
+            if (e[items] !== '' || e[items] == null) {
                 userObject[items] = e[items];
             }
         }
 
+        Object.keys(e).forEach((items) => {
+            if (e[items] !== '' || e[items] == null) {
+                userObject[items] = e[items];
+            }
+        });
+
         // await triggerUpdateUser(userObject);
-        console.log(user);
+        // console.log(user);
     };
 
     if (isLoading || isFetching) {
@@ -84,45 +91,60 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     }
 
     return (
-        <Box px={5}>
-            <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
-            <FormInput
-                key="firstName"
-                name="firstName"
-                control={control}
-                isInvalid={'firstName' in errors}
-                label="Enter your first name"
-                placeholder="first name"
-                defaultValue=""
-                errorMessage={errors?.firstName?.message}
-            />
-            <FormInput
-                key="lastName"
-                name="lastName"
-                control={control}
-                isInvalid={'lastName' in errors}
-                label="Enter your last name"
-                placeholder="last name"
-                defaultValue=""
-                errorMessage={errors?.lastName?.message}
-            />
-            <FormInput
-                key="email"
-                name="email"
-                control={control}
-                isInvalid={'email' in errors}
-                label="Enter your email"
-                placeholder="email"
-                defaultValue=""
-                errorMessage={errors?.email?.message}
-            />
+        <KeyboardAvoidingView
+            h={{
+                lg: 'auto',
+            }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            onTouchStart={() => Keyboard.dismiss()}
+            w="100%">
+            <Box px={5}>
+                <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
+                <FormControl>
+                    <FormInput
+                        key="firstName"
+                        name="firstName"
+                        control={control}
+                        isInvalid={'firstName' in errors}
+                        label="Enter your first name"
+                        placeholder="first name"
+                        defaultValue=""
+                        errorMessage={errors?.firstName?.message}
+                    />
+                    <FormInput
+                        key="lastName"
+                        name="lastName"
+                        control={control}
+                        isInvalid={'lastName' in errors}
+                        label="Enter your last name"
+                        placeholder="last name"
+                        defaultValue=""
+                        errorMessage={errors?.lastName?.message}
+                    />
+                    <FormInput
+                        key="email"
+                        name="email"
+                        control={control}
+                        isInvalid={'email' in errors}
+                        label="Enter your email"
+                        placeholder="email"
+                        defaultValue=""
+                        errorMessage={errors?.email?.message}
+                    />
 
-            <Button my={5} onPress={handleSubmit(handleSubmitF)}>
-                Save Changes
-            </Button>
-            <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
-                Change password
-            </Button>
-        </Box>
+                    <Button
+                        my={5}
+                        onPress={handleSubmit((e) => {
+                            console.log(e);
+                        })}>
+                        {/* <Button my={5} onPress={() => console.log('hello')}> */}
+                        Save Changes
+                    </Button>
+                </FormControl>
+                <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
+                    Change password
+                </Button>
+            </Box>
+        </KeyboardAvoidingView>
     );
 };

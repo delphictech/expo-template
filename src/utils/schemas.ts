@@ -41,17 +41,17 @@ export const editProfileSchema = yup.object().shape({
     firstName: yup.string(),
     lastName: yup.string(),
     email: yup.string().email('Invalid email'),
-    password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
-    newPassword: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
-    confirmPassword: yup.string().test({
-        name: 'confirmPassword',
-        message: 'Passwords must match',
-        test() {
-            const { newPassword, confirmPassword } = this.parent;
-            if (newPassword && confirmPassword !== newPassword) {
-                return false;
-            }
-            return true;
-        },
-    }),
+    // password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
+    // newPassword: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
+    // confirmPassword: yup.string().test({
+    //     name: 'confirmPassword',
+    //     message: 'Passwords must match',
+    //     test() {
+    //         const { newPassword, confirmPassword } = this.parent;
+    //         if (newPassword && confirmPassword !== newPassword) {
+    //             return false;
+    //         }
+    //         return true;
+    //     },
+    // }),
 });

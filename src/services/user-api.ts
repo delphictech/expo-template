@@ -68,6 +68,7 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
+        // new password query
     }),
     overrideExisting: true,
 });

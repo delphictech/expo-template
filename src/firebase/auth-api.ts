@@ -137,8 +137,17 @@ export async function resetPassword(email: string): Promise<void> {
  * @param {string} newEmail
  * @return {*}
  */
-export async function resetEmail(user: User, newEmail: string) {
-    return firebaseHandler<void>(updateEmail(user, newEmail));
+export async function resetEmail(newEmail: string) {
+    if (auth.currentUser) {
+        return firebaseHandler<void>(updateEmail(auth.currentUser, newEmail));
+    }
+    const error: FirebaseError = {
+        name: 'Firebase Error',
+        message: 'User does not exist',
+        code: 'auth/user-not-found',
+        errorCause: 'account',
+    };
+    return error;
 }
 
 /**
