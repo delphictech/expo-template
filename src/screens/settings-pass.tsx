@@ -26,32 +26,32 @@ export const SettingsPassScreen = () => {
                 control={control}
                 isInvalid={'password' in errors}
                 password
-                label="Enter your password"
-                placeholder="Password"
+                label="Enter your old password"
+                placeholder="Old Password"
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
             <FormInput
-                key="password"
-                name="password"
+                key="newPassword"
+                name="newPassword"
                 control={control}
-                isInvalid={'password' in errors}
+                isInvalid={'newPassword' in errors}
                 password
-                label="Enter your password"
-                placeholder="Password"
+                label="Enter your new password"
+                placeholder="New Password"
                 defaultValue=""
-                errorMessage={errors?.password?.message}
+                errorMessage={errors?.newPassword?.message}
             />
             <FormInput
-                key="password"
-                name="password"
+                key="confirmPassword"
+                name="confirmPassword"
                 control={control}
-                isInvalid={'password' in errors}
+                isInvalid={'confirmPassword' in errors}
                 password
-                label="Enter your password"
-                placeholder="Password"
+                label="Confirm new Password"
+                placeholder="New Password"
                 defaultValue=""
-                errorMessage={errors?.password?.message}
+                errorMessage={errors?.confirmPassword?.message}
             />
             <Button my={5} onPress={handleSubmit(handleSubmitF)}>
                 Save Changes
