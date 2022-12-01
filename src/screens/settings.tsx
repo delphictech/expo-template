@@ -8,10 +8,17 @@ import { editProfileSchema } from 'src/utils/schemas';
 import { useGetUserImageQuery, useUpdateUserFieldMutation } from 'src/services/user-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { SettingStackParams } from 'src/navigation/settings-stack';
 
 export interface EditProfileProps {}
 
+type SettingScreenProps = StackNavigationProp<SettingStackParams, 'Setting-Screen'>;
+
 export const SettingsScreen: React.FC<EditProfileProps> = () => {
+    const navigation = useNavigation<SettingScreenProps>();
+
     const user = useAppSelector((state) => state.user);
     const [imageState, setImageState] = useState<string>();
     const [queryState, setQueryState] = useState<ImageOBJ>({
@@ -109,11 +116,13 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                 defaultValue=""
                 errorMessage={errors?.email?.message}
             />
-          
+
             <Button my={5} onPress={handleSubmit(handleSubmitF)}>
                 Save Changes
             </Button>
-            <Button my={3}>Change password</Button>
+            <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
+                Change password
+            </Button>
         </Box>
     );
 };

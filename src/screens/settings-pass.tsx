@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Text } from 'native-base';
+import { Box, Text, Button } from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { editProfileSchema } from 'src/utils/schemas';
 
-export const SettingsPass = () => {
-
-
+export const SettingsPassScreen = () => {
     const {
         control,
         handleSubmit,
@@ -13,6 +13,10 @@ export const SettingsPass = () => {
     } = useForm({
         resolver: yupResolver(editProfileSchema),
     });
+
+    const handleSubmitF = async (e: any) => {
+        console.log(e);
+    };
     return (
         <Box>
             <Text>Setting Pass Screen</Text>
@@ -27,7 +31,7 @@ export const SettingsPass = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
-              <FormInput
+            <FormInput
                 key="password"
                 name="password"
                 control={control}
@@ -38,7 +42,7 @@ export const SettingsPass = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
-              <FormInput
+            <FormInput
                 key="password"
                 name="password"
                 control={control}
@@ -49,6 +53,9 @@ export const SettingsPass = () => {
                 defaultValue=""
                 errorMessage={errors?.password?.message}
             />
+            <Button my={5} onPress={handleSubmit(handleSubmitF)}>
+                Save Changes
+            </Button>
         </Box>
     );
 };

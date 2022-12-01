@@ -1,11 +1,12 @@
 import React from 'react';
 import { Alert, GestureResponderEvent } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SettingsScreen, HomeScreen } from 'src/screens';
+import { HomeScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Icon, IconButton } from 'native-base';
 import { StackScreenProps } from '@react-navigation/stack';
 import { AuthStackNavigator } from './auth-stack';
+import { SettingseStack } from './settings-stack';
 
 export type HomeStackParams = {
     Home: undefined;
@@ -59,7 +60,7 @@ export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => 
             />
             <StackNav.Screen
                 name="Settings"
-                component={SettingsScreen}
+                component={SettingseStack}
                 options={{ animationTypeForReplace: 'pop' }}
             />
             <StackNav.Screen

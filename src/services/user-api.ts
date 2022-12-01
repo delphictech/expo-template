@@ -1,8 +1,8 @@
 import { getUsers, fetchUserImage, updatePrivateUserData } from 'src/firebase/user-api';
 import { PrivateUserData, PublicUserData } from 'src/types';
 import { ImageOBJ } from 'src/types/profile-image';
-import { ConfigApi } from './config-api';
 import { resetEmail } from 'src/firebase/auth-api';
+import { ConfigApi } from './config-api';
 
 /**
  * Users api for fetching data related to users
