@@ -134,7 +134,11 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
             onTouchStart={() => Keyboard.dismiss()}
             w="100%">
             <Box px={5}>
-                <ImageUploader setImageState={setImageState} imageProp={data} user={user} />
+                <ImageUploader
+                    handleImageUri={(uri) => console.log(uri)}
+                    imageProp={data}
+                    user={user}
+                />
                 <FormControl>
                     <FormInput
                         key="firstName"

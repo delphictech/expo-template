@@ -26,7 +26,7 @@ import { uploadUserImage } from 'src/firebase/storage-api';
  * @return {*}  {Promise<void>}
  */
 export async function updatePrivateUserData(
-    userData: PrivateUserData,
+    userData: { id: string } & Partial<PrivateUserData>,
     newUser?: boolean,
 ): Promise<void> {
     const userRef = doc(privateUserCollection, userData.id);
@@ -93,13 +93,12 @@ export async function getUsers(
 }
 
 export /**
- *Will fetch the current user's public user data, and returns their image
+ * Will fetch the current user's public user data, and returns their image
  *
  * @param {string} userID - takes in their id (required)
  * @param {(string | undefined)} imgURI - takes in a new image URI to upload to firebase storage (optional)
  * @return {*}  {(Promise<string | null>)} - returns the image from firestore or the inputed URI after uploading
  */
-
 const fetchUserImage = async (
     userID: string,
     imgURI: string | undefined,
@@ -117,6 +116,6 @@ const fetchUserImage = async (
         return null;
     }
 
-    await uploadUserImage(imgURI, userID);
+    // await uploadUserImage(imgURI, userID);
     return imgURI;
 };

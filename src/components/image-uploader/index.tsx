@@ -7,13 +7,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export interface ImageArgProps extends InterfaceAvatarProps {
     imageProp?: string | null;
-    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>;
+    // setImageState: React.Dispatch<React.SetStateAction<string | undefined>>;
+    handleImageUri: (arg: string | undefined) => null;
     user?: PrivateUserData;
 }
 
 export const ImageUploader: React.FC<ImageArgProps> = ({
     imageProp,
-    setImageState,
+    handleImageUri,
     user,
     ...avatarParams
 }) => {
@@ -47,10 +48,10 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
             </Pressable>
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
-                    <Actionsheet.Item onPress={async () => setImageState(await takePhoto())}>
+                    <Actionsheet.Item onPress={async () => handleImageUri(await takePhoto())}>
                         Take Photo
                     </Actionsheet.Item>
-                    <Actionsheet.Item onPress={async () => setImageState(await pickImage())}>
+                    <Actionsheet.Item onPress={async () => handleImageUri(await pickImage())}>
                         Upload Image
                     </Actionsheet.Item>
                     <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>

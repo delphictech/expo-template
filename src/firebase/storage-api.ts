@@ -1,6 +1,6 @@
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { storage, privateUserCollection } from 'src/firebase/config';
-import { updateDoc, doc } from 'firebase/firestore';
+import { storage } from 'src/firebase/config';
+import { updatePrivateUserData } from 'src/firebase/user-api';
 
 export /**
  * Uploads file to firebase storage
@@ -9,7 +9,6 @@ export /**
  * @param {string} userID
  * @return {*}  {Promise<void>}
  */
-
 const uploadUserImage = async (file: string, userID: string): Promise<void> => {
     if (!file) return;
     const img = await fetch(file);
@@ -17,19 +16,16 @@ const uploadUserImage = async (file: string, userID: string): Promise<void> => {
     const storageRef = ref(storage, `user-profile-img/${userID}`);
     const uploadImage = uploadBytesResumable(storageRef, blobFile);
 
-    const userRef = doc(privateUserCollection, userID);
-
     uploadImage.on(
         'state_changed',
         () => {},
         (err) => console.warn(err),
         () => {
             getDownloadURL(uploadImage.snapshot.ref).then(async (url) => {
-                const data = {
+                await updatePrivateUserData({
+                    id: userID,
                     image: url,
-                };
-
-                await updateDoc(userRef, data);
+                });
             });
         },
     );
