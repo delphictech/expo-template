@@ -61,6 +61,9 @@ FIREBASE_MESSAGING_SENDER_ID=[...]
 FIREBASE_APP_ID=[...]
 FIREBASE_MEASUREMENT_ID=[...]
 ```
+
+Set up your firebase project with firestore, functions, auth, and storage. You will need to upgrade your firebase to the **Blaze** plan and change your firebase storage security rules.
+
 - Run on Web: `yarn web` or `expo start --web`
 - Prebuild: `yarn prebuild` or `expo prebuild -–npm`
     > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.

@@ -51,7 +51,7 @@ const UserCardComp: React.FC<UserCardParams> = ({
                         source={{
                             uri: image,
                         }}>
-                        {`${firstName?.toUpperCase()}${lastName?.toUpperCase()}`}
+                        {`${firstName?.at(0)?.toUpperCase()}${lastName?.at(0)?.toUpperCase()}`}
                     </Avatar>
                     <Text fontWeight="black" fontSize="lg" px={2}>
                         {firstName} {lastName} TESTING

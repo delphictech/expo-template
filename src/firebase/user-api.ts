@@ -106,7 +106,6 @@ const fetchUserImage = async (
 ): Promise<string | null> => {
     // let image: string | Promise<string>;
     if (!imgURI) {
-        // const docRef = doc(db, 'public-user-data', userID);
         const docRef = doc(publicUserCollection, userID);
 
         const docSnap = await getDoc(docRef);

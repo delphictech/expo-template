@@ -29,7 +29,9 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                         uri: imageProp || undefined,
                     }}
                     {...avatarParams}>
-                    {`${user?.firstName?.toUpperCase()}${user?.lastName?.toUpperCase()}`}
+                    {`${user?.firstName?.at(0)?.toUpperCase()}${user?.lastName
+                        ?.at(0)
+                        ?.toUpperCase()}`}
                 </Avatar>
                 <IconButton
                     position="absolute"
@@ -45,10 +47,10 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
             </Pressable>
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
-                    <Actionsheet.Item onPress={() => takePhoto(setImageState)}>
+                    <Actionsheet.Item onPress={async () => setImageState(await takePhoto())}>
                         Take Photo
                     </Actionsheet.Item>
-                    <Actionsheet.Item onPress={() => pickImage(setImageState)}>
+                    <Actionsheet.Item onPress={async () => setImageState(await pickImage())}>
                         Upload Image
                     </Actionsheet.Item>
                     <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>

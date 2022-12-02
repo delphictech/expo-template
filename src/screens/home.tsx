@@ -45,7 +45,9 @@ export const HomeScreen: React.FC<{}> = () => {
                         source={{
                             uri: user.image || undefined,
                         }}>
-                        {`${user.firstName?.toUpperCase()}${user.lastName?.toUpperCase()}`}
+                        {`${user?.firstName?.at(0)?.toUpperCase()}${user?.lastName
+                            ?.at(0)
+                            ?.toUpperCase()}`}
                     </Avatar>
                     <Text fontWeight="bold" color="plainText.800" fontSize="xl">
                         {user.firstName} {user.lastName}

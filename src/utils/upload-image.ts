@@ -1,34 +1,28 @@
-import React from 'react';
 import * as ImagePicker from 'expo-image-picker';
 
 export /**
  * Lauches expo image picker for camera and changes the imageState to the URI
  *
- * @param {(React.Dispatch<React.SetStateAction<string | undefined>>)} setImageState
+ * @return {*}  {(Promise<string | null>)}
  */
-
-const takePhoto = async (
-    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>,
-) => {
+const takePhoto = async (): Promise<string | undefined> => {
     const pickerResult = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
         aspect: [4, 3],
     });
 
     if (!pickerResult.cancelled) {
-        setImageState(pickerResult.uri);
+        return pickerResult.uri;
     }
+    return undefined;
 };
 
 export /**
- * Lauches expo image picker for camera roll and changes the imageState to the URI
+ * Lauches expo image picker for camera roll and returns the image uri or a null value
  *
- * @param {(React.Dispatch<React.SetStateAction<string | undefined>>)} setImageState
+ * @return {*}  {(Promise<string | null>)}
  */
-
-const pickImage = async (
-    setImageState: React.Dispatch<React.SetStateAction<string | undefined>>,
-) => {
+const pickImage = async (): Promise<string | undefined> => {
     const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.All,
         allowsEditing: true,
@@ -37,6 +31,7 @@ const pickImage = async (
     });
 
     if (!result.cancelled) {
-        setImageState(result.uri);
+        return result.uri;
     }
+    return undefined;
 };
