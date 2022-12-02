@@ -71,7 +71,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
 
     useEffect(() => {
         refetch();
-    }, [data]);
+    }, [data, refetch]);
 
     useEffect(() => {
         const input = {

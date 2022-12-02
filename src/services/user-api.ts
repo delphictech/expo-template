@@ -34,6 +34,23 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
+        setUserImage: build.mutation<string | null, ImageOBJ>({
+            async queryFn(obj) {
+                try {
+                    // get existing user doc
+                    if (userFields.email) {
+                        await resetEmail(userFields.email);
+                    }
+                    await updatePrivateUserData(userFields);
+
+                    return { data: userFields };
+                } catch (e: any) {
+                    console.log(`Error with updating player: ${e}`);
+                    console.log(e);
+                    return { error: e };
+                }
+            },
+        }),
         getUserImage: build.query<string | null, ImageOBJ>({
             /**
              * Fetches the usser image either from firestore or uploads new image from state change.
