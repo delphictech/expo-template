@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Text, Box, FormControl, KeyboardAvoidingView } from 'native-base';
+import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
 import { useGetUserImageQuery, useUpdateUserFieldMutation } from 'src/services/user-api';
+import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { SettingStackParams } from 'src/navigation/settings-stack';
 import { Keyboard, Platform } from 'react-native';
+import { AlertToast } from 'src/components/alert-toast';
 
 export interface EditProfileProps {}
 
@@ -28,10 +30,22 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     });
 
     const [triggerUpdateUser, { data: userData }] = useUpdateUserFieldMutation();
+    const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
     // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
     const { data, isFetching, isLoading, isError, error, refetch } =
         useGetUserImageQuery(queryState);
+
+    const toast = useToast();
+
+    const renderPasswordToast = () => (
+        <AlertToast
+            title="Email Sent!"
+            type="success"
+            message={`Password reset instructions sent to ${user.email}.`}
+            toExit={() => toast.close('resetToast')}
+        />
+    );
 
     // For more items that be destructured  https://react-hook-form.com/api/useform
     const {
@@ -75,22 +89,28 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
             loggedIn: user.loggedIn,
         };
 
-        for (const items in e) {
+        // console.log('dirty', dirtyFields.firstName);
+
+        Object.keys(e).forEach((items) => {
             if (e[items] !== '' || e[items] == null) {
                 userObject[items] = e[items];
             }
-        }
-
-        // console.log('dirty', dirtyFields.firstName);
-
-        // Object.keys(e).forEach((items) => {
-        //     if (e[items] !== '' || e[items] == null) {
-        //         userObject[items] = e[items];
-        //     }
-        // });
+        });
 
         await triggerUpdateUser(userObject);
         // console.log(user);
+    };
+
+    const handlePasswordReset = async () => {
+        const { isSuccess } = await triggerPasswordReset(user.email);
+
+        if (isSuccess) {
+            toast.show({
+                placement: 'bottom',
+                render: renderPasswordToast,
+                id: 'resetToast',
+            });
+        }
     };
 
     if (isLoading || isFetching) {
@@ -147,7 +167,10 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         Save Changes
                     </Button>
                 </FormControl>
-                <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
+                {/* <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
+                    Change password
+                </Button> */}
+                <Button my={3} onPress={() => handlePasswordReset()}>
                     Change password
                 </Button>
             </Box>
