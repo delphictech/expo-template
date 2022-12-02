@@ -38,7 +38,24 @@ export const loginSchema = yup.object().shape({
 
 // New schema for editing profile
 export const editProfileSchema = yup.object().shape({
-    name: yup.string().required(),
-    email: yup.string().email('Invalid email').required('Email is required'),
+    firstName: yup.string(),
+    lastName: yup.string(),
+    email: yup.string().email('Invalid email'),
+});
+
+// Editing Password Schema
+export const editPasswordSchema = yup.object().shape({
     password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
+    newPassword: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
+    confirmPassword: yup.string().test({
+        name: 'confirmPassword',
+        message: 'Passwords must match',
+        test() {
+            const { newPassword, confirmPassword } = this.parent;
+            if (newPassword && confirmPassword !== newPassword) {
+                return false;
+            }
+            return true;
+        },
+    }),
 });
