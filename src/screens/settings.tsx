@@ -9,18 +9,20 @@ import { useGetUserImageQuery, useUpdateUserFieldMutation } from 'src/services/u
 import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { SettingStackParams } from 'src/navigation/settings-stack';
+// Imports for navigation to password screen
+// import { useNavigation } from '@react-navigation/native';
+// import { StackNavigationProp } from '@react-navigation/stack';
+// import { SettingStackParams } from 'src/navigation/settings-stack';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
+import { PrivateUserData } from 'src/types/user';
 
 export interface EditProfileProps {}
 
-type SettingScreenProps = StackNavigationProp<SettingStackParams, 'Setting-Screen'>;
+// type SettingScreenProps = StackNavigationProp<SettingStackParams, 'Setting-Screen'>;
 
 export const SettingsScreen: React.FC<EditProfileProps> = () => {
-    const navigation = useNavigation<SettingScreenProps>();
+    // const navigation = useNavigation<SettingScreenProps>();
 
     const user = useAppSelector((state) => state.user);
     const [imageState, setImageState] = useState<string>();
@@ -29,7 +31,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         imageUri: undefined,
     });
 
-    const [triggerUpdateUser, { data: userData }] = useUpdateUserFieldMutation();
+    const [triggerUpdateUser] = useUpdateUserFieldMutation();
     const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
     // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
@@ -54,6 +56,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         formState: { errors },
     } = useForm({
         resolver: yupResolver(editProfileSchema),
+        // Need these default values for dirty fields
         // defaultValues: {
         //     firstName: '',
         //     lastName: '',
@@ -61,6 +64,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         // },
     });
 
+    // Setting up dirty fields
     // const { dirtyFields } = useFormState({
     //     control,
     // });
@@ -82,7 +86,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     const handleSubmitF = async (e: any) => {
         console.log(e);
 
-        const userObject = {
+        const userObject: PrivateUserData = {
             id: user.id,
             isAnonymous: user.isAnonymous,
             emailVerified: user.emailVerified,
@@ -97,8 +101,8 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
             }
         });
 
+        console.log(userObject);
         await triggerUpdateUser(userObject);
-        // console.log(user);
     };
 
     const handlePasswordReset = async () => {
@@ -170,7 +174,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                 {/* <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
                     Change password
                 </Button> */}
-                <Button my={3} onPress={() => handlePasswordReset()}>
+                <Button isLoading={sendingEmail} my={3} onPress={() => handlePasswordReset()}>
                     Change password
                 </Button>
             </Box>
