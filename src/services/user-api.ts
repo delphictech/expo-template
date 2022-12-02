@@ -58,6 +58,9 @@ export const UserApi = ConfigApi.injectEndpoints({
                 // const newUser = initializeUser(user);
                 try {
                     // get existing user doc
+                    if (userFields.email) {
+                        await resetEmail(userFields.email);
+                    }
                     await updatePrivateUserData(userFields);
 
                     return { data: userFields };

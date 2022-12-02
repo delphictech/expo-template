@@ -3,7 +3,7 @@ import { Box, Text, Button, KeyboardAvoidingView } from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { editProfileSchema } from 'src/utils/schemas';
+import { editPasswordSchema } from 'src/utils/schemas';
 import { Keyboard, Platform } from 'react-native';
 
 export const SettingsPassScreen = () => {
@@ -12,7 +12,7 @@ export const SettingsPassScreen = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(editProfileSchema),
+        resolver: yupResolver(editPasswordSchema),
     });
 
     const handleSubmitF = async (e: any) => {

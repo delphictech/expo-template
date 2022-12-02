@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Text, Box, FormControl, KeyboardAvoidingView } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
-import { useForm } from 'react-hook-form';
+import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
 import { useGetUserImageQuery, useUpdateUserFieldMutation } from 'src/services/user-api';
@@ -40,6 +40,15 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         formState: { errors },
     } = useForm({
         resolver: yupResolver(editProfileSchema),
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+        },
+    });
+
+    const { dirtyFields } = useFormState({
+        control,
     });
 
     useEffect(() => {
@@ -59,24 +68,26 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     const handleSubmitF = async (e: any) => {
         console.log(e);
 
-        const userObject = {
-            id: user.id,
-            isAnonymous: user.isAnonymous,
-            emailVerified: user.emailVerified,
-            loggedIn: user.loggedIn,
-        };
+        // const userObject = {
+        //     id: user.id,
+        //     isAnonymous: user.isAnonymous,
+        //     emailVerified: user.emailVerified,
+        //     loggedIn: user.loggedIn,
+        // };
 
-        for (const items in e) {
-            if (e[items] !== '' || e[items] == null) {
-                userObject[items] = e[items];
-            }
-        }
+        // for (const items in e) {
+        //     if (e[items] !== '' || e[items] == null) {
+        //         userObject[items] = e[items];
+        //     }
+        // }
 
-        Object.keys(e).forEach((items) => {
-            if (e[items] !== '' || e[items] == null) {
-                userObject[items] = e[items];
-            }
-        });
+        console.log('dirty', dirtyFields.firstName);
+
+        // Object.keys(e).forEach((items) => {
+        //     if (e[items] !== '' || e[items] == null) {
+        //         userObject[items] = e[items];
+        //     }
+        // });
 
         // await triggerUpdateUser(userObject);
         // console.log(user);
@@ -108,7 +119,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         isInvalid={'firstName' in errors}
                         label="Enter your first name"
                         placeholder="first name"
-                        defaultValue=""
+                        // defaultValue=""
                         errorMessage={errors?.firstName?.message}
                     />
                     <FormInput
@@ -118,7 +129,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         isInvalid={'lastName' in errors}
                         label="Enter your last name"
                         placeholder="last name"
-                        defaultValue=""
+                        // defaultValue=""
                         errorMessage={errors?.lastName?.message}
                     />
                     <FormInput
@@ -128,16 +139,11 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         isInvalid={'email' in errors}
                         label="Enter your email"
                         placeholder="email"
-                        defaultValue=""
+                        // defaultValue=""
                         errorMessage={errors?.email?.message}
                     />
 
-                    <Button
-                        my={5}
-                        onPress={handleSubmit((e) => {
-                            console.log(e);
-                        })}>
-                        {/* <Button my={5} onPress={() => console.log('hello')}> */}
+                    <Button my={5} onPress={handleSubmit(handleSubmitF)}>
                         Save Changes
                     </Button>
                 </FormControl>
