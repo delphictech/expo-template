@@ -3,7 +3,13 @@ Contains storybook component testing.
 
 ## ✏️ Notes
 Storybook a great tool for testing components outside of an application. It allows you to make components seperate from the app and configure the props/functions to emulate the app.
-This can save time on setup and makes being able to work on frontend components much easier to implement into the main app.
+This can save time on setup and makes being able to work on frontend components much easier to implement into the main app. Down below are a few images showing off storybook and its UI.
+<div>
+
+<img src='https://user-images.githubusercontent.com/95386742/205463718-cada1a35-84c1-45ae-8eeb-108648c98628.jpg' width="200" height="400" />
+
+<img  src='https://user-images.githubusercontent.com/95386742/205463798-17740ed7-5095-47bb-8941-84e06e002750.png' width="400" height="400" />
+</div>
 
 ## 🔧 Usage
 1. Clone Repo 
