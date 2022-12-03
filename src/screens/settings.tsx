@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
-import { useSetUserImageMutation, useUpdateUserFieldMutation } from 'src/services/user-api';
+import { useSetUserImageMutation, useUpdateUserFieldsMutation } from 'src/services/user-api';
 import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { Keyboard, Platform } from 'react-native';
@@ -19,8 +19,8 @@ export interface EditProfileProps {}
 export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // const navigation = useNavigation<SettingScreenProps>();
 
-    const user = useAppSelector((state) => state.user);
-    const [triggerUpdateUser] = useUpdateUserFieldMutation();
+    const initialUserData = useAppSelector((state) => state.user);
+    const [updateUser, { data: user = initialUserData }] = useUpdateUserFieldsMutation();
     const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
     // get the mutation for handling the user image
@@ -66,27 +66,27 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // }, [data, refetch]);
 
     // used for testing form validation
-    const handleSubmitF = async (e: any) => {
-        console.log(e);
+    // const handleSubmitF = async (e: any) => {
+    //     console.log(e);
 
-        const userObject: PrivateUserData = {
-            id: user.id,
-            isAnonymous: user.isAnonymous,
-            emailVerified: user.emailVerified,
-            loggedIn: user.loggedIn,
-        };
+    //     const userObject: PrivateUserData = {
+    //         id: user.id,
+    //         isAnonymous: user.isAnonymous,
+    //         emailVerified: user.emailVerified,
+    //         loggedIn: user.loggedIn,
+    //     };
 
-        // console.log('dirty', dirtyFields.firstName);
+    //     // console.log('dirty', dirtyFields.firstName);
 
-        // Object.keys(e).forEach((items) => {
-        //     if (e[items] !== '' || e[items] == null) {
-        //         userObject[items] = e[items];
-        //     }
-        // });
+    //     // Object.keys(e).forEach((items) => {
+    //     //     if (e[items] !== '' || e[items] == null) {
+    //     //         userObject[items] = e[items];
+    //     //     }
+    //     // });
 
-        console.log(userObject);
-        await triggerUpdateUser(userObject);
-    };
+    //     console.log(userObject);
+    //     await triggerUpdateUser(userObject);
+    // };
 
     const handlePasswordReset = async () => {
         const { isSuccess } = await triggerPasswordReset(user.email);
@@ -132,7 +132,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         isInvalid={'firstName' in errors}
                         label="Enter your first name"
                         placeholder="First Name"
-                        defaultValue=""
+                        defaultValue={user.firstName ? user.firstName : ''}
                         errorMessage={errors?.firstName?.message}
                     />
                     <FormInput
@@ -142,7 +142,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         isInvalid={'lastName' in errors}
                         label="Enter your last name"
                         placeholder="Last Name"
-                        defaultValue=""
+                        defaultValue={user.lastName ? user.lastName : ''}
                         errorMessage={errors?.lastName?.message}
                     />
                     <FormInput
@@ -152,12 +152,12 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         isInvalid={'email' in errors}
                         label="Enter your email"
                         placeholder="Email"
-                        defaultValue=""
+                        defaultValue={user.email ? user.email : ''}
                         errorMessage={errors?.email?.message}
                     />
-                    <Button my={5} onPress={handleSubmit(handleSubmitF)}>
+                    {/* <Button my={5} onPress={handleSubmit(handleSubmitF)}>
                         Save Changes
-                    </Button>
+                    </Button> */}
                 </FormControl>
                 {/* <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
                     Change password

@@ -1,6 +1,5 @@
-import { getUsers, updatePrivateUserData } from 'src/firebase/user-api';
+import { getPrivateUserData, getUsers, updatePrivateUserData } from 'src/firebase/user-api';
 import { PrivateUserData, PublicUserData } from 'src/types';
-import { resetEmail } from 'src/firebase/auth-api';
 import { uploadUserImage } from 'src/firebase/storage-api';
 import { ConfigApi } from './config-api';
 
@@ -51,22 +50,18 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-        updateUserField: build.mutation<PrivateUserData, PrivateUserData>({
+        updateUserFields: build.mutation<PrivateUserData, PrivateUserData>({
             /**
-             * Sets the user fields in fireabse
+             * Sets the user fields in firebase, gets the user data to return
              *
              * @param {*} userFields
              * @return {*}
              */
             async queryFn(userFields) {
                 try {
-                    // get existing user doc
-                    if (userFields.email) {
-                        await resetEmail(userFields.email);
-                    }
                     await updatePrivateUserData(userFields);
-
-                    return { data: userFields };
+                    const snapshot = await getPrivateUserData(userFields.id);
+                    return { data: snapshot.data() };
                 } catch (e: any) {
                     console.warn(`Error with updating user fields: ${e}`);
                     return { error: e };
@@ -77,4 +72,4 @@ export const UserApi = ConfigApi.injectEndpoints({
     overrideExisting: true,
 });
 
-export const { useGetUsersQuery, useSetUserImageMutation, useUpdateUserFieldMutation } = UserApi;
+export const { useGetUsersQuery, useSetUserImageMutation, useUpdateUserFieldsMutation } = UserApi;
