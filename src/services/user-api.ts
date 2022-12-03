@@ -1,7 +1,7 @@
-import { getUsers, fetchUserImage, updatePrivateUserData } from 'src/firebase/user-api';
+import { getUsers, updatePrivateUserData } from 'src/firebase/user-api';
 import { PrivateUserData, PublicUserData } from 'src/types';
-import { ImageOBJ } from 'src/types/profile-image';
 import { resetEmail } from 'src/firebase/auth-api';
+import { uploadUserImage } from 'src/firebase/storage-api';
 import { ConfigApi } from './config-api';
 
 /**
@@ -34,45 +34,31 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-        setUserImage: build.mutation<string | null, ImageOBJ>({
-            async queryFn(obj) {
-                try {
-                    // get existing user doc
-                    if (userFields.email) {
-                        await resetEmail(userFields.email);
-                    }
-                    await updatePrivateUserData(userFields);
-
-                    return { data: userFields };
-                } catch (e: any) {
-                    console.log(`Error with updating player: ${e}`);
-                    console.log(e);
-                    return { error: e };
-                }
-            },
-        }),
-        getUserImage: build.query<string | null, ImageOBJ>({
+        setUserImage: build.mutation<string, string>({
             /**
-             * Fetches the usser image either from firestore or uploads new image from state change.
+             * Sets the user image in firestore.
              *
-             * @param {*} obj - takes in an object with with userID(required) and iamgeUri(optional --upload only)
-             * @return {*} - returns a string or null
+             * @param {*} uri
+             * @return {*}
              */
-            async queryFn(obj) {
+            async queryFn(uri) {
                 try {
-                    const image = await fetchUserImage(obj.userID, obj.imageUri);
-                    // set into firebase object
-                    console.warn('image data being sent back', image);
-                    return { data: image };
+                    await uploadUserImage(uri);
+                    return { data: uri };
                 } catch (e: any) {
-                    console.warn(`Error with fetching users`);
+                    console.warn(`Error with updating user image: ${e}`);
                     return { error: e };
                 }
             },
         }),
         updateUserField: build.mutation<PrivateUserData, PrivateUserData>({
+            /**
+             * Sets the user fields in fireabse
+             *
+             * @param {*} userFields
+             * @return {*}
+             */
             async queryFn(userFields) {
-                // const newUser = initializeUser(user);
                 try {
                     // get existing user doc
                     if (userFields.email) {
@@ -82,15 +68,13 @@ export const UserApi = ConfigApi.injectEndpoints({
 
                     return { data: userFields };
                 } catch (e: any) {
-                    console.log(`Error with updating player: ${e}`);
-                    console.log(e);
+                    console.warn(`Error with updating user fields: ${e}`);
                     return { error: e };
                 }
             },
         }),
-        // new password query
     }),
     overrideExisting: true,
 });
 
-export const { useGetUsersQuery, useGetUserImageQuery, useUpdateUserFieldMutation } = UserApi;
+export const { useGetUsersQuery, useSetUserImageMutation, useUpdateUserFieldMutation } = UserApi;

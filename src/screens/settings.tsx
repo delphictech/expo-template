@@ -5,7 +5,7 @@ import { FormInput } from 'src/components/form-input';
 import { useForm, useFormState } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
-import { useGetUserImageQuery, useUpdateUserFieldMutation } from 'src/services/user-api';
+import { useSetUserImageMutation, useUpdateUserFieldMutation } from 'src/services/user-api';
 import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { ImageOBJ } from 'src/types/profile-image';
@@ -34,9 +34,12 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     const [triggerUpdateUser] = useUpdateUserFieldMutation();
     const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
+    // get the mutation for handling the user image
+    const [setUserImage, { data: uri }] = useSetUserImageMutation();
+
     // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
-    const { data, isFetching, isLoading, isError, error, refetch } =
-        useGetUserImageQuery(queryState);
+    // const { data, isFetching, isLoading, isError, error, refetch } =
+    //     useGetUserImageQuery(queryState);
 
     const toast = useToast();
 
@@ -69,9 +72,9 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     //     control,
     // });
 
-    useEffect(() => {
-        refetch();
-    }, [data, refetch]);
+    // useEffect(() => {
+    //     refetch();
+    // }, [data, refetch]);
 
     useEffect(() => {
         const input = {
@@ -95,11 +98,11 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
 
         // console.log('dirty', dirtyFields.firstName);
 
-        Object.keys(e).forEach((items) => {
-            if (e[items] !== '' || e[items] == null) {
-                userObject[items] = e[items];
-            }
-        });
+        // Object.keys(e).forEach((items) => {
+        //     if (e[items] !== '' || e[items] == null) {
+        //         userObject[items] = e[items];
+        //     }
+        // });
 
         console.log(userObject);
         await triggerUpdateUser(userObject);
@@ -117,13 +120,13 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         }
     };
 
-    if (isLoading || isFetching) {
-        return <Text>Loading</Text>;
-    }
+    // if (isLoading || isFetching) {
+    //     return <Text>Loading</Text>;
+    // }
 
-    if (isError) {
-        return <Text>{error}</Text>;
-    }
+    // if (isError) {
+    //     return <Text>{error}</Text>;
+    // }
 
     return (
         <KeyboardAvoidingView
@@ -135,8 +138,10 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
             w="100%">
             <Box px={5}>
                 <ImageUploader
-                    handleImageUri={(uri) => console.log(uri)}
-                    imageProp={data}
+                    handleImageUri={(imageUri) => {
+                        if (imageUri) setUserImage(imageUri);
+                    }}
+                    uri={uri}
                     user={user}
                 />
                 <FormControl>
@@ -146,7 +151,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         control={control}
                         isInvalid={'firstName' in errors}
                         label="Enter your first name"
-                        placeholder="first name"
+                        placeholder="First Name"
                         defaultValue=""
                         errorMessage={errors?.firstName?.message}
                     />
@@ -156,7 +161,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         control={control}
                         isInvalid={'lastName' in errors}
                         label="Enter your last name"
-                        placeholder="last name"
+                        placeholder="Last Name"
                         defaultValue=""
                         errorMessage={errors?.lastName?.message}
                     />
@@ -166,11 +171,10 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         control={control}
                         isInvalid={'email' in errors}
                         label="Enter your email"
-                        placeholder="email"
+                        placeholder="Email"
                         defaultValue=""
                         errorMessage={errors?.email?.message}
                     />
-
                     <Button my={5} onPress={handleSubmit(handleSubmitF)}>
                         Save Changes
                     </Button>

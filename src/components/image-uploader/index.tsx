@@ -6,14 +6,14 @@ import { InterfaceAvatarProps } from 'native-base/lib/typescript/components/comp
 import { MaterialIcons } from '@expo/vector-icons';
 
 export interface ImageArgProps extends InterfaceAvatarProps {
-    imageProp?: string | null;
+    uri?: string | null;
     // setImageState: React.Dispatch<React.SetStateAction<string | undefined>>;
-    handleImageUri: (arg: string | undefined) => null;
+    handleImageUri: (uri: string | undefined) => void;
     user?: PrivateUserData;
 }
 
 export const ImageUploader: React.FC<ImageArgProps> = ({
-    imageProp,
+    uri,
     handleImageUri,
     user,
     ...avatarParams
@@ -27,7 +27,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                     backgroundColor="primary.500"
                     size="xl"
                     source={{
-                        uri: imageProp || undefined,
+                        uri: uri || undefined,
                     }}
                     {...avatarParams}>
                     {`${user?.firstName?.at(0)?.toUpperCase()}${user?.lastName
@@ -62,6 +62,6 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
 };
 
 ImageUploader.defaultProps = {
-    imageProp: undefined,
+    uri: undefined,
     user: undefined,
 };
