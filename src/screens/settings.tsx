@@ -10,7 +10,6 @@ import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
-import { PrivateUserData } from 'src/types/user';
 
 export interface EditProfileProps {}
 
@@ -24,7 +23,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
     // get the mutation for handling the user image
-    const [setUserImage, { data: uri }] = useSetUserImageMutation();
+    const [setUserImage] = useSetUserImageMutation();
 
     // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
     // const { data, isFetching, isLoading, isError, error, refetch } =
@@ -121,7 +120,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                     handleImageUri={(imageUri) => {
                         if (imageUri) setUserImage(imageUri);
                     }}
-                    uri={uri}
+                    uri={user.image}
                     user={user}
                 />
                 <FormControl>
