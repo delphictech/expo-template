@@ -8,6 +8,30 @@ This repository contains a template configured with various tools and practices 
 expo init --template maet-expo-template
 ```
 
+## 😃 Welcome to the Maet Template!
+As the template evolves we at Maet enjoy sharing our progress and what technologies we use. The template has many screens and different tools we use, but down below are some notable screens/tools. The template has three key features, the main app, storybook, and deploying/testing firebase functions. This current readme is only talking about the main app experience. If you would like to learn more about our other key template features, you can read the readme in either the .storybook folder or the functions folder for more information on those tools and technologies.
+
+The main app contains several screens. Each with a specific imprtance to our app developement. 
+
+- The login screen:
+This screen contains authentication, and allows users to make an account with Maet. User's will have to put in their name as well as email and this will be stored in Firebase authentication as well as firstore.
+<img align='center' src='https://user-images.githubusercontent.com/95386742/205461131-9d014c3f-b89b-402c-9ca2-a6887d2f5177.jpg' width="200" height="400" />
+
+- The Home Screen and Explore screen:
+The home screen shows the users account information, by storing the user information in the redux store. The explore screen queries data from the public user data collection in firestore and displays the public information to the explore screen. This uses pagination and other querying tools such as RTK query to acomplish this.
+<div>
+<img align='center' src='https://user-images.githubusercontent.com/95386742/205462901-ccd4740c-5ee3-41d2-8b4a-92d8aac7d841.jpg' width="200" height="400" />
+<img align='center' src='https://user-images.githubusercontent.com/95386742/205462892-ecc7c781-3e0c-403c-ba47-717398c2a52f.png' width="200" height="400" />
+</div>
+
+- The settings screen:
+This screen shows off the user's profile and has a generated default profile picture. Users can upload a new photo and this will be stored in firestore as well as firebase storage. User's can also edit their account information, such as their name, email and password. All this is accomplished by using a mutation query in RTK query.
+<div>
+<img align='center' src='https://user-images.githubusercontent.com/95386742/205463235-4e75d43d-a410-4c82-8755-f6f58227ba30.jpg' width="200" height="400" />
+<img align='center' src='https://user-images.githubusercontent.com/95386742/205462978-6b6edd7a-b02d-4960-9ec4-81941e3c5443.jpg' width="200" height="400" />
+</div>
+
+
 ## 🚀 Get Involved
 Maet is a sports-technology startup that is ***Redefining the Athletic Community***. We are always looking for software developers to join our team that resonate with our *development philosophy* and want to have a positive impact on the open-source community. 
 > **You can apply to be a TeamMaet [here](https://angel.co/l/2xAQpw)**.
