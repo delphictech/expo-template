@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
@@ -19,26 +20,43 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // const navigation = useNavigation<SettingScreenProps>();
 
     const initialUserData = useAppSelector((state) => state.user);
-    const [updateUser, { data: user = initialUserData }] = useUpdateUserFieldsMutation();
-    const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
-    // get the mutation for handling the user image
-    const [setUserImage] = useSetUserImageMutation();
+    // user image fields mutation
+    const [
+        updateUser,
+        {
+            data: user = initialUserData,
+            isLoading: userLoading,
+            isSuccess: userSuccess,
+            error: userError,
+            isUninitialized: userUnitialized,
+        },
+    ] = useUpdateUserFieldsMutation();
 
-    // For more items that be destructured  https://redux-toolkit.js.org/rtk-query/usage/queries
-    // const { data, isFetching, isLoading, isError, error, refetch } =
-    //     useGetUserImageQuery(queryState);
+    // user image mutation
+    const [
+        setUserImage,
+        {
+            isLoading: imageLoading,
+            isSuccess: imageSuccess,
+            error: imageError,
+            isUninitialized: imageUnitialized,
+        },
+    ] = useSetUserImageMutation();
 
+    // password reset query hook
+    const [
+        triggerPasswordReset,
+        {
+            isFetching: sendingEmail,
+            isSuccess: emailSuccess,
+            error: emailError,
+            isUninitialized: emailUnitialized,
+        },
+    ] = useLazySendPasswordResetQuery();
+
+    // declare toast
     const toast = useToast();
-
-    const renderPasswordToast = () => (
-        <AlertToast
-            title="Email Sent!"
-            type="success"
-            message={`Password reset instructions sent to ${user.email}.`}
-            toExit={() => toast.close('resetToast')}
-        />
-    );
 
     // For more items that be destructured  https://react-hook-form.com/api/useform
     const {
@@ -87,16 +105,66 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     //     await triggerUpdateUser(userObject);
     // };
 
-    const handlePasswordReset = async () => {
-        const { isSuccess } = await triggerPasswordReset(user.email);
+    const handleUserUpdate = () => {
+        toast.show({
+            placement: 'bottom',
+            render: () => (
+                <AlertToast
+                    title={userSuccess ? 'Settings Updated' : 'Error with updating settings.'}
+                    type={userSuccess ? 'success' : 'danger'}
+                    message={
+                        userSuccess
+                            ? 'Your settings have been updated successfully.'
+                            : userError?.message
+                    }
+                    toExit={() => toast.close('user-toast')}
+                />
+            ),
+            id: 'user-toast',
+        });
+    };
 
-        if (isSuccess) {
+    const handleImageUpload = async (imageUri: string | undefined) => {
+        if (imageUri) {
+            await setUserImage(imageUri);
             toast.show({
                 placement: 'bottom',
-                render: renderPasswordToast,
-                id: 'resetToast',
+                render: () => (
+                    <AlertToast
+                        title={imageSuccess ? 'Image Uploaded' : 'Error with image upload.'}
+                        type={imageSuccess ? 'success' : 'danger'}
+                        message={
+                            imageSuccess
+                                ? 'Your profile image has been successfull changed.'
+                                : imageError?.message
+                        }
+                        toExit={() => toast.close('im-toast')}
+                    />
+                ),
+                id: 'im-toast',
             });
         }
+    };
+
+    const handlePasswordReset = async () => {
+        await triggerPasswordReset(user?.email);
+
+        toast.show({
+            placement: 'bottom',
+            render: () => (
+                <AlertToast
+                    title={emailSuccess ? 'Email Sent!' : 'Error with password reset.'}
+                    type={emailSuccess ? 'success' : 'danger'}
+                    message={
+                        emailSuccess
+                            ? `Password reset instructions sent to ${user.email}.`
+                            : emailError?.message
+                    }
+                    toExit={() => toast.close('pw-toast')}
+                />
+            ),
+            id: 'pw-toast',
+        });
     };
 
     // if (isLoading || isFetching) {
@@ -117,9 +185,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
             w="100%">
             <Box px={5}>
                 <ImageUploader
-                    handleImageUri={(imageUri) => {
-                        if (imageUri) setUserImage(imageUri);
-                    }}
+                    handleImageUri={(uri) => handleImageUpload(uri)}
                     uri={user.image}
                     user={user}
                 />

@@ -48,10 +48,18 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
             </Pressable>
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
-                    <Actionsheet.Item onPress={async () => handleImageUri(await takePhoto())}>
+                    <Actionsheet.Item
+                        onPress={async () => {
+                            handleImageUri(await takePhoto());
+                            onClose();
+                        }}>
                         Take Photo
                     </Actionsheet.Item>
-                    <Actionsheet.Item onPress={async () => handleImageUri(await pickImage())}>
+                    <Actionsheet.Item
+                        onPress={async () => {
+                            handleImageUri(await pickImage());
+                            onClose();
+                        }}>
                         Upload Image
                     </Actionsheet.Item>
                     <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>
