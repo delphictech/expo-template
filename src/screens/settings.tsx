@@ -8,11 +8,6 @@ import { editProfileSchema } from 'src/utils/schemas';
 import { useSetUserImageMutation, useUpdateUserFieldMutation } from 'src/services/user-api';
 import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
-import { ImageOBJ } from 'src/types/profile-image';
-// Imports for navigation to password screen
-// import { useNavigation } from '@react-navigation/native';
-// import { StackNavigationProp } from '@react-navigation/stack';
-// import { SettingStackParams } from 'src/navigation/settings-stack';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
 import { PrivateUserData } from 'src/types/user';
@@ -69,7 +64,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // useEffect(() => {
     //     refetch();
     // }, [data, refetch]);
-    
+
     // used for testing form validation
     const handleSubmitF = async (e: any) => {
         console.log(e);
