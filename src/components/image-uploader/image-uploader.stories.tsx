@@ -11,11 +11,11 @@ const Template = (args: ImageArgProps) => <ImageUploader {...args} />;
 
 export const Basic: Story<ImageArgProps> = Template.bind({});
 Basic.args = {
-    imageProp: 'https://wallpaperaccess.com/full/317501.jpg',
+    uri: 'https://wallpaperaccess.com/full/317501.jpg',
     size: '2xl',
 };
 
 export const Default: Story<ImageArgProps> = Template.bind({});
 Default.args = {
-    imageProp: 'https://wallpaperaccess.com/full/317501.jpg',
+    uri: 'https://wallpaperaccess.com/full/317501.jpg',
 };

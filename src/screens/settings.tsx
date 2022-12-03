@@ -25,12 +25,6 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // const navigation = useNavigation<SettingScreenProps>();
 
     const user = useAppSelector((state) => state.user);
-    const [imageState, setImageState] = useState<string>();
-    const [queryState, setQueryState] = useState<ImageOBJ>({
-        userID: user.id,
-        imageUri: undefined,
-    });
-
     const [triggerUpdateUser] = useUpdateUserFieldMutation();
     const [triggerPasswordReset, { isFetching: sendingEmail }] = useLazySendPasswordResetQuery();
 
@@ -75,16 +69,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     // useEffect(() => {
     //     refetch();
     // }, [data, refetch]);
-
-    useEffect(() => {
-        const input = {
-            userID: user.id,
-            imageUri: imageState,
-        };
-
-        setQueryState(input);
-    }, [imageState]);
-
+    
     // used for testing form validation
     const handleSubmitF = async (e: any) => {
         console.log(e);

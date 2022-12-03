@@ -15,7 +15,6 @@ import {
 import { privateUserCollection, publicUserCollection } from 'src/firebase/config';
 import { firebaseHandler, firestoreGetHandler } from 'src/firebase/handler';
 import { PrivateUserData, PublicUserData } from 'src/types';
-import { uploadUserImage } from 'src/firebase/storage-api';
 
 /**
  * Function will update the user with the input fields, will overwrite if newUser set to True
@@ -91,31 +90,3 @@ export async function getUsers(
     }
     return getDocs(q);
 }
-
-export /**
- * Will fetch the current user's public user data, and returns their image
- *
- * @param {string} userID - takes in their id (required)
- * @param {(string | undefined)} imgURI - takes in a new image URI to upload to firebase storage (optional)
- * @return {*}  {(Promise<string | null>)} - returns the image from firestore or the inputed URI after uploading
- */
-const fetchUserImage = async (
-    userID: string,
-    imgURI: string | undefined,
-): Promise<string | null> => {
-    // let image: string | Promise<string>;
-    if (!imgURI) {
-        const docRef = doc(publicUserCollection, userID);
-
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data();
-
-        if (data?.image) {
-            return data?.image;
-        }
-        return null;
-    }
-
-    // await uploadUserImage(imgURI, userID);
-    return imgURI;
-};
