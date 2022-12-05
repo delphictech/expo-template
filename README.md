@@ -1,5 +1,5 @@
 # <img src="https://raw.githubusercontent.com/maetio/expo-template/main/assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
-This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.
+Ready-to-use mobile template built for a scalability with **typescript**, the **expo workflow**, **storybook**, and **firebase**. Used for open-source education and kickstarting mobile applications. This template will be continually updated as our stack and knowledge of "best practices" evolve, and **it can be viewed as an introduction into our software development philosophy at Maet**.
 
 
 > To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
@@ -8,29 +8,19 @@ This repository contains a template configured with various tools and practices 
 expo init --template maet-expo-template
 ```
 
-## 😃 Welcome to the Maet Template!
-As the template evolves we at Maet enjoy sharing our progress and what technologies we use. The template has many screens and different tools we use, but down below are some notable screens/tools. The template has three key features, the main app, storybook, and deploying/testing firebase functions. This current readme is only talking about the main app experience. If you would like to learn more about our other key template features, you can read the readme in either the .storybook folder or the functions folder for more information on those tools and technologies.
+For your knowledge, each of the main repositories underneath `src` and `functions` include strong documentation so that you can understand the stack you are working with.
 
-The main app contains several screens. Each with a specific imprtance to our app developement. 
-
-- The login screen: 
-This screen contains authentication, and allows users to make an account with Maet. User's will have to put in their name as well as email and this will be stored in Firebase authentication as well as firstore.
-
-- The Home Screen and Explore screen:
-The home screen shows the users account information, by storing the user information in the redux store. The explore screen queries data from the public user data collection in firestore and displays the public information to the explore screen. This uses pagination and other querying tools such as RTK query to acomplish this.
-
-- The settings screen:
-This screen shows off the user's profile and has a generated default profile picture. Users can upload a new photo and this will be stored in firestore as well as firebase storage. User's can also edit their account information, such as their name, email and password. All this is accomplished by using a mutation query in RTK query.
-
-<div align='center'>
-
-
+## 📱 Prebuilt Screens and Flows
 https://user-images.githubusercontent.com/95386742/205753550-1f6135bf-e57d-43ba-a010-e631f273c9ef.mp4
 
 https://user-images.githubusercontent.com/95386742/205753631-24b64022-b280-410f-89d5-b49135f1d2e6.mp4
 
-</div>
+This template includes some of the following configured screens/flows:
+1. Authentication flow with **guest sign-in and password authentication**.
+2. Settings with **user profile image upload**.
+3. Explore screen with **pagination example**.
 
+And many other well-designed flows to supplement your software development knowledge.
 
 
 ## 🚀 Get Involved
@@ -113,6 +103,7 @@ Set up your firebase project with firestore, functions, auth, and storage. You w
 
 
 ## 📂 Organization 
+`functions`: server-side firebase functions.
 `src/components`: useful re-usable component library.  
 `src/constants`: app constants, such as theme, that remain consistent throughout the app.   
 `src/ducks`: redux features, organized using the slice pattern.   
