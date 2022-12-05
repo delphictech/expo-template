@@ -263,4 +263,5 @@ export const {
     useLazySendPasswordResetQuery,
     useLazySendVerificationEmailQuery,
     useUpdatePasswordMutation,
+    useUpdateEmailMutation,
 } = AuthApi;
