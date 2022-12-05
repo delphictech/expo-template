@@ -1,5 +1,6 @@
-import { getUsers } from 'src/firebase/user-api';
-import { PublicUserData } from 'src/types';
+import { getPrivateUserData, getUsers, updatePrivateUserData } from 'src/firebase/user-api';
+import { PrivateUserData, PublicUserData } from 'src/types';
+import { uploadUserImage } from 'src/firebase/storage-api';
 import { ConfigApi } from './config-api';
 
 /**
@@ -32,8 +33,48 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
+        setUserImage: build.mutation<string, string>({
+            /**
+             * Sets the user image in firestore.
+             *
+             * @param {*} uri
+             * @return {*}
+             */
+            async queryFn(uri) {
+                try {
+                    const url = await uploadUserImage(uri);
+                    return { data: url };
+                } catch (e: any) {
+                    console.warn(`Error with updating user image: ${e}`);
+                    return { error: e };
+                }
+            },
+        }),
+
+        updateUserFields: build.mutation<
+            PrivateUserData,
+            { id: string } & Partial<Omit<PrivateUserData, 'email'>>
+        >({
+            /**
+             * Sets the user fields in firebase, gets the user data to return
+             * If you want to update the user's email, use the updateUserEmail mutation from the auth api
+             *
+             * @param {*} userFields
+             * @return {*}
+             */
+            async queryFn(userFields) {
+                try {
+                    await updatePrivateUserData(userFields);
+                    const snapshot = await getPrivateUserData(userFields.id);
+                    return { data: snapshot.data() };
+                } catch (e: any) {
+                    console.warn(`Error with updating user fields: ${e}`);
+                    return { error: e };
+                }
+            },
+        }),
     }),
     overrideExisting: true,
 });
 
-export const { useGetUsersQuery } = UserApi;
+export const { useGetUsersQuery, useSetUserImageMutation, useUpdateUserFieldsMutation } = UserApi;

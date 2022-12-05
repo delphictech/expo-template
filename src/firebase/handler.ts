@@ -49,6 +49,10 @@ export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
                 message = 'Email or password is incorrect.';
                 cause = 'password';
                 break;
+            case 'auth/user-mismatch':
+                message = 'User credentials do not match.';
+                cause = 'account';
+                break;
             case 'auth/too-many-requests':
                 message = 'Account has exceeded its request limit.';
                 cause = 'account';
@@ -57,7 +61,7 @@ export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
                 message = 'Backend Error';
                 cause = 'account';
                 console.warn(`New Backend error`);
-                console.warn(error.code);
+                console.warn(error);
         }
 
         // assign values to interface

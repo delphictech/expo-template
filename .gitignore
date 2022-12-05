@@ -76,4 +76,10 @@ dist/
 
 # @end expo-cli
 
+# service account keys
 serviceAccountKey.json
+**/service-account.json
+**/**/service-account.json
+**/*account.json
+*service-account.json
+functions/service-account.json

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthApi } from 'src/services';
+import { UserApi } from 'src/services/user-api';
 import { PrivateUserData } from 'src/types';
 
 /**
@@ -67,6 +68,48 @@ const userSlice = createSlice({
             AuthApi.endpoints.signIn.matchFulfilled,
             (_state, action: PayloadAction<PrivateUserData>) => {
                 return { ...action.payload };
+            },
+        );
+
+        /**
+         * Update the user's email
+         *
+         * @param {*} _state
+         * @param {PayloadAction<PrivateUserData>} action
+         * @return {*}
+         */
+        builder.addMatcher(
+            AuthApi.endpoints.updateEmail.matchFulfilled,
+            (state, action: PayloadAction<{ email: string }>) => {
+                return { ...state, ...action.payload };
+            },
+        );
+
+        /**
+         * When user changes their image, set it in the global user state
+         *
+         * @param {*} _state
+         * @param {PayloadAction<string>} action
+         * @return {*}
+         */
+        builder.addMatcher(
+            UserApi.endpoints.setUserImage.matchFulfilled,
+            (state, action: PayloadAction<string>) => {
+                return { ...state, image: action.payload };
+            },
+        );
+
+        /**
+         * When the user updates certain fields, update the local state.
+         *
+         * @param {*} _state
+         * @param {PayloadAction<string>} action
+         * @return {*}
+         */
+        builder.addMatcher(
+            UserApi.endpoints.updateUserFields.matchFulfilled,
+            (state, action: PayloadAction<PrivateUserData>) => {
+                return { ...state, ...action.payload };
             },
         );
 

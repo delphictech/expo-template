@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { FormControl, Input, Icon, WarningOutlineIcon, IInputProps, View } from 'native-base';
 import { MaterialIcons } from '@expo/vector-icons';
-import { Control, Controller, FieldValues } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 
-/*
-Props extend from nativebase IInputProps props
-*/
+/**
+ * Props extend from nativebase IInputProps props
+ *
+ * @export
+ * @interface FormInputParams
+ * @extends {IInputProps}
+ */
 export interface FormInputParams extends IInputProps {
-    control: Control<FieldValues, any>; // control passed into react-hook-form controller input: https://www.react-hook-form.com/get-started#IntegratingwithUIlibraries
+    control?: Control<any, any> | undefined; // control passed into react-hook-form controller input: https://www.react-hook-form.com/get-started#IntegratingwithUIlibraries
     name: string; // required for the react-hook-form controller
     isInvalid?: boolean | undefined; // will set if form is invalid or not
     label?: string | undefined; // used as the title label above the input
@@ -124,6 +128,7 @@ export const FormInput: React.FC<FormInputParams> = ({
 };
 
 FormInput.defaultProps = {
+    control: undefined,
     isInvalid: false,
     label: '',
     password: false,

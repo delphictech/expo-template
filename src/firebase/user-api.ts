@@ -25,7 +25,7 @@ import { PrivateUserData, PublicUserData } from 'src/types';
  * @return {*}  {Promise<void>}
  */
 export async function updatePrivateUserData(
-    userData: PrivateUserData,
+    userData: { id: string } & Partial<PrivateUserData>,
     newUser?: boolean,
 ): Promise<void> {
     const userRef = doc(privateUserCollection, userData.id);

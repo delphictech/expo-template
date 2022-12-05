@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Box, Button, Text } from 'native-base';
+import { Avatar, Box, Button, Text, VStack } from 'native-base';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useAppDispatch, useAppSelector } from 'src/ducks/useful-hooks';
 import { incrementCount, decrementCount } from 'src/ducks/user-slice';
@@ -37,10 +37,24 @@ export const HomeScreen: React.FC<{}> = () => {
             {user.isAnonymous ? (
                 <Text color="plainText.800">User is a guest</Text>
             ) : (
-                <>
+                <VStack alignItems="center" justifyContent="center">
+                    <Avatar
+                        backgroundColor="primary.500"
+                        mb={4}
+                        size="xl"
+                        source={{
+                            uri: user.image || undefined,
+                        }}>
+                        {user.firstName?.length &&
+                            user.lastName?.length &&
+                            `${user?.firstName[0]?.toUpperCase()}${user?.lastName[0]?.toUpperCase()}`}
+                    </Avatar>
+                    <Text fontWeight="bold" color="plainText.800" fontSize="xl">
+                        {user.firstName} {user.lastName}
+                    </Text>
                     <Text color="plainText.800">Account Email: {user.email}</Text>
                     <Text color="plainText.800">Email Verified: {String(user.emailVerified)}</Text>
-                </>
+                </VStack>
             )}
             <Text color="plainText.800">User ID: {user.id}</Text>
             <Box py={3}>

@@ -2,11 +2,15 @@ import {
     anonymousSignIn,
     deleteCurrentUser,
     fetchSignInMethods,
+    reauthenticate,
     resetPassword,
+    setNewEmail,
+    setNewPassword,
     signInWithEmail,
     signOutUser,
     signUpWithEmail,
     verifyEmail,
+    // addDefaultPicture,
 } from 'src/firebase/auth-api';
 import {
     deletePrivateUserData,
@@ -62,6 +66,12 @@ export const AuthApi = ConfigApi.injectEndpoints({
                 if (accountInfo === 'guest') {
                     try {
                         const userCredential = await anonymousSignIn();
+
+                        // add default user image to storage before adding it to firestore
+                        // In the future, will allow users to add image when they sign up
+
+                        // await addDefaultPicture(userCredential.user.uid);
+
                         // setup guest user
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
@@ -69,6 +79,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
                         };
+
                         return { data: user };
                     } catch (e: any) {
                         console.warn(`Error with guest sign in ${e}`);
@@ -80,6 +91,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             accountInfo.email,
                             accountInfo.password,
                         );
+
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
                             isAnonymous: false,
@@ -90,6 +102,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             email: userCredential.user.email,
                         };
                         await verifyEmail();
+
                         // store user data in firestore
                         await updatePrivateUserData(user, true);
                         return { data: user };
@@ -139,16 +152,20 @@ export const AuthApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        deleteAccount: build.query<PrivateUserData, string>({
+        deleteAccount: build.mutation<
+            PrivateUserData,
+            { id: string; email: string; password: string }
+        >({
             /**
              * Delete account query
              *
              * @param {string} uid
              * @return {*}
              */
-            async queryFn(uid: string) {
+            async queryFn({ id, email, password }) {
                 try {
-                    await deletePrivateUserData(uid);
+                    await reauthenticate(email, password);
+                    await deletePrivateUserData(id);
                     await deleteCurrentUser();
                     // set isDeleted field in the user
                     return {
@@ -195,8 +212,50 @@ export const AuthApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-    }),
 
+        updatePassword: build.mutation<
+            null,
+            { email: string; oldPassword: string; newPassword: string }
+        >({
+            /**
+             * Mutation will update the password for the user, reauthenticating in process
+             *
+             * @param {*} { email, oldPassword, newPassword }
+             * @return {*}
+             */
+            async queryFn({ email, oldPassword, newPassword }) {
+                try {
+                    await setNewPassword(email, oldPassword, newPassword);
+                    return { data: null };
+                } catch (e: any) {
+                    return { error: e };
+                }
+            },
+        }),
+
+        updateEmail: build.mutation<
+            { email: string },
+            { userID: string; oldEmail: string; newEmail: string; password: string }
+        >({
+            /**
+             * Will update the user's email
+             * Sets the email in auth and firestore, while sending verification email
+             *
+             * @param {*} { oldEmail, newEmail, password }
+             * @return {*}
+             */
+            async queryFn({ userID, oldEmail, newEmail, password }) {
+                try {
+                    await setNewEmail(oldEmail, password, newEmail);
+                    await verifyEmail();
+                    await updatePrivateUserData({ id: userID, email: newEmail });
+                    return { data: { email: newEmail } };
+                } catch (e: any) {
+                    return { error: e };
+                }
+            },
+        }),
+    }),
     overrideExisting: true,
 });
 
@@ -204,8 +263,10 @@ export const {
     useLazyFetchSignInMethodsQuery,
     useLazySignUpQuery,
     useLazySignOutQuery,
-    useLazyDeleteAccountQuery,
+    useDeleteAccountMutation,
     useLazySignInQuery,
     useLazySendPasswordResetQuery,
     useLazySendVerificationEmailQuery,
+    useUpdatePasswordMutation,
+    useUpdateEmailMutation,
 } = AuthApi;

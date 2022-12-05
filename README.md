@@ -1,5 +1,5 @@
 # <img src="https://raw.githubusercontent.com/maetio/expo-template/main/assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
-This repository contains a template configured with various tools and practices that are used for mobile development at Maet. This template will be continually updated as our stack and knowledge of "best practices" evolve, but **it can be viewed as an introduction into our software development philosophy**. The template itself comes configured with a simple authentication flow for guest sign-in and password authentication.
+Ready-to-use mobile template built for a scalability with **typescript**, the **expo workflow**, **storybook**, and **firebase**. Used for open-source education and kickstarting mobile applications. This template will be continually updated as our stack and knowledge of "best practices" evolve, and **it can be viewed as an introduction into our software development philosophy at Maet**.
 
 
 > To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
@@ -7,6 +7,20 @@ This repository contains a template configured with various tools and practices 
 ```bash
 expo init --template maet-expo-template
 ```
+
+For your knowledge, each of the main repositories underneath `src` and `functions` include strong documentation so that you can understand the stack you are working with.
+
+## 📱 Prebuilt Screens and Flows
+This template includes some of the following configured screens/flows:
+1. Authentication flow with **guest sign-in and password authentication**.
+2. Settings with **user profile image upload**.
+3. Explore screen with **pagination example**.
+...and many other well-designed flows to supplement your software development knowledge!
+
+https://user-images.githubusercontent.com/95386742/205753550-1f6135bf-e57d-43ba-a010-e631f273c9ef.mp4
+
+https://user-images.githubusercontent.com/95386742/205753631-24b64022-b280-410f-89d5-b49135f1d2e6.mp4
+
 
 ## 🚀 Get Involved
 Maet is a sports-technology startup that is ***Redefining the Athletic Community***. We are always looking for software developers to join our team that resonate with our *development philosophy* and want to have a positive impact on the open-source community. 
@@ -61,6 +75,9 @@ FIREBASE_MESSAGING_SENDER_ID=[...]
 FIREBASE_APP_ID=[...]
 FIREBASE_MEASUREMENT_ID=[...]
 ```
+
+Set up your firebase project with firestore, functions, auth, and storage. You will need to upgrade your firebase to the **Blaze** plan and change your firebase storage security rules.
+
 - Run on Web: `yarn web` or `expo start --web`
 - Prebuild: `yarn prebuild` or `expo prebuild -–npm`
     > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
@@ -85,6 +102,7 @@ FIREBASE_MEASUREMENT_ID=[...]
 
 
 ## 📂 Organization 
+`functions`: server-side firebase functions.
 `src/components`: useful re-usable component library.  
 `src/constants`: app constants, such as theme, that remain consistent throughout the app.   
 `src/ducks`: redux features, organized using the slice pattern.   

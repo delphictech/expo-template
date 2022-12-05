@@ -35,7 +35,7 @@ export const AlertToast: React.FC<AlertToastParams> = ({
     };
 
     return (
-        <Alert px={5} colorScheme={type} variant="solid" {...alertParams}>
+        <Alert flex={1} px={5} colorScheme={type} variant="solid" {...alertParams}>
             <VStack space={2} flexShrink={1} w="100%" px={3}>
                 <HStack space={2} justifyContent="space-between">
                     <HStack space={2} flexShrink={1} alignItems="center">
