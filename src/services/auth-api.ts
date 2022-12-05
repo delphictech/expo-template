@@ -2,6 +2,7 @@ import {
     anonymousSignIn,
     deleteCurrentUser,
     fetchSignInMethods,
+    reauthenticate,
     resetPassword,
     setNewEmail,
     setNewPassword,
@@ -151,17 +152,21 @@ export const AuthApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        deleteAccount: build.query<PrivateUserData, string>({
+        deleteAccount: build.query<
+            PrivateUserData,
+            { id: string; email: string; password: string }
+        >({
             /**
              * Delete account query
              *
              * @param {string} uid
              * @return {*}
              */
-            async queryFn(uid: string) {
+            async queryFn({ id, email, password }) {
                 try {
-                    await deletePrivateUserData(uid);
+                    await reauthenticate(email, password);
                     await deleteCurrentUser();
+                    await deletePrivateUserData(id);
                     // set isDeleted field in the user
                     return {
                         data: { id: '', isAnonymous: false, loggedIn: false, emailVerified: false },

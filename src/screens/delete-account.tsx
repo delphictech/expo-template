@@ -73,17 +73,6 @@ export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ naviga
                     errorMessage={errors?.password?.message}
                 />
                 <FormInput
-                    key="newPassword"
-                    name="newPassword"
-                    control={control}
-                    isInvalid={'newPassword' in errors}
-                    password
-                    label="Enter your new password"
-                    placeholder="New Password"
-                    defaultValue=""
-                    errorMessage={errors?.newPassword?.message}
-                />
-                <FormInput
                     key="confirmPassword"
                     name="confirmPassword"
                     control={control}

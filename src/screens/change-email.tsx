@@ -3,11 +3,11 @@ import { Box, Button, KeyboardAvoidingView, Text, useToast } from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { newEmailSchema, NewEmailSchemaType, newPasswordSchema, NewPasswordSchemaType } from 'src/utils/schemas';
+import { newEmailSchema, NewEmailSchemaType } from 'src/utils/schemas';
 import { Keyboard, Platform } from 'react-native';
 import { SettingStackParams } from 'src/navigation/settings-stack';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useUpdateEmailMutation, useUpdatePasswordMutation } from 'src/services';
+import { useUpdateEmailMutation } from 'src/services';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AlertToast } from 'src/components/alert-toast';
 
