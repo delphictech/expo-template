@@ -50,9 +50,10 @@ export const UserApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-        updateUserFields: build.mutation<PrivateUserData, PrivateUserData>({
+        updateUserFields: build.mutation<PrivateUserData, Omit<PrivateUserData, 'email'>>({
             /**
              * Sets the user fields in firebase, gets the user data to return
+             * If you want to update the user's email, use the updateUserEmail mutation from the auth api
              *
              * @param {*} userFields
              * @return {*}

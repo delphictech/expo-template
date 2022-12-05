@@ -3,6 +3,7 @@ import {
     deleteCurrentUser,
     fetchSignInMethods,
     resetPassword,
+    setNewEmail,
     setNewPassword,
     signInWithEmail,
     signOutUser,
@@ -221,6 +222,29 @@ export const AuthApi = ConfigApi.injectEndpoints({
                 try {
                     await setNewPassword(email, oldPassword, newPassword);
                     return { data: null };
+                } catch (e: any) {
+                    return { error: e };
+                }
+            },
+        }),
+
+        updateEmail: build.mutation<
+            { email: string },
+            { userID: string; oldEmail: string; newEmail: string; password: string }
+        >({
+            /**
+             * Will update the user's email
+             * Sets the email in auth and firestore, while sending verification email
+             *
+             * @param {*} { oldEmail, newEmail, password }
+             * @return {*}
+             */
+            async queryFn({ userID, oldEmail, newEmail, password }) {
+                try {
+                    await setNewEmail(oldEmail, password, newEmail);
+                    await verifyEmail();
+                    await updatePrivateUserData({ id: userID, email: newEmail });
+                    return { data: { email: newEmail } };
                 } catch (e: any) {
                     return { error: e };
                 }

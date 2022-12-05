@@ -202,3 +202,31 @@ export async function setNewPassword(
     };
     throw error;
 }
+
+/**
+ * Function will set the user's new email in auth
+ *
+ * @export
+ * @param {string} newEmail
+ * @param {string} oldEmail
+ * @param {string} password
+ * @return {*}  {Promise<void>}
+ */
+export async function setNewEmail(
+    oldEmail: string,
+    password: string,
+    newEmail: string,
+): Promise<void> {
+    // https://firebase.google.com/docs/reference/js/auth.md#updateemail
+    if (auth.currentUser) {
+        await reauthenticate(oldEmail, password);
+        return firebaseHandler<void>(updateEmail(auth.currentUser, newEmail));
+    }
+    const error: FirebaseError = {
+        name: 'Firebase Error',
+        message: 'User does not exist',
+        code: 'auth/user-not-found',
+        errorCause: 'account',
+    };
+    throw error;
+}

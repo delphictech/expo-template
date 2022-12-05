@@ -63,11 +63,6 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         // },
     });
 
-    // Setting up dirty fields
-    // const { dirtyFields } = useFormState({
-    //     control,
-    // });
-
     // useEffect(() => {
     //     refetch();
     // }, [data, refetch]);
@@ -136,28 +131,6 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
         }
     };
 
-    const handlePasswordReset = async () => {
-        if (user?.email) {
-            const data = await triggerPasswordReset(user?.email).unwrap();
-            toast.show({
-                placement: 'bottom',
-                render: () => (
-                    <AlertToast
-                        title={data.length ? 'Email Sent!' : 'Error with password reset.'}
-                        type={data.length ? 'success' : 'danger'}
-                        message={
-                            data.length
-                                ? `Password reset instructions sent to ${user.email}.`
-                                : emailError?.message
-                        }
-                        toExit={() => toast.close('pw-toast')}
-                    />
-                ),
-                id: 'pw-toast',
-            });
-        }
-    };
-
     return (
         <KeyboardAvoidingView
             h={{
@@ -204,6 +177,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         errorMessage={errors?.email?.message}
                     />
                     <Button
+                        isLoading={isSubmitting}
                         isDisabled={!isDirty}
                         mt={8}
                         my={3}
