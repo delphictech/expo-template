@@ -165,15 +165,14 @@ export const AuthApi = ConfigApi.injectEndpoints({
             async queryFn({ id, email, password }) {
                 try {
                     await reauthenticate(email, password);
-                    await deleteCurrentUser();
                     await deletePrivateUserData(id);
+                    await deleteCurrentUser();
                     // set isDeleted field in the user
                     return {
                         data: { id: '', isAnonymous: false, loggedIn: false, emailVerified: false },
                     };
                 } catch (e: any) {
                     console.warn(`Error with deleting user`);
-                    console.log(e);
                     return { error: e };
                 }
             },

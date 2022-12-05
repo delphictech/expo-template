@@ -5,6 +5,7 @@ import { HomeScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Icon, IconButton } from 'native-base';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AuthStackNavigator } from './auth-stack';
 import { SettingsStack } from './settings-stack';
 
@@ -32,6 +33,8 @@ const SettingsButton = (onPress?: (event: GestureResponderEvent) => void) => (
 type HomeStackProps = StackScreenProps<HomeStackParams, 'Home'>;
 
 export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => {
+    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
+
     const checkLogin = () => {
         Alert.alert(
             'Are you sure you want to exit?',
@@ -55,7 +58,12 @@ export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => 
                 component={HomeScreen}
                 options={{
                     headerTitle: 'Home',
-                    headerRight: () => SettingsButton(() => navigation.navigate('SettingsStack')),
+                    headerRight: () =>
+                        SettingsButton(() =>
+                            isAnonymous
+                                ? navigation.navigate('Auth')
+                                : navigation.navigate('SettingsStack'),
+                        ),
                 }}
             />
             <StackNav.Screen

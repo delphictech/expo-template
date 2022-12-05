@@ -61,7 +61,7 @@ export const firebaseHandler = async <T>(fbQuery: Promise<any>): Promise<T> => {
                 message = 'Backend Error';
                 cause = 'account';
                 console.warn(`New Backend error`);
-                console.warn(error.code);
+                console.warn(error);
         }
 
         // assign values to interface
