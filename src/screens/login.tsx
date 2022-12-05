@@ -73,6 +73,9 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) =
     // navigate back if not root auth screen
     const navigateBack = () => {
         const parentNavigator = navigation.getParent();
+        console.log(parentNavigator?.getId());
+        console.log(navigation?.getId());
+        console.log(navigation.getState());
         if (parentNavigator?.getId() && parentNavigator?.getId() !== 'root') {
             parentNavigator?.goBack();
         }

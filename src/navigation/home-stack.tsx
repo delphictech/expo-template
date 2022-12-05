@@ -21,12 +21,13 @@ const CloseIcon = (onClose: () => void) => (
     <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
 );
 
-const SettingsButton = (onPress?: (event: GestureResponderEvent) => void) => (
+const SettingsButton = (onPress?: (event: GestureResponderEvent) => void, isDisabled?: boolean) => (
     <IconButton
+        isDisabled={isDisabled}
         alignSelf="flex-end"
         variant="unstyled"
         icon={<Icon as={MaterialIcons} name="settings" size="lg" color="primary.700" />}
-        onPress={onPress}
+        onPress={isDisabled ? null : onPress}
     />
 );
 
@@ -59,11 +60,7 @@ export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => 
                 options={{
                     headerTitle: 'Home',
                     headerRight: () =>
-                        SettingsButton(() =>
-                            isAnonymous
-                                ? navigation.navigate('Auth')
-                                : navigation.navigate('SettingsStack'),
-                        ),
+                        SettingsButton(() => navigation.navigate('SettingsStack'), isAnonymous),
                 }}
             />
             <StackNav.Screen
