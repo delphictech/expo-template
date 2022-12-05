@@ -21,11 +21,12 @@ const uploadUserImage = async (uri: string): Promise<void> => {
             () => {},
             (err) => console.warn(err),
             () => {
-                getDownloadURL(uploadImage.snapshot.ref).then(async (url) => {
+                return getDownloadURL(uploadImage.snapshot.ref).then(async (url) => {
                     await updatePrivateUserData({
                         id: userID,
                         image: url,
                     });
+                    return url;
                 });
             },
         );

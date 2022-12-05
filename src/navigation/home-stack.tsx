@@ -61,7 +61,7 @@ export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => 
             <StackNav.Screen
                 name="SettingsStack"
                 component={SettingsStack}
-                options={{ animationTypeForReplace: 'pop' }}
+                options={{ headerTitle: 'Settings', animationTypeForReplace: 'pop' }}
             />
             <StackNav.Screen
                 name="Auth"

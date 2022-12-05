@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
-import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast, Icon } from 'native-base';
+import React from 'react';
+import { Button, Box, FormControl, KeyboardAvoidingView, useToast, Icon } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { editProfileSchema } from 'src/utils/schemas';
+import { editProfileSchema, EditProfileSchemaType } from 'src/utils/schemas';
 import { useSetUserImageMutation, useUpdateUserFieldsMutation } from 'src/services/user-api';
-import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
@@ -20,28 +19,12 @@ type SettingScreenProps = StackScreenProps<SettingStackParams, 'Settings'>;
 export const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => {
     const initialUserData = useAppSelector((state) => state.user);
 
-    console.log(navigation.getState());
-
     // user image fields mutation
-    const [
-        updateUser,
-        {
-            data: user = initialUserData,
-            isLoading: userLoading,
-            isSuccess: userSuccess,
-            error: userError,
-        },
-    ] = useUpdateUserFieldsMutation();
+    const [updateUser, { data: user = initialUserData, isLoading: userLoading, error: userError }] =
+        useUpdateUserFieldsMutation();
 
     // user image mutation
-    const [setUserImage, { isLoading: imageLoading, isSuccess: imageSuccess, error: imageError }] =
-        useSetUserImageMutation();
-
-    // password reset query hook
-    const [
-        triggerPasswordReset,
-        { isFetching: sendingEmail, isSuccess: emailSuccess, error: emailError },
-    ] = useLazySendPasswordResetQuery();
+    const [setUserImage, { error: imageError }] = useSetUserImageMutation();
 
     // declare toast
     const toast = useToast();
@@ -51,52 +34,20 @@ export const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => 
         control,
         handleSubmit,
         formState: { errors, isDirty, isSubmitting },
-    } = useForm({
+    } = useForm<EditProfileSchemaType>({
         resolver: yupResolver(editProfileSchema),
-        // Need these default values for dirty fields
-        // defaultValues: {
-        //     firstName: '',
-        //     lastName: '',
-        //     email: '',
-        // },
     });
 
-    // useEffect(() => {
-    //     refetch();
-    // }, [data, refetch]);
-
-    // used for testing form validation
-    // const handleSubmitF = async (e: any) => {
-    //     console.log(e);
-
-    //     const userObject: PrivateUserData = {
-    //         id: user.id,
-    //         isAnonymous: user.isAnonymous,
-    //         emailVerified: user.emailVerified,
-    //         loggedIn: user.loggedIn,
-    //     };
-
-    //     // console.log('dirty', dirtyFields.firstName);
-
-    //     // Object.keys(e).forEach((items) => {
-    //     //     if (e[items] !== '' || e[items] == null) {
-    //     //         userObject[items] = e[items];
-    //     //     }
-    //     // });
-
-    //     console.log(userObject);
-    //     await triggerUpdateUser(userObject);
-    // };
-
-    const handleUserUpdate = () => {
+    const handleUserUpdate = async ({ firstName, lastName }: EditProfileSchemaType) => {
+        const data = await updateUser({ id: user.id, firstName, lastName }).unwrap();
         toast.show({
             placement: 'bottom',
             render: () => (
                 <AlertToast
-                    title={userSuccess ? 'Settings Updated' : 'Error with updating settings.'}
-                    type={userSuccess ? 'success' : 'danger'}
+                    title={data.id ? 'Settings Updated' : 'Error with updating settings.'}
+                    type={data.id ? 'success' : 'danger'}
                     message={
-                        userSuccess
+                        data.id
                             ? 'Your settings have been updated successfully.'
                             : userError?.message
                     }
@@ -164,18 +115,8 @@ export const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => 
                         defaultValue={user.lastName ? user.lastName : ''}
                         errorMessage={errors?.lastName?.message}
                     />
-                    <FormInput
-                        key="email"
-                        name="email"
-                        control={control}
-                        isInvalid={'email' in errors}
-                        label="Enter your email"
-                        placeholder="Email"
-                        defaultValue={user.email ? user.email : ''}
-                        errorMessage={errors?.email?.message}
-                    />
                     <Button
-                        isLoading={isSubmitting}
+                        isLoading={isSubmitting || userLoading}
                         isDisabled={!isDirty}
                         mt={8}
                         my={3}
@@ -184,23 +125,22 @@ export const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => 
                     </Button>
                 </FormControl>
                 <Button
-                    variant="ghost"
-                    my={1}
-                    isLoading={sendingEmail}
+                    variant="subtle"
+                    my={2}
                     endIcon={<Icon as={MaterialIcons} name="arrow-forward-ios" />}
                     onPress={() => navigation.navigate('Password')}>
                     Change Password
                 </Button>
                 <Button
-                    variant="ghost"
-                    isLoading={sendingEmail}
+                    variant="subtle"
+                    mb={7}
                     endIcon={<Icon as={MaterialIcons} name="arrow-forward-ios" />}
                     onPress={() => navigation.navigate('Email')}>
                     Change Email
                 </Button>
                 <Button
                     variant="ghost"
-                    isLoading={sendingEmail}
+                    colorScheme="danger"
                     endIcon={<Icon as={MaterialIcons} name="arrow-forward-ios" />}
                     onPress={() => navigation.navigate('DeleteAccount')}>
                     Delete Account
