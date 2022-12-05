@@ -100,6 +100,20 @@ const userSlice = createSlice({
         );
 
         /**
+         * When the user updates certain fields, update the local state.
+         *
+         * @param {*} _state
+         * @param {PayloadAction<string>} action
+         * @return {*}
+         */
+        builder.addMatcher(
+            UserApi.endpoints.updateUserFields.matchFulfilled,
+            (state, action: PayloadAction<PrivateUserData>) => {
+                return { ...state, ...action.payload };
+            },
+        );
+
+        /**
          * When user signs out, reset the state to the initial user
          *
          * @param {*} _state
