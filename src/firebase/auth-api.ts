@@ -131,7 +131,7 @@ export async function resetPassword(email: string): Promise<void> {
 }
 
 /**
- *Changes the email in the 'authentication' section in firebase
+ * Changes the email in the 'authentication' section in firebase
  *
  * @export
  * @param {User} user
