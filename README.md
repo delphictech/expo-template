@@ -14,8 +14,8 @@ For your knowledge, each of the main repositories underneath `src` and `function
 This template includes some of the following configured screens/flows:
 1. Authentication flow with **guest sign-in and password authentication**.
 2. Settings with **user profile image upload**.
-3. Explore screen with **pagination example**.
-...and many other well-designed flows to supplement your software development knowledge!
+3. Explore screen with **pagination example**.   
+**...and many other well-designed flows to supplement your software development knowledge!**
 
 https://user-images.githubusercontent.com/95386742/205753550-1f6135bf-e57d-43ba-a010-e631f273c9ef.mp4
 
