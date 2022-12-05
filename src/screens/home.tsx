@@ -25,7 +25,6 @@ export const HomeScreen: React.FC<{}> = () => {
     // redux handlers
     const user = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
-    console.log('user', user?.lastName, user.firstName);
 
     return (
         <Box
