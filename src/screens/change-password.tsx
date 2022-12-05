@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, Button, KeyboardAvoidingView } from 'native-base';
+import React, { useEffect } from 'react';
+import { Box, Button, KeyboardAvoidingView, Text, useToast } from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,14 +9,15 @@ import { SettingStackParams } from 'src/navigation/settings-stack';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useUpdatePasswordMutation } from 'src/services';
 import { useAppSelector } from 'src/ducks/useful-hooks';
+import { AlertToast } from 'src/components/alert-toast';
 
 type ChangePasswordScreenProps = StackScreenProps<SettingStackParams, 'password'>;
 
 export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navigation }) => {
     // declare hooks
     const userEmail = useAppSelector((state) => state.user.email);
-    const [setNewPassword, { isLoading }] = useUpdatePasswordMutation();
-
+    const [setNewPassword, { isLoading, isSuccess, isError, error }] = useUpdatePasswordMutation();
+    // form validation
     const {
         control,
         handleSubmit,
@@ -24,11 +25,31 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navi
     } = useForm<NewPasswordSchemaType>({
         resolver: yupResolver(newPasswordSchema),
     });
+    // declare toast
+    const toast = useToast();
 
-    // const updatePassword = async ({ password, newPassword }) => {
-    //     setNewPassword({ userEmail, password, newPassword });
-    //     console.log(e);
-    // };
+    // effect hook for navigating back to the setting screen
+    useEffect(() => {
+        if (!isLoading && isSuccess) {
+            toast.show({
+                placement: 'bottom',
+                render: () => (
+                    <AlertToast
+                        title="Password Changed!"
+                        type="success"
+                        message="Your password has been successfully changed."
+                        toExit={() => toast.close('pw-toast')}
+                    />
+                ),
+                id: 'pw-toast',
+            });
+            navigation.goBack();
+        }
+    }, [isLoading, isSuccess, navigation, toast]);
+
+    const updatePassword = async ({ password, newPassword }: NewPasswordSchemaType) => {
+        if (userEmail) setNewPassword({ email: userEmail, oldPassword: password, newPassword });
+    };
 
     return (
         <KeyboardAvoidingView
@@ -73,6 +94,11 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navi
                     defaultValue=""
                     errorMessage={errors?.confirmPassword?.message}
                 />
+                {isError ? (
+                    <Text color="danger.600" textAlign="center" mt={5}>
+                        {error?.message}
+                    </Text>
+                ) : null}
                 <Button isLoading={isLoading} mt={8} onPress={handleSubmit(updatePassword)}>
                     Update Password
                 </Button>

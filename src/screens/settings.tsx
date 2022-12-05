@@ -11,7 +11,6 @@ import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
-import { navigationDarkTheme } from 'src/constants/theme';
 import { SettingStackParams } from 'src/navigation/settings-stack';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -213,11 +212,11 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                     </Button>
                 </FormControl>
                 <Button
-                    variant="link"
+                    variant="ghost"
                     isLoading={sendingEmail}
                     my={3}
                     onPress={() => navigation.navigate('password')}>
-                    Change password
+                    Change Password
                 </Button>
             </Box>
         </KeyboardAvoidingView>
