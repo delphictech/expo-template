@@ -72,6 +72,20 @@ const userSlice = createSlice({
         );
 
         /**
+         * Update the user's email
+         *
+         * @param {*} _state
+         * @param {PayloadAction<PrivateUserData>} action
+         * @return {*}
+         */
+        builder.addMatcher(
+            AuthApi.endpoints.updateEmail.matchFulfilled,
+            (state, action: PayloadAction<{ email: string }>) => {
+                return { ...state, ...action.payload };
+            },
+        );
+
+        /**
          * When user changes their image, set it in the global user state
          *
          * @param {*} _state
@@ -102,8 +116,6 @@ const userSlice = createSlice({
          * @return {*}
          */
         builder.addMatcher(AuthApi.endpoints.deleteAccount.matchFulfilled, () => initialUser);
-
-        // builder.addMatcher()
     },
 });
 
