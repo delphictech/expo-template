@@ -19,15 +19,15 @@ This screen contains authentication, and allows users to make an account with Ma
 - The Home Screen and Explore screen:
 The home screen shows the users account information, by storing the user information in the redux store. The explore screen queries data from the public user data collection in firestore and displays the public information to the explore screen. This uses pagination and other querying tools such as RTK query to acomplish this.
 
-
 - The settings screen:
 This screen shows off the user's profile and has a generated default profile picture. Users can upload a new photo and this will be stored in firestore as well as firebase storage. User's can also edit their account information, such as their name, email and password. All this is accomplished by using a mutation query in RTK query.
 
-<div>
+<div align='center'>
 
-https://user-images.githubusercontent.com/95386742/205751893-c9b40585-d31f-4912-a8d0-0069d1feb3bd.mp4
 
-https://user-images.githubusercontent.com/95386742/205751894-4cf34552-33d4-40c1-88ae-08810e9bdf23.mp4
+https://user-images.githubusercontent.com/95386742/205753550-1f6135bf-e57d-43ba-a010-e631f273c9ef.mp4
+
+https://user-images.githubusercontent.com/95386742/205753631-24b64022-b280-410f-89d5-b49135f1d2e6.mp4
 
 </div>
 
