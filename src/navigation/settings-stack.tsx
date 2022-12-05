@@ -44,7 +44,7 @@ export const SettingsStack: React.FC<{}> = () => {
                 name="DeleteAccount"
                 component={DeleteAccountScreen}
                 options={{
-                    headerTitle: 'Delete Account.',
+                    headerTitle: 'Delete Account',
                     presentation: 'modal',
                 }}
             />

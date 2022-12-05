@@ -1,29 +1,39 @@
 import React, { useEffect } from 'react';
-import { Box, Button, KeyboardAvoidingView, Text, useToast } from 'native-base';
+import {
+    Box,
+    Button,
+    Heading,
+    HStack,
+    Icon,
+    KeyboardAvoidingView,
+    Text,
+    useToast,
+} from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { newPasswordSchema, NewPasswordSchemaType } from 'src/utils/schemas';
-import { Keyboard, Platform } from 'react-native';
+import { authenticateSchema, AuthenticateSchemaType } from 'src/utils/schemas';
+import { Alert, Keyboard, Platform } from 'react-native';
 import { SettingStackParams } from 'src/navigation/settings-stack';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useUpdatePasswordMutation } from 'src/services';
+import { useDeleteAccountMutation } from 'src/services';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AlertToast } from 'src/components/alert-toast';
+import { MaterialIcons } from '@expo/vector-icons';
 
 type DeleteAccountScreenProps = StackScreenProps<SettingStackParams, 'DeleteAccount'>;
 
 export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ navigation }) => {
     // declare hooks
-    const userEmail = useAppSelector((state) => state.user.email);
-    const [setNewPassword, { isLoading, isSuccess, isError, error }] = useUpdatePasswordMutation();
+    const user = useAppSelector((state) => state.user);
+    const [deleteAccount, { isLoading, isSuccess, isError, error }] = useDeleteAccountMutation();
     // form validation
     const {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm<NewPasswordSchemaType>({
-        resolver: yupResolver(newPasswordSchema),
+    } = useForm<AuthenticateSchemaType>({
+        resolver: yupResolver(authenticateSchema),
     });
     // declare toast
     const toast = useToast();
@@ -47,8 +57,19 @@ export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ naviga
         }
     }, [isLoading, isSuccess, navigation, toast]);
 
-    const updatePassword = async ({ password, newPassword }: NewPasswordSchemaType) => {
-        if (userEmail) setNewPassword({ email: userEmail, oldPassword: password, newPassword });
+    const confirmDeleteAccount = async ({ email, password }: AuthenticateSchemaType) => {
+        Alert.prompt(
+            'Are you sure you want to delete your account?',
+            'Your account and data will be permanently deleted.',
+            [
+                { text: 'Go Back', style: 'cancel' },
+                {
+                    text: 'Delete Account',
+                    onPress: () => deleteAccount({ id: user.id, email, password }),
+                    style: 'destructive',
+                },
+            ],
+        );
     };
 
     return (
@@ -60,38 +81,50 @@ export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ naviga
             onTouchStart={() => Keyboard.dismiss()}
             w="100%">
             <Box px={5} mt={5}>
+                <HStack alignItems="center" justifyContent="space-between" w="100%" py={5}>
+                    <Box pr={3}>
+                        <Icon as={MaterialIcons} name="warning" size={50} color="plainText.800" />
+                    </Box>
+                    <Heading flex={1} textAlign="left" color="plainText.800" alignSelf="center">
+                        Are you sure you want to delete your account?
+                    </Heading>
+                </HStack>
                 <FormInput
                     mt={1}
+                    key="email"
+                    name="email"
+                    control={control}
+                    isInvalid={'email' in errors}
+                    password
+                    label="Enter your email"
+                    placeholder="Email"
+                    defaultValue=""
+                    errorMessage={errors?.email?.message}
+                />
+                <FormInput
                     key="password"
                     name="password"
                     control={control}
                     isInvalid={'password' in errors}
                     password
-                    label="Enter your old password"
-                    placeholder="Old Password"
+                    label="Enter your new password"
+                    placeholder="Enter your password"
                     defaultValue=""
                     errorMessage={errors?.password?.message}
-                />
-                <FormInput
-                    key="confirmPassword"
-                    name="confirmPassword"
-                    control={control}
-                    isInvalid={'confirmPassword' in errors}
-                    password
-                    label="Confirm your new password"
-                    placeholder="Confirm Password"
-                    defaultValue=""
-                    errorMessage={errors?.confirmPassword?.message}
                 />
                 {isError ? (
                     <Text color="danger.600" textAlign="center" mt={5}>
                         {error?.message}
                     </Text>
                 ) : null}
-                <Button isLoading={isLoading} mt={8} onPress={handleSubmit(updatePassword)}>
-                    Update Password
+                <Button
+                    colorScheme="danger"
+                    isLoading={isLoading}
+                    mt={8}
+                    onPress={handleSubmit(confirmDeleteAccount)}>
+                    Delete
                 </Button>
-                <Button colorScheme="danger" variant="ghost" my={5} onPress={navigation.goBack}>
+                <Button variant="ghost" my={5} onPress={navigation.goBack}>
                     Cancel
                 </Button>
             </Box>

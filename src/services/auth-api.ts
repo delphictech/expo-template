@@ -152,7 +152,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
             },
         }),
 
-        deleteAccount: build.query<
+        deleteAccount: build.mutation<
             PrivateUserData,
             { id: string; email: string; password: string }
         >({
@@ -263,7 +263,7 @@ export const {
     useLazyFetchSignInMethodsQuery,
     useLazySignUpQuery,
     useLazySignOutQuery,
-    useLazyDeleteAccountQuery,
+    useDeleteAccountMutation,
     useLazySignInQuery,
     useLazySendPasswordResetQuery,
     useLazySendVerificationEmailQuery,

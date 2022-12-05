@@ -8,7 +8,7 @@ export const authenticateSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
     password: yup.string().required('Password is required'),
 });
-export interface AuthenticateType extends yup.InferType<typeof authenticateSchema> {}
+export interface AuthenticateSchemaType extends yup.InferType<typeof authenticateSchema> {}
 
 /**
  * schema for a one form input for email
