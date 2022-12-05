@@ -5,6 +5,7 @@ import { HomeScreen } from 'src/screens';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { Icon, IconButton } from 'native-base';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AuthStackNavigator } from './auth-stack';
 import { SettingsStack } from './settings-stack';
 
@@ -20,12 +21,13 @@ const CloseIcon = (onClose: () => void) => (
     <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
 );
 
-const SettingsButton = (onPress?: (event: GestureResponderEvent) => void) => (
+const SettingsButton = (onPress?: (event: GestureResponderEvent) => void, isDisabled?: boolean) => (
     <IconButton
+        isDisabled={isDisabled}
         alignSelf="flex-end"
         variant="unstyled"
         icon={<Icon as={MaterialIcons} name="settings" size="lg" color="primary.700" />}
-        onPress={onPress}
+        onPress={isDisabled ? null : onPress}
     />
 );
 
@@ -38,6 +40,7 @@ export /**
  * @return {*}
  */
 const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => {
+    const isAnonymous = useAppSelector((state) => state.user.isAnonymous);
     const checkLogin = () => {
         Alert.alert(
             'Are you sure you want to exit?',
@@ -61,7 +64,8 @@ const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => {
                 component={HomeScreen}
                 options={{
                     headerTitle: 'Home',
-                    headerRight: () => SettingsButton(() => navigation.navigate('SettingsStack')),
+                    headerRight: () =>
+                        SettingsButton(() => navigation.navigate('SettingsStack'), isAnonymous),
                 }}
             />
             <StackNav.Screen

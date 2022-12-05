@@ -49,6 +49,7 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content>
                     <Actionsheet.Item
+                        startIcon={<Icon size={6} as={MaterialIcons} name="linked-camera" />}
                         onPress={async () => {
                             handleImageUri(await takePhoto());
                             onClose();
@@ -56,13 +57,18 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                         Take Photo
                     </Actionsheet.Item>
                     <Actionsheet.Item
+                        startIcon={<Icon size={6} as={MaterialIcons} name="file-upload" />}
                         onPress={async () => {
                             handleImageUri(await pickImage());
                             onClose();
                         }}>
                         Upload Image
                     </Actionsheet.Item>
-                    <Actionsheet.Item onPress={onClose}>Cancel</Actionsheet.Item>
+                    <Actionsheet.Item
+                        startIcon={<Icon size={6} as={MaterialIcons} name="cancel" />}
+                        onPress={onClose}>
+                        Cancel
+                    </Actionsheet.Item>
                 </Actionsheet.Content>
             </Actionsheet>
         </Box>

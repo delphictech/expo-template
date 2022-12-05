@@ -111,21 +111,10 @@ const WelcomeScreen: React.FC<{}> = () => {
                             </Heading>
                         </>
                     ) : (
-                        <HStack
-                            alignItems="center"
-                            justifyContent="space-between"
-                            w="100%"
-                            flex={1}
-                            pt={5}>
-                            <Box pr={3}>
-                                <LogoIcon size={50} color={iconColor} />
-                            </Box>
-                            <Heading
-                                flex={1}
-                                textAlign="left"
-                                color="plainText.800"
-                                alignSelf="center">
-                                Example call to action to create an account!
+                        <HStack pt={5} space={5} w="100%" justifyContent="center">
+                            <LogoIcon size={50} color={iconColor} />
+                            <Heading textAlign="left" mb={3} color="plainText.900">
+                                Welcome to the Maet template!
                             </Heading>
                         </HStack>
                     )}
