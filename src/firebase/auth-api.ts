@@ -9,10 +9,11 @@ import {
     sendEmailVerification,
     UserCredential,
     updateEmail,
-    User,
+    updatePassword,
+    reauthenticateWithCredential,
+    EmailAuthProvider,
 } from 'firebase/auth';
-import { ref, uploadBytesResumable } from 'firebase/storage';
-import { auth, storage } from './config';
+import { auth } from './config';
 import { firebaseHandler, FirebaseError } from './handler';
 
 export { FirebaseError };
@@ -135,9 +136,9 @@ export async function resetPassword(email: string): Promise<void> {
  * @export
  * @param {User} user
  * @param {string} newEmail
- * @return {*}
+ * @return {*} {Promise<void>}
  */
-export async function resetEmail(newEmail: string) {
+export async function resetEmail(newEmail: string): Promise<void> {
     if (auth.currentUser) {
         return firebaseHandler<void>(updateEmail(auth.currentUser, newEmail));
     }
@@ -147,24 +148,57 @@ export async function resetEmail(newEmail: string) {
         code: 'auth/user-not-found',
         errorCause: 'account',
     };
-    return error;
+    throw error;
 }
 
 /**
- * Adds default image to firebase storage
+ * Function will reauthenticate the user for sensitive actions
  *
  * @export
- * @param {string} userID
- * @param {string} [firstName]
- * @param {string} [lastName]
+ * @param {string} email
+ * @param {string} password
+ * @return {*} {Promise<UserCredential>}
  */
-// export async function addDefaultPicture(userID: string, firstName?: string, lastName?: string) {
-//     const file =
-//         firstName && lastName
-//             ? `https://ui-avatars.com/api/?name=${firstName}+${lastName}&size=214`
-//             : `https://ui-avatars.com/api/?name=Guest&size=214`;
-//     const img = await fetch(file);
-//     const blobFile = await img.blob();
-//     const storageRef = ref(storage, `user-profile-img/${userID}/`);
-//     await uploadBytesResumable(storageRef, blobFile);
-// }
+export async function reauthenticate(email: string, password: string): Promise<UserCredential> {
+    const credential = EmailAuthProvider.credential(email, password);
+    if (auth.currentUser) {
+        return firebaseHandler<UserCredential>(
+            reauthenticateWithCredential(auth.currentUser, credential),
+        );
+    }
+    const error: FirebaseError = {
+        name: 'Firebase Error',
+        message: 'User does not exist',
+        code: 'auth/user-not-found',
+        errorCause: 'account',
+    };
+    throw error;
+}
+
+/**
+ * Function will set the new password for the user
+ *
+ * @export
+ * @param {string} email
+ * @param {string} oldPassword
+ * @param {string} newPassword
+ * @return {*}  {Promise<void>}
+ */
+export async function setNewPassword(
+    email: string,
+    oldPassword: string,
+    newPassword: string,
+): Promise<void> {
+    // https://firebase.google.com/docs/reference/js/auth.md#updatepassword
+    if (auth.currentUser) {
+        await reauthenticate(email, oldPassword);
+        return firebaseHandler(updatePassword(auth.currentUser, newPassword));
+    }
+    const error: FirebaseError = {
+        name: 'Firebase Error',
+        message: 'User does not exist',
+        code: 'auth/user-not-found',
+        errorCause: 'account',
+    };
+    throw error;
+}

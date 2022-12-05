@@ -3,6 +3,7 @@ import {
     deleteCurrentUser,
     fetchSignInMethods,
     resetPassword,
+    setNewPassword,
     signInWithEmail,
     signOutUser,
     signUpWithEmail,
@@ -205,8 +206,27 @@ export const AuthApi = ConfigApi.injectEndpoints({
                 }
             },
         }),
-    }),
 
+        updatePassword: build.mutation<
+            null,
+            { email: string; oldPassword: string; newPassword: string }
+        >({
+            /**
+             * Mutation will update the password for the user, reauthenticating in process
+             *
+             * @param {*} { email, oldPassword, newPassword }
+             * @return {*}
+             */
+            async queryFn({ email, oldPassword, newPassword }) {
+                try {
+                    await setNewPassword(email, oldPassword, newPassword);
+                    return { data: null };
+                } catch (e: any) {
+                    return { error: e };
+                }
+            },
+        }),
+    }),
     overrideExisting: true,
 });
 
@@ -218,4 +238,5 @@ export const {
     useLazySignInQuery,
     useLazySendPasswordResetQuery,
     useLazySendVerificationEmailQuery,
+    useUpdatePasswordMutation,
 } = AuthApi;

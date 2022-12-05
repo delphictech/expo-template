@@ -10,6 +10,7 @@ import * as yup from 'yup';
 export const emailSchema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
 });
+export interface EmailSchemaType extends yup.InferType<typeof emailSchema> {}
 
 /**
  * Password and confirm password schema
@@ -28,6 +29,7 @@ export const signupSchema = yup.object().shape({
         },
     }),
 });
+export interface SignupSchemaType extends yup.InferType<typeof signupSchema> {}
 
 /**
  * Password schema
@@ -35,6 +37,7 @@ export const signupSchema = yup.object().shape({
 export const loginSchema = yup.object().shape({
     password: yup.string().required('Password is required'),
 });
+export interface LoginSchemaType extends yup.InferType<typeof loginSchema> {}
 
 // New schema for editing profile
 export const editProfileSchema = yup.object().shape({
@@ -42,9 +45,10 @@ export const editProfileSchema = yup.object().shape({
     lastName: yup.string(),
     email: yup.string().email('Invalid email'),
 });
+export interface EditProfileSchema extends yup.InferType<typeof editProfileSchema> {}
 
 // Editing Password Schema
-export const editPasswordSchema = yup.object().shape({
+export const newPasswordSchema = yup.object().shape({
     password: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
     newPassword: yup.string().required('Password is required').min(8, 'Minimum 8 characters'),
     confirmPassword: yup.string().test({
@@ -59,3 +63,4 @@ export const editPasswordSchema = yup.object().shape({
         },
     }),
 });
+export interface NewPasswordSchemaType extends yup.InferType<typeof newPasswordSchema> {}

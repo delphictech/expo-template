@@ -3,25 +3,33 @@ import { Box, Button, KeyboardAvoidingView } from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { editPasswordSchema } from 'src/utils/schemas';
+import { newPasswordSchema, NewPasswordSchemaType } from 'src/utils/schemas';
 import { Keyboard, Platform } from 'react-native';
 import { SettingStackParams } from 'src/navigation/settings-stack';
 import { StackScreenProps } from '@react-navigation/stack';
+import { useUpdatePasswordMutation } from 'src/services';
+import { useAppSelector } from 'src/ducks/useful-hooks';
 
 type ChangePasswordScreenProps = StackScreenProps<SettingStackParams, 'password'>;
 
 export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navigation }) => {
+    // declare hooks
+    const userEmail = useAppSelector((state) => state.user.email);
+    const [setNewPassword, { isLoading }] = useUpdatePasswordMutation();
+
     const {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm({
-        resolver: yupResolver(editPasswordSchema),
+    } = useForm<NewPasswordSchemaType>({
+        resolver: yupResolver(newPasswordSchema),
     });
 
-    const handleSubmitF = async (e: any) => {
-        console.log(e);
-    };
+    // const updatePassword = async ({ password, newPassword }) => {
+    //     setNewPassword({ userEmail, password, newPassword });
+    //     console.log(e);
+    // };
+
     return (
         <KeyboardAvoidingView
             h={{
@@ -65,7 +73,7 @@ export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navi
                     defaultValue=""
                     errorMessage={errors?.confirmPassword?.message}
                 />
-                <Button mt={8} onPress={handleSubmit(handleSubmitF)}>
+                <Button isLoading={isLoading} mt={8} onPress={handleSubmit(updatePassword)}>
                     Update Password
                 </Button>
                 <Button colorScheme="danger" variant="ghost" my={5} onPress={navigation.goBack}>
