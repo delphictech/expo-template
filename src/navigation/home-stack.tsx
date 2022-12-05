@@ -31,7 +31,13 @@ const SettingsButton = (onPress?: (event: GestureResponderEvent) => void) => (
 
 type HomeStackProps = StackScreenProps<HomeStackParams, 'Home'>;
 
-export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => {
+export /**
+ * Home Stack Navigator, used for navigating between, home, auth, and settings screen
+ *
+ * @param {*} { navigation }
+ * @return {*}
+ */
+const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => {
     const checkLogin = () => {
         Alert.alert(
             'Are you sure you want to exit?',

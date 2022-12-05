@@ -13,7 +13,13 @@ import { AlertToast } from 'src/components/alert-toast';
 
 type ChangePasswordScreenProps = StackScreenProps<SettingStackParams, 'Password'>;
 
-export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navigation }) => {
+export /**
+ * Change password screen, form that allows users to change password.
+ *
+ * @param {*} { navigation }
+ * @return {*}
+ */
+const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navigation }) => {
     // declare hooks
     const userEmail = useAppSelector((state) => state.user.email);
     const [setNewPassword, { isLoading, isSuccess, isError, error }] = useUpdatePasswordMutation();

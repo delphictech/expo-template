@@ -29,7 +29,12 @@ import { LogoIcon } from 'src/components/logo-icon';
 // define navigation props
 type WelcomeScreenParams = StackNavigationProp<AuthStackParams, 'Welcome'>;
 
-export const WelcomeScreen: React.FC<{}> = () => {
+export /**
+ * Welcome Screen, used either signing into Maet or making an account
+ *
+ * @return {*}
+ */
+const WelcomeScreen: React.FC<{}> = () => {
     // hooks
     const navigation = useNavigation<WelcomeScreenParams>();
     const isAnonymous = useAppSelector((state) => state.user.isAnonymous);

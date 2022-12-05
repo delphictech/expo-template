@@ -16,7 +16,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 type SettingScreenProps = StackScreenProps<SettingStackParams, 'Settings'>;
 
-export const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => {
+export /**
+ * Settings Screen, used for allowing users to change their information
+ *
+ * @param {*} { navigation }
+ * @return {*}
+ */
+const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => {
     const initialUserData = useAppSelector((state) => state.user);
 
     // user image fields mutation

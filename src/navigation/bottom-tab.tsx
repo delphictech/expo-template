@@ -28,7 +28,12 @@ const ExploreIcon = ({ focused, color, size }: TabBarIconProps) => (
     <MaterialIcons name={focused ? 'search' : 'search'} color={color} size={size} />
 );
 
-export const BottomTabNavigator: React.FC<{}> = () => {
+export /**
+ *Bottom Tab Navigator, used for Navigating between all bottom tab screens
+ *
+ * @return {*}
+ */
+const BottomTabNavigator: React.FC<{}> = () => {
     return (
         <Tabs.Navigator screenOptions={{ tabBarHideOnKeyboard: true }}>
             <Tabs.Screen

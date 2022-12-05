@@ -13,7 +13,14 @@ import { AlertToast } from 'src/components/alert-toast';
 
 type ChangeEmailScreenProps = StackScreenProps<SettingStackParams, 'Email'>;
 
-export const ChangeEmailScreen: React.FC<ChangeEmailScreenProps> = ({ navigation }) => {
+export /**
+ * Change Email screen, will display the form that allows user
+ * to change their email
+ *
+ * @param {*} { navigation }
+ * @return {*}
+ */
+const ChangeEmailScreen: React.FC<ChangeEmailScreenProps> = ({ navigation }) => {
     // declare hooks
     const user = useAppSelector((state) => state.user);
     const [setNewEmail, { isLoading, isSuccess, isError, error }] = useUpdateEmailMutation();
