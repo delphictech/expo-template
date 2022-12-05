@@ -25,6 +25,7 @@ export const HomeScreen: React.FC<{}> = () => {
     // redux handlers
     const user = useAppSelector((state) => state.user);
     const dispatch = useAppDispatch();
+    console.log('user', user?.lastName, user.firstName);
 
     return (
         <Box
@@ -45,9 +46,9 @@ export const HomeScreen: React.FC<{}> = () => {
                         source={{
                             uri: user.image || undefined,
                         }}>
-                        {`${user?.firstName?.at(0)?.toUpperCase()}${user?.lastName
-                            ?.at(0)
-                            ?.toUpperCase()}`}
+                        {user.firstName?.length &&
+                            user.lastName?.length &&
+                            `${user?.firstName[0]?.toUpperCase()}${user?.lastName[0]?.toUpperCase()}`}
                     </Avatar>
                     <Text fontWeight="bold" color="plainText.800" fontSize="xl">
                         {user.firstName} {user.lastName}

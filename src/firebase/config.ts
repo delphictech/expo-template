@@ -33,6 +33,8 @@ const firebaseConfig = {
     measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
+console.log(firebaseConfig);
+
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 

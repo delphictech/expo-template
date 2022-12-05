@@ -30,9 +30,9 @@ export const ImageUploader: React.FC<ImageArgProps> = ({
                         uri: uri || undefined,
                     }}
                     {...avatarParams}>
-                    {`${user?.firstName?.at(0)?.toUpperCase()}${user?.lastName
-                        ?.at(0)
-                        ?.toUpperCase()}`}
+                    {user?.firstName?.length &&
+                        user?.lastName?.length &&
+                        `${user?.firstName[0]?.toUpperCase()}${user?.lastName[0]?.toUpperCase()}`}
                 </Avatar>
                 <IconButton
                     position="absolute"
