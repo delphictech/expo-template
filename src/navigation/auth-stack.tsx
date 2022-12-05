@@ -14,7 +14,12 @@ export type AuthStackParams = {
 
 const StackNav = createNativeStackNavigator<AuthStackParams>();
 
-export const AuthStackNavigator: React.FC<{}> = () => {
+export /**
+ *Auth Stack Navigator for moving between Welcome and Login screen
+ *
+ * @return {*}
+ */
+const AuthStackNavigator: React.FC<{}> = () => {
     return (
         <StackNav.Navigator screenOptions={{ gestureEnabled: true }} initialRouteName="Welcome">
             <StackNav.Screen

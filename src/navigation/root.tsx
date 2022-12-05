@@ -17,7 +17,13 @@ export type RootStackParams = {
 
 const StackNav = createNativeStackNavigator<RootStackParams>();
 
-export const RootNavigator: React.FC<RootParams> = ({ scheme }) => {
+export /**
+ * Root Navigator for navigating to Bottom Tab Navigator if signed in and Auth Stack if signed out
+ *
+ * @param {*} { scheme }
+ * @return {*}
+ */
+const RootNavigator: React.FC<RootParams> = ({ scheme }) => {
     // redux handlers
     const loggedIn = useAppSelector((state) => state.user.loggedIn);
 

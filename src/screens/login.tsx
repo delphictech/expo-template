@@ -29,7 +29,13 @@ import { Keyboard, Platform } from 'react-native';
 
 type LoginScreenProps = StackScreenProps<AuthStackParams, 'Login'>;
 
-export const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) => {
+export /**
+ * Login Screen, used for letting users login
+ *
+ * @param {*} { route, navigation }
+ * @return {*}
+ */
+const LoginScreen: React.FC<LoginScreenProps> = ({ route, navigation }) => {
     // route params
     const { signInMethods, email, title } = route.params;
     const isSignInScreen = signInMethods ? Boolean(signInMethods.length) : false;

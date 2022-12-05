@@ -23,7 +23,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 type DeleteAccountScreenProps = StackScreenProps<SettingStackParams, 'DeleteAccount'>;
 
-export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ navigation }) => {
+export /**
+ * Delete Account Screen, used for deleting the user information from firestore and firebase auth
+ *
+ * @param {*} { navigation }
+ * @return {*}
+ */
+const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ navigation }) => {
     // declare hooks
     const user = useAppSelector((state) => state.user);
     const [deleteAccount, { isLoading, isSuccess, isError, error }] = useDeleteAccountMutation();

@@ -16,7 +16,12 @@ export type SettingStackParams = {
 
 const ProfileNav = createNativeStackNavigator<SettingStackParams>();
 
-export const SettingsStack: React.FC<{}> = () => {
+export /**
+ * Settings Stack, used for navigating between settings and password screen
+ *
+ * @return {*}
+ */
+const SettingsStack: React.FC<{}> = () => {
     return (
         <ProfileNav.Navigator>
             <ProfileNav.Screen
