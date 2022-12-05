@@ -58,7 +58,7 @@ export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ naviga
     }, [isLoading, isSuccess, navigation, toast]);
 
     const confirmDeleteAccount = async ({ email, password }: AuthenticateSchemaType) => {
-        Alert.prompt(
+        Alert.alert(
             'Are you sure you want to delete your account?',
             'Your account and data will be permanently deleted.',
             [
@@ -89,13 +89,15 @@ export const DeleteAccountScreen: React.FC<DeleteAccountScreenProps> = ({ naviga
                         Are you sure you want to delete your account?
                     </Heading>
                 </HStack>
+                <Text fontSize="md" textAlign="center" fontStyle="italic" color="plainText.800">
+                    Enter the credentials associated with {user.email} to confirm.
+                </Text>
                 <FormInput
                     mt={1}
                     key="email"
                     name="email"
                     control={control}
                     isInvalid={'email' in errors}
-                    password
                     label="Enter your email"
                     placeholder="Email"
                     defaultValue=""

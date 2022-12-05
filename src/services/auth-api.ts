@@ -173,6 +173,7 @@ export const AuthApi = ConfigApi.injectEndpoints({
                     };
                 } catch (e: any) {
                     console.warn(`Error with deleting user`);
+                    console.log(e);
                     return { error: e };
                 }
             },
