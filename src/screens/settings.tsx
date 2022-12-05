@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
-import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast } from 'native-base';
+import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast, Icon } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
@@ -12,17 +12,15 @@ import { useAppSelector } from 'src/ducks/useful-hooks';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
 import { SettingStackParams } from 'src/navigation/settings-stack';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { MaterialIcons } from '@expo/vector-icons';
 
-export interface EditProfileProps {}
+type SettingScreenProps = StackScreenProps<SettingStackParams, 'Settings'>;
 
-type SettingScreenProps = StackNavigationProp<SettingStackParams, 'settings'>;
-
-export const SettingsScreen: React.FC<EditProfileProps> = () => {
-    const navigation = useNavigation<SettingScreenProps>();
-
+export const SettingsScreen: React.FC<SettingScreenProps> = ({ navigation }) => {
     const initialUserData = useAppSelector((state) => state.user);
+
+    console.log(navigation.getState());
 
     // user image fields mutation
     const [
@@ -187,10 +185,25 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                 </FormControl>
                 <Button
                     variant="ghost"
+                    my={1}
                     isLoading={sendingEmail}
-                    my={3}
-                    onPress={() => navigation.navigate('password')}>
+                    endIcon={<Icon as={MaterialIcons} name="arrow-forward-ios" />}
+                    onPress={() => navigation.navigate('Password')}>
                     Change Password
+                </Button>
+                <Button
+                    variant="ghost"
+                    isLoading={sendingEmail}
+                    endIcon={<Icon as={MaterialIcons} name="arrow-forward-ios" />}
+                    onPress={() => navigation.navigate('Email')}>
+                    Change Email
+                </Button>
+                <Button
+                    variant="ghost"
+                    isLoading={sendingEmail}
+                    endIcon={<Icon as={MaterialIcons} name="arrow-forward-ios" />}
+                    onPress={() => navigation.navigate('DeleteAccount')}>
+                    Delete Account
                 </Button>
             </Box>
         </KeyboardAvoidingView>

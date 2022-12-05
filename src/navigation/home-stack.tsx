@@ -10,7 +10,7 @@ import { SettingsStack } from './settings-stack';
 
 export type HomeStackParams = {
     Home: undefined;
-    Settings: undefined;
+    SettingsStack: undefined;
     Auth: undefined;
 };
 
@@ -55,11 +55,11 @@ export const HomeStackNavigator: React.FC<HomeStackProps> = ({ navigation }) => 
                 component={HomeScreen}
                 options={{
                     headerTitle: 'Home',
-                    headerRight: () => SettingsButton(() => navigation.navigate('Settings')),
+                    headerRight: () => SettingsButton(() => navigation.navigate('SettingsStack')),
                 }}
             />
             <StackNav.Screen
-                name="Settings"
+                name="SettingsStack"
                 component={SettingsStack}
                 options={{ animationTypeForReplace: 'pop' }}
             />

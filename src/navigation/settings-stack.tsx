@@ -1,39 +1,50 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SettingsScreen } from 'src/screens/settings';
-import { ChangePasswordScreen } from 'src/screens/change-password';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { StackScreenProps } from '@react-navigation/stack';
+import {
+    SettingsScreen,
+    ChangeEmailScreen,
+    ChangePasswordScreen,
+    DeleteAccountScreen,
+} from 'src/screens';
 
 export type SettingStackParams = {
-    settings: undefined;
-    password: undefined;
+    Settings: undefined;
+    Password: undefined;
+    Email: undefined;
+    DeleteAccount: undefined;
 };
 
 const ProfileNav = createNativeStackNavigator<SettingStackParams>();
 
-const CloseIcon = (onClose: () => void) => (
-    <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
-);
-
-type SettingsStackProps = StackScreenProps<SettingStackParams, 'settings'>;
-
-export const SettingsStack: React.FC<SettingsStackProps> = ({ navigation }) => {
-
+export const SettingsStack: React.FC<{}> = () => {
     return (
         <ProfileNav.Navigator>
             <ProfileNav.Screen
-                name="settings"
+                name="Settings"
                 component={SettingsScreen}
                 options={{ headerShown: false }}
             />
             <ProfileNav.Screen
-                name="password"
+                name="Password"
                 component={ChangePasswordScreen}
                 options={{
                     headerTitle: 'Change Password',
-                    // headerRight: () => CloseIcon(navigation.goBack),
+                    presentation: 'modal',
+                }}
+            />
+            <ProfileNav.Screen
+                name="Email"
+                component={ChangeEmailScreen}
+                options={{
+                    headerTitle: 'Change Email',
+                    presentation: 'modal',
+                }}
+            />
+            <ProfileNav.Screen
+                name="DeleteAccount"
+                component={DeleteAccountScreen}
+                options={{
+                    headerTitle: 'Delete Account.',
                     presentation: 'modal',
                 }}
             />

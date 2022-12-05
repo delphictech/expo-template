@@ -11,9 +11,9 @@ import { useUpdatePasswordMutation } from 'src/services';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { AlertToast } from 'src/components/alert-toast';
 
-type ChangePasswordScreenProps = StackScreenProps<SettingStackParams, 'Password'>;
+type ChangeEmailScreenProps = StackScreenProps<SettingStackParams, 'Email'>;
 
-export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navigation }) => {
+export const ChangeEmailScreen: React.FC<ChangeEmailScreenProps> = ({ navigation }) => {
     // declare hooks
     const userEmail = useAppSelector((state) => state.user.email);
     const [setNewPassword, { isLoading, isSuccess, isError, error }] = useUpdatePasswordMutation();
