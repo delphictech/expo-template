@@ -1,27 +1,41 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SettingsScreen } from 'src/screens/settings';
-import { SettingsPassScreen } from 'src/screens/settings-pass';
+import { ChangePasswordScreen } from 'src/screens/change-password';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
 
 export type SettingStackParams = {
-    'Setting-Screen': undefined;
-    'Setting-Pass-Screen': undefined;
+    settings: undefined;
+    password: undefined;
 };
 
 const ProfileNav = createNativeStackNavigator<SettingStackParams>();
 
-export const SettingseStack: React.FC<{}> = () => {
+const CloseIcon = (onClose: () => void) => (
+    <MaterialCommunityIcons name="close" size={22} onPress={onClose} />
+);
+
+type SettingsStackProps = StackScreenProps<SettingStackParams, 'settings'>;
+
+export const SettingsStack: React.FC<SettingsStackProps> = ({ navigation }) => {
+
     return (
         <ProfileNav.Navigator>
             <ProfileNav.Screen
-                name="Setting-Screen"
+                name="settings"
                 component={SettingsScreen}
-                options={{ headerShown: false, animationTypeForReplace: 'pop' }}
+                options={{ headerShown: false }}
             />
             <ProfileNav.Screen
-                name="Setting-Pass-Screen"
-                component={SettingsPassScreen}
-                options={{ headerShown: false, animationTypeForReplace: 'pop' }}
+                name="password"
+                component={ChangePasswordScreen}
+                options={{
+                    headerTitle: 'Change Password',
+                    // headerRight: () => CloseIcon(navigation.goBack),
+                    presentation: 'modal',
+                }}
             />
         </ProfileNav.Navigator>
     );

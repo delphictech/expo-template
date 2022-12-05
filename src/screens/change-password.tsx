@@ -1,12 +1,16 @@
 import React from 'react';
-import { Box, Text, Button, KeyboardAvoidingView } from 'native-base';
+import { Box, Button, KeyboardAvoidingView } from 'native-base';
 import { FormInput } from 'src/components/form-input';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editPasswordSchema } from 'src/utils/schemas';
 import { Keyboard, Platform } from 'react-native';
+import { SettingStackParams } from 'src/navigation/settings-stack';
+import { StackScreenProps } from '@react-navigation/stack';
 
-export const SettingsPassScreen = () => {
+type ChangePasswordScreenProps = StackScreenProps<SettingStackParams, 'password'>;
+
+export const ChangePasswordScreen: React.FC<ChangePasswordScreenProps> = ({ navigation }) => {
     const {
         control,
         handleSubmit,
@@ -26,8 +30,7 @@ export const SettingsPassScreen = () => {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             onTouchStart={() => Keyboard.dismiss()}
             w="100%">
-            <Box mt={5}>
-                <Text fontSize="2xl">Change your password</Text>
+            <Box px={5} mt={5}>
                 <FormInput
                     mt={1}
                     key="password"
@@ -57,13 +60,16 @@ export const SettingsPassScreen = () => {
                     control={control}
                     isInvalid={'confirmPassword' in errors}
                     password
-                    label="Confirm new Password"
-                    placeholder="New Password"
+                    label="Confirm your new password"
+                    placeholder="Confirm Password"
                     defaultValue=""
                     errorMessage={errors?.confirmPassword?.message}
                 />
-                <Button my={5} onPress={handleSubmit(handleSubmitF)}>
-                    Save Changes
+                <Button mt={8} onPress={handleSubmit(handleSubmitF)}>
+                    Update Password
+                </Button>
+                <Button colorScheme="danger" variant="ghost" my={5} onPress={navigation.goBack}>
+                    Cancel
                 </Button>
             </Box>
         </KeyboardAvoidingView>

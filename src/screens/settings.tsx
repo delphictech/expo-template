@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Button, Text, Box, FormControl, KeyboardAvoidingView, useToast } from 'native-base';
 import { ImageUploader } from 'src/components/image-uploader';
 import { FormInput } from 'src/components/form-input';
-import { useForm, useFormState } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { editProfileSchema } from 'src/utils/schemas';
 import { useSetUserImageMutation, useUpdateUserFieldsMutation } from 'src/services/user-api';
@@ -11,13 +11,17 @@ import { useLazySendPasswordResetQuery } from 'src/services/auth-api';
 import { useAppSelector } from 'src/ducks/useful-hooks';
 import { Keyboard, Platform } from 'react-native';
 import { AlertToast } from 'src/components/alert-toast';
+import { navigationDarkTheme } from 'src/constants/theme';
+import { SettingStackParams } from 'src/navigation/settings-stack';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
 export interface EditProfileProps {}
 
-// type SettingScreenProps = StackNavigationProp<SettingStackParams, 'Setting-Screen'>;
+type SettingScreenProps = StackNavigationProp<SettingStackParams, 'settings'>;
 
 export const SettingsScreen: React.FC<EditProfileProps> = () => {
-    // const navigation = useNavigation<SettingScreenProps>();
+    const navigation = useNavigation<SettingScreenProps>();
 
     const initialUserData = useAppSelector((state) => state.user);
 
@@ -29,30 +33,17 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
             isLoading: userLoading,
             isSuccess: userSuccess,
             error: userError,
-            isUninitialized: userUnitialized,
         },
     ] = useUpdateUserFieldsMutation();
 
     // user image mutation
-    const [
-        setUserImage,
-        {
-            isLoading: imageLoading,
-            isSuccess: imageSuccess,
-            error: imageError,
-            isUninitialized: imageUnitialized,
-        },
-    ] = useSetUserImageMutation();
+    const [setUserImage, { isLoading: imageLoading, isSuccess: imageSuccess, error: imageError }] =
+        useSetUserImageMutation();
 
     // password reset query hook
     const [
         triggerPasswordReset,
-        {
-            isFetching: sendingEmail,
-            isSuccess: emailSuccess,
-            error: emailError,
-            isUninitialized: emailUnitialized,
-        },
+        { isFetching: sendingEmail, isSuccess: emailSuccess, error: emailError },
     ] = useLazySendPasswordResetQuery();
 
     // declare toast
@@ -62,7 +53,7 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     const {
         control,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isDirty, isSubmitting },
     } = useForm({
         resolver: yupResolver(editProfileSchema),
         // Need these default values for dirty fields
@@ -126,15 +117,15 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
 
     const handleImageUpload = async (imageUri: string | undefined) => {
         if (imageUri) {
-            await setUserImage(imageUri);
+            const data = await setUserImage(imageUri).unwrap();
             toast.show({
                 placement: 'bottom',
                 render: () => (
                     <AlertToast
-                        title={imageSuccess ? 'Image Uploaded' : 'Error with image upload.'}
-                        type={imageSuccess ? 'success' : 'danger'}
+                        title={data.length ? 'Image Uploaded' : 'Error with image upload.'}
+                        type={data.length ? 'success' : 'danger'}
                         message={
-                            imageSuccess
+                            data.length
                                 ? 'Your profile image has been successfull changed.'
                                 : imageError?.message
                         }
@@ -147,33 +138,26 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
     };
 
     const handlePasswordReset = async () => {
-        await triggerPasswordReset(user?.email);
-
-        toast.show({
-            placement: 'bottom',
-            render: () => (
-                <AlertToast
-                    title={emailSuccess ? 'Email Sent!' : 'Error with password reset.'}
-                    type={emailSuccess ? 'success' : 'danger'}
-                    message={
-                        emailSuccess
-                            ? `Password reset instructions sent to ${user.email}.`
-                            : emailError?.message
-                    }
-                    toExit={() => toast.close('pw-toast')}
-                />
-            ),
-            id: 'pw-toast',
-        });
+        if (user?.email) {
+            const data = await triggerPasswordReset(user?.email).unwrap();
+            toast.show({
+                placement: 'bottom',
+                render: () => (
+                    <AlertToast
+                        title={data.length ? 'Email Sent!' : 'Error with password reset.'}
+                        type={data.length ? 'success' : 'danger'}
+                        message={
+                            data.length
+                                ? `Password reset instructions sent to ${user.email}.`
+                                : emailError?.message
+                        }
+                        toExit={() => toast.close('pw-toast')}
+                    />
+                ),
+                id: 'pw-toast',
+            });
+        }
     };
-
-    // if (isLoading || isFetching) {
-    //     return <Text>Loading</Text>;
-    // }
-
-    // if (isError) {
-    //     return <Text>{error}</Text>;
-    // }
 
     return (
         <KeyboardAvoidingView
@@ -220,14 +204,19 @@ export const SettingsScreen: React.FC<EditProfileProps> = () => {
                         defaultValue={user.email ? user.email : ''}
                         errorMessage={errors?.email?.message}
                     />
-                    {/* <Button my={5} onPress={handleSubmit(handleSubmitF)}>
+                    <Button
+                        isDisabled={!isDirty}
+                        mt={8}
+                        my={3}
+                        onPress={handleSubmit(handleUserUpdate)}>
                         Save Changes
-                    </Button> */}
+                    </Button>
                 </FormControl>
-                {/* <Button my={3} onPress={() => navigation.navigate('Setting-Pass-Screen')}>
-                    Change password
-                </Button> */}
-                <Button isLoading={sendingEmail} my={3} onPress={() => handlePasswordReset()}>
+                <Button
+                    variant="link"
+                    isLoading={sendingEmail}
+                    my={3}
+                    onPress={() => navigation.navigate('password')}>
                     Change password
                 </Button>
             </Box>

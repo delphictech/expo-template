@@ -7,7 +7,7 @@ import {
     signOutUser,
     signUpWithEmail,
     verifyEmail,
-    addDefaultPicture,
+    // addDefaultPicture,
 } from 'src/firebase/auth-api';
 import {
     deletePrivateUserData,
@@ -75,7 +75,6 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             isAnonymous: true,
                             emailVerified: userCredential.user.emailVerified,
                             loggedIn: true,
-                            // image: 'https://ui-avatars.com/api/?name=Guest&size=214',
                         };
 
                         return { data: user };
@@ -90,13 +89,6 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             accountInfo.password,
                         );
 
-                        // adds default image to storage
-                        await addDefaultPicture(
-                            userCredential.user.uid,
-                            accountInfo.firstName,
-                            accountInfo.lastName,
-                        );
-
                         const user: PrivateUserData = {
                             id: userCredential.user.uid,
                             isAnonymous: false,
@@ -105,7 +97,6 @@ export const AuthApi = ConfigApi.injectEndpoints({
                             firstName: accountInfo.firstName,
                             lastName: accountInfo.lastName,
                             email: userCredential.user.email,
-                            image: `https://ui-avatars.com/api/?name=${accountInfo.firstName}+${accountInfo.lastName}&size=214`,
                         };
                         await verifyEmail();
 

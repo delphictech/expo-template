@@ -158,13 +158,13 @@ export async function resetEmail(newEmail: string) {
  * @param {string} [firstName]
  * @param {string} [lastName]
  */
-export async function addDefaultPicture(userID: string, firstName?: string, lastName?: string) {
-    const file =
-        firstName && lastName
-            ? `https://ui-avatars.com/api/?name=${firstName}+${lastName}&size=214`
-            : `https://ui-avatars.com/api/?name=Guest&size=214`;
-    const img = await fetch(file);
-    const blobFile = await img.blob();
-    const storageRef = ref(storage, `user-profile-img/${userID}/`);
-    await uploadBytesResumable(storageRef, blobFile);
-}
+// export async function addDefaultPicture(userID: string, firstName?: string, lastName?: string) {
+//     const file =
+//         firstName && lastName
+//             ? `https://ui-avatars.com/api/?name=${firstName}+${lastName}&size=214`
+//             : `https://ui-avatars.com/api/?name=Guest&size=214`;
+//     const img = await fetch(file);
+//     const blobFile = await img.blob();
+//     const storageRef = ref(storage, `user-profile-img/${userID}/`);
+//     await uploadBytesResumable(storageRef, blobFile);
+// }
