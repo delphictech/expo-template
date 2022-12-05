@@ -42,8 +42,8 @@ export const UserApi = ConfigApi.injectEndpoints({
              */
             async queryFn(uri) {
                 try {
-                    await uploadUserImage(uri);
-                    return { data: uri };
+                    const url = await uploadUserImage(uri);
+                    return { data: url };
                 } catch (e: any) {
                     console.warn(`Error with updating user image: ${e}`);
                     return { error: e };
