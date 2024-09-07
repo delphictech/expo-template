@@ -2038,6 +2038,16 @@
   dependencies:
     web-streams-polyfill "^3.1.1"
 
+"@rn-primitives/slot@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@rn-primitives/slot/-/slot-1.0.3.tgz#878b488dd7844703eb0b4dbc51c239e1bdb0ca11"
+  integrity sha512-sSDYwD2upLQUOva2cmNfaJqZlN+o0E/wa8uXEDEIYj6MJsG/O0k1t0jGXMqLP8BsQ3ZaTtUbqnG9eW/VQFOmdQ==
+
+"@rn-primitives/types@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@rn-primitives/types/-/types-1.0.3.tgz#1d0b084663859a889e5b7359eb2afe62ff311adb"
+  integrity sha512-5GY4J6SBN2JosYS/8bvQZOZL+HZk85COaFlNnjiL3efoa9gH+v1dNi0F2gW/Gr0PuGF/xo/z0iOiVc5KrDsAkQ==
+
 "@rnx-kit/chromium-edge-launcher@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@rnx-kit/chromium-edge-launcher/-/chromium-edge-launcher-1.0.0.tgz#c0df8ea00a902c7a417cd9655aab06de398b939c"
