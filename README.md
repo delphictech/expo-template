@@ -1,12 +1,5 @@
-# <img src="https://raw.githubusercontent.com/maetio/expo-template/main/assets/MaetSvg.svg" width="50" align="center" margin-bottom="15px"> Maet Expo Template
+# Delphic Tech Expo Template
 Ready-to-use mobile template built for a scalability with **typescript**, the **expo workflow**, **storybook**, and **firebase**. Used for open-source education and kickstarting mobile applications. This template will be continually updated as our stack and knowledge of "best practices" evolve, and **it can be viewed as an introduction into our software development philosophy at Maet**.
-
-
-> To use this template, make sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed and run:
-
-```bash
-expo init --template maet-expo-template
-```
 
 For your knowledge, each of the main repositories underneath `src` and `functions` include strong documentation so that you can understand the stack you are working with.
 
@@ -23,19 +16,16 @@ https://user-images.githubusercontent.com/95386742/205753631-24b64022-b280-410f-
 
 
 ## 🚀 Get Involved
-Maet is a sports-technology startup that is ***Redefining the Athletic Community***. We are always looking for software developers to join our team that resonate with our *development philosophy* and want to have a positive impact on the open-source community. 
-> **You can apply to be a TeamMaet [here](https://angel.co/l/2xAQpw)**.
-
-Drop us a ⭐ if you find this template helpful! Additionally, if you want to stay up-to-date about Maet, visit our website at [Maet.io](https://www.maet.io/), or follow our [Instagram](https://instagram.com/playmaet) and [LinkedIn](https://www.linkedin.com/company/maetio). 
+Delphic is a research and engineering collaboration that builds open-source and business ventures. Drop us a ⭐ if you find this template helpful!
 
 ## ⚖️ Development Philosophy
-As an engineer at Maet, **we strive to create elegant features for our fellow developers and our users**. We have created the following values that help us in our purpose to build valuable developer tools and delightful user experiences.
+As an engineer at Delphic Tech, **we strive to create elegant features for our fellow developers and our users**. We have created the following values that help us in our purpose to build valuable developer tools and delightful user experiences.
 
 ### ✌️ **Developer Values**
 For our community of developers to create tools that they love to use and get excited about sharing with others.
-1. **Modularity:** When we play Legos, having many well-defined pieces is much more valuable (and fun) than a completed static project. We want to be able to put together great tools, allowing us the space for flexibility and creativity. Examples include our implementation of [form-input](https://github.com/maetio/template/blob/main/src/screens/Login.tsx#L106) component with [built-in form validation](https://github.com/maetio/template/blob/main/src/components/user-input/form-input.tsx).
-2. **Communication of Knowledge:** As a talented developer at Maet, one of your top duties is effectively communicating your knowledge to our developer community, strengthening the experience of our whole team. Therefore, leave a paper trail of your methods to help transfer your knowledge to others, as we did in our [firebase configuration](https://github.com/maetio/template/blob/main/src/firebase/firebase-config.ts) and [redux hooks declarations](https://github.com/maetio/template/blob/main/src/ducks/useful-hooks.ts).
-3. **Responsive and Lightweight:** Write code that automatically adapts to changes, like we did by choosing responsive sizing values or by [automatically generating dark and light themes](https://github.com/maetio/template/blob/main/src/constants/theme.ts). Additionally, only include libraries and files that are strictly necessary while avoiding copying and pasting the same code.
+1. **Modularity:** 
+2. **Communication of Knowledge:** 
+3. **Responsive and Lightweight:**
 
 ### 💡 **Design Values**
 Create an experience for the user that empathetically caters to their needs. There are many [design heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) to consider, but we list some of our most important ones here.
@@ -60,11 +50,6 @@ A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typ
 * **Form Validation:** We are using [react-hook-form](https://react-hook-form.com/) and [yup](https://www.npmjs.com/package/yup) to validate our user inputs, checking them in our form-input component while passing the yup schema in the screens. [This tutorial](https://dev.to/franciscomendes10866/react-form-validation-with-react-hook-form-and-yup-4a98) is useful to reference. 
 
 ## 🔧 Usage
-> Be sure to have the [Expo CLI](https://docs.expo.io/workflow/expo-cli/) installed.
-
-```bash
-expo init [name] --template maet-expo-template
-```
 Create a Firebase project ([How?](https://firebase.google.com/docs/web/setup)), add a web app, and copy your Firebase config to a **.env** file in the top level of your project:
 ```
 FIREBASE_API_KEY=[...]
@@ -115,5 +100,3 @@ Set up your firebase project with firestore, functions, auth, and storage. You w
 
 ## 📋 License
 [MIT License](https://opensource.org/licenses/mit-license.html)
-
-Copyright 2022 © Maet LLC
