@@ -1,102 +1,50 @@
-# Delphic Tech Expo Template
-Ready-to-use mobile template built for a scalability with **typescript**, the **expo workflow**, **storybook**, and **firebase**. Used for open-source education and kickstarting mobile applications. This template will be continually updated as our stack and knowledge of "best practices" evolve, and **it can be viewed as an introduction into our software development philosophy at Maet**.
+# Welcome to your Expo app 👋
 
-For your knowledge, each of the main repositories underneath `src` and `functions` include strong documentation so that you can understand the stack you are working with.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## 📱 Prebuilt Screens and Flows
-This template includes some of the following configured screens/flows:
-1. Authentication flow with **guest sign-in and password authentication**.
-2. Settings with **user profile image upload**.
-3. Explore screen with **pagination example**.   
-**...and many other well-designed flows to supplement your software development knowledge!**
+## Get started
 
-https://user-images.githubusercontent.com/95386742/205753550-1f6135bf-e57d-43ba-a010-e631f273c9ef.mp4
+1. Install dependencies
 
-https://user-images.githubusercontent.com/95386742/205753631-24b64022-b280-410f-89d5-b49135f1d2e6.mp4
+   ```bash
+   npm install
+   ```
 
+2. Start the app
 
-## 🚀 Get Involved
-Delphic is a research and engineering collaboration that builds open-source and business ventures. Drop us a ⭐ if you find this template helpful!
+   ```bash
+    npx expo start
+   ```
 
-## ⚖️ Development Philosophy
-As an engineer at Delphic Tech, **we strive to create elegant features for our fellow developers and our users**. We have created the following values that help us in our purpose to build valuable developer tools and delightful user experiences.
+In the output, you'll find options to open the app in a
 
-### ✌️ **Developer Values**
-For our community of developers to create tools that they love to use and get excited about sharing with others.
-1. **Modularity:** 
-2. **Communication of Knowledge:** 
-3. **Responsive and Lightweight:**
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-### 💡 **Design Values**
-Create an experience for the user that empathetically caters to their needs. There are many [design heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) to consider, but we list some of our most important ones here.
-1. **Simplicity:** Offer users only options that are needed and do not overwhelm them with too many bright colors or complex functionality. Allow them the space to make easy, small decisions while generating a response to their needs. An example of this is the decision on the authentication flow to not ask the user whether they want to login in or sign-up, but automatically generating the next screen based on their email input.
-2. **Agency:** Give the user the power to navigate the experience effectively, while also allowing them to go back and correct their mistakes when necessary. An example of this can be seen by confirming when to exit certain actions.
-3. **Effort-Awareness:** Understand that the user does not want to fill out long forms or navigate many clicks to do a simple task. Give them smaller, digestable steps, being aware of their capacity for effort. An example of this is allowing the user to generate a guest account to temporarily experience the app so they do not have to initially commit to a long sign-up process.
-4. **Feedback:** Illustrate to the user that their action occurred in some way, so that they can feel the response and not be lost in confusion/questioning if their response went through. An example of this would be generating alerts for their actions. 
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## ⚡ Stack and Dependencies
+## Get a fresh project
 
-A [**React Native**](https://reactnative.dev/), [**TypeScript**](https://www.typescriptlang.org/), and [**Expo**](https://expo.dev/) template configured with:
+When you're ready, run:
 
-* [**Firebase V9**](https://firebase.google.com/docs/web/modular-upgrade): Firebase V9 is modular and more lightweight than previous versions of firebase, allowing us to import specific functions from firebase instead of initializing the whole app. There are many useful resources to see how to get started with this new version, including this [authentication tutorial](https://firebase.google.com/docs/auth/web/start).
-* [**React Navigation**](https://reactnavigation.org/docs/getting-started/): For navigating through screens, we are using react navigation's tab and stack navigators. Additionally, react navigation has [custom theming support](https://reactnavigation.org/docs/themes) built in, which is defined in *src/constants/theme*. 
-* [**NativeBase**](https://nativebase.io/): Well built and responsive component library for ios, android, and web.
-* [**Redux Toolkit**](): We use redux toolkit to manage universal state. An introduction into redux toolkit can be found [here](https://www.youtube.com/watch?v=9zySeP5vH9c). We divide our redux by concept, all in the "ducks" directory under src, using the slice pattern. Only use redux when necessary, handling internal state with react's useState when possible. We are using redux toolkit because it simplifies redux, allowing us to ["mutate" the state](https://redux.js.org/tutorials/quick-start#create-a-redux-state-slice) in the reducers without having to explicitly make a copy. This will shorten the amount of code we will have to write. [This tutorial](https://blog.gmagnenat.co/user-authentication-and-persistence-firebase-9-react-redux-toolkit) is useful to reference to understand how to combine redux toolkit and firebase 9 for authentication. 
-* [**Redux-Persist**](https://www.npmjs.com/package/redux-persist): Allows us to maintain the state of the app, with the data associated with the user even after the app is quit. To see how to integrate with redux toolkit, check out the [documentation](https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist) or this [tutorial](https://edvins.io/how-to-use-redux-persist-with-redux-toolkit).
-* [**React Native SVGs**](): To render local SVGs for our logos with [react-native-svg-transformer](https://github.com/react-native-svg/react-native-svg#use-with-svg-files).
-* [**ESlint**](https://eslint.org/) and [**Prettier**](https://prettier.io/): ESlint and Prettier help us detect errors while keeping our code formatting clean. We have initialized these packages using [Airbnb's style guide](https://github.com/airbnb/javascript/tree/master/react), extending our eslintrc.js to include [airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript).
-* **Absolute Imports:** To avoid annoying relative imports, we have configured our tsconfig.json file and babel.config.js file to make use of absolute imports. It may be useful to reference the typescript documentation on [module resolution](https://www.typescriptlang.org/docs/handbook/module-resolution.html), or reference [this medium blog](https://medium.com/geekculture/making-life-easier-with-absolute-imports-react-in-javascript-and-typescript-bbdab8a8a3a1).
-* **Dark and Light Theme:** We configured our own [theme](https://github.com/maetio/template/blob/main/src/constants/theme.ts) to extent to themes for [NativeBase](https://docs.nativebase.io/customizing-theme) and [React Navigation](https://reactnavigation.org/docs/themes).
-* **Form Validation:** We are using [react-hook-form](https://react-hook-form.com/) and [yup](https://www.npmjs.com/package/yup) to validate our user inputs, checking them in our form-input component while passing the yup schema in the screens. [This tutorial](https://dev.to/franciscomendes10866/react-form-validation-with-react-hook-form-and-yup-4a98) is useful to reference. 
-
-## 🔧 Usage
-Create a Firebase project ([How?](https://firebase.google.com/docs/web/setup)), add a web app, and copy your Firebase config to a **.env** file in the top level of your project:
-```
-FIREBASE_API_KEY=[...]
-FIREBASE_AUTH_DOMAIN=[...]
-FIREBASE_PROJECT_ID=[...]
-FIREBASE_STORAGE_BUCKET=[...]
-FIREBASE_MESSAGING_SENDER_ID=[...]
-FIREBASE_APP_ID=[...]
-FIREBASE_MEASUREMENT_ID=[...]
+```bash
+npm run reset-project
 ```
 
-Set up your firebase project with firestore, functions, auth, and storage. You will need to upgrade your firebase to the **Blaze** plan and change your firebase storage security rules.
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-- Run on Web: `yarn web` or `expo start --web`
-- Prebuild: `yarn prebuild` or `expo prebuild -–npm`
-    > Expo prebuild checks to make sure all packages are compatible with expo before running it on your device.
-- Run on iOS: `yarn ios` or `expo run:ios –d`
-- Run on Android: `yarn android` or `expo run:android --device`
-- Install dependencies: `yarn`
-- Compile TypeScript: `yarn tsc`
-- Lint Code: `yarn lint` or `yarn eslint .`
-- Format Code: `yarn format` or `yarn eslint . --fix`
+## Learn more
 
-### 💻  **Development Practices**
-1. **Responsive:** Make sure to utilize responsive sizing for components and using responsive color values (defined in theme.ts) where necessary.
-2. **Lightweight Files:** Keep files under ~500 lines of code. If you much longer than this you should probably be creating a different component to import in.
-3. **Compilation and Formatting:** Strongly type when possible to cut down on runtime errors while also linting code often to maintain strong formatting.
-4. **Naming Conventions:**   
-    *Files/Directories:* all lower case with - for spaces (ex. form-input.tsx)   
-    *Components/Interfaces:* Capital first letter and CamelCase (ex. \<FormInput />)  
-    *Variables:* camelCase (ex. const isLoading)
-5. **Comments:**
-    * We follow the standardized [TSDoc](https://tsdoc.org/) comments.
-    * Install the VSCode [Document This extension](https://marketplace.visualstudio.com/items?itemName=oouo-diogo-perdigao.docthis) and update the [keyboard command](https://code.visualstudio.com/docs/getstarted/keybindings) to whatever you wish.
+To learn more about developing your project with Expo, look at the following resources:
 
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## 📂 Organization 
-`functions`: server-side firebase functions.
-`src/components`: useful re-usable component library.  
-`src/constants`: app constants, such as theme, that remain consistent throughout the app.   
-`src/ducks`: redux features, organized using the slice pattern.   
-`src/firebase`: all backend firebase configuration, promise handlers, and api.  
-`src/hooks`: useful hooks that can be re-used throughout the app.  
-`src/navigation`: react-navigation navigators, including stack and tab navigators.  
-`src/screens`: the main screens of the app.  
-`src/types`: definitions of important interfaces and types.  
-`src/utils`: utility files, including yup form schemas.
+## Join the community
 
-## 📋 License
-[MIT License](https://opensource.org/licenses/mit-license.html)
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
