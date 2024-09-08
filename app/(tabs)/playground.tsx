@@ -5,10 +5,18 @@ import { decrement, increment } from "~/redux/slices/counterSlice";
 import { Button } from "~/components/ui/button";
 import { Text } from "~/components/ui/text";
 import { View } from "react-native";
+import { useGetPokemonByNameQuery } from "~/redux/services/test";
 
 export default function TabThreeScreen() {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
+
+  // Using a query hook automatically fetches data and returns query values
+  const { data, error, isLoading } = useGetPokemonByNameQuery("bulbasaur");
+  // Individual hooks are also accessible under the generated endpoints:
+  // const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur')
+
+  console.log('data', data)
 
   return (
     <View className="w-100 flex justify-between">
@@ -31,6 +39,15 @@ export default function TabThreeScreen() {
           the leap into electron
         </Text>
       </View>
+      {isLoading ? (
+        <View>
+          <Text>loading...</Text>
+        </View>
+      ) : (
+        <View>
+          <Text>{JSON.stringify(data)}</Text>
+        </View>
+      )}
     </View>
   );
 }
