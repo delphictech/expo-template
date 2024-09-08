@@ -1,3 +1,6 @@
+⚠️ This branch is deprecated and no longer maintained. Please use the `v2` or `main` branch for future development.
+
+
 # Delphic Tech Expo Template
 Ready-to-use mobile template built for a scalability with **typescript**, the **expo workflow**, **storybook**, and **firebase**. Used for open-source education and kickstarting mobile applications. This template will be continually updated as our stack and knowledge of "best practices" evolve, and **it can be viewed as an introduction into our software development philosophy at Maet**.
 
