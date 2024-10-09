@@ -10,7 +10,8 @@ import {
     QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PrivateUserData, PublicUserData } from '~/types';
 // import { PrivateUserData, PublicUserData } from 'src/types';
 // import env from 'expo-env';
 
@@ -77,5 +78,5 @@ const createCollection = <T = DocumentData>(collectionName: string): CollectionR
 /**
  * Define the collections
  */
-// export const privateUserCollection = createCollection<PrivateUserData>('private-user-data');
-// export const publicUserCollection = createCollection<PublicUserData>('public-user-data');
+export const privateUserCollection = createCollection<PrivateUserData>('private-user-data');
+export const publicUserCollection = createCollection<PublicUserData>('public-user-data');
