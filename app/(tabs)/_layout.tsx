@@ -15,12 +15,6 @@ export default function TabLayout() {
     // redux handlers
   const user = useAppSelector((state) => state.user.loggedIn);
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     navigation.navigate('/login');
-  //   }
-  // }, [user]);
-
   return (
     <Tabs
       screenOptions={{

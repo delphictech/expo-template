@@ -70,17 +70,7 @@ export default function RootLayout() {
     <Provider store={store}>
       <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
         <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-        {/* <LoginWall> */}
-        <Stack />
-        {/* </LoginWall> */}
-
-        {/* <Stack>
-          {loggedIn ? (
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          ) : (
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          )}
-        </Stack> */}
+        <Stack />       
       </ThemeProvider>
     </Provider>
   );
