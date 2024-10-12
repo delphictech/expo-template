@@ -11,6 +11,7 @@ import { useColorScheme } from "~/lib/useColorScheme";
 import { useEffect } from "react";
 import { store } from "~/redux/store";
 import { Provider } from "react-redux";
+import { useAppSelector } from "~/redux/useful-hooks";
 
 const LIGHT_THEME: Theme = {
   dark: false,
@@ -30,6 +31,9 @@ export {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  // redux handlers
+  // const loggedIn = useAppSelector((state) => state.user.loggedIn);
+
   const { colorScheme, setColorScheme, isDarkColorScheme } = useColorScheme();
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = React.useState(false);
 
@@ -63,12 +67,21 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
         <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+        {/* <LoginWall> */}
         <Stack />
-      </Provider>
-    </ThemeProvider>
+        {/* </LoginWall> */}
+
+        {/* <Stack>
+          {loggedIn ? (
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          ) : (
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          )}
+        </Stack> */}
+      </ThemeProvider>
+    </Provider>
   );
 }
-

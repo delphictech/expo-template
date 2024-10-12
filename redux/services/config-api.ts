@@ -1,5 +1,5 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { FirebaseError } from 'src/firebase/handler';
+import { FirebaseError } from '~/firebase/handler';
 
 /**
  * Defines the empty configuration api, will allow for code splitting the middleware across multiple files
@@ -9,8 +9,7 @@ import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
  */
 export const ConfigApi = createApi({
     reducerPath: 'firebaseAPI',
-    // baseQuery: fakeBaseQuery<FirebaseError>(),
-    baseQuery: fakeBaseQuery<any>(),
+    baseQuery: fakeBaseQuery<FirebaseError>(),
     tagTypes: [
         'Users',
         'Competitions',

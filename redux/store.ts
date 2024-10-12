@@ -1,19 +1,52 @@
-import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "~/redux/slices/counterSlice";
-import { pokemonApi } from "~/redux/services/test";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ConfigApi } from '~/redux/services/config-api';
+// import { StripeApi } from 'src/services/stripe';
+import userReducer from '~/redux/slices/user-slice';
+import counterReducer from '~/redux/slices/counterSlice'
+import { pokemonApi } from './services/test';
 
-export const store = configureStore({
-  reducer: {
+/**
+ * @remarks
+ * set the persist configuration
+ *
+ * @resources
+ * Usage with redux persist: https://redux-toolkit.js.org/usage/usage-guide#use-with-redux-persist
+ * Helpful tutorial: https://edvins.io/how-to-use-redux-persist-with-redux-toolkit
+ * Splitting the rtk-query api: https://stackoverflow.com/questions/71466817/splitting-api-definitions-with-rtk-query
+ */
+const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage: AsyncStorage,
+};
+
+// combine reducers
+const reducers = combineReducers({
+    user: userReducer,
     counter: counterReducer,
+    [ConfigApi.reducerPath]: ConfigApi.reducer,
     [pokemonApi.reducerPath]: pokemonApi.reducer,
-  },
-  // Adding the api middleware enables caching, invalidation, polling,
-  // and other useful features of `rtk-query`.
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(pokemonApi.middleware),
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+// set the persisting reducers
+const persistedReducers = persistReducer(persistConfig, reducers);
+
+// configure the store
+export const store = configureStore({
+    reducer: persistedReducers,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            immutableCheck: false,
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        })
+            .concat(ConfigApi.middleware)
+            .concat(pokemonApi.middleware),
+});
+
+// export the redux dispatch and root states
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
