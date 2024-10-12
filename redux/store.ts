@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ConfigApi } from '~/redux/services/config-api';
 // import { StripeApi } from 'src/services/stripe';
 import userReducer from '~/redux/slices/user-slice';
+import counterReducer from '~/redux/slices/counterSlice'
 import { pokemonApi } from './services/test';
 
 /**
@@ -24,6 +25,7 @@ const persistConfig = {
 // combine reducers
 const reducers = combineReducers({
     user: userReducer,
+    counter: counterReducer,
     [ConfigApi.reducerPath]: ConfigApi.reducer,
     [pokemonApi.reducerPath]: pokemonApi.reducer,
 });
