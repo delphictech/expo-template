@@ -7,7 +7,7 @@ export default function RootNavigator() {
 
   console.log("loggedIn", loggedIn);
 
-  if (loggedIn) {
+  if (!loggedIn) {
     // User is not logged in, redirect to /login
     return <Redirect href="/(auth)/login" />;
   }
